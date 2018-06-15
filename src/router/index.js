@@ -13,7 +13,7 @@ export default new Router({
       component: test
     },
     {
-      path: '/test1',
+      path: '/test1/:circleID',
       name: 'Test2',
       component: test1
     }

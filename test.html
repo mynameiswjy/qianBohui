@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <style type="text/css">
+    .show{
+      color: green;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <div>hello {{msg}}</div>
+      <div v-once>hello {{msg}} 123</div>
+      <div>{{reverseMessage}}</div>
+      <div>{{now}}</div>
+      <div>{{fullName}}</div>
+      <div v-bind:class="title">{{msg}}==={{message?msg:'message是false'}}</div>
+      <ol>
+        <li v-for="item in list">{{item.name}}</li>
+      </ol>
+      <div>
+        <p>{{msg}}</p>
+        <input style="" type="text" v-model="msg">
+        <button v-if="message" @click="reverseMsg">点击反转</button>
+      </div>
+      <ol>
+        <todo-item :todo="list"></todo-item>
+      </ol>
+    </div>
+    <script type="text/ecmascript">
+      Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<ol><li v-for="item in todo">{{item.name}}</li></ol>'
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          msg: 'world',
+          message: true,
+          title: 'show',
+          list: [
+            {name: 'Tom'},
+            {name: 'Jim'},
+            {name: 'Bob'}
+          ],
+          // fullName: 'hello world',
+          lastName: 'world',
+          firstName: 'hello'
+        },
+        methods: {
+          reverseMsg() {
+            this.msg = this.msg.split('').reverse().join('')
+          }
+        },
+        computed: {
+          reverseMessage() {
+            return '我是反转过了来的msg=====>' + this.msg.split('').reverse().join('')
+          },
+          now() {
+            return Date.now()
+          },
+          fullName: {
+            get: function () {
+              return this.firstName + ' ' + this.lastName
+            },
+            set: function (newValue) {
+              var names = newValue.split('')
+              this.firstName = names[0]
+              this.lastName = names[names.length - 1]
+            }
+          }
+        }
+      })
+      app.lastName = 'Tom'
+      console.log(app.lastName)
+    </script>
+  </body>
+</html>
