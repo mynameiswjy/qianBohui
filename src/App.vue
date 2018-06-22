@@ -1,16 +1,11 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-link to="/test1/8">路由</router-link>
-    <div>
-      我是路由组件
-      <router-view :arr="arr"/>
-    </div>
+    <router-view :arr="arr"/>
   </div>
 </template>
 
 <script>
-import test1 from './components/Test2'
 
 export default {
   data() {
@@ -23,7 +18,6 @@ export default {
   },
   name: 'App',
   components: {
-    test1
   }
 }
 </script>

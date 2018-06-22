@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import test from '@/components/Test'
-import test1 from '@/components/Test2'
 
 Vue.use(Router)
 
@@ -10,12 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'Test',
-      component: test
-    },
-    {
-      path: '/test1/:circleID',
-      name: 'Test2',
-      component: test1
+      component: ''
     }
   ]
 })
