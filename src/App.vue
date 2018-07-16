@@ -4,6 +4,7 @@
     <ul class="tab" @click="tabChange">
       <li class="tab-li" :class="{active:tab.id == idx}" v-for="tab in tabs" v-bind:key="tab.id" :data-index="tab.id">{{tab.name}}</li>
     </ul>
+    <div class="border-line"></div>
     <introduce></introduce>
     <router-view/>
   </div>
@@ -41,22 +42,47 @@ export default {
 
 <style>
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif,PingFangSC-Regular;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
   }
   .title-img{
     width: 100%;
-    height: 200px;
+    height: 171px;
+  }
+  .border-line{
+    width:375px;
+    height:1px;
+    background:rgba(238,236,233,1);
+    margin-bottom: 30px;
   }
   .tab{
     display: flex;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+    font-size: 15px;
+    font-family: PingFangSC-Regular;
+    color: rgba(51,51,51,1);
   }
   .tab-li{
     flex: 1;
+    position: relative;
   }
   .active{
-    color: red;
+    color: #C8A258;
+  }
+  .active:after {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: auto;
+    bottom: 0;
+    right: auto;
+    height: 3px;
+    width: 25px;
+    border-radius:5px;
+    background-color: #C8A258;
   }
 </style>
