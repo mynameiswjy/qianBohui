@@ -5,6 +5,15 @@
 const path = require('path')
 
 module.exports = {
+  /*proxyTable: {//解决跨域问题
+    '/api': {
+      target: 'http://127.0.0.1:8888',
+      changeOrigin:true,
+      pathRewrite:{
+        //'^/api':''
+      }
+    }
+  },*/
   dev: {
 
     // Paths

@@ -27,6 +27,9 @@ export default {
     }
   },
   name: 'App',
+  created() {
+    document.title = '首页';
+  },
   methods: {
     tabChange(e) {
       let target = e.target.dataset
