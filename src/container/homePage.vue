@@ -1,7 +1,7 @@
 <template>
   <div>
     <introduce></introduce>
-    <div>首页</div>
+    <!--<div>首页</div>-->
   </div>
 </template>
 
@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-
+  body{
+    /*background: rgba(198,160,86,1);*/
+  }
 </style>

@@ -1,10 +1,12 @@
 <template>
     <div>
-      <img :hidden="this.idx != 0" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
+      <!--<img :hidden="this.idx != 0" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
+      <img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
       <ul class="tab">
         <li class="tab-li" @click="tabChange(tab.id)" v-for="tab in tabs" v-bind:key="tab.id">
           <router-link :class="{active:tab.id == idx}" :to="tab.path">{{tab.name}}</router-link>
         </li>
+        <li class="search-icon"><img src="../assets/images/search.png" alt=""></li>
       </ul>
       <div class="border-line"></div>
     </div>
@@ -37,32 +39,38 @@ export default {
 
 <style scoped>
   .title-img{
-    width: 100%;
-    height: 171px;
+    width: 7.5rem;
+    height: 3.41rem;
+  }
+  .search-icon{
+    
   }
   .border-line{
-    width:375px;
-    height:1px;
+    width:7.5rem;
+    height:0.01rem;
     background:rgba(238,236,233,1);
-    margin-bottom: 30px;
+    margin-bottom: 0.3rem;
   }
   .tab{
     display: flex;
-    height: 39px;
-    line-height: 39px;
+    height: 0.79rem;
+    line-height: 0.79rem;
     text-align: center;
-    font-size: 15px;
+    font-size: 0.28rem;
     font-family: PingFangSC-Regular;
     color: rgba(51,51,51,1);
   }
+  .tab-li:first-child{
+    padding-left: 0.36rem;
+  }
   .tab-li{
-    padding-left: 17.5px;
+    padding-right: 0.35rem;
     position: relative;
   }
   .active{
     color: #C8A258;
-    padding-bottom: 9px;
-    border-bottom: 3px solid #C8A258;
+    padding-bottom: 0.18rem;
+    border-bottom: 0.06rem solid #C8A258;
   }
   /*.active:after {
     content: '';
