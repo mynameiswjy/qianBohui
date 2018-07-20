@@ -4,7 +4,10 @@
 
 <script>
 export default {
-  name: "aboutzh"
+  name: "aboutzh",
+  created() {
+    document.title = '关于展会';
+  },
 }
 </script>
 

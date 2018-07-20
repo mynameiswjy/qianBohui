@@ -6,7 +6,7 @@
         <li class="tab-li" @click="tabChange(tab.id)" v-for="tab in tabs" v-bind:key="tab.id">
           <router-link :class="{active:tab.id == idx}" :to="tab.path">{{tab.name}}</router-link>
         </li>
-        <li class="search-icon"><img src="../assets/images/search.png" alt=""></li>
+        <li class="search"><img src="../assets/images/search.png" class="search-icon" alt=""></li>
       </ul>
       <div class="border-line"></div>
     </div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "navTab",
+  name: "navBar",
   data() {
     return {
       tabs: [
@@ -42,9 +42,6 @@ export default {
     width: 7.5rem;
     height: 3.41rem;
   }
-  .search-icon{
-    
-  }
   .border-line{
     width:7.5rem;
     height:0.01rem;
@@ -59,6 +56,20 @@ export default {
     font-size: 0.28rem;
     font-family: PingFangSC-Regular;
     color: rgba(51,51,51,1);
+    position: relative;
+  }
+  .search{
+    position: absolute;
+    right: 0.36rem;
+    width: 0.82rem;
+    text-align: right;
+    /*height: 0.54rem;*/
+    background:rgba(255,255,255, 0.6);
+  }
+  .search-icon{
+    width: 0.32rem;
+    height: 0.32rem;
+    background-color: #fff;
   }
   .tab-li:first-child{
     padding-left: 0.36rem;

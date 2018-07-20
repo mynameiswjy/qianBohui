@@ -4,7 +4,10 @@
 
 <script>
 export default {
-  name: "aboutzh"
+  name: "aboutzh",
+  created() {
+    document.title = '新闻资讯';
+  },
 }
 </script>
 

@@ -4,7 +4,10 @@
 
 <script>
 export default {
-  name: "aboutzh"
+  name: "aboutzh",
+  created() {
+    document.title = '观众专区';
+  },
 }
 </script>
 
