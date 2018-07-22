@@ -1,26 +1,47 @@
 <template>
-  <div class="wrap">
-    <div class="booth">
-      <img class="tab-icon" src="../assets/images/booth-reservation.png" alt="">
-      <div>展位预订</div>
-    </div>
-    <div>
-      <img class="tab-icon" src="../assets/images/visit-registration.png" alt="">
-      <div>参观登记</div>
-    </div>
-    <div class="consulting">
-      <img class="tab-img" src="../assets/images/consulting.png" alt="">
-      <div>在线咨询</div>
-    </div>
+  <div>
+    <ul class="wrap">
+      <li class="booth" @click="cilckTabBarOne">
+        <img class="tab-icon" src="../assets/images/booth-reservation.png">
+        <div>展位预订</div>
+      </li>
+      <li alt="" @click="cilckTabBarTwo">
+        <img class="tab-icon" src="../assets/images/visit-registration.png" alt="">
+        <div>参观登记</div>
+      </li>
+      <li class="consulting" alt="" @click="cilckTabBarThree">
+        <img class="tab-img" src="../assets/images/consulting.png" alt="">
+        <div>在线咨询</div>
+      </li>
+    </ul>
+    <visit v-if="one"></visit>
   </div>
 </template>
 
 <script>
+import visit from "@/components/mask/visit.vue"
 export default {
   name: "tabBar",
   data() {
     return {
+      one: false
     }
+  },
+  methods: {
+    /*cilckTabBar(e) {
+      let target = e.target.dataset
+      let index = target.index
+      console.log(e.target.getAttribute("data-index"))
+    },*/
+    cilckTabBarOne() {
+      this.one = !this.one
+    },
+    cilckTabBarTwo() {
+    },
+    cilckTabBarThree() {}
+  },
+  components: {
+    visit
   }
 }
 </script>

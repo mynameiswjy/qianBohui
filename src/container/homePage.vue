@@ -18,7 +18,7 @@ import exhibitionNews from '@/components/exhibitionNews' // 展会新闻模板
 import exhibitor from '@/components/exhibitor' // 展商介绍模板
 import successiveExhibitions from '@/components/successiveExhibitions' // 历届展会模板
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
-import tabBar from '@/container/tabBar' // 都不tabBar
+import tabBar from '@/container/tabBar' // 底部tabBar
 export default {
   name: "index",
   data() {
