@@ -19,6 +19,19 @@
 </template>
 
 <script>
+/*!function(d, w) {
+  var c = d.documentElement;
+  debugger
+  w = function() {
+    var a = c.clientWidth; // 375
+    a && (c.style.fontSize = a/375 * 100 + "px")
+  };
+  window.addEventListener("orientationchange" in window ? "orientationchange" : "resize", w, !1);
+  d.addEventListener("DOMContentLoaded", w, !1)
+}(document, window);*/
+console.log('window.devicePixelRatio=======>', window.devicePixelRatio)
+console.log(document.documentElement.clientWidth)
+console.log(document.documentElement.clientHeight)
 import visit from "@/components/mask/visit.vue"
 export default {
   name: "tabBar",
