@@ -14,7 +14,9 @@
         <div>在线咨询</div>
       </li>
     </ul>
-    <visit v-if="one"></visit>
+    <visit ref="visit" v-if="tow"></visit>
+    <reservation ref="reservation" @click="closeTemp" v-if="one"></reservation>
+    <consulting v-if="three"></consulting>
   </div>
 </template>
 
@@ -29,16 +31,19 @@
   window.addEventListener("orientationchange" in window ? "orientationchange" : "resize", w, !1);
   d.addEventListener("DOMContentLoaded", w, !1)
 }(document, window);*/
-console.log('window.devicePixelRatio=======>', window.devicePixelRatio)
-console.log(document.documentElement.clientWidth)
-console.log(document.documentElement.clientHeight)
 import visit from "@/components/mask/visit.vue"
+import reservation from "@/components/mask/reservation.vue"
+import consulting from "@/components/mask/consulting.vue"
 export default {
   name: "tabBar",
   data() {
     return {
-      one: false
+      one: false,
+      tow: false,
+      three: false,
     }
+  },
+  created() {
   },
   methods: {
     /*cilckTabBar(e) {
@@ -49,12 +54,21 @@ export default {
     cilckTabBarOne() {
       this.one = !this.one
     },
-    cilckTabBarTwo() {
+    closeTemp(e) {
+      console.log(e)
+      this.$refs.child.closeTemp()
     },
-    cilckTabBarThree() {}
+    cilckTabBarTwo() {
+      this.tow = !this.tow
+    },
+    cilckTabBarThree() {
+      this.three = !this.three
+    }
   },
   components: {
-    visit
+    visit,
+    reservation,
+    consulting
   }
 }
 </script>
