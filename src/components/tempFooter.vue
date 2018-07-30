@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-  .wrap{margin-right: 0.36rem;display: flex;flex-direction: column;}
+  .wrap{margin-right: 0.36rem;display: flex;flex-direction: column;width: 7.14rem;}
   .about {
     align-self: center;
     display: flex;

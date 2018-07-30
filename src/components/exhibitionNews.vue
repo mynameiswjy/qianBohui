@@ -34,6 +34,7 @@ export default {
 <style scoped>
   .wrap{
     margin-left: 0.36rem;
+    width: 7.14rem;
   }
   .ad{
     width: 6.78rem;

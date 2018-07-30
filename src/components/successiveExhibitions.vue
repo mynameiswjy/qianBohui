@@ -14,9 +14,23 @@
       </div>
     </div>
     <div class="slider">
-      <ul class="exhibition-news">
-        <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
-      </ul>
+      <scroll class="swiper">
+        <ul class="exhibition-news">
+          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
+        </ul>
+        <ul class="exhibition-news">
+          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
+        </ul>
+        <ul class="exhibition-news">
+          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
+        </ul>
+        <ul class="exhibition-news">
+          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
+        </ul>
+        <ul class="exhibition-news">
+          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
+        </ul>
+      </scroll>
       <ul class="time-year">
         <li>2013</li>
         <li>2014</li>
@@ -46,17 +60,35 @@ export default {
 </script>
 
 <style scoped>
-  .look-more{
+  .swiper {
+    display: flex;
+  }
+
+  .look-more {
     margin-right: 0.19rem;
     font-size: 0.32rem;
   }
-  .more{
+
+  .more {
     display: flex;
     justify-content: space-between;
     line-height: 0.26rem;
   }
   .wrap{
+    width: 7.14rem;
     margin-left: 0.36rem;
+  }
+
+  .slider {
+    /*width: 6.2rem;*/
+    box-shadow: 0.0rem 0rem 0.21rem rgba(198, 160, 86, 0.6);
+    padding: 0.43rem 0.29rem 0.45rem 0.29rem;
+  }
+
+  .exhibition-news {
+    background: rgba(198, 160, 86, 0.08);
+    padding: 0.13rem 0;
+    margin-bottom: 0.41rem;
   }
   .more-img{
     width: 0.14rem;
@@ -101,16 +133,7 @@ export default {
     color:rgba(207,194,170, 1);
     line-height: 0.3rem;
   }
-  .slider{
-    width: 6.2rem;
-    box-shadow: 0.0rem 0rem 0.21rem rgba(198,160,86, 0.6);
-    padding: 0.43rem 0.29rem 0.45rem 0.29rem;
-  }
-  .exhibition-news{
-    background:rgba(198,160,86, 0.08);
-    padding: 0.13rem 0;
-    margin-bottom: 0.41rem;
-  }
+
   .exhibition-news li{
     height: 0.76rem;
     line-height: 0.76rem;

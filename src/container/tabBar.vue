@@ -14,8 +14,8 @@
         <div>在线咨询</div>
       </li>
     </ul>
-    <visit ref="visit" v-if="tow"></visit>
-    <reservation ref="reservation" @click="closeTemp" v-if="one"></reservation>
+    <visit @closeVisit="visitClose" v-if="tow"></visit>
+    <reservation ref="reservation" @closeTemp="tempClose" v-if="one"></reservation>
     <consulting v-if="three"></consulting>
   </div>
 </template>
@@ -54,9 +54,12 @@ export default {
     cilckTabBarOne() {
       this.one = !this.one
     },
-    closeTemp(e) {
-      console.log(e)
-      this.$refs.child.closeTemp()
+    // 通过子组件传过来的值 动态的改变 变量==> one
+    tempClose(e) {
+      this.one = e
+    },
+    visitClose(e) {
+      this.tow = e
     },
     cilckTabBarTwo() {
       this.tow = !this.tow

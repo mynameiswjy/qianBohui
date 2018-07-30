@@ -60,6 +60,7 @@ export default {
     line-height: 0.42rem;
   }
   .wrap{
+    width: 7.14rem;
     margin-left: 0.36rem;
   }
   .title{
