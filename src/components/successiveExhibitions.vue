@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="slider">
-      <scroll class="swiper">
+      <div class="swiper" ref="swiperWrap">
         <ul class="exhibition-news">
           <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
         </ul>
@@ -30,7 +30,7 @@
         <ul class="exhibition-news">
           <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
         </ul>
-      </scroll>
+      </div>
       <ul class="time-year">
         <li>2013</li>
         <li>2014</li>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll';
 export default {
   name: "successiveExhibitions",
   data() {
@@ -53,7 +54,49 @@ export default {
         {name: '纪念币题材及发行要素辨识', id: '2'},
         {name: '购买途径及鉴定证书辨识', id: '3'},
         {name: '如何成为特许零售商', id: '4'}
-      ]
+      ],
+      listWidth: [],
+      scrollX: 0,
+      clickEvent: false
+    }
+  },
+  methods: {
+    _initScroll() {
+      this.swiperWrap = new BScroll(this.$refs.swiperWrap, {
+      })
+      this.swiperWrap.on('scroll', (pos) => {
+        this.scrollX = Math.abs(Math.round(pos.x))
+      })
+    },
+    _getWidth() {
+      let items = this.$refs.swiperWrap.getElementsByClassName('exhibition-news')
+      let width = 0
+      this.listWidth.push(width)
+      for (let i = 0; i < items.length; i++) {
+        let item = items[i]
+        width += item.clientWidth
+        this.listWidth.push(width)
+      }
+    }
+  },
+  mounted() {
+    this._initScroll()
+    this._getWidth()
+  },
+  computed: {
+    currentIndex() {
+      for (let i = 0; i < this.listWidth.length; i++) {
+        let width = this.listWidth[i]
+        let width2 = this.listWidth[i + 1]
+        if (!width2 || (this.scrollX >= width && this.scrollX < width2)) {
+          if (this.clickEvent) {
+            return i + 1
+          } else {
+            return i
+          }
+        }
+      }
+      return 0
     }
   }
 }
@@ -62,6 +105,8 @@ export default {
 <style scoped>
   .swiper {
     display: flex;
+    height: 100%;
+    width: 500px;
   }
 
   .look-more {
