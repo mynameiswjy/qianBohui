@@ -14,101 +14,114 @@
       </div>
     </div>
     <div class="slider">
-      <div class="swiper" ref="swiperWrap">
-        <ul class="exhibition-news">
-          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
-        </ul>
-        <ul class="exhibition-news">
-          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
-        </ul>
-        <ul class="exhibition-news">
-          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
-        </ul>
-        <ul class="exhibition-news">
-          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
-        </ul>
-        <ul class="exhibition-news">
-          <li v-for="item in list" :class="{border: list.length !== (item.id - 1 + 2)}" v-bind:key="item.id">{{item.name}}</li>
-        </ul>
+      <div class="slider-wrap">
+        <div class="slider-content">
+          <ul class="exhibition-news" v-for="group in lists" :key="group.idx">
+            <li v-for="item in group.list" :class="{border: group.length !== (item.id - 1 + 2)}" :key="item.id">
+              {{item.name}}
+            </li>
+          </ul>
+        </div>
       </div>
-      <ul class="time-year">
-        <li>2013</li>
-        <li>2014</li>
-        <li>2015</li>
-        <li>2016</li>
-        <li>2017</li>
-      </ul>
+      <!--<div class="time-wrap" ref="timeWrap">
+        <ul class="time-year">
+          <li>2013</li>
+          <li>2014</li>
+          <li>2015</li>
+          <li>2016</li>
+          <li>2017</li>
+        </ul>
+      </div>-->
     </div>
   </div>
 </template>
 
 <script>
-import BScroll from 'better-scroll';
+import Slider from "../utils/scroll"
+import BScroll from 'better-scroll'
+
 export default {
   name: "successiveExhibitions",
   data() {
     return {
-      list: [
-        {name: '贵金属纪念币知识介绍', id: '0'},
-        {name: '纪念币的保存、清洗及赝品识别', id: '1'},
-        {name: '纪念币题材及发行要素辨识', id: '2'},
-        {name: '购买途径及鉴定证书辨识', id: '3'},
-        {name: '如何成为特许零售商', id: '4'}
+      lists: [
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 0},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 1},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 2},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 3},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 4},
       ],
-      listWidth: [],
-      scrollX: 0,
-      clickEvent: false
+      probeType: 0,
+      speed: 400,
     }
   },
   methods: {
-    _initScroll() {
-      this.swiperWrap = new BScroll(this.$refs.swiperWrap, {
+    _initSlider() {
+      this.slider = new BScroll('.slider-wrap', {
+        scrollX: true,
+        click: true,
+        freeScroll: true,
+        eventPassthrough: 'vertical',
+        snap: {
+          loop: false, //loop 为 true 是为了支持循环轮播
+          threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
+          speed: this.speed
+        },
+        probeType: this.probeType,
       })
-      this.swiperWrap.on('scroll', (pos) => {
-        this.scrollX = Math.abs(Math.round(pos.x))
-      })
-    },
-    _getWidth() {
-      let items = this.$refs.swiperWrap.getElementsByClassName('exhibition-news')
-      let width = 0
-      this.listWidth.push(width)
-      for (let i = 0; i < items.length; i++) {
-        let item = items[i]
-        width += item.clientWidth
-        this.listWidth.push(width)
-      }
     }
   },
   mounted() {
-    this._initScroll()
-    this._getWidth()
+    this._initSlider()
   },
   computed: {
-    currentIndex() {
-      for (let i = 0; i < this.listWidth.length; i++) {
-        let width = this.listWidth[i]
-        let width2 = this.listWidth[i + 1]
-        if (!width2 || (this.scrollX >= width && this.scrollX < width2)) {
-          if (this.clickEvent) {
-            return i + 1
-          } else {
-            return i
-          }
-        }
-      }
-      return 0
-    }
+  },
+  components: {
+    Slider
   }
 }
 </script>
 
 <style scoped>
-  .swiper {
-    display: flex;
-    height: 100%;
-    width: 500px;
+  .slider{
+    box-shadow: 0.0rem 0rem 0.21rem rgba(198, 160, 86, 0.6);
+    padding: 0.43rem 0.29rem 0.45rem 0.29rem;
+    width: 6.2rem;
+  }
+  .slider-wrap {
+    position: relative;
+    height: 5.96rem;
+    /*height: 4rem;*/
+    overflow: hidden;
   }
 
+  .slider-content{
+    display: flex;
+    position: absolute;
+    /*top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;*/
+  }
+
+  .exhibition-news {
+    width: 6.2rem;
+    background: rgba(198, 160, 86, 0.08);
+    padding: 0.13rem 0;
+    margin-bottom: 0.41rem;
+  }
+  .exhibition-news li{
+    height: 0.76rem;
+    line-height: 0.76rem;
+    margin-left: 0.35rem;
+    margin-right: 0.35rem;
+    font-size: 0.3rem;
+    font-family: PingFangSC-Regular;
+    color: #717170;
+  }
+  .exhibition-news .border{
+    border-bottom: 0.01rem solid #e4e3e3;
+  }
   .look-more {
     margin-right: 0.19rem;
     font-size: 0.32rem;
@@ -122,18 +135,6 @@ export default {
   .wrap{
     width: 7.14rem;
     margin-left: 0.36rem;
-  }
-
-  .slider {
-    /*width: 6.2rem;*/
-    box-shadow: 0.0rem 0rem 0.21rem rgba(198, 160, 86, 0.6);
-    padding: 0.43rem 0.29rem 0.45rem 0.29rem;
-  }
-
-  .exhibition-news {
-    background: rgba(198, 160, 86, 0.08);
-    padding: 0.13rem 0;
-    margin-bottom: 0.41rem;
   }
   .more-img{
     width: 0.14rem;
@@ -177,19 +178,6 @@ export default {
     font-family:PingFangSC-Light;
     color:rgba(207,194,170, 1);
     line-height: 0.3rem;
-  }
-
-  .exhibition-news li{
-    height: 0.76rem;
-    line-height: 0.76rem;
-    margin-left: 0.35rem;
-    margin-right: 0.35rem;
-    font-size: 0.3rem;
-    font-family: PingFangSC-Regular;
-    color: #717170;
-  }
-  .exhibition-news .border{
-    border-bottom: 0.01rem solid #e4e3e3;
   }
   .time-year{
     width: 100%;
