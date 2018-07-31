@@ -57,6 +57,9 @@ export default {
   },
   methods: {
     _initSlider() {
+      /*if () {
+        return
+      }*/
       this.slider = new BScroll('.slider-wrap', {
         scrollX: true,
         click: true,
@@ -67,7 +70,10 @@ export default {
           threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
           speed: this.speed
         },
-        probeType: this.probeType,
+        probeType: 3,
+      })
+      this.slider.on('scroll', (pos) => {
+
       })
     }
   },
