@@ -1,6 +1,6 @@
 <template>
     <div class="mask">
-      <div class="wrap">
+      <div class="wraps">
         <div class="res-title">
           <h2>参观登记</h2>
           <img @click="closeTemp" src="../../assets/images/close.png" alt="">
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style scoped >
-  .wrap{
+  .wraps{
     margin-top: 0.82rem;
   }
   .note {

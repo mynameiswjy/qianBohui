@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       tabs: [
-        {name: '首页', id: '0', path: '/'},
+        {name: '首页', id: '0', path: '/homePage'},
         {name: '关于展会', id: '1', path: '/aboutzh'},
         {name: '展商专区', id: '2', path: '/goods'},
         {name: '观众专区', id: '3', path: '/audience'},
@@ -37,7 +37,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="stylus">
+  .tab
+    display: flex
+    height: 0.79rem
+    line-height: 0.79rem
+    text-align: center
+    font-size: 0.28rem
+    font-family: PingFangSC-Regular
+    color: rgba(51,51,51,1)
+    position: relative
+    .tab-li
+      padding-right: 0.35rem
+      position: relative
+      .router-link-active
+        color: #C8A258
+        padding-bottom: 0.18rem
+        border-bottom: 0.06rem solid #C8A258
   .title-img{
     width: 7.5rem;
     height: 3.41rem;
@@ -47,16 +63,6 @@ export default {
     height:0.01rem;
     background:rgba(238,236,233,1);
     margin-bottom: 0.3rem;
-  }
-  .tab{
-    display: flex;
-    height: 0.79rem;
-    line-height: 0.79rem;
-    text-align: center;
-    font-size: 0.28rem;
-    font-family: PingFangSC-Regular;
-    color: rgba(51,51,51,1);
-    position: relative;
   }
   .search{
     position: absolute;
@@ -73,15 +79,6 @@ export default {
   }
   .tab-li:first-child{
     padding-left: 0.36rem;
-  }
-  .tab-li{
-    padding-right: 0.35rem;
-    position: relative;
-  }
-  .active{
-    color: #C8A258;
-    padding-bottom: 0.18rem;
-    border-bottom: 0.06rem solid #C8A258;
   }
   /*.active:after {
     content: '';

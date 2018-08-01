@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="wrap">
+    <ul class="wraps">
       <li class="booth" @click="cilckTabBarOne">
         <img class="tab-icon" src="../assets/images/booth-reservation.png">
         <div>展位预订</div>
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style scoped>
-  .wrap{
+  .wraps{
     width: 7.5rem;
     height: 0.98rem;
     font-size: 0.22rem;

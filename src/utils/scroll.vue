@@ -1,6 +1,6 @@
 <template>
-  <div class="slider" ref="slider">
-    <div class="slider-group" ref="wrapper">
+  <div class="slider" ref="wrapper">
+    <div class="slider-group" ref="content">
       <slot></slot>
     </div>
     <div></div>
@@ -20,14 +20,14 @@ export default {
       type: Boolean,
       default: true
     },
-    speed: { // 表示鼠标滚轮滚动的速度，invert 为 true 表示滚轮滚动和时机滚动方向相反，easeTime 表示滚动动画的缓动时长
+    /*speed: { // 表示鼠标滚轮滚动的速度，invert 为 true 表示滚轮滚动和时机滚动方向相反，easeTime 表示滚动动画的缓动时长
       type: Number,
       default: 400
     },
     threshold: { // threshold 表示可滚动到下一个的阈值，
       type: Number,
       default: 0.3
-    },
+    },*/
     data: {
       type: Array,
       default: null
@@ -39,91 +39,38 @@ export default {
       currentPageIndex: 0
     }
   },
+  mounted() {
+    setTimeout(() => {
+      this._initScroll()
+    }, 20)
+  },
   methods: {
-    update() {
-      if (this.slider) {
-        this.slider.destroy()
-      }
-      this.$nextTick(() => {
-        this.init()
-      })
-    },
-    init() {
-      clearTimeout(this.timer)
-      this.currentPageIndex = 0
-      this._setSlideWidth()
-      if (this.showDot) {
-        this._initDots()
-      }
-      this._initSlide()
-
-      if (this.autoPlay) {
-        this._play()
-      }
-    },
-    _onScrollEnd() {
-      let pageIndex = this.slide.getCurrentPage().pageX
-      this.currentPageIndex = pageIndex
-      if (this.autoPlay) {
-        this._play()
-      }
-    },
-    /*_setSlideWidth(isResize) {
-      this.children = this.$refs.wrapper.children
-
-      let width = 0
-      let slideWidth = this.$refs.slide.clientWidth
-      /!*for (let i = 0; i < this.children.length; i++) {
-        let child = this.children[i]
-        addClass(child, 'slide-item')
-
-        child.style.width = slideWidth + 'px'
-        width += slideWidth
-      }*!/
-      if (this.loop && !isResize) {
-        width += 2 * slideWidth
-      }
-      this.$refs.wrapper.style.width = width + 'px'
-    },*/
-    _initSlider() {
+    _initScroll() {
       if (!this.$refs.slider) {
         return
       }
-      this.slider = new BScroll(this.$refs.slider, {
-        scrollX: true,
-        scrollY: false,
-        momentum: false,
-        snap: {
-          loop: false,
-          threshold: this.threshold,
-          speed: this.speed
-        },
-        bounce: false,
-        stopPropagation: true,
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        scrollX: false,
+        scrollY: true,
+        probeType: this.probeType,
         click: this.click
       })
-      this.slider.on('scrollEnd', this._onScrollEnd)
-      /*this.slier.on('touchEnd', () => {
-      })
-      this.slide.on('beforeScrollStart', () => {
-      })*/
     },
-    _initDots() {
-      this.dots = new Array(this.children.length)
+    enable() {
+      this.scroll && this.scroll.enable()
     },
+    disable() {
+      this.scroll && this.scroll.disable()
+    },
+    refrech() {
+      this.scroll && this.scroll.refrech()
+    }
   },
   watch: {
-    loop() {
-      this.update()
-    },
-    autoPlay() {
-      this.update()
-    },
-    speed() {
-      this.update()
-    },
-    threshold() {
-      this.update()
+    data() {
+      setTimeout(() => {
+        this.refrech()
+      }, 20)
     }
   }
 }

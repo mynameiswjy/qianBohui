@@ -1,6 +1,6 @@
 <template>
     <div class="mask" :class="{show: isShow}">
-      <div class="wrap">
+      <div class="wraps">
         <div class="res-title">
           <h2>展位预定</h2>
           <img @click="closeTemp" src="../../assets/images/close.png" alt="">
@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style scoped >
-  .wrap{
+  .wraps{
     margin-top: 0.82rem;
   }
   .list select{

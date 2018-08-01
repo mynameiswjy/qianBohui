@@ -14,24 +14,20 @@
       </div>
     </div>
     <div class="slider">
-      <div class="slider-wrap">
+      <div class="slider-wrap" ref="sliderWrap">
         <div class="slider-content">
           <ul class="exhibition-news" v-for="group in lists" :key="group.idx">
-            <li v-for="item in group.list" :class="{border: group.length !== (item.id - 1 + 2)}" :key="item.id">
+            <li @click="gotoDetails({idx: group.idx, index: item.id})" v-for="item in group.list" :class="{border: group.length !== (item.id - 1 + 2)}" :key="item.id">
               {{item.name}}
             </li>
           </ul>
         </div>
       </div>
-      <!--<div class="time-wrap" ref="timeWrap">
+      <div class="time-wrap">
         <ul class="time-year">
-          <li>2013</li>
-          <li>2014</li>
-          <li>2015</li>
-          <li>2016</li>
-          <li>2017</li>
+          <li @click="dotsChange(index)" v-for="(item, index) in years" :key="index" :class="{dot_active:(index == dotsIdx)}">{{item.time}}</li>
         </ul>
-      </div>-->
+      </div>
     </div>
   </div>
 </template>
@@ -45,24 +41,40 @@ export default {
   data() {
     return {
       lists: [
-        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 0},
-        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 1},
-        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 2},
-        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 3},
-        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], idx: 4},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2013', idx: 0},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2014', idx: 1},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2015', idx: 2},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2016', idx: 3},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2017', idx: 4},
       ],
-      probeType: 0,
+      probeType: 1,
       speed: 400,
+      years: [],
+      dotsIdx: 0
     }
   },
+  created() {
+    this.initList()
+  },
+  mounted() {
+    setTimeout(() => {
+      this._initSlider()
+      this._initSliderWidth()
+    }, 20)
+  },
   methods: {
+    initList() {
+      this.lists.map(item => {
+        this.years.push({time: item.time, index: item.idx})
+      })
+    },
     _initSlider() {
-      /*if () {
+      if (!this.$refs.sliderWrap) {
         return
-      }*/
-      this.slider = new BScroll('.slider-wrap', {
+      }
+      this.slider = new BScroll(this.$refs.sliderWrap, {
         scrollX: true,
-        click: true,
+        click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
         freeScroll: true,
         eventPassthrough: 'vertical',
         snap: {
@@ -72,13 +84,31 @@ export default {
         },
         probeType: 3,
       })
-      this.slider.on('scroll', (pos) => {
-
+      this.slider.on('scrollEnd', (pos) => {
+        let pageIndex = this.slider.getCurrentPage().pageX
+        this.dotsIdx = pageIndex
       })
+    },
+    refresh() {
+      this.slider && this.slider.refrech()
+    },
+    _initSliderWidth() {
+      this.slider.on('touchstart', () => {
+        this.refrech()
+      })
+      this.slider.on('touchEnd', (pos) => {
+        console.log('touchEnd', pos.x)
+      })
+      /*this.slider.on('scrollEnd', (pos) => {
+        console.log('scrollEnd', pos.x)
+      })*/
+    },
+    dotsChange(e) {
+      this.slider.goToPage(e, 0, 400)
+    },
+    gotoDetails(e) {
+      // console.log(e)
     }
-  },
-  mounted() {
-    this._initSlider()
   },
   computed: {
   },
@@ -88,7 +118,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="stylus">
   .slider{
     box-shadow: 0.0rem 0rem 0.21rem rgba(198, 160, 86, 0.6);
     padding: 0.43rem 0.29rem 0.45rem 0.29rem;
@@ -96,11 +126,14 @@ export default {
   }
   .slider-wrap {
     position: relative;
-    height: 5.96rem;
-    /*height: 4rem;*/
+    /*height: 5.96rem;*/
+    height: 4rem;
     overflow: hidden;
+    margin-bottom: 0.41rem;
   }
-
+  .slider-active {
+    color: #C6A056;
+  }
   .slider-content{
     display: flex;
     position: absolute;
@@ -185,17 +218,16 @@ export default {
     color:rgba(207,194,170, 1);
     line-height: 0.3rem;
   }
-  .time-year{
+  .time-year
     width: 100%;
-    height: 0.76rem;
-    background:rgba(198,160,86, 0.08);
-    display: flex;
-    line-height: 0.76rem;
-    font-size: 0.3rem;
-    /*padding: 0 0.2rem;*/
-  }
-  .time-year li{
-    flex: 1;
-    text-align: center;
-  }
+    height: 0.76rem
+    background: rgba(198, 160, 86, 0.08)
+    display: flex
+    line-height: 0.76rem
+    font-size: 0.3rem
+    li
+      flex: 1
+      text-align: center
+    .dot_active
+      color: #C6A056
 </style>
