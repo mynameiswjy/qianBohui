@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import '@/assets/reset.css'
 import navBar from '@/container/navBar'
 
 export default {

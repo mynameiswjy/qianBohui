@@ -3,10 +3,10 @@
       <!--<img :hidden="this.idx != 0" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
       <img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
       <ul class="tab">
-        <li class="tab-li" @click="tabChange(tab.id)" v-for="tab in tabs" v-bind:key="tab.id">
-          <router-link :class="{active:tab.id == idx}" :to="tab.path">{{tab.name}}</router-link>
+        <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id">
+          <router-link :to="tab.path">{{tab.name}}</router-link>
         </li>
-        <li class="search"><img src="../assets/images/search.png" class="search-icon" alt=""></li>
+        <li class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></li>
       </ul>
       <div class="border-line"></div>
     </div>
@@ -28,10 +28,8 @@ export default {
     }
   },
   methods: {
-    tabChange(e) {
-      /*let target = e.target.dataset
-      let index = target.index*/
-      this.idx = e
+    searchBtn() {
+      this.$router.push({path: 'search'});
     }
   }
 }

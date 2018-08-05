@@ -1,69 +1,73 @@
 <template>
     <div class="mask">
-      <div class="wraps">
-        <div class="res-title">
-          <h2>参观登记</h2>
-          <img @click="closeTemp" src="../../assets/images/close.png" alt="">
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>观众类别</div>
-            <div class="mandatory">*</div>
+      <scroll>
+        <div class="wraps">
+          <div class="res-title">
+            <h2>参观登记</h2>
+            <img @click="closeTemp" src="../../assets/images/close.png" alt="">
           </div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>公司名称</div>
-            <div class="mandatory">*</div>
+          <div class="list">
+            <div class="list-left">
+              <div>观众类别</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
           </div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>公司地址</div>
-            <div class="mandatory">*</div>
+          <div class="list">
+            <div class="list-left">
+              <div>公司名称</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
           </div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>手机号码</div>
-            <div class="mandatory">*</div>
+          <div class="list">
+            <div class="list-left">
+              <div>公司地址</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
           </div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>电子邮件</div>
-            <div class="mandatory">*</div>
+          <div class="list">
+            <div class="list-left">
+              <div>手机号码</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
           </div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>QQ/微信号</div>
-            <div class="mandatory">*</div>
+          <div class="list">
+            <div class="list-left">
+              <div>电子邮件</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
           </div>
-          <input type="text"/>
+          <div class="list">
+            <div class="list-left">
+              <div>QQ/微信号</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
+          </div>
+          <div class="note">备注信息</div>
+          <textarea name="" class="textarea" id="" cols="30" rows="10"></textarea>
+          <div class="foot-select">
+            <select class="select-bottom left-margin">
+              <option value ="volvo">1人</option>
+              <option value ="saab">2人</option>
+              <option value="opel">3人</option>
+              <option value="audi">4人</option>
+            </select>
+            <div>确定</div>
+          </div>
         </div>
-        <div class="note">备注信息</div>
-        <textarea name="" class="textarea" id="" cols="30" rows="10"></textarea>
-        <div class="foot-select">
-          <select>
-            <option value ="volvo">1人</option>
-            <option value ="saab">2人</option>
-            <option value="opel">3人</option>
-            <option value="audi">4人</option>
-          </select>
-          <div>确定</div>
-        </div>
-      </div>
+      </scroll>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
 import '@/assets/mask.css'
+import Scroll from '@/utils/scroll'
+
 export default {
   name: 'visit',
   data() {
@@ -75,14 +79,20 @@ export default {
     closeTemp() {
       this.$emit("closeVisit", this.tow)
     }
+  },
+  components: {
+    Scroll
   }
 }
 </script>
 
-<style scoped >
-  .wraps{
-    margin-top: 0.82rem;
-  }
+<style scoped lang="stylus">
+  .mask
+    /*padding-top 0.82rem*/
+    .wraps
+      width 100%
+      position: absolute
+      bottom 0
   .note {
     font-size: 0.3rem;
     line-height: 0.87rem;
@@ -96,6 +106,7 @@ export default {
   .textarea {
     margin-left: 0.36rem;
     margin-top: 0.1rem;
+    margin-bottom 0.42rem;
     width: 6.18rem;
     height: 0.92rem;
     border-radius: 0.08rem;
@@ -105,12 +116,43 @@ export default {
     color: #b7b7b7;
   }
 
-  .foot-select select{
-    width: 3.02rem;
-    height: 0.72rem;
-    appearance:none;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    background-color: #fff;
-  }
+  .foot-select
+    border-top: 0.01rem solid rgba(238,240,242,1)
+    padding-top 0.38rem
+    display flex
+    .select-bottom
+      position relative
+      width: 3.02rem;
+      height: 0.72rem;
+      appearance:none;
+      -moz-appearance:none;
+      -webkit-appearance:none;
+      background-color: #fff;
+      background: url("../../assets/images/zh-drop-down.png") no-repeat scroll 92% center transparent;
+      background-size: 0.22rem 0.12rem;
+      padding-right: 0.2rem;
+      border: 0.01rem solid #C7A157;
+      color: #C7A157
+      padding-left 1rem
+    div
+      width:3.2rem;
+      height:0.72rem;
+      background:rgba(199,161,87,1);
+      border-radius:0.12rem;
+      font-size 0.28rem
+      color: #fff
+      text-align center
+      line-height 0.72rem
+      margin-left 0.74rem
+    .select-bottom:after
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: auto;
+      bottom: 0;
+      right: auto;
+      height: 300px;
+      width: 2px;
+      border-radius:5px;
+      background-color: #bfa;
 </style>

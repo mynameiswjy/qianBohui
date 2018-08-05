@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import "@/assets/reset.css"
 
 Vue.config.productionTip = false
 
@@ -15,6 +16,9 @@ window.addEventListener('resize', function () {
   setRootFontSize()
 }, false)
 setRootFontSize()
+/*document.addEventListener('touchstart', function (e) {
+  e.preventDefault();
+})*/
 
 new Vue({
   el: '#app',

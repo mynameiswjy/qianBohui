@@ -1,77 +1,81 @@
 <template>
-    <div class="mask" :class="{show: isShow}">
-      <div class="wraps">
-        <div class="res-title">
-          <h2>展位预定</h2>
-          <img @click="closeTemp" src="../../assets/images/close.png" alt="">
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>公司名称</div>
-            <div class="mandatory">*</div>
+    <div class="mask" :class="{show: isShow}" ref="wrapper" @touchmove.prevent>
+      <scroll>
+        <div class="wraps" ref="content">
+          <div class="res-title">
+            <h2>展位预定</h2>
+            <img @click="closeTemp" src="../../assets/images/close.png" alt="">
           </div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>展位号</div>
-            <div class="mandatory">*</div>
+          <div class="list">
+            <div class="list-left">
+              <div>公司名称</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
           </div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>展位类型</div>
-            <div class="mandatory">*</div>
+          <div class="list">
+            <div class="list-left">
+              <div>展位号</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
           </div>
-          <select>
-            <option value ="volvo">请选择</option>
-            <option value ="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-          </select>
-        </div>
-        <div class="list">
-          <div>展位数量</div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div>展位面积</div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div class="list-left">
-            <div>展位负责人</div>
-            <div class="mandatory">*</div>
+          <div class="list">
+            <div class="list-left">
+              <div>展位类型</div>
+              <div class="mandatory">*</div>
+            </div>
+            <select>
+              <option value ="volvo">请选择</option>
+              <option value ="saab">Saab</option>
+              <option value="opel">Opel</option>
+              <option value="audi">Audi</option>
+            </select>
           </div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div>手机号码</div>
-          <input type="text"/>
-        </div>
-        <div class="list">
-          <div>邮箱地址</div>
-          <input type="text"/>
-        </div>
-        <div class="list-upload">
-          <div>资料上传</div>
-          <div class="upload">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></div>
-        </div>
-        <div class="add-img">
-          <div class="upload-img">
-            <img src="../../assets/images/add_img.png" alt="">
-            <div>添加图片</div>
+          <div class="list">
+            <div>展位数量</div>
+            <input type="text"/>
           </div>
-          <!--<img src="" alt="">-->
+          <div class="list">
+            <div>展位面积</div>
+            <input type="text"/>
+          </div>
+          <div class="list">
+            <div class="list-left">
+              <div>展位负责人</div>
+              <div class="mandatory">*</div>
+            </div>
+            <input type="text"/>
+          </div>
+          <div class="list">
+            <div>手机号码</div>
+            <input type="text"/>
+          </div>
+          <div class="list">
+            <div>邮箱地址</div>
+            <input type="text"/>
+          </div>
+          <div class="list-upload">
+            <div>资料上传</div>
+            <div class="upload">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></div>
+          </div>
+          <div class="add-img">
+            <div class="upload-img">
+              <img src="../../assets/images/add_img.png" alt="">
+              <div>添加图片</div>
+            </div>
+            <!--<img src="" alt="">-->
+          </div>
+          <div class="btns">确定</div>
         </div>
-        <div class="btns">确定</div>
-      </div>
+      </scroll>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-import '../../assets/mask.css'
+import '@/assets/mask.css'
+import Scroll from '@/utils/scroll'
+
 export default {
   name: "consulting",
   data() {
@@ -81,27 +85,31 @@ export default {
     }
   },
   created() {
+    console.log(this.$refs.wrapper)
   },
   mounted: function () {
-    this.$nextTick(function () {
-      this.$on('childMethod', function () {
-        console.log('监听成功')
-      })
-    })
   },
   methods: {
     closeTemp() {
-      // this.isShow = !this.isShow
       this.$emit("closeTemp", this.one)
     }
+  },
+  components: {
+    Scroll
   }
 }
 </script>
 
-<style scoped >
-  .wraps{
-    margin-top: 0.82rem;
-  }
+<style scoped lang="stylus">
+  /*html, body {
+    overflow: hidden;
+  }*/
+  .mask
+    .wraps
+      width 100%
+      padding-bottom 0.18rem
+      position: absolute
+      bottom 0
   .list select{
     width: 4.77rem;
     height: 0.75rem;

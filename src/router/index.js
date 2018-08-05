@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomePage from '../container/homePage'
-import aboutZh from '../container/aboutzh'
-import goods from '../container/goods'
-import audience from '../container/audience'
-import news from '../container/news'
+import HomePage from '@/container/homePage'
+import aboutZh from '@/container/aboutzh'
+import goods from '@/container/goods'
+import audience from '@/container/audience'
+import news from '@/container/news'
+import search from '@/container/search.vue'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
       path: '/news',
       component: news,
       name: 'news'
+    },
+    {
+      path: '/search',
+      component: search,
+      name: 'search'
     }
   ]
 })

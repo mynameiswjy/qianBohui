@@ -16,7 +16,7 @@
     </ul>
     <visit @closeVisit="visitClose" v-if="tow"></visit>
     <reservation ref="reservation" @closeTemp="tempClose" v-if="one"></reservation>
-    <consulting v-if="three"></consulting>
+    <consulting v-if="three" @closeZixun="tempZixun"></consulting>
   </div>
 </template>
 
@@ -46,12 +46,10 @@ export default {
   created() {
   },
   methods: {
-    /*cilckTabBar(e) {
-      let target = e.target.dataset
-      let index = target.index
-      console.log(e.target.getAttribute("data-index"))
-    },*/
-    cilckTabBarOne() {
+    tempZixun(e) {
+      this.three = e
+    },
+    cilckTabBarOne(e) {
       this.one = !this.one
     },
     // 通过子组件传过来的值 动态的改变 变量==> one
