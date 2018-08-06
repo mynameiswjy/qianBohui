@@ -1,7 +1,7 @@
 <template>
-    <div class="mask">
+    <div class="mask" ref="wrapper">
       <scroll :data="goods" style="height: 100%">
-        <div class="wraps" :class="{p_bottom: p_bottom}">
+        <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
           <div class="res-title">
             <h2>参观登记</h2>
             <img @click="closeTemp" src="../../assets/images/close.png" alt="">
@@ -68,6 +68,7 @@
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
 import datas from '@/assets/goods-list'
+import { isBottom } from '@/utils/utils'
 
 let _foods = []
 
@@ -92,7 +93,7 @@ export default {
   mounted() {
     let wrapper = this.$refs.wrapper.clientHeight
     let content = this.$refs.content.clientHeight
-    this.isBottom(wrapper, content)
+    this.p_bottom = isBottom(wrapper, content)
   },
   components: {
     Scroll

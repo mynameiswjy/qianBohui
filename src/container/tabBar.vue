@@ -80,7 +80,7 @@ export default {
     height: 0.98rem;
     font-size: 0.22rem;
     display: flex;
-    /*flex-wrap: wrap;*/
+    color: #8A8A8A;
     justify-content: space-between;
     text-align: center;
   }

@@ -94,7 +94,7 @@
 <script type="text/ecmascript-6">
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
-import isBottom from '@/utils/utils.js'
+import { isBottom } from '@/utils/utils'
 import datas from '@/assets/goods-list'
 
 let _foods = []
@@ -118,7 +118,7 @@ export default {
   mounted: function () {
     let wrapper = this.$refs.wrapper.clientHeight
     let content = this.$refs.content.clientHeight
-    this.isBottom(wrapper, content)
+    this.p_bottom = isBottom(wrapper, content)
   },
   methods: {
     closeTemp() {

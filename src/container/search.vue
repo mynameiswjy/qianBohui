@@ -3,10 +3,14 @@
       <div class="sear">
         <div class="sear-input">
           <img class="sear-img" src="../assets/images/search.png" alt="">
-          <input type="text" placeholder="搜索" style="vertical-align:middle">
+          <input type="text" placeholder="搜索" v-model="searVal" style="vertical-align:middle">
         </div>
-        <div>搜索</div>
+        <div @click="Search_con">{{searVal}}</div>
       </div>
+      <p class="hot-sear">热门搜索</p>
+      <ul class="keywords">
+        <li v-for="item in list">{{item}}</li>
+      </ul>
     </div>
 </template>
 
@@ -15,6 +19,19 @@ export default {
   name: 'search',
   data() {
     return{
+      searVal: '',
+      list: ['人民币', '搜索', '热门搜索', '纪念币', '古代钱币', '纸币', '运动币', '数字币', '货币', '人民币']
+    }
+  },
+  created() {
+    console.log(this.searVal)
+  },
+  mounted() {
+    console.log(this.searVal)
+  },
+  mthods: {
+    Search_con() {
+      console.log(222)
     }
   }
 }
@@ -29,8 +46,9 @@ export default {
     right 0
     width 100%
     bottom: 0rem
-    /*background-color: rgba(255,255,255,1);*/
-    background-color: #bfa;
+    font-size 0.24rem
+    background-color: rgba(255,255,255,1);
+    /*background-color: #bfa;*/
     z-index 333
     .sear
       width 100%
@@ -59,4 +77,22 @@ export default {
         padding-left 0.32rem
         margin-top 0.18rem
         line-height 0.54rem
+  .hot-sear
+    margin-top 0.36rem
+    margin-left 0.27rem
+    margin-bottom 0.24rem
+    font-family:PingFangSC-Regular;
+    color:rgba(135,135,135,1)
+  .keywords
+    display flex
+    color:rgba(74,73,73,1)
+    flex-wrap: wrap
+    margin-left 0.28rem
+    li
+      padding 0.17rem 0.2rem
+      background-color #F4F4F4
+      border-radius 0.08rem
+      color #4A4949
+      margin-bottom 0.22rem
+      margin-right 0.22rem
 </style>
