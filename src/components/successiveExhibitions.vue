@@ -99,9 +99,9 @@ export default {
       this.slider.on('touchEnd', (pos) => {
         console.log('touchEnd', pos.x)
       })
-      /*this.slider.on('scrollEnd', (pos) => {
+      this.slider.on('scrollEnd', (pos) => {
         console.log('scrollEnd', pos.x)
-      })*/
+      })
     },
     dotsChange(e) {
       this.slider.goToPage(e, 0, 400)
