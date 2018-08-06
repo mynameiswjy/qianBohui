@@ -1,7 +1,7 @@
 <template>
     <div class="mask" :class="{show: isShow}" ref="wrapper" @touchmove.prevent>
-      <scroll>
-        <div class="wraps" ref="content">
+      <scroll :data="goods" style="height: 100%">
+        <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
           <div class="res-title">
             <h2>展位预定</h2>
             <img @click="closeTemp" src="../../assets/images/close.png" alt="">
@@ -67,7 +67,26 @@
             <!--<img src="" alt="">-->
           </div>
           <div class="btns">确定</div>
+          <div style="height: 0.18rem"></div>
         </div>
+        <!--<ul class="wraps" ref="content">
+          <li v-for="food in goods" class="food-item border-1px">
+            <div class="icon">
+              <img width="57" height="57" :src="food.icon">
+            </div>
+            <div class="content">
+              <h2 class="name">{{food.name}}</h2>
+              <p class="desc">{{food.description}}</p>
+              <div class="extra">
+                <span class="count">66月售{{food.sellCount}}份</span><span>好评率{{food.rating}}%</span>
+              </div>
+              <div class="price">
+                <span class="now">￥{{food.price}}</span>
+                <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+              </div>
+            </div>
+          </li>
+        </ul>-->
       </scroll>
     </div>
 </template>
@@ -75,19 +94,31 @@
 <script type="text/ecmascript-6">
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
+import isBottom from '@/utils/utils.js'
+import datas from '@/assets/goods-list'
+
+let _foods = []
+
+datas.goods.forEach((item) => {
+  _foods = _foods.concat(item.foods)
+})
 
 export default {
   name: "consulting",
   data() {
     return {
       isShow: false,
-      one: false
+      one: false,
+      goods: _foods,
+      p_bottom: false
     }
   },
   created() {
-    console.log(this.$refs.wrapper)
   },
   mounted: function () {
+    let wrapper = this.$refs.wrapper.clientHeight
+    let content = this.$refs.content.clientHeight
+    this.isBottom(wrapper, content)
   },
   methods: {
     closeTemp() {
@@ -106,10 +137,7 @@ export default {
   }*/
   .mask
     .wraps
-      width 100%
-      padding-bottom 0.18rem
-      position: absolute
-      bottom 0
+      overflow hidden
   .list select{
     width: 4.77rem;
     height: 0.75rem;

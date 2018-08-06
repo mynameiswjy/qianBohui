@@ -29,7 +29,8 @@ export default {
     right 0
     width 100%
     bottom: 0rem
-    background-color: rgba(255,255,255,1);
+    /*background-color: rgba(255,255,255,1);*/
+    background-color: #bfa;
     z-index 333
     .sear
       width 100%

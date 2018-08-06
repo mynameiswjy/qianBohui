@@ -18,14 +18,6 @@ export default {
       type: Boolean,
       default: true
     },
-    /*speed: { // 表示鼠标滚轮滚动的速度，invert 为 true 表示滚轮滚动和时机滚动方向相反，easeTime 表示滚动动画的缓动时长
-      type: Number,
-      default: 400
-    },
-    threshold: { // threshold 表示可滚动到下一个的阈值，
-      type: Number,
-      default: 0.3
-    },*/
     data: {
       type: Array,
       default: null
@@ -42,19 +34,19 @@ export default {
       this._initScroll()
     }, 20)
   },
-  created() {
-    setTimeout(() => {
-      this._initScroll()
-    }, 20)
-  },
   methods: {
     _initScroll() {
       if (!this.$refs.wrapper) {
         return
       }
       this.scroll = new BScroll(this.$refs.wrapper, {
+        scrollY: true,
         probeType: this.probeType,
         click: this.click,
+        scrollbar: {
+          fade: false,
+          interactive: true
+        },
       })
       console.log(this.scroll)
     },

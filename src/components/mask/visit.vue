@@ -1,7 +1,7 @@
 <template>
     <div class="mask">
-      <scroll>
-        <div class="wraps">
+      <scroll :data="goods" style="height: 100%">
+        <div class="wraps" :class="{p_bottom: p_bottom}">
           <div class="res-title">
             <h2>参观登记</h2>
             <img @click="closeTemp" src="../../assets/images/close.png" alt="">
@@ -67,18 +67,32 @@
 <script type="text/ecmascript-6">
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
+import datas from '@/assets/goods-list'
+
+let _foods = []
+
+datas.goods.forEach((item) => {
+  _foods = _foods.concat(item.foods)
+})
 
 export default {
   name: 'visit',
   data() {
     return {
-      tow: false
+      tow: false,
+      goods: _foods,
+      p_bottom: false
     }
   },
   methods: {
     closeTemp() {
       this.$emit("closeVisit", this.tow)
     }
+  },
+  mounted() {
+    let wrapper = this.$refs.wrapper.clientHeight
+    let content = this.$refs.content.clientHeight
+    this.isBottom(wrapper, content)
   },
   components: {
     Scroll
@@ -90,9 +104,7 @@ export default {
   .mask
     /*padding-top 0.82rem*/
     .wraps
-      width 100%
-      position: absolute
-      bottom 0
+      overflow hidden
   .note {
     font-size: 0.3rem;
     line-height: 0.87rem;
@@ -119,6 +131,7 @@ export default {
   .foot-select
     border-top: 0.01rem solid rgba(238,240,242,1)
     padding-top 0.38rem
+    padding-bottom 0.39rem
     display flex
     .select-bottom
       position relative
