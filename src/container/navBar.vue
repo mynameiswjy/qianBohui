@@ -1,18 +1,23 @@
 <template>
-    <div>
+    <div style="width: 100%">
       <!--<img :hidden="this.idx != 0" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
       <img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
-      <ul class="tab">
-        <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id">
-          <router-link :to="tab.path">{{tab.name}}</router-link>
-        </li>
-        <li class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></li>
-      </ul>
-      <div class="border-line"></div>
+      <div class="nav-wrapper" ref="viewport">
+        <slider style="width: 100%" :data="tabs" :tab="idx">
+          <ul class="tab-conten" ref="content">
+            <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn(tab.id)">
+              <router-link class="link-go" :to="tab.path">{{tab.name}}</router-link>
+            </li>
+          </ul>
+        </slider>
+        <div class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></div>
+      </div>
     </div>
 </template>
 
 <script>
+import Slider from "../utils/silder.vue"
+
 export default {
   name: "navBar",
   data() {
@@ -27,56 +32,107 @@ export default {
       idx: 0
     }
   },
+  mounted() {
+    setTimeout(() => {
+      this._adjust()
+    }, 20)
+  },
   methods: {
+    navBtn(e) {
+      this.idx = e
+      if (e == 4) {
+        this._adjust(e)
+      }
+    },
+    _initTabListWidth() {
+      const tabList = this.$refs.content
+      const items = tabList.children
+      let width = 0
+      for (let i = 0; i < items.length; i++) {
+        width += items[i].clientWidth
+      }
+      tabList.style.width = (width + 20) + 'px'
+    },
+    _adjust(tabId) {
+      const viewportWidth = this.$refs.viewport.clientWidth
+      const tabListWidth = this.$refs.content.clientWidth
+      const minTranslate = Math.min(0, viewportWidth - tabListWidth)
+      const middleTranslate = viewportWidth / 2
+      const items = this.$refs.content.children
+      let width = 0
+      this.tabs.every((item, index) => {
+        if (item.id === tabId) {
+          return false
+        }
+        width += items[index].clientWidth
+        return true
+      })
+      let translate = middleTranslate - width
+      translate = Math.max(minTranslate, Math.min(0, translate))
+      this.$refs.content.scrollTo(30, 0, 300)
+    },
+    Initslider() {
+      if (!this.$refs.content) {
+        return
+      }
+      this.slider = this.$refs.content
+    },
     searchBtn() {
       this.$router.push({path: 'search'});
     }
+  },
+  components: {
+    Slider
   }
 }
 </script>
 
 <style lang="stylus">
-  .tab
-    display: flex
+  .nav-wrapper
+    /*margin-top -0.04rem*/
+    position relative
+    width 100%
+    border-bottom 0.01rem solid #EEECE9
     height: 0.79rem
-    line-height: 0.79rem
-    text-align: center
-    font-size: 0.28rem
-    font-family: PingFangSC-Regular
-    color: rgba(51,51,51,1)
-    position: relative
-    .tab-li
-      padding-right: 0.35rem
-      position: relative
-      .router-link-active
-        color: #C8A258
-        padding-bottom: 0.18rem
-        border-bottom: 0.06rem solid #C8A258
+    line-height 0.79rem
+    overflow hidden
+    .tab-conten
+      display: flex
+      width 110%
+      height 100%
+      line-height: 0.79rem
+      text-align: center
+      font-size: 0.28rem
+      font-family: PingFangSC-Regular
+      position: absolute
+      top: 0
+      left: 0
+      .tab-li
+        padding-left: 0.36rem;
+        position: relative
+        .link-go
+          color #333
+          /*font-size 0.3rem*/
+        .router-link-active
+          color: #C8A258
+          padding-bottom: 0.16rem
+          border-bottom: 0.06rem solid #C8A258
   .title-img{
     width: 7.5rem;
     height: 3.41rem;
-  }
-  .border-line{
-    width:7.5rem;
-    height:0.01rem;
-    background:rgba(238,236,233,1);
-    margin-bottom: 0.3rem;
   }
   .search{
     position: absolute;
     right: 0.36rem;
     width: 0.82rem;
     text-align: right;
-    /*height: 0.54rem;*/
-    background:rgba(255,255,255, 0.6);
+    top 0.03rem
+    height: 0.79rem;
+    background rgba(255,255,255, 0.6)
   }
   .search-icon{
     width: 0.32rem;
     height: 0.32rem;
-    background-color: #fff;
-  }
-  .tab-li:first-child{
-    padding-left: 0.36rem;
   }
   /*.active:after {
     content: '';

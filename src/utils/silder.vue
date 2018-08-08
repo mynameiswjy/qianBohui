@@ -18,6 +18,10 @@ export default {
       type: Boolean,
       default: true
     },
+    tab: {
+      type: String,
+      default: ''
+    },
     /*speed: { // 表示鼠标滚轮滚动的速度，invert 为 true 表示滚轮滚动和时机滚动方向相反，easeTime 表示滚动动画的缓动时长
       type: Number,
       default: 400
@@ -39,24 +43,22 @@ export default {
   },
   methods: {
     _initSlider() {
-      if (!this.$refs.sliderWrap) {
+      if (!this.$refs.wrapper) {
         return
       }
-      this.slider = new BScroll(this.$refs.sliderWrap, {
+      this.slider = new BScroll(this.$refs.wrapper, {
         scrollX: true,
         click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
         freeScroll: true,
         eventPassthrough: 'vertical',
-        snap: {
+        /*snap: {
           loop: false, //loop 为 true 是为了支持循环轮播
           threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
           speed: this.speed
-        },
+        },*/
         probeType: 3,
       })
       this.slider.on('scrollEnd', (pos) => {
-        let pageIndex = this.slider.getCurrentPage().pageX
-        this.dotsIdx = pageIndex
       })
     },
     refresh() {
@@ -85,5 +87,6 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-
+.slider
+  min-height: 1px
 </style>

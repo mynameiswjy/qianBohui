@@ -9,7 +9,7 @@
       </div>
       <p class="hot-sear">热门搜索</p>
       <ul class="keywords">
-        <li v-for="item in list">{{item}}</li>
+        <li v-for="(item, index) in list" v-bind:key="index">{{item}}</li>
       </ul>
     </div>
 </template>
