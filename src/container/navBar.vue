@@ -3,8 +3,6 @@
       <!--<img :hidden="this.idx != 0" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
       <img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
       <div class="nav-wrapper" ref="viewport">
-        <!--<slider style="width: 100%" :data="tabs" :tab="idx">
-        </slider>-->
         <div ref="content" style="width: 100%">
           <ul class="tab-conten">
             <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn(tab.id)">

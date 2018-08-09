@@ -19,6 +19,8 @@ import exhibitor from '@/components/exhibitor' // 展商介绍模板
 import successiveExhibitions from '@/components/successiveExhibitions' // 历届展会模板
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
+import ajax from '@/api/ajax'
+
 export default {
   name: "index",
   data() {
@@ -28,6 +30,7 @@ export default {
   },
   created() {
     document.title = '首页';
+    ajax()
   },
   components: {
     introduce,
