@@ -18,10 +18,6 @@ export default {
       type: Boolean,
       default: true
     },
-    tab: {
-      type: String,
-      default: ''
-    },
     /*speed: { // 表示鼠标滚轮滚动的速度，invert 为 true 表示滚轮滚动和时机滚动方向相反，easeTime 表示滚动动画的缓动时长
       type: Number,
       default: 400
@@ -38,7 +34,8 @@ export default {
   mounted() {
     setTimeout(() => {
       this._initSlider()
-      this._initSliderWidth()
+      // this._initSliderWidth()
+      console.log(this.slider)
     }, 20)
   },
   methods: {

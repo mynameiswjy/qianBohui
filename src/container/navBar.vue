@@ -3,13 +3,15 @@
       <!--<img :hidden="this.idx != 0" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
       <img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
       <div class="nav-wrapper" ref="viewport">
-        <slider style="width: 100%" :data="tabs" :tab="idx">
-          <ul class="tab-conten" ref="content">
+        <!--<slider style="width: 100%" :data="tabs" :tab="idx">
+        </slider>-->
+        <div ref="content" style="width: 100%">
+          <ul class="tab-conten">
             <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn(tab.id)">
               <router-link class="link-go" :to="tab.path">{{tab.name}}</router-link>
             </li>
           </ul>
-        </slider>
+        </div>
         <div class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></div>
       </div>
     </div>
@@ -17,6 +19,7 @@
 
 <script>
 import Slider from "../utils/silder.vue"
+import BScroll from 'better-scroll'
 
 export default {
   name: "navBar",
@@ -33,16 +36,38 @@ export default {
     }
   },
   mounted() {
+    // this._initTabListWidth()
     setTimeout(() => {
-      this._adjust()
+      this._initSlider()
+      console.log(this.slider)
     }, 20)
   },
   methods: {
     navBtn(e) {
-      this.idx = e
       if (e == 4) {
-        this._adjust(e)
+        this.slider.scrollTo(-30, 0, 300)
+      } else if (e == 1) {
+        this.slider.scrollTo(0, 0, 300)
       }
+    },
+    _initSlider() {
+      if (!this.$refs.content) {
+        return
+      }
+      this.slider = new BScroll(this.$refs.content, {
+        scrollX: true,
+        click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
+        freeScroll: true,
+        eventPassthrough: 'vertical',
+        /*snap: {
+          loop: false, //loop 为 true 是为了支持循环轮播
+          threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
+          speed: this.speed
+        },*/
+        probeType: 3,
+      })
+      this.slider.on('scrollEnd', (pos) => {
+      })
     },
     _initTabListWidth() {
       const tabList = this.$refs.content
@@ -51,7 +76,7 @@ export default {
       for (let i = 0; i < items.length; i++) {
         width += items[i].clientWidth
       }
-      tabList.style.width = (width + 20) + 'px'
+      tabList.style.width = (width + 38) + 'px'
     },
     _adjust(tabId) {
       const viewportWidth = this.$refs.viewport.clientWidth
@@ -69,7 +94,7 @@ export default {
       })
       let translate = middleTranslate - width
       translate = Math.max(minTranslate, Math.min(0, translate))
-      this.$refs.content.scrollTo(30, 0, 300)
+      this.$refs.content.scrollTo(translate, 0, 300)
     },
     Initslider() {
       if (!this.$refs.content) {
@@ -112,6 +137,8 @@ export default {
         position: relative
         .link-go
           color #333
+          width 100%
+          height 100%
           /*font-size 0.3rem*/
         .router-link-active
           color: #C8A258
