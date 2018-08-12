@@ -16,7 +16,7 @@
     <div class="slider">
       <div class="slider-wrap" ref="sliderWrap">
         <div class="slider-content">
-          <ul class="exhibition-news" v-for="group in lists" :key="group.idx">
+          <ul class="successiveExhibitions-news" v-for="group in lists" :key="group.idx">
             <li @click="gotoDetails({idx: group.idx, index: item.id})" v-for="item in group.list" :class="{border: group.length !== (item.id - 1 + 2)}" :key="item.id">
               {{item.name}}
             </li>
@@ -143,13 +143,12 @@ export default {
     height: 100%;*/
   }
 
-  .exhibition-news {
+  .successiveExhibitions-news {
     width: 6.2rem;
     background: rgba(198, 160, 86, 0.08);
     padding: 0.13rem 0;
-    margin-bottom: 0.41rem;
   }
-  .exhibition-news li{
+  .successiveExhibitions-news li{
     height: 0.76rem;
     line-height: 0.76rem;
     margin-left: 0.35rem;
@@ -158,7 +157,7 @@ export default {
     font-family: PingFangSC-Regular;
     color: #717170;
   }
-  .exhibition-news .border{
+  .successiveExhibitions-news .border{
     border-bottom: 0.01rem solid #e4e3e3;
   }
   .look-more {
@@ -225,9 +224,34 @@ export default {
     display: flex
     line-height: 0.76rem
     font-size: 0.3rem
+    margin-top: 0.41rem;
     li
       flex: 1
       text-align: center
     .dot_active
       color: #C6A056
+      position relative
+  .dot_active:after
+    position absolute
+    display: inline-block;
+    top: -0.2rem;
+    left: 0.4rem;
+    width: 0;
+    height: 0px;
+    content: '';
+    border-style: solid;
+    border-width: 0.2rem;
+    border-color: rgba(198, 160, 86, 0.08) rgba(198, 160, 86, 0.08) transparent transparent;
+    transform: rotate(315deg);
+    /*box-shadow: 2px -2px 2px #ccc;*/
+  .dot_active:before
+    content: ''
+    position absolute
+    bottom: 0.13rem
+    left 0.2rem
+    width:60%;
+    height:0;
+    border-width:0 0.02 0.05rem 0.02rem;
+    border-style:none solid solid;
+    border-color:transparent transparent #c6a056
 </style>

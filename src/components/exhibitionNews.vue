@@ -8,7 +8,7 @@
         </div>
       </div>
       <ul class="exhibition-news">
-        <li v-for="item in list" v-bind:key="item.id">{{item.name}}</li>
+        <li v-for="(item, index) in expositionNews" v-bind:key="index">{{item.title}}</li>
       </ul>
       <img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">
     </div>
@@ -17,15 +17,14 @@
 <script>
 export default {
   name: "exhibitionNews",
+  props: {
+    expositionNews: {
+      type: Array,
+      default: null
+    }
+  },
   data() {
     return {
-      list: [
-        {name: '贵金属纪念币知识介绍', id: '0'},
-        {name: '纪念币的保存、清洗及赝品识别', id: '1'},
-        {name: '纪念币题材及发行要素辨识', id: '2'},
-        {name: '购买途径及鉴定证书辨识', id: '3'},
-        {name: '如何成为特许零售商', id: '4'}
-      ]
     }
   }
 }

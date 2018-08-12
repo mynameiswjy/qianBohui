@@ -1,27 +1,39 @@
 <template>
     <div class="wrap">
-      <div class="title">
+      <div v-if="openStyle" class="title_ab">
+        <h2>{{introduceObj.title}}</h2>
+        <div class="">Exhibition Introduction</div>
+      </div>
+      <div class="title" v-else>
         <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
         <div class="title-right">
-          <h2>展会介绍</h2>
+          <h2>{{introduceObj.title}}</h2>
           <div class="title-right-en">Exhibition Introduction</div>
         </div>
       </div>
-      <div class="">
-        <p class="header-text" :class="{show: show}">
-          作为国际性钱币收藏交流、交易的平台，此次钱币展融合钱币交流会、精品展、现场收评、免费鉴定等诸多精彩环节，
-          世界各国与地区的知名钱币机构、钱币经销商、收藏爱好者、社会各界及海内外人士前来参展、参观。
-          本次钱币展立足于华南地区，期望在此前钱币展的基础上，将中国南、北方收藏市场持续融合，并为所有参展商及收藏爱好者提供优质、贴心的平台服务，
-          以最大的诚意与付出，期望打造最有品质和影响力的中国。
-        </p>
+      <div class="header_intro">
+        <div class="header-text" :class="{show: show}">
+          {{introduceObj.content}}
+        </div>
+        <div v-if="openStyle" class="a_full" @click="showBts">{{showText}}</div>
       </div>
-      <!--<div class="show-bts" @click="showBts">{{showText}}</div>-->
+      <!--<div class="show-bts"</div>-->
     </div>
 </template>
 
 <script>
 export default {
   name: "introduce",
+  props: {
+    introduceObj: {
+      type: Object,
+      default: null
+    },
+    openStyle: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       obj: {},
@@ -45,20 +57,43 @@ export default {
 }
 </script>
 
-<style scoped>
-  .header-text{
+<style lang="stylus">
+  .title_ab
+    text-align center
+    margin-left -0.36rem
+    h2
+      margin-bottom: 0.1rem;
+      font-size: 0.34rem;
+      line-height: 0.3rem;
+      font-family:PingFangSC-Medium;
+      color:rgba(198,160,86,1);
+      margin-top 0.58rem
+    div
+      display: block;
+      font-size:0.2rem;
+      font-family:PingFangSC-Light;
+      color:rgba(207,194,170,1);
+      line-height: 0.3rem;
+      margin-bottom 0.32rem
+  .header_intro
     width: 6.21rem;
-    /*height: 3.22rem;*/
     padding: 0.39rem 0.3rem 0.4rem 0.27rem;
-    text-align: justify;
-    font-size: 0.25rem;
-    font-family:PingFangSC-Regular;
-    color: rgba(72,72,71,1);
-    background:rgba(255,255,255,1);
-    border-radius: 0.08rem;
     box-shadow: 0.0rem 0rem 0.21rem rgba(198,160,86, 0.8);
-    line-height: 0.42rem;
-  }
+    border-radius: 0.08rem;
+    .header-text
+      /*height: 3.22rem;*/
+      text-align: justify;
+      font-size: 0.285rem;
+      font-family:PingFangSC-Regular;
+      color: rgba(72,72,71,1);
+      background:rgba(255,255,255,1);
+      line-height: 0.42rem
+    .a_full
+      font-size: 0.28rem
+      font-family:PingFangSC-Light;
+      color: #C6A056
+      padding-top 0.2rem
+      width 1.5rem
   .wrap{
     width: 7.14rem;
     margin-left: 0.36rem;
@@ -69,11 +104,11 @@ export default {
     font-family:PingFangSC-Medium;
   }
   .show{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;//向显示多少行就给多大值
+    -webkit-box-orient: vertical;
   }
   .title-right{
     margin-left: 0.22rem;
@@ -85,12 +120,7 @@ export default {
     color:rgba(207,194,170,1);
     line-height: 0.3rem;
   }
-  .show-bts{
-    color: blue;
-    width: 1.8rem;
-    height: 0.2rem;
-  }
-  h2{
+  .title h2{
     text-align: left;
     margin-bottom: 0.1rem;
     font-size: 0.34rem;

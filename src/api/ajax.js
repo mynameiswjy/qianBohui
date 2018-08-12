@@ -1,9 +1,9 @@
 import axios from "axios"
 
-export default function ajax(data = {}, type = 'GET') {
+export default function ajaxSend(path = '', data = {}, type = 'GET') {
   /*return new Promise(function (resolve, reject) {
   })*/
-  let url = 'https://www.chqbh.com/qbh'
+  let url = 'https://www.chqbh.com/qbh/woa' + path
   if (type === 'GET') {
     // 准备URL query参数数据
     let dataStr = ""

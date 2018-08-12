@@ -5,21 +5,12 @@
 const path = require('path')
 
 module.exports = {
-  /*proxyTable: {//解决跨域问题
-    '/api': {
-      target: 'http://192.168.1.23:8080/#/',
-      changeOrigin:true,
-      pathRewrite:{
-        //'^/api':''
-      }
-    }
-  },*/
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {}, // 解决跨域
 
     // Various Dev Server settings
     host: '192.168.1.5', // can be overwritten by process.env.HOST
