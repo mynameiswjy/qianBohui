@@ -17,29 +17,42 @@
       </div>
       <div class="news_wrap left-margin">
         <ul class="news_content">
-          <li class="news_content_list" v-for="item in list" v-bind:key="item.id">
+          <li class="news_content_list" :class="{'details_border_ex': list.length - 1 !== index}" v-for="(item,index) in list" :key="index">
             <div class="news_content_list_left">{{item.name}}</div>
             <div>{{item.time}}</div>
           </li>
         </ul>
         <div class="btns">
           <div class="prev">
+            <div class="prev-txt">上一页</div>
             <img src="../assets/images/prev-page.png" alt="">
           </div>
           <div class="next">
             <img style="" src="../assets/images/next-page.png" alt="">
+            <div class="next-txt">下一页</div>
           </div>
         </div>
       </div>
+      <temp-footer class="footer-top"></temp-footer>
+      <div style="width:100%;height: 0.98rem"></div>
+      <tab-bar class="menu-tab"></tab-bar>
     </div>
 </template>
 
 <script>
+import tabBar from './tabBar' // 底部tabBar
+import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
+
 export default {
   name: "exhibitionDetail",
   data() {
     return {
       list: [
+        {name: '贵金属纪念币知识介绍', id: '0', time: '2018-07-03'},
+        {name: '纪念币的保存、清洗及赝品识别', id: '1', time: '2018-07-03'},
+        {name: '纪念币题材及发行要素辨识', id: '2', time: '2018-07-03'},
+        {name: '购买途径及鉴定证书辨识', id: '3', time: '2018-07-03'},
+        {name: '如何成为特许零售商', id: '4', time: '2018-07-03'},
         {name: '贵金属纪念币知识介绍', id: '0', time: '2018-07-03'},
         {name: '纪念币的保存、清洗及赝品识别', id: '1', time: '2018-07-03'},
         {name: '纪念币题材及发行要素辨识', id: '2', time: '2018-07-03'},
@@ -52,12 +65,18 @@ export default {
     document.title = '历届展会';
   },
   methods: {
+  },
+  components: {
+    tempFooter,
+    tabBar
   }
 }
 </script>
 
 <style scoped lang="stylus">
 select::-ms-expand { display: none; }
+.details_border_ex
+  border-bottom 0.01rem solid rgba(238,236,233,1)
 .details_wrap
   position fixed
   top: 0
@@ -66,6 +85,8 @@ select::-ms-expand { display: none; }
   width 100%
   bottom 0
   background-color: #fff
+  overflow auto
+  box-sizing border-box
   .title
     width: 6.78rem;
     display: flex;
@@ -111,4 +132,57 @@ select::-ms-expand { display: none; }
           font-family:PingFangSC-Light;
           color:rgba(207,194,170, 1);
           line-height: 0.3rem;
+
+  .news_wrap
+    box-shadow: 0.0rem 0rem 0.21rem rgba(198,160,86, 0.6);
+    width: 6.21rem;
+    padding: 0.38rem 0.29rem 0rem 0.29rem; // 0.18
+    border-radius: 0.08rem;
+    .news_content
+      background:rgba(198,160,86, 0.08)
+      border-radius: 0.08rem;
+      padding 0.04rem 0
+      .news_content_list
+        display flex
+        justify-content space-between
+        height: 0.8rem;
+        line-height: 0.8rem;
+        margin-left: 0.35rem;
+        margin-right 0.35rem
+        font-size: 0.3rem;
+        font-family: PingFangSC-Regular;
+        color: #717170;
+        .news_content_list_left
+          width: 3.21rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+    .btns
+      display flex
+      justify-content: center;
+      font-size 0.24rem
+      .prev
+        width 1.64rem
+        height 0.5rem
+        padding-top 0.27rem
+        display flex
+        justify-content flex-start
+        .prev-txt
+          color #C8A258
+          margin-right 0.34rem
+        img
+          width 0.11rem
+          height: 0.2rem
+      .next
+        width 1.64rem
+        height 0.5rem
+        padding-top 0.27rem
+        display flex
+        justify-content flex-end
+        .next-txt
+          margin-left 0.34rem
+          color #AAA9A8
+        img
+          width 0.11rem
+          height: 0.2rem
+          right 0
+  .footer-top
+    margin-top 0.56rem
 </style>
