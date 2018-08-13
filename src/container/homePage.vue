@@ -1,8 +1,8 @@
 <template>
   <div>
-    <introduce></introduce>
-    <exhibitionNews></exhibitionNews>
-    <exhibitor></exhibitor>
+    <introduce :introduceObj="indexList.expositionIntroduce"></introduce>
+    <exhibitionNews :expositionNews="indexList.expositionNews"></exhibitionNews>
+    <exhibitor :exhibitorsIntroduce="indexList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
     <successive-exhibitions></successive-exhibitions>
     <img class="footer-img left-margin" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="">
     <div style="height: 0.47rem"></div>
@@ -19,18 +19,34 @@ import exhibitor from '@/components/exhibitor' // 展商介绍模板
 import successiveExhibitions from '@/components/successiveExhibitions' // 历届展会模板
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
-import ajax from '@/api/ajax'
+import {indexDo, successiveExhibitors} from '@/api/index'
 
 export default {
   name: "index",
   data() {
     return {
       obj: 0,
+      indexList: null
     }
   },
   created() {
     document.title = '首页';
-    ajax()
+    indexDo().then((res) => {
+      console.log(res.data.returnData)
+      this.indexList = res.data.returnData
+    }).catch((err) => {
+      console.log(err)
+    })
+    let data = {
+      pageIndex: 1,
+      pageSize: 5,
+      selelctYears: 'first'
+    }
+    successiveExhibitors(data).then(res => {
+      console.log(res)
+    })
+  },
+  mounted() {
   },
   components: {
     introduce,

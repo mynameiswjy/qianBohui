@@ -44,7 +44,7 @@ export default {
     navBtn(e) {
       if (e == 4) {
         this.slider.scrollTo(-30, 0, 300)
-      } else if (e == 1) {
+      } else if (e == 1 || e == 0) {
         this.slider.scrollTo(0, 0, 300)
       }
     },
@@ -112,7 +112,6 @@ export default {
 
 <style lang="stylus">
   .nav-wrapper
-    /*margin-top -0.04rem*/
     position relative
     width 100%
     border-bottom 0.01rem solid #EEECE9
@@ -141,34 +140,32 @@ export default {
         .router-link-active
           color: #C8A258
           padding-bottom: 0.16rem
-          border-bottom: 0.06rem solid #C8A258
+          position: relative
+  .router-link-active:after
+    content: ''
+    position absolute
+    bottom: -0.04rem
+    left -0.02rem
+    width:100%
+    height:0
+    border-width:0 0.04rem 0.05rem 0.04rem
+    border-style:none solid solid
+    border-color:transparent transparent #c8a258
   .title-img{
     width: 7.5rem;
     height: 3.41rem;
   }
   .search{
     position: absolute;
-    right: 0.36rem;
-    width: 0.82rem;
-    text-align: right;
+    right: 0;
+    width: 1.2rem;
+    text-align: center;
     top 0.03rem
-    height: 0.79rem;
+    height: 0.72rem;
     background rgba(255,255,255, 0.6)
   }
   .search-icon{
     width: 0.32rem;
     height: 0.32rem;
   }
-  /*.active:after {
-    content: '';
-    position: absolute;
-    left: 18px;
-    top: auto;
-    bottom: 0;
-    right: auto;
-    height: 3px;
-    width: 25px;
-    border-radius:5px;
-    background-color: #C8A258;
-  }*/
 </style>

@@ -5,11 +5,11 @@
           <img class="sear-img" src="../assets/images/search.png" alt="">
           <input type="text" placeholder="搜索" v-model="searVal" style="vertical-align:middle">
         </div>
-        <div @click="Search_con">{{searVal}}</div>
+        <div @click="Search_con">{{searVal ? '搜索' : '取消'}}</div>
       </div>
       <p class="hot-sear">热门搜索</p>
       <ul class="keywords">
-        <li v-for="(item, index) in list" v-bind:key="index">{{item}}</li>
+        <li v-for="(item, index) in list" @click="changeClick(index)" v-bind:key="index">{{item}}</li>
       </ul>
     </div>
 </template>
@@ -24,14 +24,16 @@ export default {
     }
   },
   created() {
-    console.log(this.searVal)
   },
   mounted() {
-    console.log(this.searVal)
   },
-  mthods: {
+  methods: {
     Search_con() {
-      console.log(222)
+      console.log(this.searVal)
+    },
+    changeClick(e) {
+      console.log(e)
+      this.searVal = this.list[e]
     }
   }
 }
