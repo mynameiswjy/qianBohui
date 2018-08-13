@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Slider from "../utils/silder.vue"
+import Slider from "../utils/slider.vue"
 import BScroll from 'better-scroll'
 
 export default {
@@ -37,7 +37,6 @@ export default {
     // this._initTabListWidth()
     setTimeout(() => {
       this._initSlider()
-      console.log(this.slider)
     }, 20)
   },
   methods: {

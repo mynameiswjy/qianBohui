@@ -5,7 +5,7 @@
       <div class="title-right">
         <div class="h2">
           <div>历届展会</div>
-          <div class="more">
+          <div class="more" @click="goDetails">
             <div class="look-more">查看更多</div>
             <img class="more-img" src="../assets/images/more.png" alt="">
           </div>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="time-wrap">
-        <ul class="time-year">
+        <ul class="time-year" ref="timeYaer">
           <li @click="dotsChange(index)" v-for="(item, index) in years" :key="index" :class="{dot_active:(index == dotsIdx)}">{{item.time}}</li>
         </ul>
       </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Slider from "../utils/scroll"
+import Slider from "../utils/slider"
 import BScroll from 'better-scroll'
 
 export default {
@@ -46,6 +46,8 @@ export default {
         {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2015', idx: 2},
         {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2016', idx: 3},
         {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2017', idx: 4},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2017', idx: 5},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2017', idx: 6},
       ],
       probeType: 1,
       speed: 400,
@@ -63,6 +65,9 @@ export default {
     }, 20)
   },
   methods: {
+    goDetails() {
+      this.$router.push({path: 'exhibitionDetail'});
+    },
     initList() {
       this.lists.map(item => {
         this.years.push({time: item.time, index: item.idx})

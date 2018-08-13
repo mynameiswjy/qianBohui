@@ -6,6 +6,7 @@ import goods from '@/container/goods'
 import audience from '@/container/audience'
 import news from '@/container/news'
 import search from '@/container/search.vue'
+import exhibitionDetail from '@/container/exhibitionDetail.vue'
 
 Vue.use(Router)
 
@@ -18,7 +19,9 @@ export default new Router({
     {
       path: '/homePage',
       component: HomePage,
-      name: 'homePage'
+      name: 'homePage',
+      children: [
+      ]
     },
     {
       path: '/aboutzh',
@@ -44,6 +47,11 @@ export default new Router({
       path: '/search',
       component: search,
       name: 'search'
+    },
+    {
+      path: "/exhibitionDetail",
+      name: 'exhibitionDetail',
+      component: exhibitionDetail
     }
   ]
 })

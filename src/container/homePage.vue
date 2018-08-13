@@ -1,8 +1,8 @@
 <template>
   <div>
-    <introduce :introduceObj="indexList.expositionIntroduce"></introduce>
-    <exhibitionNews :expositionNews="indexList.expositionNews"></exhibitionNews>
-    <exhibitor :exhibitorsIntroduce="indexList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
+    <introduce :introduceObj="dataList.expositionIntroduce"></introduce>
+    <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
+    <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
     <successive-exhibitions></successive-exhibitions>
     <img class="footer-img left-margin" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="">
     <div style="height: 0.47rem"></div>
@@ -26,24 +26,28 @@ export default {
   data() {
     return {
       obj: 0,
-      indexList: null
+      dataList: {
+        expositionNews: null,
+        expositionIntroduce: null,
+        exhibitorsIntroduce: null
+      },
     }
   },
   created() {
     document.title = '首页';
     indexDo().then((res) => {
-      console.log(res.data.returnData)
-      this.indexList = res.data.returnData
+      /*console.log(res.data.returnData)*/
+      this.dataList = res.data.returnData
     }).catch((err) => {
       console.log(err)
     })
     let data = {
-      pageIndex: 1,
+      pageIndex: 2,
       pageSize: 5,
       selelctYears: 'first'
     }
     successiveExhibitors(data).then(res => {
-      console.log(res)
+      console.log('res', res)
     })
   },
   mounted() {
