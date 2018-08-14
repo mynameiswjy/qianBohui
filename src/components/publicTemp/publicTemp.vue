@@ -7,6 +7,7 @@
             :key="index"
         >
           {{item}}
+          <img v-show="idx == index" class="arrow" src="../../assets/images/arrow.png" alt="">
         </li>
       </ul>
       <div  class="temp_content">
@@ -65,6 +66,13 @@ export default {
       justify-content space-between
       li
         padding 0.26rem 0
+        position relative
+        .arrow
+          position absolute
+          left: 38%
+          top: 1.06rem
+          width 0.42rem
+          height 0.36rem
       .li_add_style
         margin:0 0.89rem
       .text_active
@@ -80,24 +88,9 @@ export default {
         border-width:0 0.04rem 0.05rem 0.04rem
         border-style:none solid solid
         border-color:transparent transparent #c8a258
-      .text_active:before
-        position absolute
-        display: inline-block;
-        top: 1.05rem;
-        left: 40%;
-        width: 0;
-        height: 0px;
-        content: ''
-        border-style: solid;
-        border-width: 0.15rem
-        border-color: rgba(198, 160, 86, 0.08) rgba(198, 160, 86, 0.08) transparent transparent;
-        transform: rotate(315deg);
-        background-color: rgba(255, 255, 255, 1)
-        /*z-index -1*/
-        box-shadow 0.02rem -0.03rem -0.00rem 0.02rem #C6A056
     .temp_content
       width 6.21rem
-      margin-top 0.35rem
+      margin-top 0.55rem
       padding 0.34rem 0.3rem 0.38rem 0.27rem
       border-radius 0.08rem
       box-shadow 0rem 0 0.21rem #C6A056

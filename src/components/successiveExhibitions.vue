@@ -24,9 +24,11 @@
         </div>
       </div>
       <div class="time-wrap">
-        <ul class="time-year" ref="timeYaer">
-          <li @click="dotsChange(index)" v-for="(item, index) in years" :key="index" :class="{dot_active:(index == dotsIdx)}">{{item.time}}</li>
-        </ul>
+        <div ref="timeYaer" style="height: 100%">
+          <ul class="time-year">
+            <li @click="dotsChange(index)" v-for="(item, index) in years" :key="index" :class="{dot_active:(index == dotsIdx)}">{{item.time}}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -62,6 +64,7 @@ export default {
     setTimeout(() => {
       this._initSlider()
       this._initSliderWidth()
+      this._initDocSlider()
     }, 20)
   },
   methods: {
@@ -73,21 +76,16 @@ export default {
         this.years.push({time: item.time, index: item.idx})
       })
     },
-    _initDocSlider() {
-      if (this.$refs.timeYaer) return
+    _initDocSlider() { // 小轮播
+      if (!this.$refs.timeYaer) return
       this.docSlider = new BScroll(this.$refs.timeYaer, {
         scrollX: true,
         click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
         freeScroll: true,
         eventPassthrough: 'vertical',
-        snap: {
-          loop: false, //loop 为 true 是为了支持循环轮播
-          threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
-          speed: this.speed
-        },
       })
     },
-    _initSlider() {
+    _initSlider() { // 大轮播
       if (!this.$refs.sliderWrap) {
         return
       }
@@ -241,15 +239,16 @@ export default {
     overflow hidden
     height 1.17rem
     .time-year
-      /*position absolute*/
+      position absolute
       height: 0.76rem
       background: rgba(198, 160, 86, 0.08)
       display: flex
       line-height: 0.76rem
       font-size: 0.3rem
       margin-top: 0.41rem;
+      padding 0 0.1rem
       li
-        flex: 1
+        width 1.2rem
         text-align: center
       .dot_active
         color: #C6A056

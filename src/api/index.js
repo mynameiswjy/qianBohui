@@ -29,6 +29,14 @@ export function successiveExhibitors(data = {}) {
   })
 }
 
+// 搜索关键词
+export function getAntistop(data = {}) {
+  return service({
+    url: '/search/getAntistop.do',
+    method: 'get'
+  })
+}
+
 export default {
   indexDo,
   successiveExhibitors

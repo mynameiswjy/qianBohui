@@ -9,21 +9,27 @@
       </div>
       <p class="hot-sear">热门搜索</p>
       <ul class="keywords">
-        <li v-for="(item, index) in list" @click="changeClick(index)" v-bind:key="index">{{item}}</li>
+        <li v-for="(item, index) in keywordsList" @click="changeClick(index)" v-bind:key="index">{{item.name}}</li>
       </ul>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+import {getAntistop} from '@/api/index'
+
 export default {
   name: 'search',
   data() {
     return{
       searVal: '',
-      list: ['人民币', '搜索', '热门搜索', '纪念币', '古代钱币', '纸币', '运动币', '数字币', '货币', '人民币']
+      list: ['人民币', '搜索', '热门搜索', '纪念币', '古代钱币', '纸币', '运动币', '数字币', '货币', '人民币'],
+      keywordsList: {}
     }
   },
   created() {
+    this.$nextTick(function () {
+      this.initgetAntistop()
+    })
   },
   mounted() {
   },
@@ -34,6 +40,12 @@ export default {
     changeClick(e) {
       console.log(e)
       this.searVal = this.list[e]
+    },
+    initgetAntistop() {
+      getAntistop().then((res) => {
+        console.log('search', res)
+        this.keywordsList = res.data.returnData
+      })
     }
   }
 }
