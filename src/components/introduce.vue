@@ -27,7 +27,12 @@ export default {
   props: {
     introduceObj: {
       type: Object,
-      default: null
+      default: function () {
+        return {
+          title: '',
+          content: ''
+        }
+      }
     },
     openStyle: {
       type: Boolean,

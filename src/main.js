@@ -4,7 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import "@/assets/reset.css"
+import {Upload, Button, Dialog} from "element-ui"
 
+Vue.use(Upload)
+Vue.use(Dialog)
+Vue.use(Button)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

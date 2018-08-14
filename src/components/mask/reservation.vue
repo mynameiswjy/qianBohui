@@ -60,10 +60,20 @@
             <div class="upload">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></div>
           </div>
           <div class="add-img">
-            <div class="upload-img">
-              <img src="../../assets/images/add_img.png" alt="">
-              <div>添加图片</div>
+            <div class="user-img">
+              <img src="http://img.zcool.cn/community/0117e2571b8b246ac72538120dd8a4.jpg@1280w_1l_2o_100sh.jpg" alt="">
             </div>
+            <el-upload
+              action="https://weixin.566.com/api/Question/SaveUserFeedbackImage"
+              list-type="picture-card"
+              :before-upload="beforUpload"
+              :on-preview="handlePictureCardPreview"
+            >
+              <div class="upload-img">
+                <img src="../../assets/images/add_img.png" alt="">
+                <div>添加图片</div>
+              </div>
+            </el-upload>
             <!--<img src="" alt="">-->
           </div>
           <div class="btns">确定</div>
@@ -123,6 +133,12 @@ export default {
   methods: {
     closeTemp() {
       this.$emit("closeTemp", this.one)
+    },
+    handlePictureCardPreview(e) {
+      console.log(e)
+    },
+    beforUpload(e) {
+      console.log(e)
     }
   },
   components: {
@@ -170,23 +186,36 @@ export default {
     height: 0.19rem;
     margin-left: 0.21rem;
   }
-  .add-img{
+  .add-img
     display: flex;
     margin: 0 0.36rem 0.36rem;
     font-size: 0.24rem;
-  }
-  .upload-img{
-    width: 1.68rem;
-    height: 1.68rem;
+    .user-img
+      background-color: #bfa
+      width 1.68rem
+      height 1.68rem
+      margin-right 0.33rem
+      img
+        width 100%
+        height 100%
+  .upload-img
+    width: 1.66rem;
+    height: 1.66rem;
     border: 0.01rem dashed #BFBFBF;
-  }
-  .upload-img img{
-    display: block;
-    margin: 0 auto;
-    width: 0.44rem;
-    height: 0.39rem;
-    margin-top: 0.44rem;
-  }
+    .el-upload__input
+      display none!important
+    img
+      display: block;
+      margin: 0 auto;
+      width: 0.44rem;
+      height: 0.39rem;
+      margin-top: 0.44rem;
+    .primary
+      color b
+      .el-upload__input
+        display none!important
+        color red
+        background-color: #bfa
   .upload-img div{
      text-align: center;
     margin-top: 0.19rem;

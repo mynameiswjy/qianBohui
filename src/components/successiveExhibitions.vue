@@ -73,6 +73,20 @@ export default {
         this.years.push({time: item.time, index: item.idx})
       })
     },
+    _initDocSlider() {
+      if (this.$refs.timeYaer) return
+      this.docSlider = new BScroll(this.$refs.timeYaer, {
+        scrollX: true,
+        click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
+        freeScroll: true,
+        eventPassthrough: 'vertical',
+        snap: {
+          loop: false, //loop 为 true 是为了支持循环轮播
+          threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
+          speed: this.speed
+        },
+      })
+    },
     _initSlider() {
       if (!this.$refs.sliderWrap) {
         return
@@ -222,41 +236,45 @@ export default {
     color:rgba(207,194,170, 1);
     line-height: 0.3rem;
   }
-  .time-year
-    width: 100%;
-    height: 0.76rem
-    background: rgba(198, 160, 86, 0.08)
-    display: flex
-    line-height: 0.76rem
-    font-size: 0.3rem
-    margin-top: 0.41rem;
-    li
-      flex: 1
-      text-align: center
-    .dot_active
-      color: #C6A056
-      position relative
-  .dot_active:after
-    position absolute
-    display: inline-block;
-    top: -0.2rem;
-    left: 0.4rem;
-    width: 0;
-    height: 0px;
-    content: '';
-    border-style: solid;
-    border-width: 0.2rem;
-    border-color: rgba(198, 160, 86, 0.08) rgba(198, 160, 86, 0.08) transparent transparent;
-    transform: rotate(315deg);
-    /*box-shadow: 2px -2px 2px #ccc;*/
-  .dot_active:before
-    content: ''
-    position absolute
-    bottom: 0.13rem
-    left 0.2rem
-    width:60%;
-    height:0;
-    border-width:0 0.02 0.05rem 0.02rem;
-    border-style:none solid solid;
-    border-color:transparent transparent #c6a056
+  .time-wrap
+    position relative
+    overflow hidden
+    height 1.17rem
+    .time-year
+      /*position absolute*/
+      height: 0.76rem
+      background: rgba(198, 160, 86, 0.08)
+      display: flex
+      line-height: 0.76rem
+      font-size: 0.3rem
+      margin-top: 0.41rem;
+      li
+        flex: 1
+        text-align: center
+      .dot_active
+        color: #C6A056
+        position relative
+    .dot_active:after
+      position absolute
+      display: inline-block;
+      top: -0.2rem;
+      left: 0.4rem;
+      width: 0;
+      height: 0px;
+      content: '';
+      border-style: solid;
+      border-width: 0.2rem;
+      border-color: rgba(198, 160, 86, 0.08) rgba(198, 160, 86, 0.08) transparent transparent;
+      transform: rotate(315deg);
+      /*box-shadow: 2px -2px 2px #ccc;*/
+    .dot_active:before
+      content: ''
+      position absolute
+      bottom: 0.13rem
+      left 0.2rem
+      width:60%;
+      height:0;
+      border-width:0 0.02 0.05rem 0.02rem;
+      border-style:none solid solid;
+      border-color:transparent transparent #c6a056
 </style>

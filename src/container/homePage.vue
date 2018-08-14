@@ -26,20 +26,13 @@ export default {
   data() {
     return {
       obj: 0,
-      dataList: {
-        expositionNews: null,
-        expositionIntroduce: null,
-        exhibitorsIntroduce: null
-      },
+      dataList: {},
     }
   },
   created() {
     document.title = '首页';
-    indexDo().then((res) => {
-      /*console.log(res.data.returnData)*/
-      this.dataList = res.data.returnData
-    }).catch((err) => {
-      console.log(err)
+    this.$nextTick(function () {
+      this.initlist()
     })
     let data = {
       pageIndex: 2,
@@ -51,6 +44,16 @@ export default {
     })
   },
   mounted() {
+  },
+  methods: {
+    initlist() {
+      indexDo().then((res) => {
+        /*console.log(res.data.returnData)*/
+        this.dataList = res.data.returnData
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   },
   components: {
     introduce,
