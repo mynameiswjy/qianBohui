@@ -20,6 +20,7 @@ import successiveExhibitions from '@/components/successiveExhibitions' // 历届
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
 import {indexDo, successiveExhibitors} from '@/api/index'
+import Scroll from '@/utils/scroll' // 滑动组件
 
 export default {
   name: "index",
@@ -61,7 +62,8 @@ export default {
     exhibitor,
     successiveExhibitions,
     tempFooter,
-    tabBar
+    tabBar,
+    Scroll
   }
 }
 </script>

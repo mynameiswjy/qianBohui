@@ -43,18 +43,19 @@ export default {
         scrollY: true,
         probeType: this.probeType,
         click: this.click,
-        scrollbar: {
+        // bounce: false //去掉回弹动画
+        /*scrollbar: {
           fade: false,
           interactive: true
-        },
+        },*/
       })
       console.log(this.scroll)
     },
-    enable() {
-      this.scroll && this.scroll.enable()
-    },
     disable() {
       this.scroll && this.scroll.disable()
+    },
+    enable() {
+      this.scroll && this.scroll.enable()
     },
     refrech() {
       this.scroll && this.scroll.refrech()

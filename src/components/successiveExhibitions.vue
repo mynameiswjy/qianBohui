@@ -26,7 +26,7 @@
       <div class="time-wrap">
         <div ref="timeYaer" style="height: 100%">
           <ul class="time-year">
-            <li @click="dotsChange(index)" v-for="(item, index) in years" :key="index" :class="{dot_active:(index == dotsIdx)}">{{item.time}}</li>
+            <li ref="docWidth" @click="dotsChange(index)" v-for="(item, index) in years" :key="index" :class="{dot_active:(index == dotsIdx)}">{{item.time}}</li>
           </ul>
         </div>
       </div>
@@ -48,13 +48,14 @@ export default {
         {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2015', idx: 2},
         {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2016', idx: 3},
         {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2017', idx: 4},
-        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2017', idx: 5},
-        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2017', idx: 6},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2018', idx: 5},
+        {list: [{name: '贵金属纪念币知识介绍', id: '0'}, {name: '纪念币的保存、清洗及赝品识别', id: '1'}, {name: '纪念币题材及发行要素辨识', id: '2'}, {name: '购买途径及鉴定证书辨识', id: '3'}, {name: '如何成为特许零售商', id: '4'}], time: '2019', idx: 6},
       ],
       probeType: 1,
       speed: 400,
       years: [],
-      dotsIdx: 0
+      dotsIdx: 0,
+      isScroll: false
     }
   },
   created() {
@@ -63,8 +64,8 @@ export default {
   mounted() {
     setTimeout(() => {
       this._initSlider()
-      this._initSliderWidth()
       this._initDocSlider()
+      this._initSliderWidth()
     }, 20)
   },
   methods: {
@@ -76,7 +77,7 @@ export default {
         this.years.push({time: item.time, index: item.idx})
       })
     },
-    _initDocSlider() { // 小轮播
+    _initDocSlider() { // 小轮播 scrollTo
       if (!this.$refs.timeYaer) return
       this.docSlider = new BScroll(this.$refs.timeYaer, {
         scrollX: true,
@@ -109,19 +110,58 @@ export default {
     refresh() {
       this.slider && this.slider.refrech()
     },
+    docLiwidth(e) {
+      if (!this.$refs.docWidth) return
+      const width = this.$refs.docWidth[e].clientWidth
+      return width
+    },
     _initSliderWidth() {
       this.slider.on('touchstart', () => {
         this.refrech()
       })
-      this.slider.on('touchEnd', (pos) => {
-        console.log('touchEnd', pos.x)
-      })
       this.slider.on('scrollEnd', (pos) => {
-        console.log('scrollEnd', pos.x)
+        let scrollWidth = pos.x
+        if (scrollWidth == -310) {
+          this.docSlider.scrollTo(0, 0, 300)
+        } else if (scrollWidth == -620) {
+          if (this.isScroll) {
+            this.docSlider.scrollTo(-60, 0, 300)
+            this.isScroll = false
+          }
+        } else if (scrollWidth == -1240) {
+          if (!this.isScroll) {
+            this.docSlider.scrollTo(-60, 0, 300)
+          }
+        } else if (scrollWidth == -1550) {
+          this.isScroll = true
+          this.docSlider.scrollTo(-60 * 2, 0, 300)
+        }
       })
     },
-    dotsChange(e) {
+    dotsChange(e) { // 同步选项卡
       this.slider.goToPage(e, 0, 400)
+      let scroll = this.docLiwidth(e)
+      switch (e) {
+        case 0:
+          return false
+        case 1:
+          return this.docSlider.scrollTo(0, 0, 300)
+        case 2:
+          if (this.isScroll) {
+            this.docSlider.scrollTo(-scroll, 0, 300)
+            this.isScroll = false
+          }
+          return
+        case 3:
+          return false
+        case 4:
+          return this.isScroll ? '' : this.docSlider.scrollTo(-scroll, 0, 300)
+        case 5:
+          return this.docSlider.scrollTo(-scroll * 2, 0, 300)
+        case 6:
+          this.isScroll = true
+          return false
+      }
     },
     gotoDetails(e) {
       // console.log(e)
@@ -270,8 +310,8 @@ export default {
       content: ''
       position absolute
       bottom: 0.13rem
-      left 0.2rem
-      width:60%;
+      left 0.18rem
+      width:58%;
       height:0;
       border-width:0 0.02 0.05rem 0.02rem;
       border-style:none solid solid;

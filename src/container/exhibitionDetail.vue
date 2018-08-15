@@ -1,40 +1,44 @@
 <template>
     <div class="details_wrap">
-      <div class="title">
-        <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
-        <div class="title-right">
-          <div class="details_select">
-            <h2 class="details_h2">历届展会</h2>
-            <select>
-              <option value ="volvo">请选择</option>
-              <option value ="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select>
+      <scroll class="details-content" :data="list">
+        <div>
+          <div style="height: 0.01rem;width: 100%;"></div>
+          <div class="title">
+            <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
+            <div class="title-right">
+              <div class="details_select">
+                <h2 class="details_h2">历届展会</h2>
+                <select>
+                  <option value ="volvo">请选择</option>
+                  <option value ="saab">Saab</option>
+                  <option value="opel">Opel</option>
+                  <option value="audi">Audi</option>
+                </select>
+              </div>
+              <div class="title-right-en">Exhibition Introduction</div>
+            </div>
           </div>
-          <div class="title-right-en">Exhibition Introduction</div>
+          <div class="news_wrap left-margin">
+            <ul class="news_content">
+              <li class="news_content_list" :class="{'details_border_ex': list.length - 1 !== index}" v-for="(item,index) in list" :key="index">
+                <div class="news_content_list_left">{{item.name}}</div>
+                <div>{{item.time}}</div>
+              </li>
+            </ul>
+            <div class="btns">
+              <div class="prev">
+                <div class="prev-txt">上一页</div>
+                <img src="../assets/images/prev-page.png" alt="">
+              </div>
+              <div class="next">
+                <img style="" src="../assets/images/next-page.png" alt="">
+                <div class="next-txt">下一页</div>
+              </div>
+            </div>
+          </div>
+          <temp-footer class="footer-top"></temp-footer>
         </div>
-      </div>
-      <div class="news_wrap left-margin">
-        <ul class="news_content">
-          <li class="news_content_list" :class="{'details_border_ex': list.length - 1 !== index}" v-for="(item,index) in list" :key="index">
-            <div class="news_content_list_left">{{item.name}}</div>
-            <div>{{item.time}}</div>
-          </li>
-        </ul>
-        <div class="btns">
-          <div class="prev">
-            <div class="prev-txt">上一页</div>
-            <img src="../assets/images/prev-page.png" alt="">
-          </div>
-          <div class="next">
-            <img style="" src="../assets/images/next-page.png" alt="">
-            <div class="next-txt">下一页</div>
-          </div>
-        </div>
-      </div>
-      <temp-footer class="footer-top"></temp-footer>
-      <div style="width:100%;height: 0.98rem"></div>
+      </scroll>
       <tab-bar class="menu-tab"></tab-bar>
     </div>
 </template>
@@ -42,6 +46,7 @@
 <script>
 import tabBar from './tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
+import scroll from '@/utils/scroll'
 
 export default {
   name: "exhibitionDetail",
@@ -68,30 +73,34 @@ export default {
   },
   components: {
     tempFooter,
-    tabBar
+    tabBar,
+    scroll
   }
 }
 </script>
 
 <style scoped lang="stylus">
+.menu-tab{
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+}
 select::-ms-expand { display: none; }
 .details_border_ex
   border-bottom 0.01rem solid rgba(238,236,233,1)
 .details_wrap
   position fixed
   top: 0
-  left: 0
-  right 0
-  width 100%
-  bottom 0
+  bottom 0.98rem
   background-color: #fff
-  overflow auto
-  box-sizing border-box
+  /*overflow auto*/
+  .details-content
+    height 100%
+    overflow hidden
   .title
     width: 6.78rem;
     display: flex;
     margin-bottom: 0.32rem;
-    margin-top: 0.58rem;
     margin-left 0.36rem
     font-family:PingFangSC-Medium;
     .introduce-icon

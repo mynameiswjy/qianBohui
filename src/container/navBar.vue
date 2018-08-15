@@ -34,7 +34,6 @@ export default {
     }
   },
   mounted() {
-    // this._initTabListWidth()
     setTimeout(() => {
       this._initSlider()
     }, 20)
@@ -66,7 +65,7 @@ export default {
       this.slider.on('scrollEnd', (pos) => {
       })
     },
-    _initTabListWidth() {
+    /*_initTabListWidth() {
       const tabList = this.$refs.content
       const items = tabList.children
       let width = 0
@@ -92,7 +91,7 @@ export default {
       let translate = middleTranslate - width
       translate = Math.max(minTranslate, Math.min(0, translate))
       this.$refs.content.scrollTo(translate, 0, 300)
-    },
+    },*/
     Initslider() {
       if (!this.$refs.content) {
         return

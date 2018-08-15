@@ -57,6 +57,7 @@ export default {
       })
       this.slider.on('scrollEnd', (pos) => {
       })
+      console.log(this.slider)
     },
     refresh() {
       this.slider && this.slider.refrech()

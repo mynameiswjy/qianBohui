@@ -5,7 +5,7 @@
           <img class="sear-img" src="../assets/images/search.png" alt="">
           <input type="text" placeholder="搜索" v-model="searVal" style="vertical-align:middle">
         </div>
-        <div @click="Search_con">{{searVal ? '搜索' : '取消'}}</div>
+        <div @click="Search_con">取消</div>
       </div>
       <p class="hot-sear">热门搜索</p>
       <ul class="keywords">
@@ -22,7 +22,6 @@ export default {
   data() {
     return{
       searVal: '',
-      list: ['人民币', '搜索', '热门搜索', '纪念币', '古代钱币', '纸币', '运动币', '数字币', '货币', '人民币'],
       keywordsList: {}
     }
   },
@@ -36,14 +35,13 @@ export default {
   methods: {
     Search_con() {
       console.log(this.searVal)
+      this.$router.go(-1)
     },
     changeClick(e) {
-      console.log(e)
-      this.searVal = this.list[e]
+      this.searVal = this.keywordsList[e].name
     },
     initgetAntistop() {
       getAntistop().then((res) => {
-        console.log('search', res)
         this.keywordsList = res.data.returnData
       })
     }
