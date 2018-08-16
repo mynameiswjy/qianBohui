@@ -3,7 +3,7 @@
     <div class="about">
       <div @click="contactUs" class="call-us">联系我们</div>
       <div class="border"></div>
-      <div class="about-us">关于我们</div>
+      <div class="about-us" @click="aboutUs">关于我们</div>
     </div>
     <div class="copyright">
       <div>Copyright © 2000—2018 chngc.net All Rights Reserved</div>
@@ -21,6 +21,9 @@ export default {
   methods: {
     contactUs() {
       this.$router.push({path: 'contactUs'});
+    },
+    aboutUs() {
+      this.$router.push({path: 'aboutzh'});
     }
   }
 }

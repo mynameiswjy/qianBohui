@@ -7,10 +7,12 @@
         </div>
         <div @click="Search_con">取消</div>
       </div>
-      <p class="hot-sear">热门搜索</p>
-      <ul class="keywords">
-        <li v-for="(item, index) in keywordsList" @click="changeClick(index)" v-bind:key="index">{{item.name}}</li>
-      </ul>
+      <div v-if="keywordsList.length">
+        <p class="hot-sear">热门搜索</p>
+        <ul class="keywords">
+          <li v-for="(item, index) in keywordsList" @click="changeClick(index)" v-bind:key="index">{{item.name}}</li>
+        </ul>
+      </div>
     </div>
 </template>
 
