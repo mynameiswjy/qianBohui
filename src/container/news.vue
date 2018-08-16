@@ -6,7 +6,7 @@
       </div>
       <div class="news_wrap left-margin">
         <ul class="news_content">
-          <li class="news_content_list" v-for="item in list" v-bind:key="item.id">
+          <li class="news_content_list" v-for="item in listZHXW" v-bind:key="item.id">
             <div class="news_content_list_left">{{item.title}}</div>
             <div>{{item.newsTime}}</div>
           </li>
@@ -21,20 +21,23 @@
         </div>
       </div>
       <ul class="news_title_nav">
-        <li class="li_add_style" :class="{'text_active':idx == index,}" v-for="(item,index) in navNews" :key="index">{{item}}</li>
+        <li class="li_add_style" @click="selectNewsTitle(index)" :class="{'text_active':idx == index,}" v-for="(item,index) in navNews" :key="index">
+          {{item}}
+          <img v-show="idx == index" class="arrow" src="../assets/images/arrow.png" alt="">
+        </li>
       </ul>
       <div class="news_wrap left-margin">
         <ul class="news_content">
-          <li class="news_content_list" v-for="item in list" v-bind:key="item.id">
-            <div class="news_content_list_left">{{item.name}}</div>
-            <div>{{item.time}}</div>
+          <li class="news_content_list" v-for="(item, index) in listZSJS" :key="index">
+            <div class="news_content_list_left">{{item.title}}</div>
+            <div>{{item.newsTime}}</div>
           </li>
         </ul>
         <div class="btns">
-          <div class="prev">
+          <div class="prev" @click="prevZSJS">
             <img src="../assets/images/prev-page.png" alt="">
           </div>
-          <div class="next">
+          <div class="next" @click="nextZSJS">
             <img style="" src="../assets/images/next-page.png" alt="">
           </div>
         </div>
@@ -56,32 +59,52 @@ export default {
     return {
       idx: 0,
       navNews: ['行业动态', '展商介绍'],
-      list: [],
+      listZHXW: [],
       pageIndex: 1,
+      pageIndexZSJS: 1,
       prevHide: false,
-      dialogVisible: true
+      dialogVisible: true,
+      type: 'ZSJS', // 展商介绍
+      listZSJS: []
     }
   },
   created() {
     document.title = '新闻资讯';
-    this.initData(this.pageIndex)
+    this.initDataZHXW('ZHXW')// 展会新闻
+    this.initDataZSJS('ZSJS')// 展商介绍 以及 行业动态
   },
   methods: {
-    initData() {
-      /*
-      * 展会新闻= ZHXW
-        展商介绍= ZSJS
-        行业动态= HYDT
-      * */
+    selectNewsTitle(e) {
+      this.idx = e
+      if (e == 0) {
+        this.initDataZSJS("ZSJS")
+      } else {
+        this.initDataZSJS('HYDT')
+      }
+    },
+    initDataZSJS(type) {
       let data = {
-        selelctType: 'ZHXW',
+        selelctType: type,
+        pageIndex: this.pageIndexZSJS,
+        pageSize: 5
+      }
+      getNewsCategory(data).then(res => {
+        console.log('222', res.data)
+        if (res.data.returnCode === '0000') {
+          this.listZSJS = res.data.returnData.successiveExhibitors
+        }
+      })
+    },
+    initDataZHXW(type) {
+      let data = {
+        selelctType: type,
         pageIndex: this.pageIndex,
         pageSize: 5
       }
       getNewsCategory(data).then(res => {
         if (res.data.returnCode === '0000') {
           let data = res.data.returnData
-          this.list = data.successiveExhibitors
+          this.listZHXW = data.successiveExhibitors
         }
       })
     },
@@ -95,11 +118,25 @@ export default {
         });
         return false
       }
-      this.initData(this.pageIndex)
+      this.initDataZHXW(this.pageIndex)
     },
     nextClick() {
       ++this.pageIndex
-      this.initData(this.pageIndex)
+      this.initDataZHXW(this.pageIndex)
+    },
+    prevZSJS() {
+      --this.pageIndexZSJS
+      if (this.pageIndexZSJS < 1) {
+        this.pageIndexZSJS = 1
+        this.$message({
+          message: '这已经是第一页了，亲!',
+          type: 'warning'
+        });
+        return false
+      }
+      this.initDataZSJS(this.pageIndexZSJS)
+    },
+    nextZSJS() {
     }
   },
   components: {
@@ -133,6 +170,7 @@ export default {
       width: 6.21rem;
       padding: 0.38rem 0.29rem 0rem 0.29rem; // 0.18
       border-radius: 0.08rem;
+      margin-top 0.55rem
       .news_content
         .news_content_list
           display flex
@@ -181,6 +219,13 @@ export default {
         padding 0.26rem 0
       .li_add_style
         margin:0 0.89rem
+        position relative
+        .arrow
+          position absolute
+          left: 38%
+          top: 1.06rem
+          width 0.42rem
+          height 0.36rem
       .text_active
         color: #C6A056
         position relative
