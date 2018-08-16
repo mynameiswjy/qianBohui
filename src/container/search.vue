@@ -3,7 +3,7 @@
       <div class="sear">
         <div class="sear-input">
           <img class="sear-img" src="../assets/images/search.png" alt="">
-          <input type="text" placeholder="搜索" v-model="searVal" style="vertical-align:middle">
+          <input type="text" placeholder="搜索" @keyup.enter="submit" v-model="searVal" style="vertical-align:middle">
         </div>
         <div @click="Search_con">取消</div>
       </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import {getAntistop} from '@/api/index'
+import {getAntistop, searchName} from '@/api/index'
 
 export default {
   name: 'search',
@@ -33,6 +33,16 @@ export default {
   mounted() {
   },
   methods: {
+    // 搜索
+    submit() {
+      let data = {
+        searchName: this.searVal
+      }
+      searchName(data).then((res) => {
+        console.log(res)
+      })
+    },
+    // 关键词
     Search_con() {
       console.log(this.searVal)
       this.$router.go(-1)

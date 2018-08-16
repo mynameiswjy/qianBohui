@@ -7,15 +7,15 @@
       <div class="news_wrap left-margin">
         <ul class="news_content">
           <li class="news_content_list" v-for="item in list" v-bind:key="item.id">
-            <div class="news_content_list_left">{{item.name}}</div>
-            <div>{{item.time}}</div>
+            <div class="news_content_list_left">{{item.title}}</div>
+            <div>{{item.newsTime}}</div>
           </li>
         </ul>
         <div class="btns">
-          <div class="prev">
+          <div @click="prevClick" class="prev">
             <img src="../assets/images/prev-page.png" alt="">
           </div>
-          <div class="next">
+          <div v-show="!prevHide" @click="nextClick" class="next">
             <img style="" src="../assets/images/next-page.png" alt="">
           </div>
         </div>
@@ -48,6 +48,7 @@
 <script>
 import tabBar from '@/container/tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
+import {getNewsCategory} from '@/api/index'
 
 export default {
   name: "aboutzh",
@@ -55,17 +56,51 @@ export default {
     return {
       idx: 0,
       navNews: ['行业动态', '展商介绍'],
-      list: [
-        {name: '贵金属纪念币知识介绍', id: '0', time: '2018-07-03'},
-        {name: '纪念币的保存、清洗及赝品识别', id: '1', time: '2018-07-03'},
-        {name: '纪念币题材及发行要素辨识', id: '2', time: '2018-07-03'},
-        {name: '购买途径及鉴定证书辨识', id: '3', time: '2018-07-03'},
-        {name: '如何成为特许零售商', id: '4', time: '2018-07-03'}
-      ]
+      list: [],
+      pageIndex: 1,
+      prevHide: false,
+      dialogVisible: true
     }
   },
   created() {
     document.title = '新闻资讯';
+    this.initData(this.pageIndex)
+  },
+  methods: {
+    initData() {
+      /*
+      * 展会新闻= ZHXW
+        展商介绍= ZSJS
+        行业动态= HYDT
+      * */
+      let data = {
+        selelctType: 'ZHXW',
+        pageIndex: this.pageIndex,
+        pageSize: 5
+      }
+      getNewsCategory(data).then(res => {
+        if (res.data.returnCode === '0000') {
+          let data = res.data.returnData
+          this.list = data.successiveExhibitors
+        }
+      })
+    },
+    prevClick() {
+      --this.pageIndex
+      if (this.pageIndex < 1) {
+        this.pageIndex = 1
+        this.$message({
+          message: '这已经是第一页了，亲!',
+          type: 'warning'
+        });
+        return false
+      }
+      this.initData(this.pageIndex)
+    },
+    nextClick() {
+      ++this.pageIndex
+      this.initData(this.pageIndex)
+    }
   },
   components: {
     tabBar,

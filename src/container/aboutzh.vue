@@ -13,14 +13,13 @@ import introduce from '@/components/introduce' // 展会介绍模板
 import publicTemp from '@/components/publicTemp/publicTemp'
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
+import {etArticlesContent} from '@/api/index'
 
 export default {
   name: "aboutzh",
   data() {
     return {
-      introduceObj: {
-        title: '展会介绍',
-      },
+      introduceObj: {},
       aboutzhObj: {
         navList: ["主办机构", "组织机构", "展位分布"],
         textList: [
@@ -48,6 +47,16 @@ export default {
   },
   created() {
     document.title = '关于展会';
+    this.contentTxt()
+  },
+  methods: {
+    contentTxt() {
+      etArticlesContent({articlesCode: 'ZHJS'}).then(res => {
+        if (res.data.returnCode === '0000') {
+          this.introduceObj = res.data.returnData
+        }
+      })
+    }
   },
   components: {
     tabBar,

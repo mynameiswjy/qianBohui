@@ -1,7 +1,7 @@
 <template>
   <div class="left-margin wrap">
     <div class="about">
-      <div class="call-us">联系我们</div>
+      <div @click="contactUs" class="call-us">联系我们</div>
       <div class="border"></div>
       <div class="about-us">关于我们</div>
     </div>
@@ -17,6 +17,11 @@ export default {
   name: "tempFooter",
   data() {
     return {}
+  },
+  methods: {
+    contactUs() {
+      this.$router.push({path: 'contactUs'});
+    }
   }
 }
 </script>

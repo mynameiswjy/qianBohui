@@ -13,6 +13,7 @@ import introduce from '@/components/introduce' // 展会介绍模板
 import publicTemp from '@/components/publicTemp/publicTemp'
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
+import {etArticlesContent} from '@/api/index'
 
 export default {
   name: "aboutzh",
@@ -48,6 +49,16 @@ export default {
   },
   created() {
     document.title = '展商专区';
+    this.context()
+  },
+  methods: {
+    context() {
+      etArticlesContent({articlesCode: 'ZSXZ'}).then(res => {
+        if (res.data.returnCode === '0000') {
+          this.introduceObj = res.data.returnData
+        }
+      })
+    }
   },
   components: {
     tabBar,

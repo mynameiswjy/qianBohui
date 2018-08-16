@@ -37,6 +37,33 @@ export function getAntistop(data = {}) {
   })
 }
 
+// 搜索
+export function searchName(data = {}) {
+  return service({
+    url: '/search/searchName.do',
+    method: 'post',
+    data: qs.stringify(data)
+  })
+}
+
+// 介绍类统一接口
+export function etArticlesContent(data = {}) {
+  return service({
+    url: '/articles/getArticlesContent.do',
+    method: 'post',
+    data: qs.stringify(data)
+  })
+}
+
+// 新闻资讯类统一接口
+export function getNewsCategory(data = {}) {
+  return service({
+    url: '/news/getNewsCategory.do',
+    method: 'post',
+    data: qs.stringify(data)
+  })
+}
+
 export default {
   indexDo,
   successiveExhibitors

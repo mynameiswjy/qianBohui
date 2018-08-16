@@ -7,6 +7,7 @@ import audience from '@/container/audience'
 import news from '@/container/news'
 import search from '@/container/search.vue'
 import exhibitionDetail from '@/container/exhibitionDetail.vue'
+import contactUs from '@/container/contactUs.vue'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: "/exhibitionDetail",
       name: 'exhibitionDetail',
       component: exhibitionDetail
+    },
+    {
+      path: "/contactUs",
+      name: 'contactUs',
+      component: contactUs
     }
   ]
 })

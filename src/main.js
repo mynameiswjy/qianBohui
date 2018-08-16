@@ -4,11 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import "@/assets/reset.css"
-import {Upload, Button, Dialog} from "element-ui"
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import '@/assets/recompose_ele_ui.css'
 
-Vue.use(Upload)
-Vue.use(Dialog)
-Vue.use(Button)
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
