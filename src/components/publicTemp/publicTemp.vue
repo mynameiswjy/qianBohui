@@ -10,11 +10,13 @@
           <img v-show="idx == index" class="arrow" src="../../assets/images/arrow.png" alt="">
         </li>
       </ul>
-      <div  class="temp_content">
+      <div class="temp_content">
         <ul>
-          <li class="temp_content-li" :class="{show: show}" v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index">{{text.text}}</li>
+          <li class="temp_content-li" :class="{show: show}" v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="LiHeight">
+            {{text.text}}
+          </li>
+          <div class="a_full" v-if="true" @click="showBts">{{showText}}</div>
         </ul>
-        <div class="a_full" @click="showBts">{{showText}}</div>
       </div>
     </div>
 </template>
@@ -32,10 +34,14 @@ export default {
     return {
       idx: 0,
       show: true,
-      showText: "显示全文"
+      showText: "显示全文",
+      listHeight: 0,
+      showFullText: false
     }
   },
   created() {
+  },
+  mounted() {
   },
   methods: {
     changeTempBtns(e) {
@@ -50,6 +56,8 @@ export default {
         this.showText = "显示全文"
       }
     }
+  },
+  watch: {
   }
 }
 </script>

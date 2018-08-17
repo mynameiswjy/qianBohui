@@ -49,7 +49,6 @@ export default {
           interactive: true
         },*/
       })
-      console.log(this.scroll)
     },
     disable() {
       this.scroll && this.scroll.disable()
@@ -57,14 +56,14 @@ export default {
     enable() {
       this.scroll && this.scroll.enable()
     },
-    refrech() {
-      this.scroll && this.scroll.refrech()
+    refresh() {
+      this.scroll && this.scroll.refresh()
     }
   },
   watch: {
     data() {
       setTimeout(() => {
-        this.refrech()
+        this.refresh()
       }, 20)
     }
   }

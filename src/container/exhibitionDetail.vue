@@ -2,17 +2,15 @@
     <div class="details_wrap">
       <scroll class="details-content" :data="list">
         <div>
-          <div style="height: 0.01rem;width: 100%;"></div>
-          <div class="title">
+          <div style="height: 0.58rem;width: 100%;"></div>
+          <div class="ex_detail_title">
             <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
             <div class="title-right">
               <div class="details_select">
                 <h2 class="details_h2">历届展会</h2>
-                <select>
-                  <option value ="volvo">请选择</option>
-                  <option value ="saab">Saab</option>
-                  <option value="opel">Opel</option>
-                  <option value="audi">Audi</option>
+                <select v-model="selectVal" @change="timeChange">
+                  <option value="">请选择</option>
+                  <option v-for="item in timeList" :label="item.name" :key="item.sore" :value="item.code">{{item.name}}</option>
                 </select>
               </div>
               <div class="title-right-en">Exhibition Introduction</div>
@@ -21,16 +19,16 @@
           <div class="news_wrap left-margin">
             <ul class="news_content">
               <li class="news_content_list" :class="{'details_border_ex': list.length - 1 !== index}" v-for="(item,index) in list" :key="index">
-                <div class="news_content_list_left">{{item.name}}</div>
-                <div>{{item.time}}</div>
+                <div class="news_content_list_left">{{item.title}}</div>
+                <div>{{item.newsTime}}</div>
               </li>
             </ul>
             <div class="btns">
-              <div class="prev">
+              <div class="prev" @click="prevNews">
                 <div class="prev-txt">上一页</div>
                 <img src="../assets/images/prev-page.png" alt="">
               </div>
-              <div class="next">
+              <div class="next" @click="nextNews">
                 <img style="" src="../assets/images/next-page.png" alt="">
                 <div class="next-txt">下一页</div>
               </div>
@@ -47,29 +45,63 @@
 import tabBar from './tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import scroll from '@/utils/scroll'
+import {successiveExhibitors} from '@/api/index'
 
 export default {
   name: "exhibitionDetail",
   data() {
     return {
-      list: [
-        {name: '贵金属纪念币知识介绍', id: '0', time: '2018-07-03'},
-        {name: '纪念币的保存、清洗及赝品识别', id: '1', time: '2018-07-03'},
-        {name: '纪念币题材及发行要素辨识', id: '2', time: '2018-07-03'},
-        {name: '购买途径及鉴定证书辨识', id: '3', time: '2018-07-03'},
-        {name: '如何成为特许零售商', id: '4', time: '2018-07-03'},
-        {name: '贵金属纪念币知识介绍', id: '0', time: '2018-07-03'},
-        {name: '纪念币的保存、清洗及赝品识别', id: '1', time: '2018-07-03'},
-        {name: '纪念币题材及发行要素辨识', id: '2', time: '2018-07-03'},
-        {name: '购买途径及鉴定证书辨识', id: '3', time: '2018-07-03'},
-        {name: '如何成为特许零售商', id: '4', time: '2018-07-03'}
-      ]
+      timeList: [],
+      list: [],
+      pageIndexNews: 1,
+      selectVal: '',
+      selectType: 'all'
     }
   },
   created() {
     document.title = '历届展会';
+    this.initNewsList()
+  },
+  mounted() {
   },
   methods: {
+    timeChange() {
+      this.selectType = this.selectVal
+      console.log(this.selectVal)
+      this.pageIndexNews = 1
+      this.initNewsList()
+    },
+    initNewsList() {
+      let data = {
+        pageIndex: this.pageIndexNews,
+        pageSize: 10,
+        selelctYears: this.selectType
+      }
+      successiveExhibitors(data).then(res => {
+        if (res.data.returnCode === '0000') {
+          this.timeList = res.data.returnData.selelctYears
+          this.list = res.data.returnData.successiveExhibitors
+        }
+      })
+    },
+    prevNews() {
+      --this.pageIndexNews
+      if (this.pageIndexNews < 1) {
+        this.pageIndexNews = 1
+        this.$message({
+          message: '这已经是第一页了，亲!',
+          type: 'warning'
+        });
+        return false
+      }
+      this.initNewsList()
+    },
+    nextNews() {
+      ++this.pageIndexNews
+      this.initNewsList()
+    }
+  },
+  watch: {
   },
   components: {
     tempFooter,
@@ -97,7 +129,7 @@ select::-ms-expand { display: none; }
   .details-content
     height 100%
     overflow hidden
-  .title
+  .ex_detail_title
     width: 6.78rem;
     display: flex;
     margin-bottom: 0.32rem;

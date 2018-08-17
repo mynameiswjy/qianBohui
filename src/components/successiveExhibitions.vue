@@ -95,6 +95,7 @@ export default {
         click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
         freeScroll: true,
         eventPassthrough: 'vertical',
+        momentum: false,
         snap: {
           loop: false, //loop 为 true 是为了支持循环轮播
           threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数

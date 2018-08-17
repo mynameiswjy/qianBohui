@@ -70,21 +70,25 @@ export default {
   },
   created() {
     document.title = '新闻资讯';
-    this.initDataZHXW('ZHXW')// 展会新闻
-    this.initDataZSJS('ZSJS')// 展商介绍 以及 行业动态
+    this.initDataZHXW()// 展会新闻
+    this.initDataZSJS()// 展商介绍 以及 行业动态
   },
   methods: {
     selectNewsTitle(e) {
       this.idx = e
       if (e == 0) {
-        this.initDataZSJS("ZSJS")
+        this.type = "ZSJS"
+        this.pageIndexZSJS = 1
+        this.initDataZSJS()
       } else {
-        this.initDataZSJS('HYDT')
+        this.type = "HYDT"
+        this.pageIndexZSJS = 1
+        this.initDataZSJS()
       }
     },
-    initDataZSJS(type) {
+    initDataZSJS() {
       let data = {
-        selelctType: type,
+        selelctType: this.type,
         pageIndex: this.pageIndexZSJS,
         pageSize: 5
       }
@@ -95,9 +99,9 @@ export default {
         }
       })
     },
-    initDataZHXW(type) {
+    initDataZHXW() {
       let data = {
-        selelctType: type,
+        selelctType: 'ZHXW',
         pageIndex: this.pageIndex,
         pageSize: 5
       }
@@ -118,11 +122,11 @@ export default {
         });
         return false
       }
-      this.initDataZHXW(this.pageIndex)
+      this.initDataZHXW()
     },
     nextClick() {
       ++this.pageIndex
-      this.initDataZHXW(this.pageIndex)
+      this.initDataZHXW()
     },
     prevZSJS() {
       --this.pageIndexZSJS
@@ -134,9 +138,11 @@ export default {
         });
         return false
       }
-      this.initDataZSJS(this.pageIndexZSJS)
+      this.initDataZSJS()
     },
     nextZSJS() {
+      ++this.pageIndexZSJS
+      this.initDataZSJS()
     }
   },
   components: {
