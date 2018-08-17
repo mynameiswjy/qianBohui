@@ -98,7 +98,7 @@ export default {
         momentum: false,
         snap: {
           loop: false, //loop 为 true 是为了支持循环轮播
-          threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
+          threshold: 0.3, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
           speed: this.speed
         },
         probeType: 3,
