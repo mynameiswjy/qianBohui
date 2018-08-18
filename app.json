@@ -5,25 +5,7 @@
   },
   "pages": [
     "pages/index/index",
-    "pages/order/detail",
-    "pages/order/confirm",
-    "pages/order/list",
-    "pages/detail/detail",
-    "pages/my/my",
-    "pages/collocation/index",
-    "pages/topic/topic",
-    "pages/tab/index",
-    "pages/popular/index",
-    "pages/cart/index",
-    "pages/reclassify/reclassify",
-    "pages/digest/digest",
-    "pages/coupons/index",
-    "pages/logs/logs",
-    "pages/pintuan/detail",
-    "pages/pintuan/invitation",
-    "pages/pintuan/rules",
-    "pages/winprize/winprize",
-    "pages/pintuan/index"
+    "pages/mine/mine"
   ],
   "tabBar": {
     "color": "#666666",
@@ -34,26 +16,14 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "img/home.png",
-        "selectedIconPath": "img/home-active.png"
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
       },
       {
-        "pagePath": "pages/digest/digest",
-        "text": "分类",
-        "iconPath": "img/slice1.png",
-        "selectedIconPath": "img/slice.png"
-      },
-      {
-        "pagePath": "pages/cart/index",
-        "text": "购物车",
-        "iconPath": "img/cart.png",
-        "selectedIconPath": "img/cart-active.png"
-      },
-      {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/mine/mine",
         "text": "我的",
-        "iconPath": "img/person.png",
-        "selectedIconPath": "img/person-active.png"
+        "iconPath": "images/person.png",
+        "selectedIconPath": "images/person-active.png"
       }
     ]
   }
