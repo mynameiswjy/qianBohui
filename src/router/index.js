@@ -8,6 +8,7 @@ import news from '@/container/news'
 import search from '@/container/search.vue'
 import exhibitionDetail from '@/container/exhibitionDetail.vue'
 import contactUs from '@/container/contactUs.vue'
+import newsLandingPage from '@/container/newsLandingPage.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: "/contactUs",
       name: 'contactUs',
       component: contactUs
+    },
+    {
+      path: "/newsLandingPage",
+      name: 'newsLandingPage',
+      component: newsLandingPage
     }
   ]
 })

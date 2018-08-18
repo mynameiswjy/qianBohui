@@ -12,10 +12,10 @@
         </div>
       </div>
       <div class="header_intro">
-        <div class="header-text" :class="{show: show}">
+        <div class="header-text" :class="{show: false}">
           {{introduceObj.content}}
         </div>
-        <div v-if="openStyle" class="a_full" @click="showBts">{{showText}}</div>
+        <div v-if="openStyle" v-show="showBtns" class="a_full" @click="showBts">{{showText}}</div>
       </div>
       <!--<div class="show-bts"</div>-->
     </div>
@@ -37,6 +37,10 @@ export default {
     openStyle: {
       type: Boolean,
       default: false
+    },
+    showBtns: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

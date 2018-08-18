@@ -16,8 +16,8 @@
     <div class="slider">
       <div class="slider-wrap" ref="sliderWrap">
         <div class="slider-content">
-          <ul class="successiveExhibitions-news" v-for="group in lists" :key="group.idx">
-            <li @click="gotoDetails({idx: group.idx, index: item.id})" v-for="item in group.list" :class="{border: group.length !== (item.id - 1 + 2)}" :key="item.id">
+          <ul class="successiveExhibitions-news" v-for="group in lists" :key="group.idx"><!--successiveList.successiveExhibitors-->
+            <li @click="gotoDetails({idx: group.idx, index: item.id})" v-for="(item, index) in group.list" :class="{border: group.list.length != (index + 1)}" :key="index">
               {{item.name}}
             </li>
           </ul>
@@ -26,7 +26,7 @@
       <div class="time-wrap">
         <div ref="timeYaer" style="height: 100%">
           <ul class="time-year">
-            <li ref="docWidth" @click="dotsChange(index)" v-for="(item, index) in years" :key="index" :class="{dot_active:(index == dotsIdx)}">{{item.time}}</li>
+            <li ref="docWidth" @click="dotsChange(index)" v-for="(item, index) in successiveList.selelctYears" :key="index" :class="{dot_active:(index == dotsIdx)}">{{item.name}}</li>
           </ul>
         </div>
       </div>
@@ -40,6 +40,17 @@ import BScroll from 'better-scroll'
 
 export default {
   name: "successiveExhibitions",
+  props: {
+    successiveList: {
+      type: [Object, Array],
+      default: function () {
+        return {
+          selelctYears: [],
+          successiveExhibitors: []
+        }
+      }
+    }
+  },
   data() {
     return {
       lists: [

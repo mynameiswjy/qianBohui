@@ -3,7 +3,7 @@
     <introduce :introduceObj="dataList.expositionIntroduce"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
-    <successive-exhibitions></successive-exhibitions>
+    <successive-exhibitions :successiveList="SuccessiveList"></successive-exhibitions>
     <img class="footer-img left-margin" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="">
     <div style="height: 0.47rem"></div>
     <temp-footer></temp-footer>
@@ -28,31 +28,35 @@ export default {
     return {
       obj: 0,
       dataList: {},
+      SuccessiveList: []
     }
   },
   created() {
     document.title = '首页';
-    this.$nextTick(function () {
-      this.initlist()
-    })
-    let data = {
-      pageIndex: 2,
-      pageSize: 5,
-      selelctYears: 'first'
-    }
-    successiveExhibitors(data).then(res => {
-      console.log('res', res)
-    })
+    this.initIndexList()
+    this.initIndexNewsList()
   },
   mounted() {
   },
   methods: {
-    initlist() {
+    initIndexList() {
       indexDo().then((res) => {
-        /*console.log(res.data.returnData)*/
-        this.dataList = res.data.returnData
+        if (res.data.returnCode === '0000') {
+          this.dataList = res.data.returnData
+        }
       }).catch((err) => {
         console.log(err)
+      })
+    },
+    initIndexNewsList() {
+      let data = {
+        pageIndex: 1,
+        pageSize: 5,
+        selelctYears: 'first'
+      }
+      successiveExhibitors(data).then(res => {
+        console.log('res11', res)
+        this.SuccessiveList = res.data.returnData
       })
     }
   },

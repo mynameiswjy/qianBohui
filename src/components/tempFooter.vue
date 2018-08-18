@@ -1,5 +1,5 @@
 <template>
-  <div class="left-margin wrap">
+  <div class="footer_wrap">
     <div class="about">
       <div @click="contactUs" class="call-us">联系我们</div>
       <div class="border"></div>
@@ -30,7 +30,12 @@ export default {
 </script>
 
 <style scoped>
-  .wrap{margin-right: 0.36rem;display: flex;flex-direction: column;width: 7.14rem;}
+  .footer_wrap{
+    margin-right: 0.36rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
   .about {
     align-self: center;
     display: flex;
