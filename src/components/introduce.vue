@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="header_intro">
-        <div class="header-text" :class="{show: false}">
+        <div class="header-text" :class="{show: false}" ref="contentTxt">
           {{introduceObj.content}}
         </div>
         <div v-if="openStyle" v-show="showBtns" class="a_full" @click="showBts">{{showText}}</div>
@@ -51,6 +51,8 @@ export default {
     }
   },
   created() {
+  },
+  mounted() {
   },
   methods: {
     showBts() {
