@@ -1,2 +1,78 @@
-<!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<block>
+    <view class="select-wrap wraps">
+        <view class="section_hot">
+            <picker class="" bindchange="hotSelect" range="{{array}}">
+                <view class="picker">
+                    {{valHot}}
+                </view>
+            </picker>
+            <image wx:if="{{!indexHot}}" class="section_hot_img" src="../../images/pageImg/select.png"></image>
+        </view>
+        <view class="section_hot select-left">
+            <picker class="" bindchange="hotSelect select-left" range="{{array}}">
+                <view class="picker">
+                    {{valHot}}
+                </view>
+            </picker>
+            <image wx:if="{{!indexHot}}" class="section_hot_img" src="../../images/pageImg/select.png"></image>
+        </view>
+        <view class="select-search-wrap">
+            <image class="select-search" src="../../images/pageImg/search.png"></image>
+        </view>
+    </view>
+    <swiper class="banner" autoplay="true" circular="true">
+        <swiper-item>
+            <image class="banner-img" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg"></image>
+        </swiper-item>
+        <swiper-item>
+            <image class="banner-img" mode="widthFix" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg"></image>
+        </swiper-item>
+        <swiper-item>
+            <image class="banner-img" mode="widthFix" src="../../images/pageImg/11111.png"></image>
+        </swiper-item>
+    </swiper>
+    <image class="advertising"src=""></image>
+    <view class="list">
+        <image src="../../images/pageImg/money.png"></image>
+        <view class="list-right">
+            <view class="list-right-top">贵金属纪念币知识介绍贵金属纪念币金属纪念币</view>
+            <view class="list-right-bottom">2018-06-19</view>
+        </view>
+    </view>
+    <view class="list">
+        <image src="../../images/pageImg/money.png"></image>
+        <view class="list-right">
+            <view class="list-right-top">贵金属纪念币知识介绍贵金属纪念币金属纪念币</view>
+            <view class="list-right-bottom">2018-06-19</view>
+        </view>
+    </view>
+    <view class="list">
+        <image src="../../images/pageImg/money.png"></image>
+        <view class="list-right">
+            <view class="list-right-top">贵金属纪念币知识介绍贵金属纪念币金属纪念币</view>
+            <view class="list-right-bottom">2018-06-19</view>
+        </view>
+    </view>
+    <view class="list">
+        <image src="../../images/pageImg/money.png"></image>
+        <view class="list-right">
+            <view class="list-right-top">贵金属纪念币知识介绍贵金属纪念币金属纪念币</view>
+            <view class="list-right-bottom">2018-06-19</view>
+        </view>
+    </view>
+    <view class="list">
+        <image src="../../images/pageImg/money.png"></image>
+        <view class="list-right">
+            <view class="list-right-top">贵金属纪念币知识介绍贵金属纪念币金属纪念币</view>
+            <view class="list-right-bottom">2018-06-19</view>
+        </view>
+    </view>
+    <view class="list">
+        <image src="../../images/pageImg/money.png"></image>
+        <view class="list-right">
+            <view class="list-right-top">贵金属纪念币知识介绍贵金属纪念币金属纪念币</view>
+            <view class="list-right-bottom">2018-06-19</view>
+        </view>
+    </view>
+    <view class="look-more">查看更多</view>
+</block>
