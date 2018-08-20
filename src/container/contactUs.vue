@@ -1,6 +1,6 @@
 <template>
     <div class="contact_wrap">
-      <scroll class="contact_content" :data="introduceObj">
+      <scroll class="contact_content">
         <div class="contact_footer_position">
           <div style="height: 0.01rem"></div>
           <introduce :openStyle="true" :showBtns="false" :introduceObj="introduceObj"></introduce>

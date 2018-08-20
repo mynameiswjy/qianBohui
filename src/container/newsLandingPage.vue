@@ -20,6 +20,7 @@
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
+import {getNewsContent} from '@/api/index'
 export default {
   name: "contactUs",
   data() {
@@ -30,7 +31,15 @@ export default {
   created() {
     document.title = '新闻资讯';
   },
+  activated() {
+    this.initData(this.$route.params.code)
+  },
   methods: {
+    initData(code) {
+      getNewsContent({selectCode: code}).then(res => {
+        console.log(res);
+      })
+    }
   },
   components: {
     tempFooter,

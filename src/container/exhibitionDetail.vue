@@ -18,7 +18,7 @@
           </div>
           <div class="news_wrap left-margin">
             <ul class="news_content">
-              <li class="news_content_list" :class="{'details_border_ex': list.length - 1 !== index}" v-for="(item,index) in list" :key="index">
+              <li class="news_content_list" :class="{'details_border_ex': list.length - 1 !== index}" @click="goToDetail(item.code)" v-for="(item,index) in list" :key="index">
                 <div class="news_content_list_left">{{item.title}}</div>
                 <div>{{item.newsTime}}</div>
               </li>
@@ -65,6 +65,15 @@ export default {
   mounted() {
   },
   methods: {
+    goToDetail(e) {
+      this.$router.push({
+        name: "newsLandingPage",
+        params: {
+          name: 'newsLandingPage',
+          code: e
+        }
+      })
+    },
     timeChange() {
       this.selectType = this.selectVal
       console.log(this.selectVal)
@@ -123,6 +132,7 @@ select::-ms-expand { display: none; }
 .details_wrap
   position fixed
   top: 0
+  width 100%
   bottom 0.98rem
   background-color: #fff
   /*overflow auto*/

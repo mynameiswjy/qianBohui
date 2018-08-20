@@ -64,6 +64,15 @@ export function getNewsCategory(data = {}) {
   })
 }
 
+// 详情落地页
+export function getNewsContent(data = {}) {
+  return service({
+    url: '/news/getNewsContent.do',
+    method: 'post',
+    data: qs.stringify(data)
+  })
+}
+
 export default {
   indexDo,
   successiveExhibitors

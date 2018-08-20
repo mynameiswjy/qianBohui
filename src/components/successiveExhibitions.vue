@@ -17,7 +17,7 @@
       <div class="slider-wrap" ref="sliderWrap">
         <div class="slider-content">
           <ul class="successiveExhibitions-news" v-for="group in lists" :key="group.idx"><!--successiveList.successiveExhibitors-->
-            <li @click="gotoDetails({idx: group.idx, index: item.id})" v-for="(item, index) in group.list" :class="{border: group.list.length != (index + 1)}" :key="index">
+            <li @click="goToDetail(item.code)" v-for="(item, index) in group.list" :class="{border: group.list.length != (index + 1)}" :key="index">
               {{item.name}}
             </li>
           </ul>
@@ -80,6 +80,16 @@ export default {
     }, 20)
   },
   methods: {
+    // 详情页
+    goToDetail(e) {
+      this.$router.push({
+        name: "newsLandingPage",
+        params: {
+          name: 'newsLandingPage',
+          code: e
+        }
+      })
+    },
     goDetails() {
       this.$router.push({path: 'exhibitionDetail'});
     },
@@ -174,9 +184,6 @@ export default {
           this.isScroll = true
           return false
       }
-    },
-    gotoDetails(e) {
-      // console.log(e)
     }
   },
   computed: {

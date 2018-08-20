@@ -6,7 +6,7 @@
       </div>
       <div class="news_wrap left-margin">
         <ul class="news_content">
-          <li class="news_content_list" v-for="item in listZHXW" v-bind:key="item.id">
+          <li class="news_content_list" v-for="item in listZHXW" :key="item.id" @click="goToDetail(item.code)">
             <div class="news_content_list_left">{{item.title}}</div>
             <div>{{item.newsTime}}</div>
           </li>
@@ -28,7 +28,7 @@
       </ul>
       <div class="news_wrap left-margin">
         <ul class="news_content">
-          <li class="news_content_list" v-for="(item, index) in listZSJS" :key="index">
+          <li class="news_content_list" @click="goToDetail(item.code)" v-for="(item, index) in listZSJS" :key="index">
             <div class="news_content_list_left">{{item.title}}</div>
             <div>{{item.newsTime}}</div>
           </li>
@@ -74,6 +74,15 @@ export default {
     this.initDataZSJS()// 展商介绍 以及 行业动态
   },
   methods: {
+    goToDetail(e) {
+      this.$router.push({
+        name: "newsLandingPage",
+        params: {
+          name: 'newsLandingPage',
+          code: e
+        }
+      })
+    },
     selectNewsTitle(e) {
       this.idx = e
       if (e == 0) {

@@ -46,8 +46,9 @@ export default {
     },
     // 关键词
     Search_con() {
-      console.log(this.searVal)
-      this.$router.go(-1)
+      window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
     },
     changeClick(e) {
       this.searVal = this.keywordsList[e].name
