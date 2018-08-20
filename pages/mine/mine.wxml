@@ -3,6 +3,7 @@
         <image class="avatar" src="../../images/pageImg/default_avatar.png"></image>
     </view>
     <view class="login">未登录，点击登录</view>
+    <view class="border"></view>
     <view class="mine-list">
         <view class="mine-list-left">
             <image src="../../images/pageImg/share.png"></image>
@@ -16,5 +17,8 @@
             <view>用户反馈</view>
         </view>
         <image class="mine-list-img" src="../../images/pageImg/arrows.png"></image>
+    </view>
+    <view class="mask">
+        <view></view>
     </view>
 </view>

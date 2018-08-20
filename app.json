@@ -5,8 +5,8 @@
   },
   "pages": [
     "pages/mine/mine",
+    "pages/detail/detail",
     "pages/index/index"
-
   ],
   "tabBar": {
     "color": "#666666",
