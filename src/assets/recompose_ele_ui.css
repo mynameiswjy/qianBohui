@@ -11,3 +11,37 @@
 .el-message--warning .el-message__icon {
   display: none;
 }
+.el-upload-list--picture-card .el-upload-list__item {
+  width: 1.68rem;
+  height: 1.68rem;
+  margin: 0 0.33rem 0 0;
+}
+.el-upload--picture-card {
+  width: 1.68rem;
+  height: 1.68rem;
+  border: none;
+}
+.el-upload-list__item.is-success .el-upload-list__item-status-label {
+  display: none;
+}
+.el-upload-list--picture-card .el-upload-list__item-actions {
+  display: none;
+}
+/*.el-upload-list--picture-card el-upload-list__item-preview {
+  display: none;
+}*/
+.el-upload-list__item .el-icon-close {
+  display: block;
+  color: #fff;
+  width: 0.28rem;
+  height: 0.28rem;
+  background-color: #DD1010;
+  border-radius: 0.14rem;
+  font-size: 0.24rem;
+  text-align: center;
+  line-height: 0.28rem;
+  /*top: 0;*/
+}
+.el-upload-list--picture-card .el-upload-list__item .el-icon-close, .el-upload-list--picture-card .el-upload-list__item:hover .el-upload-list__item-status-label {
+  display: block;
+}

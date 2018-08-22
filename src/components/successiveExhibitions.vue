@@ -104,7 +104,7 @@ export default {
         scrollX: true,
         click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
         freeScroll: true,
-        eventPassthrough: 'vertical',
+        eventPassthrough: 'horizontal',
       })
     },
     _initSlider() { // 大轮播

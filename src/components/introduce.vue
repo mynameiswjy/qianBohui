@@ -11,17 +11,20 @@
           <div class="title-right-en">Exhibition Introduction</div>
         </div>
       </div>
-      <div class="header_intro">
-        <div class="header-text" :class="{show: false}" ref="contentTxt">
+      <div class="header_intro" :class="{height_hide: !introduceObj.content}">
+        <div  class="header-text" :class="{show: false}" ref="contentTxt">
           {{introduceObj.content}}
+        </div>
+        <div class="loading-container" v-show="!introduceObj.content">
+          <loading></loading>
         </div>
         <div v-if="openStyle" v-show="showBtns" class="a_full" @click="showBts">{{showText}}</div>
       </div>
-      <!--<div class="show-bts"</div>-->
     </div>
 </template>
 
 <script>
+import Loading from './loading/loading'
 export default {
   name: "introduce",
   props: {
@@ -64,6 +67,9 @@ export default {
         this.showText = "显示全文"
       }
     }
+  },
+  components: {
+    Loading
   }
 }
 </script>
@@ -86,11 +92,20 @@ export default {
       color:rgba(207,194,170,1);
       line-height: 0.3rem;
       margin-bottom 0.32rem
+  .height_hide
+    height 1.5rem
   .header_intro
     width: 6.21rem;
     padding: 0.39rem 0.3rem 0.4rem 0.27rem;
     box-shadow: 0.0rem 0rem 0.21rem rgba(198,160,86, 0.8);
     border-radius: 0.08rem;
+    position: relative
+    .loading-container
+      position: absolute
+      width: 100%
+      top: 50%
+      left 50%
+      transform: translate(-50%, -50%)
     .header-text
       /*height: 3.22rem;*/
       text-align: justify;

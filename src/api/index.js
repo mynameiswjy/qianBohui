@@ -73,7 +73,32 @@ export function getNewsContent(data = {}) {
   })
 }
 
+// 报名信息
+export function getRegisterTypeInfo(data = {}) {
+  return service({
+    url: '/register/getRegisterTypeInfo.do',
+    method: 'get',
+    params: data
+  })
+}
+
+// 删除图片接口
+export function deleteImage(data = {}) {
+  return service({
+    url: '/uploadDownload/deleteImageId.do',
+    method: 'get',
+    params: data
+  })
+}
+
 export default {
   indexDo,
-  successiveExhibitors
+  successiveExhibitors,
+  getAntistop,
+  searchName,
+  etArticlesContent,
+  getNewsCategory,
+  getNewsContent,
+  getRegisterTypeInfo,
+  deleteImage
 }
