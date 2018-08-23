@@ -91,6 +91,15 @@ export function deleteImage(data = {}) {
   })
 }
 
+// 报名接口
+export function putRegisterInfo(data = {}) {
+  return service({
+    url: '/register/putRegisterInfo.do',
+    method: 'post',
+    data: qs.stringify(data)
+  })
+}
+
 export default {
   indexDo,
   successiveExhibitors,
@@ -100,5 +109,6 @@ export default {
   getNewsCategory,
   getNewsContent,
   getRegisterTypeInfo,
-  deleteImage
+  deleteImage,
+  putRegisterInfo
 }

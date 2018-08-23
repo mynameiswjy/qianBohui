@@ -3,53 +3,24 @@
       <scroll :data="goods" style="height: 100%">
         <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
           <div class="res-title">
-            <h2>参观登记</h2>
+            <h2>{{userVisitList.name}}</h2>
             <img @click="closeTemp" src="../../assets/images/close.png" alt="">
           </div>
-          <div class="list">
-            <div class="list-left">
-              <div>观众类别</div>
-              <div class="mandatory">*</div>
-            </div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div class="list-left">
-              <div>公司名称</div>
-              <div class="mandatory">*</div>
-            </div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div class="list-left">
-              <div>公司地址</div>
-              <div class="mandatory">*</div>
-            </div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div class="list-left">
-              <div>手机号码</div>
-              <div class="mandatory">*</div>
-            </div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div class="list-left">
-              <div>电子邮件</div>
-              <div class="mandatory">*</div>
-            </div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div class="list-left">
-              <div>QQ/微信号</div>
-              <div class="mandatory">*</div>
-            </div>
-            <input type="text"/>
-          </div>
-          <div class="note">备注信息</div>
-          <textarea name="" class="textarea" id="" cols="30" rows="10"></textarea>
+          <ul>
+            <li v-for="(item, index) in userVisitList.selectItem" :key="index">
+              <div v-if="(item.code !='remark')" class="list">
+                <div class="list-left">
+                  <div>观众类别</div>
+                  <div class="mandatory">*</div>
+                </div>
+                <input type="text"/>
+              </div>
+              <div v-else>
+                <div class="note">备注信息</div>
+                <textarea name="" class="textarea" id="" cols="30" rows="10"></textarea>
+              </div>
+            </li>
+          </ul>
           <div class="foot-select">
             <select class="select-bottom left-margin">
               <option value ="volvo">1人</option>
@@ -69,6 +40,7 @@ import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
 import datas from '@/assets/goods-list'
 import { isBottom } from '@/utils/utils'
+import { getRegisterTypeInfo } from '@/api/index'
 
 let _foods = []
 
@@ -82,12 +54,24 @@ export default {
     return {
       tow: false,
       goods: _foods,
-      p_bottom: false
+      p_bottom: false,
+      userVisitList: {}
     }
+  },
+  created() {
+    this.initUserSelect()
   },
   methods: {
     closeTemp() {
       this.$emit("closeVisit", this.tow)
+    },
+    initUserSelect() {
+      getRegisterTypeInfo({registerType: 'VISITOR_REGISTER'}).then(res => {
+        console.log(res);
+        if (res.data.returnCode === '0000') {
+          this.userVisitList = res.data.returnData
+        }
+      })
     }
   },
   mounted() {

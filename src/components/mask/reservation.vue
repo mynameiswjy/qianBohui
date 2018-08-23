@@ -1,60 +1,39 @@
 <template>
     <div class="mask" :class="{show: isShow}" ref="wrapper" @touchmove.prevent>
-      <scroll style="height: 100%">
+      <scroll style="height: 100%" :data="userInputList.selectItem">
         <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
           <div class="res-title">
-            <h2>展位预定</h2>
+            <h2>{{userInputList.name}}</h2>
             <img @click="closeTemp" src="../../assets/images/close.png" alt="">
           </div>
-          <div class="list">
-            <div class="list-left">
-              <div>公司名称</div>
-              <div class="mandatory">*</div>
+          <ul style="position: relative;">
+            <li v-for="(item, index) in userInputList.selectItem" :key="index">
+              <div class="list" v-if="(item.sore != 3)">
+                <div class="list-left">
+                  <div>{{item.name}}</div>
+                  <div class="mandatory">*</div>
+                </div>
+                <input v-model="item.value" type="text"/>
+              </div>
+              <div class="list" v-else>
+                <div class="list-left">
+                  <div>{{item.name}}</div>
+                  <div class="mandatory">*</div>
+                </div>
+                <div style="position: relative;">
+                  <select v-model="item.value" :class="{select1: !item.value}">
+                    <option value="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                  <div v-show="!item.value" class="select-default">请选择</div>
+                </div>
+              </div>
+            </li>
+            <div v-show="!userInputList.selectItem" class="loading-wrap">
+              <loading class="loading-container"></loading>
             </div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div class="list-left">
-              <div>展位号</div>
-              <div class="mandatory">*</div>
-            </div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div class="list-left">
-              <div>展位类型</div>
-              <div class="mandatory">*</div>
-            </div>
-            <select>
-              <option value ="volvo">请选择</option>
-              <option value ="saab">Saab</option>
-              <option value="opel">Opel</option>
-              <option value="audi">Audi</option>
-            </select>
-          </div>
-          <div class="list">
-            <div>展位数量</div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div>展位面积</div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div class="list-left">
-              <div>展位负责人</div>
-              <div class="mandatory">*</div>
-            </div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div>手机号码</div>
-            <input type="text"/>
-          </div>
-          <div class="list">
-            <div>邮箱地址</div>
-            <input type="text"/>
-          </div>
+          </ul>
           <div class="list-upload">
             <div>资料上传</div>
             <div class="upload">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></div>
@@ -78,7 +57,7 @@
               </div>
             </el-upload>
           </div>
-          <div class="btns">确定</div>
+          <div @click="sendData" class="btns">确定</div>
           <div style="height: 0.18rem"></div>
         </div>
       </scroll>
@@ -89,6 +68,7 @@
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
 import { isBottom } from '@/utils/utils'
+import Loading from '../loading/loading'
 import { getRegisterTypeInfo, deleteImage } from '@/api/index'
 
 export default {
@@ -98,7 +78,9 @@ export default {
       isShow: false,
       one: false,
       p_bottom: false,
-      imgNum: 0
+      imgNum: 0,
+      userInputList: {},
+      sendList: {}
     }
   },
   created() {
@@ -110,9 +92,14 @@ export default {
     this.p_bottom = isBottom(wrapper, content)
   },
   methods: {
+    sendData() {
+      console.log(this.userInputList)
+    },
     initInputList() {
-      getRegisterTypeInfo({registerType: 'VISITOR_REGISTER'}).then(res => {
-        console.log(res);
+      getRegisterTypeInfo({registerType: 'BOOTH_RESERVE'}).then(res => {
+        if (res.data.returnCode === '0000') {
+          this.userInputList = res.data.returnData
+        }
       })
     },
     closeTemp() {
@@ -153,15 +140,27 @@ export default {
     }
   },
   components: {
-    Scroll
+    Scroll,
+    Loading
   }
 }
 </script>
 
 <style scoped lang="stylus">
-  /*html, body {
-    overflow: hidden;
-  }*/
+  .select-default
+    position absolute
+    top: 0.02rem
+    left: 0.3rem
+    font-size 24rpx
+    color #b7b7b7
+  .loading-wrap
+    height 3rem
+  .loading-container
+    position: absolute
+    width: 100%
+    top: 50%
+    left 50%
+    transform: translate(-50%, -50%)
   .mask
     .wraps
       overflow hidden
@@ -172,17 +171,17 @@ export default {
     border-radius: 0.08rem;
     border: 0.01rem solid rgba(198,160,86,1);
     color: #000;
-  }
-  .list select{
-    padding: 0 0.3rem;
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
+    border: 0.01rem solid #d3d5d6;
+    color: #666;
+  }
+  .list .select1{
+    padding: 0 0.3rem;
     background: url("../../assets/images/zh-drop-down.png") no-repeat scroll 92% center transparent;
     background-size: 0.22rem 0.12rem;
     padding-right: 0.2rem;
-    border: 0.01rem solid #d3d5d6;
-    color: #b7b7b7;
   }
   .upload{
     width: 4.77rem;
