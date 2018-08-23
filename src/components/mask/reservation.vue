@@ -13,7 +13,7 @@
                   <div>{{item.name}}</div>
                   <div class="mandatory">*</div>
                 </div>
-                <input v-model="item.value" type="text"/>
+                <input v-model="sendList[item.name]" type="text"/>
               </div>
               <div class="list" v-else>
                 <div class="list-left">
@@ -21,12 +21,12 @@
                   <div class="mandatory">*</div>
                 </div>
                 <div style="position: relative;">
-                  <select v-model="item.value" :class="{select1: !item.value}">
+                  <select v-model="sendList[item.name]" :class="{select1: !item.value}">
                     <option value="saab">Saab</option>
                     <option value="opel">Opel</option>
                     <option value="audi">Audi</option>
                   </select>
-                  <div v-show="!item.value" class="select-default">请选择</div>
+                  <div v-show="!sendList[item.name]" class="select-default">请选择</div>
                 </div>
               </div>
             </li>
@@ -69,7 +69,7 @@ import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
 import { isBottom } from '@/utils/utils'
 import Loading from '../loading/loading'
-import { getRegisterTypeInfo, deleteImage } from '@/api/index'
+import { getRegisterTypeInfo, deleteImage, putRegisterInfo } from '@/api/index'
 
 export default {
   name: "consulting",
@@ -80,7 +80,7 @@ export default {
       p_bottom: false,
       imgNum: 0,
       userInputList: {},
-      sendList: {}
+      sendList: []
     }
   },
   created() {
@@ -93,7 +93,13 @@ export default {
   },
   methods: {
     sendData() {
-      console.log(this.userInputList)
+      console.log(this.sendList)
+      let data = {
+        type: 'BOOTH_RESERVE',
+      }
+      putRegisterInfo(data).then(res => {
+        console.log(res)
+      })
     },
     initInputList() {
       getRegisterTypeInfo({registerType: 'BOOTH_RESERVE'}).then(res => {
