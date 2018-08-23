@@ -13,7 +13,7 @@
                   <div>{{item.name}}</div>
                   <div class="mandatory">*</div>
                 </div>
-                <input v-model="sendList[item.name]" type="text"/>
+                <input v-model="sendList[item.code]" type="text"/>
               </div>
               <div class="list" v-else>
                 <div class="list-left">
@@ -21,12 +21,12 @@
                   <div class="mandatory">*</div>
                 </div>
                 <div style="position: relative;">
-                  <select v-model="sendList[item.name]" :class="{select1: !item.value}">
+                  <select v-model="sendList[item.code]" :class="{select1: !sendList[item.code]}">
                     <option value="saab">Saab</option>
                     <option value="opel">Opel</option>
                     <option value="audi">Audi</option>
                   </select>
-                  <div v-show="!sendList[item.name]" class="select-default">请选择</div>
+                  <div v-show="!sendList[item.code]" class="select-default">请选择</div>
                 </div>
               </div>
             </li>
@@ -80,7 +80,8 @@ export default {
       p_bottom: false,
       imgNum: 0,
       userInputList: {},
-      sendList: []
+      sendList: [],
+      images: []
     }
   },
   created() {
@@ -93,13 +94,23 @@ export default {
   },
   methods: {
     sendData() {
-      console.log(this.sendList)
-      let data = {
+      /*let initData = {
+        boothId: ' ',
+        boothLeader: ' ',
+        companyName: ' ',
+        sb: ' '
+      }*/
+      let obj = Object.assign({}, initData, this.sendList, {
+        type: 'BOOTH_RESERVE',
+        images: this.images.join(',')
+      })
+      console.log('obj', obj)
+      /*let data = {
         type: 'BOOTH_RESERVE',
       }
       putRegisterInfo(data).then(res => {
         console.log(res)
-      })
+      })*/
     },
     initInputList() {
       getRegisterTypeInfo({registerType: 'BOOTH_RESERVE'}).then(res => {
@@ -115,11 +126,11 @@ export default {
       console.log(e)
     },
     successImg(res, file, fileList) { // 上传成功后
-      console.log('res', res)
-      console.log('file', file)
-      console.log('fileList', fileList)
+      this.images = this.images.concat(file.response.returnData.id)
+      console.log(this.images.join(','))
     },
-    beforRemove(file) {
+    beforRemove(file, fileList) {
+      console.log(fileList)
       let id = file.response.returnData.id
       deleteImage({id: id}).then(res => {
         console.log(res)
