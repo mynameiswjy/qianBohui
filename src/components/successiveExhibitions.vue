@@ -16,9 +16,9 @@
     <div class="slider">
       <div class="slider-wrap" ref="sliderWrap">
         <div class="slider-content">
-          <ul class="successiveExhibitions-news" v-for="group in lists" :key="group.idx"><!--successiveList.successiveExhibitors-->
-            <li @click="goToDetail(item.code)" v-for="(item, index) in group.list" :class="{border: group.list.length != (index + 1)}" :key="index">
-              {{item.name}}
+          <ul class="successiveExhibitions-news" v-for="group in successiveList.successiveExhibitors" :key="group.idx"><!--successiveList.successiveExhibitors-->
+            <li @click="goToDetail(item.code)" v-for="(item, index) in group.successiveExhibitors" :class="{border: group.successiveExhibitors.length != (index + 1)}" :key="index">
+              {{item.title}}
             </li>
           </ul>
         </div>

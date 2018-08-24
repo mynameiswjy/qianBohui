@@ -2,13 +2,13 @@
     <div class="wrap">
       <div v-if="openStyle" class="title_ab">
         <h2>{{introduceObj.title}}</h2>
-        <div class="">Exhibition Introduction</div>
+        <div class="">{{text}}</div><!--Exhibition Introduction-->
       </div>
       <div class="title" v-else>
         <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
         <div class="title-right">
           <h2>{{introduceObj.title}}</h2>
-          <div class="title-right-en">Exhibition Introduction</div>
+          <div class="title-right-en">{{text}}</div>
         </div>
       </div>
       <div class="header_intro" :class="{height_hide: !introduceObj.content}">
@@ -36,6 +36,10 @@ export default {
           content: ''
         }
       }
+    },
+    text: {
+      type: String,
+      default: ''
     },
     openStyle: {
       type: Boolean,

@@ -8,23 +8,21 @@
           </div>
           <ul style="position: relative;">
             <li v-for="(item, index) in userInputList.selectItem" :key="index">
-              <div class="list" v-if="(item.sore != 3)">
+              <div class="list" v-if="(item.isType == 'I')">
                 <div class="list-left">
                   <div>{{item.name}}</div>
-                  <div class="mandatory">*</div>
+                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
                 <input v-model="sendList[item.code]" type="text"/>
               </div>
-              <div class="list" v-else>
+              <div class="list" v-if="(item.isType == 'S')">
                 <div class="list-left">
                   <div>{{item.name}}</div>
-                  <div class="mandatory">*</div>
+                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
                 <div style="position: relative;">
                   <select v-model="sendList[item.code]" :class="{select1: !sendList[item.code]}">
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
+                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" value="opt.name">{{opt.name}}</option>
                   </select>
                   <div v-show="!sendList[item.code]" class="select-default">请选择</div>
                 </div>
@@ -71,6 +69,8 @@ import { isBottom } from '@/utils/utils'
 import Loading from '../loading/loading'
 import { getRegisterTypeInfo, deleteImage, putRegisterInfo } from '@/api/index'
 
+var md5 = require('js-md5')
+
 export default {
   name: "consulting",
   data() {
@@ -94,23 +94,30 @@ export default {
   },
   methods: {
     sendData() {
-      /*let initData = {
-        boothId: ' ',
-        boothLeader: ' ',
-        companyName: ' ',
-        sb: ' '
-      }*/
-      let obj = Object.assign({}, initData, this.sendList, {
+      let initData = {
+        boothId: ' ', // 展位号
+        boothLeader: ' ', // 展位负责人
+        companyName: ' ', // 公司名称
+        boothNum: ' ', // 展位数量
+        boothType: ' ', //select选择框
+        emailAddress: ' ', // 邮箱地址
+        phoneNum: ' ', // 手机号码
+        qqCode: ' ', // qq号码
+        boothArea: ' ',
+        compa_InyUrl: ' ',
+        wxCode: " "
+      }
+      let sendList = {}
+      for (let i in this.sendList) {
+        sendList[i] = this.sendList[i] ? md5(this.sendList[i]) : ' '
+      }
+      let data = Object.assign({}, initData, sendList, {
         type: 'BOOTH_RESERVE',
         images: this.images.join(',')
       })
-      console.log('obj', obj)
-      /*let data = {
-        type: 'BOOTH_RESERVE',
-      }
       putRegisterInfo(data).then(res => {
         console.log(res)
-      })*/
+      })
     },
     initInputList() {
       getRegisterTypeInfo({registerType: 'BOOTH_RESERVE'}).then(res => {

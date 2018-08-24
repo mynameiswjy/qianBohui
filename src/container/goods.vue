@@ -1,6 +1,6 @@
 <template>
     <div>
-      <introduce class="lintr_bottom" :introduceObj="introduceObj" :openStyle="true"></introduce>
+      <introduce class="lintr_bottom" :text="text" :introduceObj="introduceObj" :openStyle="true"></introduce>
       <public-temp :aboutzhObj="aboutzhObj" class=""></public-temp>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
@@ -19,9 +19,8 @@ export default {
   name: "aboutzh",
   data() {
     return {
-      introduceObj: {
-        title: '展会须知',
-      },
+      introduceObj: {},
+      text: 'Instructions for exhibitors',
       aboutzhObj: {
         navList: ["参展须知", "展商范围/展位费", "展位预定"],
         textList: [

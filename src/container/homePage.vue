@@ -1,6 +1,6 @@
 <template>
   <div>
-    <introduce :introduceObj="dataList.expositionIntroduce"></introduce>
+    <introduce :introduceObj="dataList.expositionIntroduce" :text="text"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
     <successive-exhibitions :successiveList="SuccessiveList"></successive-exhibitions>
@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       obj: 0,
+      text: 'Exhibition Introduction',
       dataList: {},
       SuccessiveList: []
     }

@@ -10,25 +10,29 @@
             <li v-for="(item, index) in userVisitList.selectItem" :key="index">
               <div v-if="(item.code !='remark')" class="list">
                 <div class="list-left">
-                  <div>观众类别</div>
-                  <div class="mandatory">*</div>
+                  <div>{{item.name}}</div>
+                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
-                <input type="text"/>
+                <input v-model="visitSendList[item.code]" type="text"/>
               </div>
               <div v-else>
-                <div class="note">备注信息</div>
-                <textarea name="" class="textarea" id="" cols="30" rows="10"></textarea>
+                <div class="note">{{item.name}}</div>
+                <textarea name="" v-model="visitSendList[item.code]" class="textarea" id="" cols="30" rows="10"></textarea>
               </div>
             </li>
           </ul>
           <div class="foot-select">
-            <select class="select-bottom left-margin">
-              <option value ="volvo">1人</option>
-              <option value ="saab">2人</option>
-              <option value="opel">3人</option>
-              <option value="audi">4人</option>
+            <select v-model="personNum" class="select-bottom left-margin">
+              <option value ="1">1人</option>
+              <option value ="2">2人</option>
+              <option value="3">3人</option>
+              <option value="4">4人</option>
+              <option value ="5">5人</option>
+              <option value ="6">6人</option>
+              <option value="7">7人</option>
+              <option value="8">8人</option>
             </select>
-            <div>确定</div>
+            <div @click="sendDataVisit">确定</div>
           </div>
         </div>
       </scroll>
@@ -40,7 +44,9 @@ import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
 import datas from '@/assets/goods-list'
 import { isBottom } from '@/utils/utils'
-import { getRegisterTypeInfo } from '@/api/index'
+import { getRegisterTypeInfo, putRegisterInfo } from '@/api/index'
+
+var md5 = require('js-md5')
 
 let _foods = []
 
@@ -55,13 +61,43 @@ export default {
       tow: false,
       goods: _foods,
       p_bottom: false,
-      userVisitList: {}
+      userVisitList: {},
+      visitSendList: [],
+      personNum: 1
     }
   },
   created() {
     this.initUserSelect()
   },
   methods: {
+    sendDataVisit() {
+      let initData = {
+        registrationName: ' ',
+        audienceType: ' ',
+        boothType: ' ', //select选择框
+        companyName: ' ', // 公司名称
+        boothArea: ' ',
+        companyUrl: ' ',
+        phoneNum: ' ', // 手机号码
+        emailAddress: ' ', // 邮箱地址
+        qqCode: ' ', // qq号码
+        wxCode: " ",
+        relationAddress: ' ',
+        remark: ' '
+      }
+      let visitSendList = {}
+      for (let i in this.visitSendList) {
+        visitSendList[i] = this.visitSendList[i] ? this.visitSendList[i] : ' '
+      }
+      let data = Object.assign({}, initData, visitSendList, {
+        type: 'VISITOR_REGISTER',
+        personNum: this.personNum
+      })
+      console.log(data);
+      /*putRegisterInfo(data).then(res => {
+        console.log(res)
+      })*/
+    },
     closeTemp() {
       this.$emit("closeVisit", this.tow)
     },
