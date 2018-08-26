@@ -2,7 +2,8 @@
     <div class="contact_wrap">
       <scroll class="contact_content">
         <div class="contact_footer_position">
-          <div style="height: 0.01rem"></div>
+          <nav-bar></nav-bar>
+          <!--<div style="height: 0.01rem"></div>-->
           <introduce :openStyle="true" :showBtns="false" :introduceObj="introduceObj"></introduce>
           <temp-footer class="temp_footer"></temp-footer>
         </div>
@@ -16,6 +17,7 @@ import introduce from '@/components/introduce' // 展会介绍模板
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
+import navBar from './navBar'
 export default {
   name: "contactUs",
   data() {
@@ -32,7 +34,8 @@ export default {
     introduce,
     tempFooter,
     tabBar,
-    scroll
+    scroll,
+    navBar
   }
 }
 </script>

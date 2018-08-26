@@ -1,6 +1,6 @@
 <template>
     <div class="mask" ref="wrapper">
-      <scroll :data="goods" style="height: 100%">
+      <scroll :data="userVisitList.selectItem" style="height: 100%">
         <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
           <div class="res-title">
             <h2>{{userVisitList.name}}</h2>
@@ -13,11 +13,11 @@
                   <div>{{item.name}}</div>
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
-                <input v-model="visitSendList[item.code]" type="text"/>
+                <input v-model="item[item.code]" type="text"/>
               </div>
               <div v-else>
                 <div class="note">{{item.name}}</div>
-                <textarea name="" v-model="visitSendList[item.code]" class="textarea" id="" cols="30" rows="10"></textarea>
+                <textarea name="" v-model="item[item.code]" class="textarea" id="" cols="30" rows="10"></textarea>
               </div>
             </li>
           </ul>
@@ -25,12 +25,12 @@
             <select v-model="personNum" class="select-bottom left-margin">
               <option value ="1">1人</option>
               <option value ="2">2人</option>
-              <option value="3">3人</option>
-              <option value="4">4人</option>
+              <option value ="3">3人</option>
+              <option value ="4">4人</option>
               <option value ="5">5人</option>
               <option value ="6">6人</option>
-              <option value="7">7人</option>
-              <option value="8">8人</option>
+              <option value ="7">7人</option>
+              <option value ="8">8人</option>
             </select>
             <div @click="sendDataVisit">确定</div>
           </div>
@@ -42,24 +42,16 @@
 <script type="text/ecmascript-6">
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
-import datas from '@/assets/goods-list'
 import { isBottom } from '@/utils/utils'
 import { getRegisterTypeInfo, putRegisterInfo } from '@/api/index'
 
 var md5 = require('js-md5')
-
-let _foods = []
-
-datas.goods.forEach((item) => {
-  _foods = _foods.concat(item.foods)
-})
 
 export default {
   name: 'visit',
   data() {
     return {
       tow: false,
-      goods: _foods,
       p_bottom: false,
       userVisitList: {},
       visitSendList: [],
@@ -85,18 +77,35 @@ export default {
         relationAddress: ' ',
         remark: ' '
       }
+      let selectItem = this.userVisitList.selectItem
       let visitSendList = {}
-      for (let i in this.visitSendList) {
-        visitSendList[i] = this.visitSendList[i] ? this.visitSendList[i] : ' '
+      for (var i = 0; i < selectItem.length; i++) {
+        let data = selectItem[i]
+        let key = data.code
+        let value = data[key]
+        visitSendList[key] = value
+        let isRequired = data.isRequired
+        if (isRequired === 'Y' && !value) {
+          this.$message.error('带*为必填项，请填写完整');
+          return false
+        }
+      }
+      for (let i in visitSendList) {
+        visitSendList[i] = visitSendList[i] ? md5(visitSendList[i]) : ' '
       }
       let data = Object.assign({}, initData, visitSendList, {
         type: 'VISITOR_REGISTER',
         personNum: this.personNum
       })
       console.log(data);
-      /*putRegisterInfo(data).then(res => {
-        console.log(res)
-      })*/
+      putRegisterInfo(data).then(res => {
+        if (res.data.returnCode === '0000') {
+          this.$emit("closeVisit", this.tow)
+          this.$message.success('上传成功！')
+        } else {
+          this.$message.error('服务器错误或上传失败，请重新填写');
+        }
+      })
     },
     closeTemp() {
       this.$emit("closeVisit", this.tow)
@@ -115,6 +124,10 @@ export default {
     let content = this.$refs.content.clientHeight
     this.p_bottom = isBottom(wrapper, content)
   },
+  computed: {
+  },
+  watch: {
+  },
   components: {
     Scroll
   }
@@ -122,6 +135,8 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .waring
+    border-color red
   .mask
     /*padding-top 0.82rem*/
     .wraps

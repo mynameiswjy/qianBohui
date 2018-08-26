@@ -1,7 +1,7 @@
 <template>
     <div style="width: 100%">
-      <!--<img :hidden="this.idx != 0" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
-      <img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
+      <img v-if="showPath == 'homePage'" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
+      <!--<img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
       <div class="nav-wrapper" ref="viewport">
         <div ref="content" style="width: 100%">
           <ul class="tab-conten">
@@ -24,14 +24,18 @@ export default {
   data() {
     return {
       tabs: [
-        {name: '首页', id: '0', path: '/homePage'},
+        {name: '首页', id: '0', path: '/homePage', show: true},
         {name: '关于展会', id: '1', path: '/aboutzh'},
         {name: '展商专区', id: '2', path: '/goods'},
         {name: '观众专区', id: '3', path: '/audience'},
         {name: '新闻资讯', id: '4', path: '/news'},
       ],
-      idx: 0
+      idx: 0,
+      showPath: ''
     }
+  },
+  created() {
+    this.showPath = this.$router.history.current.name
   },
   mounted() {
     setTimeout(() => {
@@ -40,6 +44,9 @@ export default {
   },
   methods: {
     navBtn(e) {
+      this.idx = e
+      this.showPath = this.$router.history.current.name
+      console.log(this.showPath)
       if (e == 4) {
         this.slider.scrollTo(-30, 0, 300)
       } else if (e == 1 || e == 0) {
@@ -102,6 +109,8 @@ export default {
       this.$router.push({path: 'search'});
     }
   },
+  computed: {
+  },
   components: {
     Slider
   }
@@ -158,7 +167,7 @@ export default {
     right: 0;
     width: 1.2rem;
     text-align: center;
-    top 0.03rem
+    top 0.09rem
     height: 0.72rem;
     background rgba(255,255,255, 0.6)
   }

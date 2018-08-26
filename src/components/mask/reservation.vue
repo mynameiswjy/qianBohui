@@ -13,7 +13,7 @@
                   <div>{{item.name}}</div>
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
-                <input v-model="sendList[item.code]" type="text"/>
+                <input v-model="item[item.code]" type="text"/>
               </div>
               <div class="list" v-if="(item.isType == 'S')">
                 <div class="list-left">
@@ -21,10 +21,10 @@
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
                 <div style="position: relative;">
-                  <select v-model="sendList[item.code]" :class="{select1: !sendList[item.code]}">
+                  <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
                     <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" value="opt.name">{{opt.name}}</option>
                   </select>
-                  <div v-show="!sendList[item.code]" class="select-default">请选择</div>
+                  <div v-show="!item[item.code]" class="select-default">请选择</div>
                 </div>
               </div>
             </li>
@@ -107,16 +107,41 @@ export default {
         compa_InyUrl: ' ',
         wxCode: " "
       }
+      let selectItem = this.userInputList.selectItem
       let sendList = {}
-      for (let i in this.sendList) {
-        sendList[i] = this.sendList[i] ? md5(this.sendList[i]) : ' '
+      for (var i = 0; i < selectItem.length; i++) {
+        let data = selectItem[i]
+        let key = data.code
+        let value = data[key]
+        sendList[key] = value
+        let isRequired = data.isRequired
+        if (key === 'phoneNum') {
+          let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+          if (!myreg.test(value)) {
+            this.$message.error('请输入正确的手机号！');
+            return false
+          }
+        }
+        if (isRequired === 'Y' && !value) {
+          this.$message.error('带*为必填项，请填写完整');
+          return false
+        }
+      }
+      for (let i in sendList) {
+        sendList[i] = sendList[i] ? md5(sendList[i]) : ' '
       }
       let data = Object.assign({}, initData, sendList, {
         type: 'BOOTH_RESERVE',
         images: this.images.join(',')
       })
+      console.log(data)
       putRegisterInfo(data).then(res => {
-        console.log(res)
+        if (res.data.returnCode === '0000') {
+          this.$emit("closeTemp", this.one)
+          this.$message.success('上传成功！')
+        } else {
+          this.$message.error('服务器错误或上传失败，请重新填写');
+        }
       })
     },
     initInputList() {

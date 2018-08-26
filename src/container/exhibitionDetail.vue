@@ -2,6 +2,7 @@
     <div class="details_wrap">
       <scroll class="details-content" :data="list">
         <div>
+          <nav-bar></nav-bar>
           <div style="height: 0.58rem;width: 100%;"></div>
           <div class="ex_detail_title">
             <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
@@ -45,6 +46,7 @@
 import tabBar from './tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import scroll from '@/utils/scroll'
+import navBar from './navBar'
 import {successiveExhibitors} from '@/api/index'
 
 export default {
@@ -115,7 +117,8 @@ export default {
   components: {
     tempFooter,
     tabBar,
-    scroll
+    scroll,
+    navBar
   }
 }
 </script>
