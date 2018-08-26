@@ -12,8 +12,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wx5060b4dcb8908abc",
-	"projectname": "qbhWinxiinApp",
+	"appid": "wx256c6db1c45f5392",
+	"projectname": "123",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -24,13 +24,36 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "333",
+					"pathName": "pages/specialExhibition/specialExhibition",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/search/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/mine",
+					"query": ""
+				}
+			]
 		}
 	}
 }

@@ -1,3 +1,5 @@
+import {index} from '../../api/index'
+
 var app = getApp()
 
 Page({
@@ -9,11 +11,44 @@ Page({
   },
 
   onLoad: function (options) {
-  
+    this.initList()
+    /*wx.request({
+      url: "https://www.chqbh.com/qbh/app/index.do",
+      data: {
+        pageIndex: 1,
+        pageSize:20,
+        parentType: 'hotItem',
+        seedtType: '',
+        selectType: 'first'
+      },
+      method: "post",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+        // "content-type":"application/x-www-form-urlencoded"
+      },
+      success(res) {
+        console.log('res', res)
+      },
+      fail(err) {
+        err(err)
+      }
+    })*/
   },
 
   onShow: function () {
   
+  },
+  initList() {
+    let data = {
+      pageIndex: 1,
+      pageSize:20,
+      parentType: 'hotItem',
+      seedtType: '',
+      selectType: 'first'
+    }
+    index(data).then(res => {
+      console.log(res);
+    })
   },
   hotSelect(e) {
     var index = e.detail.value
@@ -23,9 +58,16 @@ Page({
       indexHot: index
     })
   },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+  goSearch() {
+    wx.navigateTo({
+      url: "/pages/search/search"
+    })
+  },
+  goToDetail() {
+    wx.navigateTo({
+      url: "/pages/specialExhibition/specialExhibition"
+    })
+  },
   onPullDownRefresh: function () {
 
   },

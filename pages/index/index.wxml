@@ -16,7 +16,7 @@
             </picker>
             <image wx:if="{{!indexHot}}" class="section_hot_img" src="../../images/pageImg/select.png"></image>
         </view>
-        <view class="select-search-wrap">
+        <view class="select-search-wrap" bindtap="goSearch">
             <image class="select-search" src="../../images/pageImg/search.png"></image>
         </view>
     </view>
@@ -32,7 +32,7 @@
         </swiper-item>
     </swiper>
     <image class="advertising"src=""></image>
-    <view class="list">
+    <view class="list" bindtap="goToDetail">
         <image src="../../images/pageImg/money.png"></image>
         <view class="list-right">
             <view class="list-right-top">贵金属纪念币知识介绍贵金属纪念币金属纪念币</view>
