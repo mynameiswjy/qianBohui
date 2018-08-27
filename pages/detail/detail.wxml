@@ -1,0 +1,67 @@
+<view class="detail_wrap">
+    <view class="detail_content">
+        <view style="height: 37rpx"></view>
+        <view class="content_images">
+            <image src="../../images/pageImg/money.png"></image>
+        </view>
+        <view class="tab_wrap">
+            <view class="tab_tr">
+                <view class="tab_td1">钱币名称</view>
+                <view class="tab_td2">大熊猫币</view>
+                <view class="tab_td3">年份</view>
+                <view class="tab_td4">1979</view>
+            </view>
+            <view class="tab_tr">
+                <view class="tab_td1">编号</view>
+                <view class="tab_td2">000001</view>
+                <view class="tab_td3">直径(毫米)</view>
+                <view class="tab_td4">50</view>
+            </view>
+            <view class="tab_tr">
+                <view class="tab_td1">面额(元)</view>
+                <view class="tab_td2">100</view>
+                <view class="tab_td3">成色</view>
+                <view class="tab_td4">99.99</view>
+            </view>
+            <view class="tab_tr">
+                <view class="tab_td1">材质</view>
+                <view class="tab_td2">金质</view>
+                <view class="tab_td3">重量</view>
+                <view class="tab_td4">50g</view>
+            </view>
+            <view class="tab_tr">
+                <view class="tab_td1">质量</view>
+                <view class="tab_td2">优</view>
+                <view class="tab_td3">系列</view>
+                <view class="tab_td4">大熊猫系列</view>
+            </view>
+            <view class="tab_tr">
+                <view class="tab_td1 bottom">发行列(枚)</view>
+                <view class="tab_td2 bottom">100</view>
+                <view class="tab_td3 bottom">铸造单位</view>
+                <view class="tab_td4 bottom">某单位</view>
+            </view>
+        </view>
+        <view class="captions">
+            <text style="color: #C6A056;">介绍: </text>贵金属纪念币知识介绍贵金属纪念币金属纪念币贵金属纪念币知识介绍贵金属纪念币金属纪念币贵金属纪念币知识介绍贵金介绍贵金介绍贵金属纪念币金属纪念币贵金属纪念币知识介绍贵金属纪念币...
+        </view>
+        <view class="footer">
+            <view class="give-like flex">
+                <image class="footer-img1" src="../../images/pageImg/give-like.png"></image>
+                <view>64</view>
+            </view>
+            <view class="flex share">
+                <image class="footer-img2" src="../../images/pageImg/share.png"></image>
+                <view>分享小程序</view>
+            </view>
+            <view class="flex friends-circle">
+                <image class="footer-img3" src="../../images/pageImg/friends-circle.png"></image>
+                <view>朋友圈</view>
+            </view>
+        </view>
+    </view>
+    <view class="go-index">
+        <image class="go-index-img" src="../../images/pageImg/home1.png"></image>
+        <view>返回主页</view>
+    </view>
+</view>

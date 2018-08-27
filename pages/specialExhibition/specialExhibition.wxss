@@ -1,0 +1,5 @@
+@import "../index/index.wxss";
+.banner {
+    width: 750rpx;
+    height: 260rpx;
+}
