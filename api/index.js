@@ -23,3 +23,27 @@ export function successiveExhibitors(data = {}) {
     })
   })
 }
+
+// 搜索关键词
+export function getAntistop(data = {}) {
+  let url = '/qbh/search/getAntistop.do'
+  return new Promise((resolve, reject) => {
+    requestAjaxGet(url, data, function (res) {
+      resolve(res)
+    }, function (err) {
+      reject(err)
+    })
+  })
+}
+
+// 搜索
+export function searchName(data = {}) {
+  let url = '/qbh/search/searchName.do'
+  return new Promise((resolve, reject) => {
+    requestAjaxPost(url, data, function (res) {
+      resolve(res)
+    }, function (err) {
+      reject(err)
+    })
+  })
+}

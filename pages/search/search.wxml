@@ -2,12 +2,12 @@
     <view class="search-content">
         <view class="search-input">
             <image src="../../images/pageImg/search.png"></image>
-            <input value="{{value}}" placeholder="搜索" type="text"/>
+            <input value="{{value}}" placeholder="搜索" bindinput="inputTyping" bindconfirm="search" type="text"/>
         </view>
         <view class="gohome" bindtap="goBack">取消</view>
     </view>
     <view class="hot-search">热门搜索</view>
     <ul class="keywords">
-        <li wx:for="{{keywords}}" wx:key="{{index}}" bindtap="keywordsChange" data-val="{{item}}">{{item}}</li>
+        <li wx:for="{{keywords}}" wx:key="{{index}}" bindtap="keywordsChange" data-val="{{item.name}}">{{item.name}}</li>
     </ul>
 </view>

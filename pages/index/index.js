@@ -7,32 +7,17 @@ Page({
   data: {
     array: ['美国', '中国', '巴西', '日本'],
     valHot: '热门',
-    indexHot: ''
+    indexHot: '',
+    hotList: [],
+    dataSet: {},
+    parentType: 'hotItem',
+    valHotToList: [],
+    seedtType: '',
+    valHotTo: ''
   },
 
   onLoad: function (options) {
     this.initList()
-    /*wx.request({
-      url: "https://www.chqbh.com/qbh/app/index.do",
-      data: {
-        pageIndex: 1,
-        pageSize:20,
-        parentType: 'hotItem',
-        seedtType: '',
-        selectType: 'first'
-      },
-      method: "post",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 默认值
-        // "content-type":"application/x-www-form-urlencoded"
-      },
-      success(res) {
-        console.log('res', res)
-      },
-      fail(err) {
-        err(err)
-      }
-    })*/
   },
 
   onShow: function () {
@@ -42,20 +27,53 @@ Page({
     let data = {
       pageIndex: 1,
       pageSize:20,
-      parentType: 'hotItem',
-      seedtType: '',
+      parentType: this.data.parentType,
+      seedtType: this.data.seedtType,
       selectType: 'first'
     }
     index(data).then(res => {
-      console.log(res);
+      console.log(res.data);
+      if (res.data.returnCode === '0000') {
+        let data = res.data.returnData
+        let hotList = data.selectItem.map(item => {
+          return item.name
+        })
+        this.setData({
+          dataSet: data,
+          hotList: hotList
+        })
+      } else {
+        console.error('服务器错误')
+      }
     })
   },
   hotSelect(e) {
     var index = e.detail.value
-    console.log(typeof index);
+    let data = this.data.dataSet.selectItem
+    let valHotToList = data[index].submenu.map(item => {
+      return item.name
+    })
+    if (this.data.parentType != data[index].code) {
+      this.data.parentType = data[index].code
+      this.initList()
+    }
     this.setData({
-      valHot: this.data.array[index],
-      indexHot: index
+      valHot: data[index].name,
+      valHotToList: valHotToList,
+      indexHot: index,
+      valHotTo: ''
+    })
+  },
+  hotSelectTo(e) {
+    var index = e.detail.value
+    let idx = this.data.indexHot
+    let data = this.data.dataSet.selectItem[idx].submenu
+    if (this.data.seedtType != data[index].code) {
+      this.data.seedtType = data[index].code
+      this.initList()
+    }
+    this.setData({
+      valHotTo: this.data.valHotToList[index],
     })
   },
   goSearch() {
