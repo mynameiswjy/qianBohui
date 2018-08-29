@@ -2,48 +2,48 @@
     <view class="detail_content">
         <view style="height: 37rpx"></view>
         <view class="content_images">
-            <image src="../../images/pageImg/money.png"></image>
+            <image src="{{obj.url1}}"></image>
         </view>
         <view class="tab_wrap">
             <view class="tab_tr">
                 <view class="tab_td1">钱币名称</view>
-                <view class="tab_td2">大熊猫币</view>
+                <view class="tab_td2">{{obj.tiele}}</view>
                 <view class="tab_td3">年份</view>
-                <view class="tab_td4">1979</view>
+                <view class="tab_td4">{{obj.moneyYear}}</view>
             </view>
             <view class="tab_tr">
                 <view class="tab_td1">编号</view>
-                <view class="tab_td2">000001</view>
+                <view class="tab_td2">{{obj.moneyCode}}</view>
                 <view class="tab_td3">直径(毫米)</view>
-                <view class="tab_td4">50</view>
+                <view class="tab_td4">{{obj.moneyDiameter}}</view>
             </view>
             <view class="tab_tr">
                 <view class="tab_td1">面额(元)</view>
-                <view class="tab_td2">100</view>
+                <view class="tab_td2">{{obj.moneySum}}</view>
                 <view class="tab_td3">成色</view>
-                <view class="tab_td4">99.99</view>
+                <view class="tab_td4">{{obj.moneyFineness}}</view>
             </view>
             <view class="tab_tr">
                 <view class="tab_td1">材质</view>
-                <view class="tab_td2">金质</view>
+                <view class="tab_td2">{{obj.moneyTexture}}</view>
                 <view class="tab_td3">重量</view>
-                <view class="tab_td4">50g</view>
+                <view class="tab_td4">{{obj.moneyWeight}}</view>
             </view>
             <view class="tab_tr">
                 <view class="tab_td1">质量</view>
-                <view class="tab_td2">优</view>
+                <view class="tab_td2">{{obj.moneyQuality}}</view>
                 <view class="tab_td3">系列</view>
-                <view class="tab_td4">大熊猫系列</view>
+                <view class="tab_td4">{{obj.moneySelectItem}}</view>
             </view>
             <view class="tab_tr">
                 <view class="tab_td1 bottom">发行列(枚)</view>
-                <view class="tab_td2 bottom">100</view>
+                <view class="tab_td2 bottom">{{obj.moneySelectItem}}</view>
                 <view class="tab_td3 bottom">铸造单位</view>
-                <view class="tab_td4 bottom">某单位</view>
+                <view class="tab_td4 bottom">{{obj.moneyCompany}}</view>
             </view>
         </view>
         <view class="captions">
-            <text style="color: #C6A056;">介绍: </text>贵金属纪念币知识介绍贵金属纪念币金属纪念币贵金属纪念币知识介绍贵金属纪念币金属纪念币贵金属纪念币知识介绍贵金介绍贵金介绍贵金属纪念币金属纪念币贵金属纪念币知识介绍贵金属纪念币...
+            <text style="color: #C6A056;">介绍: </text>{{obj.moneyIntroduce}}
         </view>
         <view class="footer">
             <view class="give-like flex">

@@ -2,8 +2,8 @@
     <view class="avatar_wrap">
         <image class="avatar" src="{{avatarUrl}}"></image>
     </view>
-    <!--<view class="login">未登录，点击登录</view>-->
-    <view class="login1">{{userInfo.nickName}}</view>
+    <view class="login" bindtap="goToLogin">未登录，点击登录</view>
+    <!--<view class="login1">{{userInfo.nickName}}</view>-->
     <view class="border"></view>
     <view class="mine-list">
         <view class="mine-list-left">
@@ -19,12 +19,12 @@
         </view>
         <image class="mine-list-img" src="../../images/pageImg/arrows.png"></image>
     </view>
-    <view class="mask" catchtap="" wx:if="{{}}">
-        <block wx:if="{{}}"> <!--选择登录方式-->
+    <view class="mask" catchtap="" wx:if="{{isLoginMask}}">
+        <block wx:if="{{isLoginMask}}"> <!--选择登录方式-->
             <view class="mask-content" catchtap="">
                 <view class="mask-login">
                     <view>登录/注册</view>
-                    <image class="close" src="../../images/pageImg/close.png"></image>
+                    <image bindtap="close" class="close" src="../../images/pageImg/close.png"></image>
                 </view>
                 <view class="mobile-login">
                     <image src="../../images/pageImg/iphone.png"></image>

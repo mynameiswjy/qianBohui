@@ -14,7 +14,7 @@ export function index(data = {}) {
 
 // 钱币详情页
 export function successiveExhibitors(data = {}) {
-  let url = '/news/successiveExhibitors.do'
+  let url = '/qbh/coin/coinInfo.do'
   return new Promise((resolve, reject) => {
     requestAjaxPost(url, data, function (res) {
       resolve(res)
@@ -39,6 +39,17 @@ export function getAntistop(data = {}) {
 // 搜索
 export function searchName(data = {}) {
   let url = '/qbh/search/searchName.do'
+  return new Promise((resolve, reject) => {
+    requestAjaxPost(url, data, function (res) {
+      resolve(res)
+    }, function (err) {
+      reject(err)
+    })
+  })
+}
+// 登陆
+export function doLogin(data = {}) {
+  let url = '/qbh/app/doLogin.do'
   return new Promise((resolve, reject) => {
     requestAjaxPost(url, data, function (res) {
       resolve(res)

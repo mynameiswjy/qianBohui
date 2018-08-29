@@ -1,4 +1,7 @@
-// pages/index/index.js
+import {doLogin} from '../../api/index'
+
+var app = getApp()
+
 Page({
 
   /**
@@ -6,7 +9,8 @@ Page({
    */
   data: {
     avatarUrl: '../../images/pageImg/default_avatar.png',
-    userInfo: {}
+    userInfo: {},
+    isLoginMask: false
   },
 
   /**
@@ -36,12 +40,38 @@ Page({
   onShow: function () {
   
   },
+  goToLogin() {
+    this.setData({
+      isLoginMask: true
+    })
+  },
+  close() {
+    this.setData({
+      isLoginMask: false
+    })
+  },
   getUserInfo(e) {
     console.log('userInfo', e);
+    let info = e.detail.userInfo
+    let userName = info.nickName
+    let province = info.province
+    let city = info.city
+    let avatarUrl = info.avatarUrl
     if (e.detail.errMsg === 'getUserInfo:ok') {
       wx.login({
         success(even) {
           console.log(even.code);
+          let data = {
+            code: even.code,
+            userName: userName,
+            passWord: '',
+            loginType: 'wx',
+            province: province,
+            city: city
+          }
+          doLogin().then(res => {
+            console.log(res);
+          })
         }
       })
     }

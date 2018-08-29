@@ -18,7 +18,7 @@ export function requestAjaxGet(url, data, success, err) {
   })
 }
 
-export function requestAjaxPost(url, data, success, err) {
+export function requestAjaxPost(url, data={}, success, err) {
   wx.request({
     url: host + url,
     data: data,

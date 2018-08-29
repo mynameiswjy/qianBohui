@@ -33,13 +33,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "333",
 					"pathName": "pages/specialExhibition/specialExhibition",
-					"query": ""
+					"query": "parentType=series&seedtType=giantPanda"
 				},
 				{
 					"id": -1,
@@ -52,6 +52,12 @@
 					"name": "我的",
 					"pathName": "pages/mine/mine",
 					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "详情页",
+					"pathName": "pages/detail/detail",
+					"query": "moneyCode=100003"
 				}
 			]
 		}

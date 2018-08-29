@@ -78,6 +78,7 @@
 .list-right-top {
     line-height: 40rpx;
     color:rgba(51,51,51,1);
+    height: 70rpx;
     font-size: 30rpx;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -97,6 +98,15 @@
     line-height:26rpx;
     text-align: center;
     width: 100%;
-    margin-top: 28rpx;
-    margin-bottom: 26rpx;
+    padding-top: 28rpx;
+    padding-bottom: 26rpx;
+}
+
+.loading-wrap {
+    text-align: center
+}
+.loading {
+    width: 48rpx;
+    height: 48rpx;
+    background-color: #000;
 }

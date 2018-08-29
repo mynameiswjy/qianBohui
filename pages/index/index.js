@@ -13,7 +13,9 @@ Page({
     parentType: 'hotItem',
     valHotToList: [],
     seedtType: '',
-    valHotTo: ''
+    valHotTo: '',
+    MemorialMoney: [],
+    pageIndex: 1
   },
 
   onLoad: function (options) {
@@ -25,7 +27,7 @@ Page({
   },
   initList() {
     let data = {
-      pageIndex: 1,
+      pageIndex: this.data.pageIndex,
       pageSize:20,
       parentType: this.data.parentType,
       seedtType: this.data.seedtType,
@@ -40,11 +42,18 @@ Page({
         })
         this.setData({
           dataSet: data,
+          MemorialMoney: this.data.MemorialMoney.concat(data.MemorialMoney),
           hotList: hotList
         })
       } else {
         console.error('服务器错误')
       }
+    })
+  },
+  goToDetailsPage(e) {
+    let moneyCode = e.currentTarget.dataset.moneyCode
+    wx.navigateTo({
+      url: "/pages/detail/detail?moneyCode=" + moneyCode
     })
   },
   hotSelect(e) {
@@ -94,6 +103,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.data.pageIndex++
+    this.initList()
   },
 
   /**

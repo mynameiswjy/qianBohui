@@ -1,37 +1,38 @@
-// pages/detail/detail.js
+import {successiveExhibitors} from '../../api/index'
+
+var app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    obj: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log(options)
+    this.init(options)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
   
   },
+  init(options) {
+    successiveExhibitors({moneyCode: options.moneyCode}).then(res => {
+      console.log(res.data.returnData);
+      if (res.data.returnCode === '0000') {
+        this.setData({
+          obj: res.data.returnData
+        })
+      }
+    })
+  },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
   
   },
