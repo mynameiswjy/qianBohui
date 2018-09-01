@@ -27,10 +27,10 @@
             <div class="btns">
               <div class="prev" @click="prevNews">
                 <div class="prev-txt">上一页</div>
-                <img src="../assets/images/prev-page.png" alt="">
+                <span class="iconfont icon-fanhui" :class="{span_icon_houtui:pageIndexNews > 1}"></span>
               </div>
               <div class="next" @click="nextNews">
-                <img style="" src="../assets/images/next-page.png" alt="">
+                <span class="iconfont icon-gengduo" :class="{span_icon_qianjin:pageIndexNews >= pageCountNews}"></span>
                 <div class="next-txt">下一页</div>
               </div>
             </div>
@@ -56,6 +56,7 @@ export default {
       timeList: [],
       list: [],
       pageIndexNews: 1,
+      pageCountNews: '',
       selectVal: '',
       selectType: 'all'
     }
@@ -221,9 +222,11 @@ select::-ms-expand { display: none; }
         .prev-txt
           color #C8A258
           margin-right 0.34rem
-        img
-          width 0.11rem
-          height: 0.2rem
+        .icon-fanhui
+          font-size 0.23rem
+          color #AAA9A8
+        .span_icon_houtui
+          color #C6A056
       .next
         width 1.64rem
         height 0.5rem
@@ -233,10 +236,11 @@ select::-ms-expand { display: none; }
         .next-txt
           margin-left 0.34rem
           color #AAA9A8
-        img
-          width 0.11rem
-          height: 0.2rem
-          right 0
+        .icon-gengduo
+          font-size 0.23rem
+          color #C6A056
+        .span_icon_qianjin
+          color #AAA9A8
   .footer-top
     margin-top 0.56rem
 </style>

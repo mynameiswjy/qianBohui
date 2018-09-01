@@ -1,6 +1,6 @@
 <template>
     <div style="width: 100%">
-      <img v-if="showPath == 'homePage'" class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">
+      <img v-if="showPath == 'homePage'" class="title-img" src="https://www.chqbh.com/imgFile/201808211619381528954869281.jpg">
       <!--<img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
       <div class="nav-wrapper" ref="viewport">
         <div ref="content" style="width: 100%">

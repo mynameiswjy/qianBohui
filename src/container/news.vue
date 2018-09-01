@@ -13,10 +13,10 @@
         </ul>
         <div class="btns">
           <div @click="prevClick" class="prev">
-            <img src="../assets/images/prev-page.png" alt="">
+            <span class="iconfont icon-fanhui" :class="{span_icon_houtui: pageIndex > 1}"></span>
           </div>
-          <div v-show="!prevHide" @click="nextClick" class="next">
-            <img style="" src="../assets/images/next-page.png" alt="">
+          <div v-show="!prevHide" @click="nextClick" class="next" :class="{span_icon_qianjin: pageCount <= pageIndex}">
+            <span class="iconfont icon-gengduo"></span>
           </div>
         </div>
       </div>
@@ -35,10 +35,10 @@
         </ul>
         <div class="btns">
           <div class="prev" @click="prevZSJS">
-            <img src="../assets/images/prev-page.png" alt="">
+            <span class="iconfont icon-fanhui"  :class="{span_icon_houtui: pageIndexZSJS > 1}"></span>
           </div>
           <div class="next" @click="nextZSJS">
-            <img style="" src="../assets/images/next-page.png" alt="">
+            <span class="iconfont icon-gengduo" :class="{span_icon_qianjin:pageIndexZSJS >= pageCountZSJS}"></span>
           </div>
         </div>
       </div>
@@ -61,7 +61,9 @@ export default {
       navNews: ['行业动态', '展商介绍'],
       listZHXW: [],
       pageIndex: 1,
+      pageCount: '',
       pageIndexZSJS: 1,
+      pageCountZSJS: '',
       prevHide: false,
       dialogVisible: true,
       type: 'ZSJS', // 展商介绍
@@ -117,6 +119,7 @@ export default {
       getNewsCategory(data).then(res => {
         if (res.data.returnCode === '0000') {
           let data = res.data.returnData
+          this.pageCount = data.pageCount
           this.listZHXW = data.successiveExhibitors
         }
       })
@@ -135,6 +138,12 @@ export default {
     },
     nextClick() {
       ++this.pageIndex
+      console.log('pageCount', this.pageCount)
+      console.log('pageIndex', this.pageIndex)
+      if(this.pageIndex > this.pageCount) {
+        this.pageIndex = this.pageCount
+        return false
+      }
       this.initDataZHXW()
     },
     prevZSJS() {
@@ -209,20 +218,24 @@ export default {
           height 0.5rem
           padding-top 0.15rem
           position relative
-          img
-            width 0.11rem
-            height: 0.2rem
+          .icon-fanhui
+            font-size 0.23rem
             position absolute
+            color #AAA9A8
+          .span_icon_houtui
+            color #C6A056
         .next
           width 0.5rem
           height 0.5rem
           padding-top 0.15rem
           position relative
-          img
+          .icon-gengduo
+            font-size 0.23rem
             position absolute
-            width 0.11rem
-            height: 0.2rem
+            color #C6A056
             right 0
+          .span_icon_qianjin
+            color #AAA9A8
     .news_title_nav
       display flex
       font-size: 0.34rem
