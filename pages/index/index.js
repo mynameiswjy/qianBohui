@@ -15,9 +15,11 @@ Page({
     seedtType: '',
     valHotTo: '',
     MemorialMoney: [],
-    pageIndex: 1
+    pageIndex: 1,
+    pageNum: '',
+    isSend: true,
+    isLoading: true
   },
-
   onLoad: function (options) {
     this.initList()
   },
@@ -28,22 +30,28 @@ Page({
   initList() {
     let data = {
       pageIndex: this.data.pageIndex,
-      pageSize:20,
+      pageSize: 10,
       parentType: this.data.parentType,
       seedtType: this.data.seedtType,
       selectType: 'first'
     }
+    if (!this.data.isSend) {
+      return
+    }
     index(data).then(res => {
-      console.log(res.data);
       if (res.data.returnCode === '0000') {
         let data = res.data.returnData
         let hotList = data.selectItem.map(item => {
           return item.name
         })
+        let MemorialMoney = this.data.MemorialMoney.concat(data.MemorialMoney)
+        this.data.pageNum = data.pageNum
         this.setData({
           dataSet: data,
-          MemorialMoney: this.data.MemorialMoney.concat(data.MemorialMoney),
-          hotList: hotList
+          MemorialMoney: MemorialMoney,
+          hotList: hotList,
+          isSend:true,
+          pageIndex: this.data.pageIndex
         })
       } else {
         console.error('服务器错误')
@@ -104,13 +112,12 @@ Page({
    */
   onReachBottom: function () {
     this.data.pageIndex++
+    if (this.data.pageNum < this.data.pageIndex) {
+      this.setData({
+        isLoading: false
+      })
+      return
+    }
     this.initList()
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

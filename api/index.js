@@ -58,3 +58,27 @@ export function doLogin(data = {}) {
     })
   })
 }
+
+// 小程序二维码
+export function getStoreRCs(data = {}) {
+  let url = '/qbh/coin/getStoreRCs.do'
+  return new Promise((resolve, reject) => {
+    requestAjaxPost(url, data, function (res) {
+      resolve(res)
+    }, function (err) {
+      reject(err)
+    })
+  })
+}
+
+// 点赞/分享/朋友圈 统一接口
+export function likeMoneyCode(data = {}) {
+  let url = '/qbh/coin/likeMoneyCode.do'
+  return new Promise((resolve, reject) => {
+    requestAjaxPost(url, data, function (res) {
+      resolve(res)
+    }, function (err) {
+      reject(err)
+    })
+  })
+}

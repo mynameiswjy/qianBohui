@@ -1,3 +1,6 @@
+page {
+    background-color: #fff;
+}
 .select-wrap {
     display: flex;
     margin-left: 37rpx;
@@ -102,11 +105,31 @@
     padding-bottom: 26rpx;
 }
 
-.loading-wrap {
-    text-align: center
+.weui-loading {
+    margin: 10px 5px 10px 0;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    background:  url('http://img02.exam8.com/img2017/minapp/icon/loading.gif') no-repeat;
+    background-size: 100%;
 }
-.loading {
-    width: 48rpx;
-    height: 48rpx;
-    background-color: #000;
+.weui-loadmore {
+    width: 65%;
+    color: #9a9a9a;
+    margin: 1.5rpx auto;
+    line-height: 1.6rpx;
+    font-size: 14px;
+    text-align: center;
+}
+.weui-loadmore_tips {
+    display: inline-block;
+    vertical-align: middle;
+}
+.is-end {
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #9a9a9a;
+    line-height: 40px;
 }

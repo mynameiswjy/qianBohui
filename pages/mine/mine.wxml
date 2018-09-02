@@ -2,16 +2,18 @@
     <view class="avatar_wrap">
         <image class="avatar" src="{{avatarUrl}}"></image>
     </view>
-    <view class="login" bindtap="goToLogin">未登录，点击登录</view>
-    <!--<view class="login1">{{userInfo.nickName}}</view>-->
+    <block>
+        <view wx:if="{{!NickName}}" class="login" bindtap="goToLogin">未登录，点击登录</view>
+        <view wx:else class="login1">{{NickName}}</view>
+    </block>
     <view class="border"></view>
-    <view class="mine-list">
+    <button open-type="share" class="mine-list">
         <view class="mine-list-left">
             <image src="../../images/pageImg/share.png"></image>
             <view>分享小程序</view>
         </view>
         <image class="mine-list-img" src="../../images/pageImg/arrows.png"></image>
-    </view>
+    </button>
     <view class="mine-list">
         <view class="mine-list-left">
             <image src="../../images/pageImg/feedback.png"></image>
@@ -19,21 +21,21 @@
         </view>
         <image class="mine-list-img" src="../../images/pageImg/arrows.png"></image>
     </view>
-    <view class="mask" catchtap="" wx:if="{{isLoginMask}}">
-        <block wx:if="{{isLoginMask}}"> <!--选择登录方式-->
-            <view class="mask-content" catchtap="">
+    <view class="mask" touchstart="" wx:if="{{openMask}}">
+        <block wx:if="{{isLoginSelectMask}}"> <!--选择登录方式-->
+            <view class="mask-content" touchstart="">
                 <view class="mask-login">
                     <view>登录/注册</view>
                     <image bindtap="close" class="close" src="../../images/pageImg/close.png"></image>
                 </view>
-                <view class="mobile-login">
+                <view class="mobile-login" bindtap="openMobilemask">
                     <image src="../../images/pageImg/iphone.png"></image>
                     <view>手机注册/登录</view>
                 </view>
                 <button
                         class="weixin-login recet-default"
                         open-type="getUserInfo"
-                        bindgetuserinfo="getUserInfo"
+                        bindgetuserinfo="getUserInfoWx"
                         hover-class
                 >
                     <image src="../../images/pageImg/iphone.png"></image>
@@ -42,44 +44,44 @@
                 <view style="height: 82rpx"></view>
             </view>
         </block>
-        <block wx:if="{{}}"><!--登录-->
-            <view class="mask-content mask-content-login" catchtap="">
+        <block wx:if="{{openMobile}}"><!--登录-->
+            <view class="mask-content mask-content-login" touchstart="">
                 <view class="mask-login">
                     <view>登录</view>
-                    <image class="close" src="../../images/pageImg/close.png"></image>
+                    <image bindtap="close" class="close" src="../../images/pageImg/close.png"></image>
                 </view>
                     <view class="user-login-iphone user-login">
                         <image src="../../images/pageImg/iphone.png"></image>
-                        <input type="number" placeholder="请输入手机号码"/>
+                        <input type="number" bindinput="mobileNumber" placeholder="请输入手机号码"/>
                     </view>
                     <view class="user-login-iphone user-password">
                         <image style="height: 30rpx;width: 26rpx;margin-right: 31rpx" src="../../images/pageImg/password.png"></image>
-                        <input type="number" placeholder="请输入密码"/>
+                        <input type="password" bindinput="password" placeholder="请输入密码"/>
                     </view>
-                    <view class="go-login">我要登录</view>
-                    <view class="go-login-bottom">还未注册，点击注册</view>
+                    <view class="go-login" bindtap="MobileLogin">我要登录</view>
+                    <view class="go-login-bottom" bindtap="registerUser">还未注册，点击注册</view>
             </view>
         </block>
-        <block wx:if="{{}}"><!--注册-->
-            <view class="mask-content mask-content-login" catchtap="">
+        <block wx:if="{{openRegister}}"><!--注册-->
+            <view class="mask-content mask-content-login" touchstart="">
                 <view class="mask-login">
                     <view>注册</view>
-                    <image class="close" src="../../images/pageImg/close.png"></image>
+                    <image bindtap="close" class="close" src="../../images/pageImg/close.png"></image>
                 </view>
                 <view class="user-login-iphone user-login">
                     <image src="../../images/pageImg/iphone.png"></image>
-                    <input type="number" placeholder="请输入手机号码"/>
+                    <input type="number" bindinput="mobileNumber" placeholder="请输入手机号码"/>
                 </view>
                 <view class="user-login-iphone user-password">
                     <image style="height: 30rpx;width: 26rpx;margin-right: 31rpx" src="../../images/pageImg/password.png"></image>
-                    <input type="number" placeholder="请输入密码"/>
+                    <input type="password" bindinput="password" placeholder="请输入密码"/>
                 </view>
                 <view class="user-login-iphone user-password">
                     <image style="height: 30rpx;width: 26rpx;margin-right: 31rpx" src="../../images/pageImg/password.png"></image>
-                    <input type="number" placeholder="请确认密码"/>
+                    <input type="password" bindinput="passwordTo" placeholder="请确认密码"/>
                 </view>
-                <view class="go-login">立即注册</view>
-                <view class="go-login-bottom">已注册，点击登录</view>
+                <view class="go-login" bindtap="MobileRegister">立即注册</view>
+                <view class="go-login-bottom" bindtap="loginUser">已注册，点击登录</view>
             </view>
         </block>
     </view>

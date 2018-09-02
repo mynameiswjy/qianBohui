@@ -2,11 +2,18 @@
     <image class="banner" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg"></image>
     <view style="height: 8rpx"></view>
     <view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
-        <image src="https://www.chqbh.com/qbh/uploadDownload/downloadImage.do?fileUrl={{item.url1}}"></image>
+        <image src="{{item.url1}}"></image>
         <view class="list-right">
             <view class="list-right-top">{{item.tiele}}</view>
             <view class="list-right-bottom">{{item.strTime}}</view>
         </view>
     </view>
-    <view class="look-more">查看更多</view>
+    <block>
+        <view class="is-end" wx:if="{{!isLoading}}">已经到底啦</view>
+        <view class="weui-loadmore" wx:if="{{isLoading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore_tips">正在加载</view>
+        </view>
+    </block>
+    <!--<view class="look-more" wx:if="{{pageIndex == 1}}">查看更多</view>-->
 </view>

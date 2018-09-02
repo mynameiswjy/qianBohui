@@ -42,26 +42,29 @@
                 <view class="tab_td4 bottom">{{obj.moneyCompany}}</view>
             </view>
         </view>
-        <view class="captions">
+        <view class="captions" wx:if="{{options.IsShare == 1}}">
             <text style="color: #C6A056;">介绍: </text>{{obj.moneyIntroduce}}
         </view>
         <view class="footer">
-            <view class="give-like flex">
+            <view class="give-like flex" bindtap="clickGood">
                 <image class="footer-img1" src="../../images/pageImg/give-like.png"></image>
                 <view>64</view>
             </view>
-            <view class="flex share">
+            <button open-type="share" class="flex share">
                 <image class="footer-img2" src="../../images/pageImg/share.png"></image>
                 <view>分享小程序</view>
-            </view>
-            <view class="flex friends-circle">
+            </button>
+            <view class="flex friends-circle"bindtap="btnClick">
                 <image class="footer-img3" src="../../images/pageImg/friends-circle.png"></image>
                 <view>朋友圈</view>
             </view>
         </view>
     </view>
-    <view class="go-index">
+    <view wx:if="{{options.IsShare == 1}}" class="go-index" bindtap="goHome">
         <image class="go-index-img" src="../../images/pageImg/home1.png"></image>
         <view>返回主页</view>
+    </view>
+    <view class="canvas-img">
+        <canvas canvas-id="canvasShare" style="width: 100%; height: 100%"></canvas>
     </view>
 </view>

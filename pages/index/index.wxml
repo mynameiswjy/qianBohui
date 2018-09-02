@@ -35,18 +35,20 @@
             <image class="banner-img" mode="widthFix" src="../../images/pageImg/11111.png"></image>
         </swiper-item>-->
     </swiper>
-    <image class="advertising"src=""></image>
-    <view class="list" wx:for="{{dataSet.MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
-        <image src="https://www.chqbh.com/qbh/uploadDownload/downloadImage.do?fileUrl={{item.url1}}"></image>
+    <image bindtap="goToDetail" class="advertising"src=""></image>
+    <view class="list" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+        <image src="{{item.url1}}"></image>
         <view class="list-right">
             <view class="list-right-top">{{item.tiele}}</view>
             <view class="list-right-bottom">{{item.strTime}}</view>
         </view>
     </view>
-    <block>
-        <view wx:if="{{false}}" class="loading-wrap">
-            <image class="loading" src="../../images/pageImg/loading.png"></image>
+    <block wx:if="{{pageIndex != 1}}">
+        <view class="is-end" wx:if="{{!isLoading}}">已经到底啦</view>
+        <view class="weui-loadmore" wx:if="{{isLoading}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore_tips">正在加载</view>
         </view>
-        <view class="look-more" bindtap="goToDetail">查看更多</view>
     </block>
+    <view class="look-more" wx:if="{{pageIndex == 1}}">查看更多</view>
 </block>

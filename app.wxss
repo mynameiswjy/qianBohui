@@ -11,3 +11,21 @@
 .wraps {
   font-family:PingFangSC-Regular;
 }
+button::after{
+  border: 0;
+  width: inherit;
+  height: inherit;
+}
+button {
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align:inherit;
+  line-height:inherit;
+  color: inherit;
+}
+input{
+  outline:none;
+  border:none;
+  list-style: none;
+}
