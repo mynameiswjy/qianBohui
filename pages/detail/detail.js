@@ -31,6 +31,7 @@ Page({
       options: options
     });
     this.getMinappCodeImage()
+    console.log(app.globalData.header.Token)
   },
 
   onShow: function () {
@@ -44,6 +45,7 @@ Page({
       }
     })
   },
+  // 数据初始化
   init(options) {
     successiveExhibitors({moneyCode: options.moneyCode}).then(res => {
       if (res.data.returnCode === '0000') {
@@ -104,7 +106,7 @@ Page({
   },
   // 效验token
   isGoLogin() {
-    if(!app.header) {
+    if (!app.globalData.header.Token) {
       wx.showModal({
         title: '温馨提示',
         content: '请先登录',
@@ -116,6 +118,8 @@ Page({
         }
       })
       return false
+    } else {
+      return true
     }
   },
   /*
@@ -131,11 +135,18 @@ Page({
     let data = {
       type: 'like',
       moneyCode: this.data.options.moneyCode,
-      token: app.header.Token
+      token: app.globalData.header.Token
     }
-    /*likeMoneyCode(data).then(res => {
+    likeMoneyCode(data).then(res => {
       console.log(res);
-    })*/
+      if (res.data.returnCode === '0000') {
+        console.log('成功点赞')
+      } else if (res.data.returnCode === '30000') {
+        wx.reLaunch({
+          url: "/pages/mine/mine?openMask=true&isLoginSelectMask=true&openMask=true"
+        })
+      }
+    })
   },
   // 小程序二维码
   getMinappCodeImage() {

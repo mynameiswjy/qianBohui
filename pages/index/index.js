@@ -72,6 +72,7 @@ Page({
     })
     if (this.data.parentType != data[index].code) {
       this.data.parentType = data[index].code
+      this.data.pageIndex = 1
       this.initList()
     }
     this.setData({
@@ -87,6 +88,7 @@ Page({
     let data = this.data.dataSet.selectItem[idx].submenu
     if (this.data.seedtType != data[index].code) {
       this.data.seedtType = data[index].code
+      this.data.pageIndex = 1
       this.initList()
     }
     this.setData({

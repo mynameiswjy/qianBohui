@@ -29,3 +29,19 @@ input{
   border:none;
   list-style: none;
 }
+@font-face {
+  font-family: 'iconfont';  /* project id 810881 */
+  src: url('//at.alicdn.com/t/font_810881_ufbetk1y42j.eot');
+  src: url('//at.alicdn.com/t/font_810881_ufbetk1y42j.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_810881_ufbetk1y42j.woff') format('woff'),
+  url('//at.alicdn.com/t/font_810881_ufbetk1y42j.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_810881_ufbetk1y42j.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-dianzan:before { content: "\e60c"; }

@@ -175,8 +175,10 @@ Page({
           userName: that.data.mobileNum,
           passWord: that.data.passWordUser,
           loginType: 'phone',
-          province: '',
-          city: ''
+          province: ' ',
+          city: ' ',
+          name: ' ',
+          headUrl: ' '
         }
         doLogin(data).then(res => {
           wx.hideLoading()
@@ -214,6 +216,7 @@ Page({
       wx.login({
         success(even) {
           console.log(even.code);
+          return
           let data = {
             code: even.code,
             userName: userName,

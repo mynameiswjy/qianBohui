@@ -28,12 +28,6 @@
         <swiper-item wx:for="{{dataSet.banner}}" wx:key="{{index}}">
             <image class="banner-img" src="{{item.imgIndex}}"></image>
         </swiper-item>
-        <!--<swiper-item>
-            <image class="banner-img" mode="widthFix" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg"></image>
-        </swiper-item>
-        <swiper-item>
-            <image class="banner-img" mode="widthFix" src="../../images/pageImg/11111.png"></image>
-        </swiper-item>-->
     </swiper>
     <image bindtap="goToDetail" class="advertising"src=""></image>
     <view class="list" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
