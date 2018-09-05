@@ -1,5 +1,6 @@
 <template>
     <div>
+      <nav-bar></nav-bar>
       <introduce class="lintr_bottom" :introduceObj="introduceObj" :text="text" :openStyle="true"></introduce>
       <public-temp :aboutzhObj="aboutzhObj" class=""></public-temp>
       <temp-footer class="footer-top"></temp-footer>
@@ -12,6 +13,7 @@
 import introduce from '@/components/introduce' // 展会介绍模板
 import publicTemp from '@/components/publicTemp/publicTemp'
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们
+import navBar from '@/container/navBar'
 import tabBar from '@/container/tabBar' // 底部tabBar
 import {etArticlesContent} from '@/api/index'
 
@@ -63,7 +65,8 @@ export default {
     introduce,
     publicTemp,
     tempFooter,
-    tabBar
+    tabBar,
+    navBar
   }
 }
 </script>

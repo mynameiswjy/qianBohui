@@ -2,6 +2,7 @@
     <div class="landing_wrap">
       <scroll class="news_landing_content" :data="content">
         <div class="footer_position">
+          <nav-bar></nav-bar>
           <div style="height: 0.58rem"></div>
           <div class="landing_title left-margin">纪念币的保存、清洗及赝品识别</div>
           <div class="landing_time left-margin">2018-06-28</div>
@@ -20,6 +21,7 @@
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
+import navBar from './navBar'
 import {getNewsContent} from '@/api/index'
 export default {
   name: "contactUs",
@@ -44,7 +46,8 @@ export default {
   components: {
     tempFooter,
     tabBar,
-    scroll
+    scroll,
+    navBar
   }
 }
 </script>

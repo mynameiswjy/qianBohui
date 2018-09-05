@@ -38,6 +38,7 @@ export default {
     // 搜索
     submit() {
       let data = {
+        searchType: 'H5_HOME',
         searchName: this.searVal
       }
       searchName(data).then((res) => {
@@ -54,7 +55,7 @@ export default {
       this.searVal = this.keywordsList[e].name
     },
     initgetAntistop() {
-      getAntistop().then((res) => {
+      getAntistop({searchType: 'H5_HOME'}).then((res) => {
         this.keywordsList = res.data.returnData
       })
     }

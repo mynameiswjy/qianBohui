@@ -1,7 +1,5 @@
 <template>
     <div style="width: 100%">
-      <img v-if="showPath == 'homePage'" class="title-img" src="https://www.chqbh.com/imgFile/201808211619381528954869281.jpg">
-      <!--<img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
       <div class="nav-wrapper" ref="viewport">
         <div ref="content" style="width: 100%">
           <ul class="tab-conten">
@@ -16,8 +14,8 @@
 </template>
 
 <script>
-import Slider from "../utils/slider.vue"
 import BScroll from 'better-scroll'
+import {ease} from '../utils/ease'
 
 export default {
   name: "navBar",
@@ -31,11 +29,10 @@ export default {
         {name: '新闻资讯', id: '4', path: '/news'},
       ],
       idx: 0,
-      showPath: ''
+      scrollToEasing: 'bounce'
     }
   },
   created() {
-    this.showPath = this.$router.history.current.name
   },
   mounted() {
     setTimeout(() => {
@@ -44,13 +41,14 @@ export default {
   },
   methods: {
     navBtn(e) {
-      this.idx = e
-      this.showPath = this.$router.history.current.name
-      console.log(this.showPath)
+      this.idx =
+        console.log('e', e)
+      /*
+      this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])*/
       if (e == 4) {
-        this.slider.scrollTo(-30, 0, 300)
+        this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])
       } else if (e == 1 || e == 0) {
-        this.slider.scrollTo(0, 0, 300)
+        this.slider.scrollTo(0, 0, 500, ease[this.scrollToEasing])
       }
     },
     _initSlider() {
@@ -112,7 +110,6 @@ export default {
   computed: {
   },
   components: {
-    Slider
   }
 }
 </script>

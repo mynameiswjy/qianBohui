@@ -1,5 +1,7 @@
 <template>
   <div>
+    <img class="title-img" :src="imgIndex">
+    <nav-bar></nav-bar>
     <introduce :introduceObj="dataList.expositionIntroduce" :text="text"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
@@ -13,6 +15,7 @@
 </template>
 
 <script>
+import navBar from '@/container/navBar'
 import introduce from '@/components/introduce' // 展会介绍模板
 import exhibitionNews from '@/components/exhibitionNews' // 展会新闻模板
 import exhibitor from '@/components/exhibitor' // 展商介绍模板
@@ -29,7 +32,8 @@ export default {
       obj: 0,
       text: 'Exhibition Introduction',
       dataList: {},
-      SuccessiveList: []
+      SuccessiveList: [],
+      imgIndex: ''
     }
   },
   created() {
@@ -44,6 +48,7 @@ export default {
       indexDo().then((res) => {
         if (res.data.returnCode === '0000') {
           this.dataList = res.data.returnData
+          this.imgIndex = this.dataList.banner.imgIndex
         }
       }).catch((err) => {
         console.log(err)
@@ -68,7 +73,8 @@ export default {
     successiveExhibitions,
     tempFooter,
     tabBar,
-    Scroll
+    Scroll,
+    navBar
   }
 }
 </script>
@@ -76,6 +82,10 @@ export default {
 <style scoped>
   body{
     /*background: rgba(198,160,86,1);*/
+  }
+  .title-img{
+    width: 7.5rem;
+    height: 3.41rem;
   }
   .footer-img{
     width: 6.78rem;
