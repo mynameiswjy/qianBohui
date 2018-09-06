@@ -1,3 +1,4 @@
+@import "../index/index.wxss";
 .search-input {
     display: flex;
     width: 597rpx;

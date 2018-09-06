@@ -44,7 +44,14 @@ Page({
         let hotList = data.selectItem.map(item => {
           return item.name
         })
-        let MemorialMoney = this.data.MemorialMoney.concat(data.MemorialMoney)
+        if (!data.MemorialMoney.length) {
+          this.setData({
+            MemorialMoney: this.data.MemorialMoney,
+            isLoading: false
+          })
+          return
+        }
+        let MemorialMoney = data.pageNum > 1 ? this.data.MemorialMoney.concat(data.MemorialMoney) : data.MemorialMoney
         this.data.pageNum = data.pageNum
         this.setData({
           dataSet: data,
@@ -71,6 +78,7 @@ Page({
       return item.name
     })
     if (this.data.parentType != data[index].code) {
+      this.data.MemorialMoney = []
       this.data.parentType = data[index].code
       this.data.pageIndex = 1
       this.initList()
@@ -87,6 +95,7 @@ Page({
     let idx = this.data.indexHot
     let data = this.data.dataSet.selectItem[idx].submenu
     if (this.data.seedtType != data[index].code) {
+      this.data.MemorialMoney = []
       this.data.seedtType = data[index].code
       this.data.pageIndex = 1
       this.initList()
@@ -114,7 +123,8 @@ Page({
    */
   onReachBottom: function () {
     this.data.pageIndex++
-    if (this.data.pageNum < this.data.pageIndex) {
+    let MemorialMoney = this.data.MemorialMoney
+    if (this.data.pageNum < this.data.pageIndex || MemorialMoney.length < 9) {
       this.setData({
         isLoading: false
       })

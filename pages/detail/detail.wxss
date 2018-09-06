@@ -87,11 +87,24 @@ page {
     align-items:center;
 }
 .give-like {
-
+    color: #868585;
+}
+.give-like .icon-dianzan {
+    font-size: 28rpx;
+    margin-right: 18rpx;
+    line-height: 98rpx;
+}
+.is_like {
+    color: #C6A056;
 }
 .friends-circle {
     margin-left: 47rpx;
     margin-right: 26rpx;
+}
+.share .icon-fenxiang {
+    font-size: 28rpx;
+    color: #868585;
+    margin-right: 18rpx;
 }
 .share {
     margin-left: 50rpx;
@@ -99,6 +112,7 @@ page {
     font-size: 22rpx;
     margin-left: 50rpx;
     margin-right: 0;
+    color: #666666;
 }
 .footer-img1 {
     width: 28rpx;

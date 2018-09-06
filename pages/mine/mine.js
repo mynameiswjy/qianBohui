@@ -18,7 +18,8 @@ Page({
     openMobile: false,
     mobileNum: '',
     passWordUser: '',
-    passWordUserTo: ''
+    passWordUserTo: '',
+    options: {}
   },
 
   /**
@@ -29,7 +30,8 @@ Page({
     if (options.openMask) {
       this.setData({
         openMask: options.openMask,
-        isLoginSelectMask: options.isLoginSelectMask
+        isLoginSelectMask: options.isLoginSelectMask,
+        options: options
       })
     }
     /*wx.getSetting({
@@ -54,6 +56,13 @@ Page({
   onShow: function () {
   
   },
+  isBackDetail() {
+    let that = this
+    wx.navigateTo({
+      url: "/pages/detail/detail?moneyCode=" + that.data.options.moneyCode
+    })
+    return
+  },
   // 我的页面时未登录打开登陆窗口
   goToLogin() {
     this.setData({
@@ -63,6 +72,7 @@ Page({
   },
   // 关闭所有
   close() {
+    this.data.options.openMask = false
     this.setData({
       isLoginSelectMask: false, // 选择登录方式
       openMask: false,// 蒙层
@@ -109,6 +119,7 @@ Page({
   // 用户注册
   MobileRegister() {
     let that = this
+    let openMask = this.data.options.openMask
     if (!userNameReg(that.data.mobileNum)) return
     if (!passwordReg(that.data.passWordUser)) return
     if (this.data.passWordUserTo != that.data.passWordUser) {
@@ -145,6 +156,9 @@ Page({
               icon: 'success',
               duration: 1000
             })
+            if (openMask) {
+              that.isBackDetail()
+            }
             that.setData({
               avatarUrl: app.globalData.userData.Avatar,
               NickName: app.globalData.userData.NickName,
@@ -161,6 +175,7 @@ Page({
   // 手机登录
   MobileLogin() {
     let that = this
+    let openMask = this.data.options.openMask
     // passwordReg, userNameReg
     if (!userNameReg(that.data.mobileNum)) return
     if (!passwordReg(that.data.passWordUser)) return
@@ -183,12 +198,23 @@ Page({
         doLogin(data).then(res => {
           wx.hideLoading()
           console.log(res);
-          /*app.initUserData(data)
+          app.initUserData(res.data.returnData)
+          that.setData({
+            avatarUrl: app.globalData.userData.Avatar,
+            NickName: app.globalData.userData.NickName,
+            isLoginSelectMask: false, // 选择登录方式
+            openMask: false,// 蒙层
+            openMobile: false, // 手机
+            openRegister: false // 注册
+          })
           wx.showToast({
             title: '登陆成功',
             icon: 'success',
             duration: 1000
-          })*/
+          })
+          if (openMask) {
+            that.isBackDetail()
+          }
         })
       }
     })
@@ -212,11 +238,11 @@ Page({
     let city = info.city
     let avatarUrl = info.avatarUrl
     let that = this
+    let openMask = this.data.options.openMask
     if (e.detail.errMsg === 'getUserInfo:ok') {
       wx.login({
         success(even) {
           console.log(even.code);
-          return
           let data = {
             code: even.code,
             userName: userName,
@@ -243,6 +269,9 @@ Page({
                 isLoginSelectMask: false,
                 openMask: false
               })
+              if (openMask) {
+                that.isBackDetail()
+              }
             }
           })
         }

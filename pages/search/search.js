@@ -9,7 +9,9 @@ Page({
    */
   data: {
     value: '',
-    keywords: []
+    keywords: [],
+    list: [],
+    isHide: false
   },
 
   /**
@@ -23,19 +25,35 @@ Page({
   
   },
   initHotList() {
-    getAntistop().then(res => {
+    getAntistop({ searchType: 'WX_APP_HOME'}).then(res => {
       if (res.data.returnCode === '0000') {
-        this.setData({
-          keywords: res.data.returnData
-        })
+        let  data = res.data.returnData
+        if (data.length) {
+          this.setData({
+            keywords: data,
+            isHide: true
+          })
+        }
       }
     }).catch(err => {
       console.log(err);
     })
   },
   search() {
-    searchName({searchName: this.data.value}).then(res => {
+    searchName({searchName: this.data.value, searchType: 'WX_APP_HOME'}).then(res => {
       console.log(res);
+      if (res.data.returnCode === '0000') {
+        this.setData({
+          list: res.data.returnData,
+          isHide: false
+        })
+      }
+    })
+  },
+  goToDetailsPage(e) {
+    let moneyCode = e.currentTarget.dataset.moneyCode
+    wx.navigateTo({
+      url: "/pages/detail/detail?moneyCode=" + moneyCode
     })
   },
   goBack() {

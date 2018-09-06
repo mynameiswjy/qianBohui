@@ -63,7 +63,7 @@ export function doLogin(data = {}) {
 export function getStoreRCs(data = {}) {
   let url = '/qbh/coin/getStoreRCs.do'
   return new Promise((resolve, reject) => {
-    requestAjaxPost(url, data, function (res) {
+    requestAjaxGet(url, data, function (res) {
       resolve(res)
     }, function (err) {
       reject(err)

@@ -29,7 +29,7 @@
             <image class="banner-img" src="{{item.imgIndex}}"></image>
         </swiper-item>
     </swiper>
-    <image bindtap="goToDetail" class="advertising"src=""></image>
+    <image wx:if="{{false}}" bindtap="goToDetail" class="advertising"src=""></image>
     <view class="list" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
         <image src="{{item.url1}}"></image>
         <view class="list-right">
@@ -37,12 +37,11 @@
             <view class="list-right-bottom">{{item.strTime}}</view>
         </view>
     </view>
-    <block wx:if="{{pageIndex != 1}}">
+    <block>
         <view class="is-end" wx:if="{{!isLoading}}">已经到底啦</view>
         <view class="weui-loadmore" wx:if="{{isLoading}}">
             <view class="weui-loading"></view>
             <view class="weui-loadmore_tips">正在加载</view>
         </view>
     </block>
-    <view class="look-more" wx:if="{{pageIndex == 1}}">查看更多</view>
 </block>

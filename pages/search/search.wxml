@@ -6,8 +6,17 @@
         </view>
         <view class="gohome" bindtap="goBack">取消</view>
     </view>
-    <view class="hot-search">热门搜索</view>
-    <ul class="keywords">
-        <li wx:for="{{keywords}}" wx:key="{{index}}" bindtap="keywordsChange" data-val="{{item.name}}">{{item.name}}</li>
-    </ul>
+    <block wx:if="{{isHide}}">
+        <view class="hot-search">热门搜索</view>
+        <ul class="keywords">
+            <li wx:for="{{keywords}}" wx:key="{{index}}" bindtap="keywordsChange" data-val="{{item.name}}">{{item.name}}</li>
+        </ul>
+    </block>
+    <view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+        <image src="{{item.url1}}"></image>
+        <view class="list-right">
+            <view class="list-right-top">{{item.title}}</view>
+            <view class="list-right-bottom">{{item.time}}</view>
+        </view>
+    </view>
 </view>
