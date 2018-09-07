@@ -1,7 +1,6 @@
 <template>
   <div>
-    <img class="title-img" :src="imgIndex">
-    <nav-bar></nav-bar>
+    <!--<img class="title-img" :src="imgIndex">-->
     <introduce :introduceObj="dataList.expositionIntroduce" :text="text"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
@@ -15,13 +14,13 @@
 </template>
 
 <script>
-import navBar from '@/container/navBar'
 import introduce from '@/components/introduce' // 展会介绍模板
 import exhibitionNews from '@/components/exhibitionNews' // 展会新闻模板
 import exhibitor from '@/components/exhibitor' // 展商介绍模板
 import successiveExhibitions from '@/components/successiveExhibitions' // 历届展会模板
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
+import * as types from '../store/mutation-types'
 import {indexDo, successiveExhibitors} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件
 
@@ -49,6 +48,7 @@ export default {
         if (res.data.returnCode === '0000') {
           this.dataList = res.data.returnData
           this.imgIndex = this.dataList.banner.imgIndex
+          this.$store.commit(types.INDEX_IMG, res.data.returnData.banner.imgIndex)
         }
       }).catch((err) => {
         console.log(err)
@@ -61,7 +61,6 @@ export default {
         selelctYears: 'first'
       }
       successiveExhibitors(data).then(res => {
-        console.log('res11', res)
         this.SuccessiveList = res.data.returnData
       })
     }
@@ -73,8 +72,7 @@ export default {
     successiveExhibitions,
     tempFooter,
     tabBar,
-    Scroll,
-    navBar
+    Scroll
   }
 }
 </script>
