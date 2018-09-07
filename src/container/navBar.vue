@@ -45,7 +45,7 @@ export default {
         console.log('e', e)
       /*
       this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])*/
-      if (e == 4) {
+      if (e == 3) {
         this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])
       } else if (e == 1 || e == 0) {
         this.slider.scrollTo(0, 0, 500, ease[this.scrollToEasing])
