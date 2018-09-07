@@ -1,5 +1,6 @@
 <template>
     <div style="width: 100%">
+      <img v-show="isShowNavImg" class="title-img" :src="imgIndex">
       <div class="nav-wrapper" ref="viewport">
         <div ref="content" style="width: 100%">
           <ul class="tab-conten">
@@ -19,6 +20,12 @@ import {ease} from '../utils/ease'
 
 export default {
   name: "navBar",
+  props: {
+    isShowNavImg: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       tabs: [
@@ -28,7 +35,7 @@ export default {
         {name: '观众专区', id: '3', path: '/audience'},
         {name: '新闻资讯', id: '4', path: '/news'},
       ],
-      idx: 0,
+      navIdx: 0,
       scrollToEasing: 'bounce'
     }
   },
@@ -41,10 +48,6 @@ export default {
   },
   methods: {
     navBtn(e) {
-      this.idx =
-        console.log('e', e)
-      /*
-      this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])*/
       if (e == 4) {
         this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])
       } else if (e == 1 || e == 0) {
@@ -108,6 +111,9 @@ export default {
     }
   },
   computed: {
+    imgIndex() {
+      return this.$store.state.imgIndex
+    }
   },
   components: {
   }

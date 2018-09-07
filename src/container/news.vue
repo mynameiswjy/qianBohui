@@ -1,6 +1,5 @@
 <template>
     <div class="news_container">
-      <nav-bar></nav-bar>
       <div class="title_ab">
         <h2>展会新闻</h2>
         <div class="news-en">Expo News</div>
@@ -53,7 +52,6 @@
 import tabBar from '@/container/tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import {getNewsCategory} from '@/api/index'
-import navBar from '@/container/navBar'
 
 export default {
   name: "aboutzh",
@@ -167,8 +165,7 @@ export default {
   },
   components: {
     tabBar,
-    tempFooter,
-    navBar
+    tempFooter
   }
 }
 </script>
