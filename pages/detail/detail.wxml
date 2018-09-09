@@ -1,5 +1,5 @@
-<view class="detail_wrap">
-    <view class="detail_content">
+<view class="detail_wrap iphoneX">
+    <view class="detail_content" style='margin-bottom:{{btuBottom}}'>
         <view style="height: 37rpx"></view>
         <view class="content_images">
             <image src="{{obj.url1}}"></image>

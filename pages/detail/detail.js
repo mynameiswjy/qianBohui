@@ -17,17 +17,19 @@ Page({
     IsShare: '',
     optionData: '',
     isLike: false,
-    moneyLike: 0
+    moneyLike: 0,
+    iphoneX: app.globalData.iphoneX,
+    btuBottom: ''
   },
   onLoad: function (options) {
-    wx.getSystemInfo({
-      success(res) {
-        console.log(res);
-      }
-    })
     this.setData({
       options: options
     });
+    if (this.data.iphoneX) {
+      this.setData({
+        btuBottom:"122rpx",
+      })
+    }
     if (!app.globalData.header.Token) {
       wx.showModal({
         title: '温馨提示',
@@ -76,10 +78,10 @@ Page({
           isLike: res.data.returnData.isLike,
           moneyLike: res.data.returnData.moneyLike,
         })
-      } else if (res.data.returnCode === '30000') {
+      } else if (res.data.returnCode === '3000') {
         wx.showModal({
           title: '温馨提示',
-          content: '请先登录',
+          content: '登录过期',
           showCancel: false,
           success(res) {
             wx.reLaunch({

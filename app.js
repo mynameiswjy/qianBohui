@@ -2,10 +2,19 @@ App({
   globalData: {
     appid: 'wx5060b4dcb8908abc',
     header: {},
+    iphoneX: false,
     userData: { HasLogin: false, HasWxLogin: false }
   },
   onLaunch() {
     let that = this
+    wx.getSystemInfo({
+      success(res) {
+        console.log(res);
+        if (res.model == "iPhone X") {
+          that.globalData.iphoneX = true
+        }
+      }
+    })
     let header = wx.getStorageSync('header')
     let userData = wx.getStorageSync('userData')
     if (header) {

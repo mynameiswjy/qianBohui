@@ -42,10 +42,16 @@ Page({
   search() {
     searchName({searchName: this.data.value, searchType: 'WX_APP_HOME'}).then(res => {
       console.log(res);
-      if (res.data.returnCode === '0000') {
+      if (res.data.returnCode === '0000' && res.data.returnData) {
         this.setData({
           list: res.data.returnData,
           isHide: false
+        })
+      } else {
+        wx.showToast({
+          title: '搜索内容不存在',
+          icon: 'none',
+          duration: 1500
         })
       }
     })
