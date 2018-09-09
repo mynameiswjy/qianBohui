@@ -19,7 +19,7 @@ export default {
       default: true
     },
     data: {
-      type: [Array, String],
+      type: [Array, String, Object],
       default: null
     }
   },
@@ -29,10 +29,15 @@ export default {
       currentPageIndex: 0
     }
   },
+  created() {
+  },
   mounted() {
     setTimeout(() => {
       this._initScroll()
     }, 20)
+  },
+  destroyed() {
+    this.$refs.wrapper && this.$refs.wrapper.destroy()
   },
   methods: {
     _initScroll() {

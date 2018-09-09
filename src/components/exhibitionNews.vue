@@ -10,7 +10,7 @@
       <ul class="exhibition-news">
         <li v-for="(item, index) in expositionNews" @click="goToDetail(item.code)" v-bind:key="index">{{item.title}}</li>
       </ul>
-      <img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">
+      <!--<img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">-->
     </div>
 </template>
 

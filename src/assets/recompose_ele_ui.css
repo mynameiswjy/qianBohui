@@ -1,6 +1,7 @@
 .el-message {
   min-width: 230px;
   text-align: center;
+  justify-content: center;
   top: 50%;
 }
 .el-message--warning{

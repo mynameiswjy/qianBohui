@@ -33,7 +33,8 @@ export function successiveExhibitors(data = {}) {
 export function getAntistop(data = {}) {
   return service({
     url: '/search/getAntistop.do',
-    method: 'get'
+    method: 'get',
+    params: data
   })
 }
 

@@ -15,8 +15,8 @@
           <div @click="prevClick" class="prev">
             <span class="iconfont icon-fanhui" :class="{span_icon_houtui: pageIndex > 1}"></span>
           </div>
-          <div v-show="!prevHide" @click="nextClick" class="next" :class="{span_icon_qianjin: pageCount <= pageIndex}">
-            <span class="iconfont icon-gengduo"></span>
+          <div v-show="!prevHide" @click="nextClick" class="next">
+            <span class="iconfont icon-gengduo" :class="{span_icon_qianjin: pageCount == pageIndex}"></span>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
         </ul>
         <div class="btns">
           <div class="prev" @click="prevZSJS">
-            <span class="iconfont icon-fanhui"  :class="{span_icon_houtui: pageIndexZSJS > 1}"></span>
+            <span class="iconfont icon-fanhui" :class="{span_icon_houtui: pageIndexZSJS > 1}"></span>
           </div>
           <div class="next" @click="nextZSJS">
             <span class="iconfont icon-gengduo" :class="{span_icon_qianjin:pageIndexZSJS >= pageCountZSJS}"></span>
@@ -104,8 +104,8 @@ export default {
         pageSize: 5
       }
       getNewsCategory(data).then(res => {
-        console.log('222', res.data)
         if (res.data.returnCode === '0000') {
+          this.pageCountZSJS = res.data.returnData.pageNum
           this.listZSJS = res.data.returnData.successiveExhibitors
         }
       })
@@ -119,7 +119,7 @@ export default {
       getNewsCategory(data).then(res => {
         if (res.data.returnCode === '0000') {
           let data = res.data.returnData
-          this.pageCount = data.pageCount
+          this.pageCount = data.pageNum
           this.listZHXW = data.successiveExhibitors
         }
       })
@@ -138,8 +138,6 @@ export default {
     },
     nextClick() {
       ++this.pageIndex
-      console.log('pageCount', this.pageCount)
-      console.log('pageIndex', this.pageIndex)
       if(this.pageIndex > this.pageCount) {
         this.pageIndex = this.pageCount
         return false
@@ -160,6 +158,10 @@ export default {
     },
     nextZSJS() {
       ++this.pageIndexZSJS
+      if(this.pageIndexZSJS > this.pageCountZSJS) {
+        this.pageIndexZSJS = this.pageCountZSJS
+        return false
+      }
       this.initDataZSJS()
     }
   },
@@ -235,7 +237,7 @@ export default {
             color #C6A056
             right 0
           .span_icon_qianjin
-            color #AAA9A8
+            color #AAA9A8!important
     .news_title_nav
       display flex
       font-size: 0.34rem

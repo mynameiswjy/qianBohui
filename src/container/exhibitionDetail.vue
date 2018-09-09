@@ -10,7 +10,7 @@
               <div class="details_select">
                 <h2 class="details_h2">历届展会</h2>
                 <select v-model="selectVal" @change="timeChange">
-                  <option value="">请选择</option>
+                  <option value="first">请选择</option>
                   <option v-for="item in timeList" :label="item.name" :key="item.sore" :value="item.code">{{item.name}}</option>
                 </select>
               </div>
@@ -26,12 +26,12 @@
             </ul>
             <div class="btns">
               <div class="prev" @click="prevNews">
-                <div class="prev-txt">上一页</div>
+                <div class="prev-txt" :class="{span_icon_houtui:pageIndexNews > 1}">上一页</div>
                 <span class="iconfont icon-fanhui" :class="{span_icon_houtui:pageIndexNews > 1}"></span>
               </div>
               <div class="next" @click="nextNews">
                 <span class="iconfont icon-gengduo" :class="{span_icon_qianjin:pageIndexNews >= pageCountNews}"></span>
-                <div class="next-txt">下一页</div>
+                <div class="next-txt" :class="{span_icon_qianjin:pageIndexNews >= pageCountNews}">下一页</div>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ export default {
       list: [],
       pageIndexNews: 1,
       pageCountNews: '',
-      selectVal: '',
+      selectVal: 'first',
       selectType: 'all'
     }
   },
@@ -92,6 +92,7 @@ export default {
       successiveExhibitors(data).then(res => {
         if (res.data.returnCode === '0000') {
           this.timeList = res.data.returnData.selelctYears
+          this.pageCountNews = res.data.returnData.pageNum
           this.list = res.data.returnData.successiveExhibitors
         }
       })
@@ -110,6 +111,10 @@ export default {
     },
     nextNews() {
       ++this.pageIndexNews
+      if(this.pageIndexNews > this.pageCountNews) {
+        this.pageIndexNews = this.pageCountNews
+        return false
+      }
       this.initNewsList()
     }
   },
@@ -220,7 +225,7 @@ select::-ms-expand { display: none; }
         display flex
         justify-content flex-start
         .prev-txt
-          color #C8A258
+          color #AAA9A8
           margin-right 0.34rem
         .icon-fanhui
           font-size 0.23rem
@@ -235,7 +240,7 @@ select::-ms-expand { display: none; }
         justify-content flex-end
         .next-txt
           margin-left 0.34rem
-          color #AAA9A8
+          color #C6A056
         .icon-gengduo
           font-size 0.23rem
           color #C6A056
