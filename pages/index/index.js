@@ -39,6 +39,7 @@ Page({
       return
     }
     index(data).then(res => {
+      console.log('res=====w我是首页的数据', res);
       if (res.data.returnCode === '0000') {
         let data = res.data.returnData
         let hotList = data.selectItem.map(item => {
@@ -50,6 +51,11 @@ Page({
             isLoading: false
           })
           return
+        }
+        if (data.pageNum == 1) {
+          this.setData({
+            isLoading: false
+          })
         }
         let MemorialMoney = data.pageNum > 1 ? this.data.MemorialMoney.concat(data.MemorialMoney) : data.MemorialMoney
         this.data.pageNum = data.pageNum
@@ -80,6 +86,7 @@ Page({
     if (this.data.parentType != data[index].code) {
       this.data.MemorialMoney = []
       this.data.parentType = data[index].code
+      this.data.seedtType = ''
       this.data.pageIndex = 1
       this.initList()
     }
