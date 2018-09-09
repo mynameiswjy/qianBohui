@@ -10,7 +10,7 @@
               <div class="details_select">
                 <h2 class="details_h2">历届展会</h2>
                 <select v-model="selectVal" @change="timeChange">
-                  <option value="first">请选择</option>
+                  <option value="all">请选择</option>
                   <option v-for="item in timeList" :label="item.name" :key="item.sore" :value="item.code">{{item.name}}</option>
                 </select>
               </div>
@@ -57,7 +57,7 @@ export default {
       list: [],
       pageIndexNews: 1,
       pageCountNews: '',
-      selectVal: 'first',
+      selectVal: 'all',
       selectType: 'all'
     }
   },
