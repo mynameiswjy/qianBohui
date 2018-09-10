@@ -48,11 +48,8 @@ Page({
   onPullDownRefresh: function () {
   
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  // 加载更多
+  loadMore() {
     this.data.pageIndex++
     if (this.data.pageNum < this.data.pageIndex) {
       this.setData({
@@ -61,5 +58,18 @@ Page({
       return
     }
     this.initData()
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    /*this.data.pageIndex++
+    if (this.data.pageNum < this.data.pageIndex) {
+      this.setData({
+        isLoading: false
+      })
+      return
+    }
+    this.initData()*/
   },
 })

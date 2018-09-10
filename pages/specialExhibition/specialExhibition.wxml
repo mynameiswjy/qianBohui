@@ -9,11 +9,13 @@
         </view>
     </view>
     <block>
+        <view class="is-end" wx:if="{{isLoading}}" bindtap="loadMore">加载更多</view>
+    </block>
+    <!--<block>
         <view class="is-end" wx:if="{{!isLoading}}">已经到底啦</view>
         <view class="weui-loadmore" wx:if="{{isLoading}}">
             <view class="weui-loading"></view>
             <view class="weui-loadmore_tips">正在加载</view>
         </view>
-    </block>
-    <!--<view class="look-more" wx:if="{{pageIndex == 1}}">查看更多</view>-->
+    </block>-->
 </view>
