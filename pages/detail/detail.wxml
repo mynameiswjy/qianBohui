@@ -7,9 +7,9 @@
         <view class="tab_wrap">
             <view class="tab_tr">
                 <view class="tab_td1">钱币名称</view>
-                <view class="tab_td2">{{obj.tiele}}</view>
-                <view class="tab_td3">年份</view>
-                <view class="tab_td4">{{obj.moneyYear}}</view>
+                <view class="tab_td6">{{obj.tiele}}</view>
+                <!--<view class="tab_td3">年份</view>
+                <view class="tab_td4">{{obj.moneyYear}}</view>-->
             </view>
             <view class="tab_tr">
                 <view class="tab_td1">编号</view>
@@ -25,7 +25,7 @@
             </view>
             <view class="tab_tr">
                 <view class="tab_td1">材质</view>
-                <view class="tab_td2">{{obj.moneyTexture}}</view>
+                <view class="tab_td2 {{obj.moneyTexture.length>4?'sb':''}}">{{obj.moneyTexture}}</view>
                 <view class="tab_td3">重量</view>
                 <view class="tab_td4">{{obj.moneyWeight}}</view>
             </view>
@@ -35,14 +35,24 @@
                 <view class="tab_td3">系列</view>
                 <view class="tab_td4">{{obj.moneySelectItem}}</view>
             </view>
-            <view class="tab_tr">
-                <view class="tab_td1 bottom">发行列(枚)</view>
-                <view class="tab_td2 bottom">{{obj.moneySelectItem}}</view>
+            <!--<view class="tab_tr">
+                <view class="tab_td1 bottom">发行量(枚)</view>
+                <view class="tab_td2 bottom">{{obj.moneyCirculation}}</view>
                 <view class="tab_td3 bottom">铸造单位</view>
-                <view class="tab_td4 bottom">{{obj.moneyCompany}}</view>
+                <view class="tab_td4 bottom {{obj.moneyCompany.length>6?'sb':''}}">{{obj.moneyCompany}}</view>
+            </view>-->
+            <view class="tab_tr">
+                <view class="tab_td1 bottom">发行量(枚)</view>
+                <view class="tab_td2 bottom">{{obj.moneyCirculation}}</view>
+                <view class="tab_td3 bottom">年份</view>
+                <view class="tab_td4 bottom">{{obj.moneyYear}}</view>
+            </view>
+            <view class="tab_tr">
+                <view class="tab_td1 bottom">铸造单位</view>
+                <view class="tab_td5 bottom">{{obj.moneyCompany}}</view>
             </view>
         </view>
-        <view class="captions" wx:if="{{options.IsShare == 1}}">
+        <view class="captions"><!-- wx:if="{{options.IsShare == 1}}"-->
             <text style="color: #C6A056;">介绍: </text>{{obj.moneyIntroduce}}
         </view>
         <view class="footer">

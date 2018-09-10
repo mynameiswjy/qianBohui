@@ -8,7 +8,7 @@
             </picker>
             <image wx:if="{{!indexHot}}" class="section_hot_img" src="../../images/pageImg/select.png"></image>
         </view>
-        <view class="section_hot select-left" wx:if="{{valHotToList.length}}">
+        <view class="section_hot select-left">
             <picker class="" bindchange="hotSelectTo" range="{{valHotToList}}">
                 <view class="picker" wx:if="{{valHotTo}}">
                     {{valHotTo}}
@@ -19,7 +19,7 @@
             </picker>
             <image wx:if="{{!valHotTo}}" class="section_hot_img" src="../../images/pageImg/select.png"></image>
         </view>
-        <view wx:if="{{!valHotToList.length}}" style="width: 350rpx"></view>
+        <!--<view wx:if="{{!valHotToList.length}}" style="width: 350rpx"></view>-->
         <view class="select-search-wrap" bindtap="goSearch">
             <image class="select-search" src="../../images/pageImg/search.png"></image>
         </view>
@@ -30,18 +30,23 @@
         </swiper-item>
     </swiper>
     <image wx:if="{{true}}" bindtap="goToDetail" class="advertising"src="http://pic.qiantucdn.com/58pic/18/99/87/45w58PICJ6k_1024.jpg!qtwebp324"></image>
-    <view class="list" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+    <view class="list" wx:if="{{MemorialMoney.length}}" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
         <image src="{{item.url1}}"></image>
         <view class="list-right">
             <view class="list-right-top">{{item.tiele}}</view>
             <view class="list-right-bottom">{{item.strTime}}</view>
         </view>
     </view>
+    <view wx:if="{{!MemorialMoney.length}}" class="empty">还没有相关内容</view>
     <block>
-        <view class="is-end" wx:if="{{!isLoading}}">已经到底啦</view>
+        <view class="is-end" wx:if="{{isLoading}}" bindtap="loadMore">加载更多</view>
+        <!--<view class="is-end" wx:if="{{!isLoading}}" bindtap="loadMore">已经到底啦</view>-->
+    </block>
+    <!--<block>
+        <view class="is-end" wx:if="{{!isLoading}}" bindtap="loadMore">已经到底啦</view>
         <view class="weui-loadmore" wx:if="{{isLoading}}">
             <view class="weui-loading"></view>
             <view class="weui-loadmore_tips">正在加载</view>
         </view>
-    </block>
+    </block>-->
 </block>

@@ -18,7 +18,8 @@ Page({
     pageIndex: 1,
     pageNum: '',
     isSend: true,
-    isLoading: true
+    isLoading: true,
+    selectType: 'first'
   },
   onLoad: function (options) {
     this.initList()
@@ -39,7 +40,7 @@ Page({
       return
     }
     index(data).then(res => {
-      console.log('res=====w我是首页的数据', res);
+      console.log('res=====我是首页的数据', res);
       if (res.data.returnCode === '0000') {
         let data = res.data.returnData
         let hotList = data.selectItem.map(item => {
@@ -55,6 +56,10 @@ Page({
         if (data.pageNum == 1) {
           this.setData({
             isLoading: false
+          })
+        } else if (data.pageNum > data.pageIndex) {
+          this.setData({
+            isLoading: true
           })
         }
         let MemorialMoney = data.pageNum > 1 ? this.data.MemorialMoney.concat(data.MemorialMoney) : data.MemorialMoney
@@ -124,11 +129,8 @@ Page({
   onPullDownRefresh: function () {
 
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  // 加载更多
+  loadMore() {
     this.data.pageIndex++
     let MemorialMoney = this.data.MemorialMoney
     if (this.data.pageNum < this.data.pageIndex || MemorialMoney.length < 9) {
@@ -138,5 +140,12 @@ Page({
       return
     }
     this.initList()
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
   },
 })
