@@ -19,7 +19,8 @@ Page({
     isLike: false,
     moneyLike: 0,
     iphoneX: app.globalData.iphoneX,
-    btuBottom: ''
+    btuBottom: '',
+    isShowImg: false
   },
   onLoad: function (options) {
     let opt = this.parseUrlParam(options)
@@ -64,12 +65,12 @@ Page({
   onShow: function () {
   },
   onReady() {
-    const data = successiveExhibitors({moneyCode: this.data.options.moneyCode,token: app.globalData.header.Token})
+    /*const data = successiveExhibitors({moneyCode: this.data.options.moneyCode,token: app.globalData.header.Token})
     Promise.all([data]).then(path => {
       if (path[0].data.returnData != null) {
         this.initCanvas(path[0].data.returnData)
       }
-    })
+    })*/
   },
   // 数据初始化
   init(options) {
@@ -258,56 +259,47 @@ Page({
     })
 
   },
+  // 关闭生成的图片
+  closeImg() {
+    this.setData({
+      isShowImg: false,
+      tempFilePath: ''
+    })
+  },
   // 保存图片 qbh/coin/getStoreRCs.do
   btnClick() {
     let that = this
     wx.showLoading({
       mask: true,
-      title: '加载中',
+      title: '图片保存中...',
     })
-    /*if (!that.data.tempFilePath) {
-      wx.showModal({
-        title: '温馨提示',
-        content: '海报还在生成中...',
-        showCancel: false
-      })
-      return
-    }*/
-    let timer = setInterval(() => {
-      console.log('定时器还在执行呢')
-      if (!that.data.tempFilePath) {
-        return
-      } else {
-        clearInterval(timer)
-        wx.getImageInfo({
-          src: that.data.tempFilePath,
-          success: function (res) {
-            wx.saveImageToPhotosAlbum({
-              filePath: res.path,
-              success(res) {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '保存成功',
-                  icon: 'success',
-                  duration: 1000
-                })
-                that.recordUserClick('moments')
-              },
-              fail() {
-                wx.showToast({
-                  title: '保存失败',
-                  icon: 'none',
-                  duration: 1000
-                })
-              }
+    wx.getImageInfo({
+      src: that.data.tempFilePath,
+      success: function (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success(res) {
+            wx.hideLoading()
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 1000
             })
+            that.recordUserClick('moments')
           },
-          fail(err) {
-            console.log(err);
+          fail() {
+            wx.showToast({
+              title: '保存失败',
+              icon: 'none',
+              duration: 1000
+            })
           }
         })
+      },
+      fail(err) {
+        console.log(err);
       }
-    }, 500)
+    })
   },
   drawCanvas(options) {
     const ctx = wx.createCanvasContext('canvasShare', this)
@@ -415,6 +407,16 @@ Page({
       that.saveCanvasImg(width, height)
     })
   },
+  shareFriend() {
+    wx.showLoading({
+      mask: true,
+      title: '加载中',
+    })
+    this.initCanvas(this.data.obj)
+    this.setData({
+      isShowImg: true
+    })
+  },
   saveCanvasImg(width, height) {
     let that = this
     setTimeout(() => {
@@ -424,11 +426,18 @@ Page({
         canvasId: 'canvasShare',
         quality: 1,
         success(res) {
+          wx.hideLoading()
           that.setData({
             tempFilePath: res.tempFilePath
           })
         },
         fail(err) {
+          wx.hideLoading()
+          wx.showToast({
+            title: '生成图片失败',
+            icon: 'none',
+            duration: 1000
+          })
           console.log('err', err)
           console.log('生成图片失败')
         },
@@ -510,6 +519,8 @@ Page({
     ctx.closePath()
     // 剪切
     ctx.clip()
+  },
+  test() {
   },
   goHome() {
     wx.switchTab({
