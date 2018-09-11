@@ -65,6 +65,32 @@ Page({
       }
     })
   },
+  // 小程序二维码参数解析
+  parseUrlParam: function (opts) {
+    if (options.scene) {
+      const scene = decodeURIComponent(options.scene).split(',')
+      let params = {}
+      let key = [
+        "circleId",
+        "type",
+        "IsShare",
+        "SubjectParentId",
+        "SubjectLevel",
+        "SubjectId",
+        "UserAreaId",
+        "InstitutionAreaId",
+        "isCode"
+      ]
+
+      for (let i = 0; i < scene.length; i++) {
+        params[key[i]] = scene[i]
+      }
+      params.SubjectParentName = getSubjectParentName.getSubParentName(params.SubjectParentId, params.SubjectLevel)
+
+      return params
+    }
+    return null
+  },
   // 数据初始化
   init(options) {
     let data = {
