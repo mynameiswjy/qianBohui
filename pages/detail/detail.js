@@ -22,7 +22,9 @@ Page({
     btuBottom: ''
   },
   onLoad: function (options) {
-    this.setData({
+    let opt = this.parseUrlParam(options)
+		console.log(opt);
+		this.setData({
       options: options
     });
     if (this.data.iphoneX) {
@@ -43,7 +45,12 @@ Page({
       })
       return
     }
-    this.init(options)
+		if (opt) {
+      debugger
+			this.init(opt)
+		} else {
+			this.init(options)
+    }
     this.getMinappCodeImage()
     /*if (options.isSendTo == 'like') { // like 为点赞
       this.clickGood()
@@ -52,7 +59,6 @@ Page({
     } else if (options.isSendTo == 'transpond') {// 转发
 
     }*/
-    console.log(app.globalData.header.Token)
   },
 
   onShow: function () {
@@ -64,32 +70,6 @@ Page({
         this.initCanvas(path[0].data.returnData)
       }
     })
-  },
-  // 小程序二维码参数解析
-  parseUrlParam: function (opts) {
-    if (options.scene) {
-      const scene = decodeURIComponent(options.scene).split(',')
-      let params = {}
-      let key = [
-        "circleId",
-        "type",
-        "IsShare",
-        "SubjectParentId",
-        "SubjectLevel",
-        "SubjectId",
-        "UserAreaId",
-        "InstitutionAreaId",
-        "isCode"
-      ]
-
-      for (let i = 0; i < scene.length; i++) {
-        params[key[i]] = scene[i]
-      }
-      params.SubjectParentName = getSubjectParentName.getSubParentName(params.SubjectParentId, params.SubjectLevel)
-
-      return params
-    }
-    return null
   },
   // 数据初始化
   init(options) {
@@ -177,6 +157,24 @@ Page({
     url = `${url}?scene=${scene}&page=${page}`
     return url
   },
+	parseUrlParam: function (options) {
+		if (options.scene) {
+			const scene = decodeURIComponent(options.scene).split(',')
+			let params = {}
+			let key = [
+				"moneyCode",
+				"IsShare",
+				"isCode"
+			]
+
+			for (let i = 0; i < scene.length; i++) {
+				params[key[i]] = scene[i]
+			}
+
+			return params
+		}
+		return null
+	},
   createUrlParam: function () {
     let params = ''
     let options = {
