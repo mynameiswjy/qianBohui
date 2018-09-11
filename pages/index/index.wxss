@@ -133,3 +133,8 @@ page {
     color: #9a9a9a;
     line-height: 40px;
 }
+.empty {
+    font-size: 30rpx;
+    text-align: center;
+    margin-top: 150rpx;
+}

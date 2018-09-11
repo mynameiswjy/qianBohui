@@ -111,7 +111,7 @@ Page({
           showCancel: false,
           success(res) {
             wx.reLaunch({
-              url: "/pages/mine/mine?openMask=true&isLoginSelectMask=true&openMask=true&isSendTo=like"
+              url: "/pages/mine/mine?openMask=true&isLoginSelectMask=true&openMask=true&isSendTo=like&moneyCode=" + options.moneyCode
             })
           }
         })
@@ -263,45 +263,53 @@ Page({
   // 保存图片 qbh/coin/getStoreRCs.do
   btnClick() {
     let that = this
-    if (!that.data.tempFilePath) {
+    wx.showLoading({
+      mask: true,
+      title: '加载中',
+    })
+    /*if (!that.data.tempFilePath) {
       wx.showModal({
         title: '温馨提示',
         content: '海报还在生成中...',
         showCancel: false
       })
       return
-    }
-    wx.showLoading({
-      mask: true,
-      title: '加载中',
-    })
-    wx.getImageInfo({
-      src: that.data.tempFilePath,
-      success: function (res) {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.path,
-          success(res) {
-            wx.hideLoading()
-            wx.showToast({
-              title: '保存成功',
-              icon: 'success',
-              duration: 1000
+    }*/
+    let timer = setInterval(() => {
+      console.log('定时器还在执行呢')
+      if (!that.data.tempFilePath) {
+        return
+      } else {
+        clearInterval(timer)
+        wx.getImageInfo({
+          src: that.data.tempFilePath,
+          success: function (res) {
+            wx.saveImageToPhotosAlbum({
+              filePath: res.path,
+              success(res) {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '保存成功',
+                  icon: 'success',
+                  duration: 1000
+                })
+                that.recordUserClick('moments')
+              },
+              fail() {
+                wx.showToast({
+                  title: '保存失败',
+                  icon: 'none',
+                  duration: 1000
+                })
+              }
             })
-            that.recordUserClick('moments')
           },
-          fail() {
-            wx.showToast({
-              title: '保存失败',
-              icon: 'none',
-              duration: 1000
-            })
+          fail(err) {
+            console.log(err);
           }
         })
-      },
-      fail(err) {
-        console.log(err);
       }
-    })
+    }, 500)
   },
   drawCanvas(options) {
     const ctx = wx.createCanvasContext('canvasShare', this)
