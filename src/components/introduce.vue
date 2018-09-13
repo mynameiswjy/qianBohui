@@ -12,13 +12,13 @@
         </div>
       </div>
       <div class="header_intro" :class="{height_hide: !introduceObj.content}">
-        <div  class="header-text" :class="{show: false}" ref="contentTxt">
+        <div  class="header-text" :class="{show: true}" ref="contentTxt">
           {{introduceObj.content}}
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
           <loading></loading>
         </div>
-        <div v-if="openStyle" v-show="showBtns" class="a_full" @click="showBts">{{showText}}</div>
+        <div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>
       </div>
     </div>
 </template>
@@ -44,22 +44,20 @@ export default {
     openStyle: {
       type: Boolean,
       default: false
-    },
-    showBtns: {
-      type: Boolean,
-      default: true
     }
   },
   data() {
     return {
       obj: {},
       show: true,
-      showText: "显示全文"
+      showText: "显示全文",
+      showContent: false
     }
   },
   created() {
   },
   mounted() {
+    this.ShowContent()
   },
   methods: {
     showBts() {
@@ -70,7 +68,19 @@ export default {
         this.show = true
         this.showText = "显示全文"
       }
+    },
+    ShowContent() {
+      setTimeout(() => {
+        console.log(this.$refs.contentTxt.offsetHeight)
+        if (this.$refs.contentTxt.offsetHeight >= 166) {
+          this.showContent = true
+        } else {
+          this.showContent = false
+        }
+      }, 200)
     }
+  },
+  computed: {
   },
   components: {
     Loading
