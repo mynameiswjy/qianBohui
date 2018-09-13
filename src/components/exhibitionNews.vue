@@ -94,5 +94,8 @@ export default {
     font-family: PingFangSC-Regular;
     color: #717170;
     background:rgba(198,160,86, 0.08);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 </style>
