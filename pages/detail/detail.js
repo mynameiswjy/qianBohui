@@ -130,15 +130,17 @@ Page({
     console.log(this.getMinappCodeImage())
     const fontImg = this.promisify(options.shareUrl)
     const moneyImg = this.promisify(options.url1)
+    const bgImg = this.promisify('https://www.chqbh.com/imgFile/20180913113023.png')
     const minappCode = this.promisify(this.getMinappCodeImage())
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)
-    Promise.all([fontImg, moneyImg, minappCode]).then(res => {
+    Promise.all([fontImg, moneyImg, minappCode, bgImg]).then(res => {
       console.log(res);
       if (res.length > 0) {
         let options = {
           fontImg: res[0].path,
           moneyImg: res[1].path,
-          minCodeAdd: res[2].path
+          minCodeAdd: res[2].path,
+          bgImg: res[3].path
         }
         /*that.setData({
           options: options
@@ -306,21 +308,22 @@ Page({
     const that = this
     let width = this.data.SystemInfo.windowWidth
     let height = this.data.SystemInfo.windowHeight
-    // 名称背景
+
+   /* // 名称背景
     ctx.save()
     ctx.beginPath()
     ctx.rect(0, 0, width, height)
     ctx.setFillStyle('#FFFFFF')
     ctx.fill()
-    ctx.restore()
+    ctx.restore()*/
 
     // 绘制背景
-    ctx.save()
+    ctx.beginPath()
     ctx.drawImage('./bg.png', 0, 0, width, this.scale(659/2))
     ctx.restore()
 
     // 绘制名字
-    ctx.beginPath()
+    // ctx.beginPath()
     ctx.font = 'normal normal 17px PingFang SC,Microsoft Yahei,Untitled'
     ctx.setTextBaseline('bottom')
     ctx.setFillStyle('#040000')
@@ -328,11 +331,11 @@ Page({
     this.scale(38/2, true)
     ctx.setFontSize(this.scale(36/2, true))
     ctx.fillText(app.globalData.userData.NickName, this.scale(624/2), this.data.drawY)// this.data.NickName
-    ctx.closePath()
+    // ctx.closePath()
 
     // 短线
     ctx.save()
-    ctx.beginPath()
+    // ctx.beginPath()
     ctx.setStrokeStyle('#232323')
     this.scale(21/2,true)
     ctx.setLineWidth(this.scale(4/2,true), true)
@@ -358,14 +361,14 @@ Page({
     ctx.restore()
 
     // title
-    ctx.beginPath()
+    // ctx.beginPath()
     ctx.setTextBaseline('bottom')
     ctx.setFillStyle('#212024')
     ctx.setTextAlign('center')
     this.scale(57/2, true)
     ctx.setFontSize(this.scale(28/2, true))
     ctx.fillText('中国金币云展室', width/2, this.data.drawY)
-    ctx.closePath()
+    // ctx.closePath()
 
     // title right线
     ctx.save()
