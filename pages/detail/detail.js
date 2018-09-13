@@ -313,6 +313,7 @@ Page({
     ctx.setFillStyle('#FFFFFF')
     ctx.fill()
     ctx.restore()
+
     // 绘制背景
     ctx.save()
     ctx.drawImage('./bg.png', 0, 0, width, this.scale(659/2))
@@ -410,7 +411,7 @@ Page({
   shareFriend() {
     wx.showLoading({
       mask: true,
-      title: '加载中',
+      title: '海报正在生成中',
     })
     this.initCanvas(this.data.obj)
     this.setData({
