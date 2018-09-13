@@ -130,17 +130,16 @@ Page({
     console.log(this.getMinappCodeImage())
     const fontImg = this.promisify(options.shareUrl)
     const moneyImg = this.promisify(options.url1)
-    const bgImg = this.promisify('https://www.chqbh.com/imgFile/20180913113023.png')
+    // const bgImg = this.promisify('https://www.chqbh.com/imgFile/20180913113023.png')
     const minappCode = this.promisify(this.getMinappCodeImage())
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)
-    Promise.all([fontImg, moneyImg, minappCode, bgImg]).then(res => {
+    Promise.all([fontImg, moneyImg, minappCode]).then(res => {
       console.log(res);
       if (res.length > 0) {
         let options = {
           fontImg: res[0].path,
           moneyImg: res[1].path,
-          minCodeAdd: res[2].path,
-          bgImg: res[3].path
+          minCodeAdd: res[2].path
         }
         /*that.setData({
           options: options
@@ -264,8 +263,7 @@ Page({
   // 关闭生成的图片
   closeImg() {
     this.setData({
-      isShowImg: false,
-      tempFilePath: ''
+      isShowImg: false
     })
   },
   // 保存图片 qbh/coin/getStoreRCs.do
@@ -309,13 +307,13 @@ Page({
     let width = this.data.SystemInfo.windowWidth
     let height = this.data.SystemInfo.windowHeight
 
-   /* // 名称背景
+    // 名称背景
     ctx.save()
     ctx.beginPath()
     ctx.rect(0, 0, width, height)
     ctx.setFillStyle('#FFFFFF')
     ctx.fill()
-    ctx.restore()*/
+    ctx.restore()
 
     // 绘制背景
     ctx.beginPath()
@@ -411,12 +409,20 @@ Page({
       that.saveCanvasImg(width, height)
     })
   },
+  // 点击生成图片
   shareFriend() {
     wx.showLoading({
       mask: true,
       title: '海报正在生成中',
     })
-    this.initCanvas(this.data.obj)
+    if (this.data.tempFilePath) {
+      wx.hideLoading()
+      this.setData({
+        tempFilePath: this.data.tempFilePath
+      })
+    } else {
+      this.initCanvas(this.data.obj)
+    }
     this.setData({
       isShowImg: true
     })
