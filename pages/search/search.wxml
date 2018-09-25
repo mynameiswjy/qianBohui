@@ -2,7 +2,7 @@
     <view class="search-content">
         <view class="search-input">
             <image src="../../images/pageImg/search.png"></image>
-            <input value="{{value}}" placeholder="搜索" bindinput="inputTyping" bindconfirm="search" type="text"/>
+            <input value="{{value}}" placeholder="改革开发40年、熊猫币" bindinput="inputTyping" bindconfirm="search" type="text"/>
         </view>
         <view class="gohome" bindtap="goBack">取消</view>
     </view>

@@ -31,6 +31,7 @@ Page({
     if (this.data.iphoneX) {
       this.setData({
         btuBottom:"122rpx",
+        iphoneX: app.globalData.iphoneX
       })
     }
     if (!app.globalData.header.Token) {
@@ -351,7 +352,7 @@ Page({
 
     // 钱币图
     ctx.save()
-    this.scale(51/2, true)//0px 0px 21px rgba(198,160,86,1)
+    this.scale(51/2, true)
     this.roundRect(ctx, this.scale(137/2), this.data.drawY,  this.scale(475/2), this.scale(255/2), this.scale(20/2))
     ctx.drawImage(options.moneyImg, this.scale(137/2), this.data.drawY, this.scale(475/2), this.scale(255/2))
     this.scale(255/2, true)
@@ -409,6 +410,15 @@ Page({
       that.saveCanvasImg(width, height)
     })
   },
+  // 预览图片
+  lookImg() {
+    wx.previewImage({
+      urls: [this.data.tempFilePath],
+      success(res) {
+        console.log(res);
+      }
+    })
+  },
   // 点击生成图片
   shareFriend() {
     wx.showLoading({
@@ -459,7 +469,6 @@ Page({
   /**
    * 用户点击右上角分享
    */
-
   onShareAppMessage: function () {
     var that = this;
     var path = "/pages/detail/detail"
@@ -492,7 +501,7 @@ Page({
     // 开始绘制
     ctx.beginPath()
     ctx.setStrokeStyle('#fff')
-    ctx.setShadow(0, 0, 21, 'rgba(0,0,0, 0.15)')
+    ctx.setShadow(0, 0, 15, 'rgba(0,0,0, 0.2)')
     // 因为边缘描边存在锯齿，最好指定使用 transparent 填充
     // 这里是使用 fill 还是 stroke都可以，二选一即可
     ctx.setFillStyle('transparent')

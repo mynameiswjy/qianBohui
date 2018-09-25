@@ -192,12 +192,20 @@ page {
     background-color: #fff;
 }
 .showImg .icon-guanbi {
+    width: 50rpx;
+    height: 50rpx;
+    padding: 10rpx 10rpx 0 0;
     position: absolute;
-    top: 30rpx;
+    top: 5rpx;
     font-weight: 900;
-    right: 30rpx;
+    right: 8rpx;
+    text-align: right;
     font-size: 30rpx;
     color: #333;
+}
+.showImg .icon-guanbi_x {
+    top: 50rpx;
+    right: 40rpx;
 }
 .showImg_wrap {
     display: flex;
@@ -206,13 +214,19 @@ page {
     height: 80%;
     margin-top: 50rpx;
 }
+.showImg_img1 {
+    width: 85%;
+    height: 100%;
+    border-radius: 15rpx;
+}
+
 .showImg_img {
-    width: 80%;
+    width: 90%;
     height: 100%;
     border-radius: 15rpx;
 }
 .showImg_save {
-    width: 80%;
+    width: 85%;
     height: 80rpx;
     line-height: 80rpx;
     text-align: center;
@@ -221,4 +235,7 @@ page {
     margin: 40rpx auto 0;
     background-color: #C6A056;
     border-radius: 10rpx;
+}
+.showImg_save1 {
+    width: 90%;
 }

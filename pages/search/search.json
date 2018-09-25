@@ -1,7 +1,5 @@
 {
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
-  "window": {
-    "navigationStyle":"custom"
-  }
+  "navigationBarTitleText": "中国金币云展室"
 }
