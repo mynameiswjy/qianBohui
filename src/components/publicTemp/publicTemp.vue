@@ -12,7 +12,7 @@
       </ul>
       <div class="temp_content">
         <ul>
-          <li class="temp_content-li" :class="{show: show}" v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="LiHeight">
+          <li class="temp_content-li" :class="{show_temp: show_temp}" v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="LiHeight">
             {{text.text}}
           </li>
           <div class="a_full" v-if="true" @click="showBts">{{showText}}</div>
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       idx: 0,
-      show: true,
+      show_temp: true,
       showText: "显示全文",
       listHeight: 0,
       showFullText: false
@@ -48,11 +48,11 @@ export default {
       this.idx = e
     },
     showBts() {
-      if (this.show) {
-        this.show = false
+      if (this.show_temp) {
+        this.show_temp = false
         this.showText = "收起全文"
       } else {
-        this.show = true
+        this.show_temp = true
         this.showText = "显示全文"
       }
     }
@@ -62,7 +62,7 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   .temp_wrap
     .header_nav
       display flex
@@ -115,11 +115,12 @@ export default {
         font-family:PingFangSC-Regular;
         color:rgba(72,72,71,1);
         line-height: 0.42rem
-  .show{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 8;//向显示多少行就给多大值
-    -webkit-box-orient: vertical;
-  }
+      .show_temp
+        overflow:hidden;
+        text-overflow:ellipsis;
+        display:-webkit-box;
+        /*! autoprefixer: off */
+        -webkit-box-orient: vertical;
+        /* autoprefixer: on */
+        -webkit-line-clamp:8;
 </style>
