@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="header_intro" :class="{height_hide: !introduceObj.content}">
-        <div  class="header-text" :class="{show: true}" ref="contentTxt">
+        <div  class="header-text" :class="{show: show}" ref="contentTxt">
           {{introduceObj.content}}
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
@@ -37,6 +37,10 @@ export default {
         }
       }
     },
+    show: {
+      type: Boolean,
+      default: true
+    },
     text: {
       type: String,
       default: ''
@@ -49,7 +53,6 @@ export default {
   data() {
     return {
       obj: {},
-      show: true,
       showText: "显示全文",
       showContent: false
     }

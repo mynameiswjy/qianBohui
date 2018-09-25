@@ -22,7 +22,7 @@
                 </div>
                 <div style="position: relative;">
                   <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
-                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" value="opt.name">{{opt.name}}</option>
+                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.name">{{opt.name}}</option>
                   </select>
                   <div v-show="!item[item.code]" class="select-default">请选择</div>
                 </div>
@@ -34,7 +34,7 @@
           </ul>
           <div class="list-upload">
             <div>资料上传</div>
-            <div class="upload">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></div>
+            <a class="upload" href="https://www.baidu.com/ssid=0844c0cff1c481eddf5e562c/from=844b/s?word=%E4%BD%A0%E6%83%B3%E8%A6%81%E6%90%9C%E4%BB%80%E4%B9%88&ts=6667273&t_kt=0&ie=utf-8&fm_kl=021394be2f&rsv_iqid=3412737581&rsv_t=70401nkEEm55acjeiklq7MZqKB39DKmDLeLh6wVZZbjW77QbxQ%252BSrGc%252BwQ&sa=ib&ms=1&rsv_pq=3412737581&rsv_sug4=7969&tj=1&inputT=5115&ss=100"  @click="downloadData">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></a>
           </div>
           <div class="add-img">
             <!--<div class="user-img">
@@ -46,6 +46,7 @@
               :before-upload="beforUpload"
               :limit="8"
               :before-remove="beforRemove"
+              :on-remove="onRemoveImg"
               :on-preview="handlePictureCardPreview"
               :on-success="successImg"
             >
@@ -115,7 +116,23 @@ export default {
         let value = data[key]
         sendList[key] = value
         let isRequired = data.isRequired
-        if (key === 'phoneNum') {
+        // qq号码验证
+        if (key === 'qqCode' && value) {
+          if (!/^[1-9][0-9]{4,14}$/.test(value)) {
+            this.$message.error('请输入正确的QQ号！');
+            return false
+          }
+        }
+        // 邮箱验证
+        if (key === 'emailAddress' && value) {
+          let regEmail = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")
+          if (!regEmail.test(value)) {
+            this.$message.error('请输入正确的邮箱！');
+            return false
+          }
+        }
+        // 手机号验证
+        if (key === 'phoneNum' && value) {
           let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
           if (!myreg.test(value)) {
             this.$message.error('请输入正确的手机号！');
@@ -127,6 +144,13 @@ export default {
           return false
         }
       }
+      if (!this.images.length) {
+        this.$message.error('图片为必须上传项');
+        return false
+      }
+      /*console.log(sendList)
+      console.log('报名成功')
+      return false*/
       for (let i in sendList) {
         sendList[i] = sendList[i] ? md5(sendList[i]) : ' '
       }
@@ -138,7 +162,7 @@ export default {
       putRegisterInfo(data).then(res => {
         if (res.data.returnCode === '0000') {
           this.$emit("closeTemp", this.one)
-          this.$message.success('上传成功！')
+          this.$message.success('报名成功！')
         } else {
           this.$message.error('服务器错误或上传失败，请重新填写');
         }
@@ -161,11 +185,15 @@ export default {
       this.images = this.images.concat(file.response.returnData.id)
       console.log(this.images.join(','))
     },
-    beforRemove(file, fileList) {
-      console.log(fileList)
+    beforRemove(file, fileList) { // 删除图片
       let id = file.response.returnData.id
       deleteImage({id: id}).then(res => {
         console.log(res)
+      })
+    },
+    onRemoveImg(file, fileList) {
+      this.images = fileList.map(item => {
+        return item.response.returnData.id
       })
     },
     beforUpload(file) { // 上传之前执行
@@ -186,6 +214,9 @@ export default {
         isImg = false
       }
       return (isJPG || isPNG || isBMP) && isLt2M && isImg;
+    },
+    downloadData() {
+      console.log(2222)
     }
   },
   components: {

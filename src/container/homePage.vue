@@ -36,9 +36,11 @@ export default {
     }
   },
   created() {
-    document.title = '首页';
     this.initIndexList()
     this.initIndexNewsList()
+  },
+  activated() {
+    document.title = '首页';
   },
   mounted() {
   },

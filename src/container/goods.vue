@@ -47,8 +47,10 @@ export default {
     }
   },
   created() {
-    document.title = '展商专区';
     this.context()
+  },
+  activated() {
+    document.title = '展商专区';
   },
   methods: {
     context() {

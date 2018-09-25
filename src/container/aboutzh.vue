@@ -47,8 +47,10 @@ export default {
     }
   },
   created() {
-    document.title = '关于展会';
     this.contentTxt()
+  },
+  activated() {
+    document.title = '关于展会';
   },
   methods: {
     contentTxt() {

@@ -1,10 +1,12 @@
 <template>
     <div class="sear-wrap">
       <div class="sear">
-        <div class="sear-input">
-          <img class="sear-img" src="../assets/images/search.png" alt="">
-          <input type="text" placeholder="搜索" @keyup.enter="submit" v-model="searVal" style="vertical-align:middle">
-        </div>
+        <form action="" enctype='applicaion/json'>
+          <div class="sear-input">
+            <img class="sear-img" src="../assets/images/search.png" alt="">
+            <input type="text" placeholder="搜索" @keyup.enter="submit" v-model="searVal" style="vertical-align:middle">
+          </div>
+        </form>
         <div @click="Search_con">取消</div>
       </div>
       <div v-if="keywordsList.length" v-show="isShowSear">
@@ -43,6 +45,9 @@ export default {
     })
   },
   mounted() {
+  },
+  activated() {
+    document.title = '搜索';
   },
   destroyed() {
     this.searchList = []

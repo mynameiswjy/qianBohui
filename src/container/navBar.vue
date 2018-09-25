@@ -172,7 +172,7 @@ export default {
     text-align: center;
     top 0.09rem
     height: 0.72rem;
-    background rgba(255,255,255, 0.6)
+    background rgba(255,255,255, 0.9)
   }
   .search-icon{
     width: 0.32rem;

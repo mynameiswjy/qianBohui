@@ -85,6 +85,29 @@ export default {
         let value = data[key]
         visitSendList[key] = value
         let isRequired = data.isRequired
+        // qq号码验证
+        if (key === 'qqCode' && value) {
+          if (!/^[1-9][0-9]{4,14}$/.test(value)) {
+            this.$message.error('请输入正确的QQ号！');
+            return false
+          }
+        }
+        // 手机号验证
+        if (key === 'phoneNum' && value) {
+          let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+          if (!myreg.test(value)) {
+            this.$message.error('请输入正确的手机号！');
+            return false
+          }
+        }
+        // 邮箱验证
+        if (key === 'emailAddress' && value) {
+          let regEmail = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")
+          if (!regEmail.test(value)) {
+            this.$message.error('请输入正确的邮箱！');
+            return false
+          }
+        }
         if (isRequired === 'Y' && !value) {
           this.$message.error('带*为必填项，请填写完整');
           return false
@@ -101,7 +124,7 @@ export default {
       putRegisterInfo(data).then(res => {
         if (res.data.returnCode === '0000') {
           this.$emit("closeVisit", this.tow)
-          this.$message.success('上传成功！')
+          this.$message.success('登记成功！')
         } else {
           this.$message.error('服务器错误或上传失败，请重新填写');
         }

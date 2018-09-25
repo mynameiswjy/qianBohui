@@ -59,7 +59,7 @@ export default {
       })
       console.log(this.slider)
     },
-    refresh() {
+    refrech() {
       this.slider && this.slider.refrech()
     },
     _initSliderWidth() {

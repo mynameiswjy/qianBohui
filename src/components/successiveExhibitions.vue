@@ -102,9 +102,9 @@ export default {
       if (!this.$refs.timeYaer) return
       this.docSlider = new BScroll(this.$refs.timeYaer, {
         scrollX: true,
-        click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
+        click: false, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
         freeScroll: true,
-        eventPassthrough: 'horizontal',
+        eventPassthrough: 'vertical',
       })
     },
     _initSlider() { // 大轮播
@@ -184,9 +184,15 @@ export default {
           this.isScroll = true
           return false
       }
-    }
+    },
+    /*refrech() {
+      this.slider && this.slider.refrech()
+      this.docSlider && this.docSlider.refrech()
+    },*/
   },
   computed: {
+  },
+  watch: {
   },
   components: {
     Slider
@@ -205,7 +211,7 @@ export default {
     /*height: 5.96rem;*/
     height: 4rem;
     overflow: hidden;
-    margin-bottom: 0.41rem;
+    /*margin-bottom: 0.1rem;*/
   }
   .slider-active {
     color: #C6A056;
@@ -232,6 +238,9 @@ export default {
     font-size: 0.3rem;
     font-family: PingFangSC-Regular;
     color: #717170;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .successiveExhibitions-news .border{
     border-bottom: 0.01rem solid #e4e3e3;

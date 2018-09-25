@@ -47,8 +47,10 @@ export default {
     }
   },
   created() {
-    document.title = '观众专区';
     this.context()
+  },
+  activated() {
+    document.title = '观众专区';
   },
   methods: {
     context() {

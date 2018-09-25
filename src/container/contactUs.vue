@@ -4,7 +4,7 @@
         <div class="contact_footer_position">
           <nav-bar></nav-bar>
           <!--<div style="height: 0.01rem"></div>-->
-          <introduce :openStyle="true" :showBtns="false" :introduceObj="introduceObj"></introduce>
+          <introduce :openStyle="false" :show="false" :showBtns="false" :introduceObj="introduceObj"></introduce>
           <temp-footer class="temp_footer"></temp-footer>
         </div>
       </scroll>
@@ -27,6 +27,9 @@ export default {
         title: '联系我们'
       }
     }
+  },
+  activated() {
+    document.title = '联系我们';
   },
   methods: {
   },

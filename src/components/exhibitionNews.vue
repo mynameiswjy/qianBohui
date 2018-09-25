@@ -88,6 +88,7 @@ export default {
   .exhibition-news li{
     height: 0.76rem;
     line-height: 0.76rem;
+    /*padding: 0.15rem 0.3rem 0.15rem 0.35rem;*/
     padding-left: 0.35rem;
     margin-bottom: 0.14rem;
     font-size: 0.3rem;

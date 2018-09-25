@@ -71,9 +71,11 @@ export default {
     }
   },
   created() {
-    document.title = '新闻资讯';
     this.initDataZHXW()// 展会新闻
     this.initDataZSJS()// 展商介绍 以及 行业动态
+  },
+  activated() {
+    document.title = '新闻资讯';
   },
   methods: {
     goToDetail(e) {
