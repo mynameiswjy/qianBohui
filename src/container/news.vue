@@ -90,11 +90,11 @@ export default {
     selectNewsTitle(e) {
       this.idx = e
       if (e == 0) {
-        this.type = "ZSJS"
+        this.type = "HYDT"
         this.pageIndexZSJS = 1
         this.initDataZSJS()
       } else {
-        this.type = "HYDT"
+        this.type = "ZSJS"
         this.pageIndexZSJS = 1
         this.initDataZSJS()
       }

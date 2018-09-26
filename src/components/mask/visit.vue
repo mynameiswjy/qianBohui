@@ -8,14 +8,26 @@
           </div>
           <ul>
             <li v-for="(item, index) in userVisitList.selectItem" :key="index">
-              <div v-if="(item.code !='remark')" class="list">
+              <div v-if="(item.isType == 'I')" class="list">
                 <div class="list-left">
                   <div>{{item.name}}</div>
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
                 <input v-model="item[item.code]" type="text"/>
               </div>
-              <div v-else>
+              <div class="list" v-if="(item.isType == 'S')">
+                <div class="list-left">
+                  <div>{{item.name}}</div>
+                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
+                </div>
+                <div style="position: relative;">
+                  <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
+                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.name">{{opt.name}}</option>
+                  </select>
+                  <div v-show="!item[item.code]" class="select-default">请选择</div>
+                </div>
+              </div>
+              <div  v-if="(item.isType == 'A')">
                 <div class="note">{{item.name}}</div>
                 <textarea name="" v-model="item[item.code]" class="textarea" id="" cols="30" rows="10"></textarea>
               </div>
@@ -173,6 +185,31 @@ export default {
     font-family: PingFangSC-Regular;
     padding-top: 0.14rem;
   }
+  .list select{
+    width: 4.77rem;
+    height: 0.75rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.08rem;
+    border: 0.01rem solid rgba(198,160,86,1);
+    color: #000;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    border: 0.01rem solid #d3d5d6;
+    color: #666;
+  }
+  .list .select1{
+    padding: 0 0.3rem;
+    background: url("../../assets/images/zh-drop-down.png") no-repeat scroll 92% center transparent;
+    background-size: 0.22rem 0.12rem;
+    padding-right: 0.2rem;
+  }
+  .select-default
+    position absolute
+    top: 0.02rem
+    left: 0.3rem
+    font-size 24rpx
+    color #b7b7b7
 
   .textarea {
     margin-left: 0.36rem;
