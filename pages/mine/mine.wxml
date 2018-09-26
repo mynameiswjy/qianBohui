@@ -38,7 +38,7 @@
                         bindgetuserinfo="getUserInfoWx"
                         hover-class
                 >
-                    <image src="../../images/pageImg/iphone.png"></image>
+                    <image src="../../images/pageImg/wx_icon.png"></image>
                     <view>微信快速登录</view>
                 </button>
                 <view style="height: 82rpx"></view>
