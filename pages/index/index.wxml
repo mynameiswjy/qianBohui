@@ -29,7 +29,7 @@
             <image class="banner-img" src="{{item.imgIndex}}"></image>
         </swiper-item>
     </swiper>
-    <image wx:if="{{true}}" bindtap="goToDetail" class="advertising" src="http://pic.qiantucdn.com/58pic/18/99/87/45w58PICJ6k_1024.jpg"></image>
+    <image wx:if="{{true}}" bindtap="goToDetail" class="advertising" src="./ad.png"></image>
     <view class="list" wx:if="{{MemorialMoney.length}}" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
         <image src="{{item.url1}}"></image>
         <view class="list-right">
