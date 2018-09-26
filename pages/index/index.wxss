@@ -25,6 +25,9 @@ page {
 .section_hot .picker {
     line-height:50rpx;
     margin-left: 15rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .section_hot_img {
     width: 20rpx;

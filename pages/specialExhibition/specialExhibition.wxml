@@ -1,5 +1,5 @@
 <view>
-    <image class="banner" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg"></image>
+    <image class="banner" src="./baner_ad.png"></image>
     <view style="height: 8rpx"></view>
     <view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
         <image src="{{item.url1}}"></image>
