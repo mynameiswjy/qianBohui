@@ -74,7 +74,6 @@ export default {
     },
     ShowContent() {
       setTimeout(() => {
-        console.log(this.$refs.contentTxt.offsetHeight)
         if (this.$refs.contentTxt.offsetHeight >= 166) {
           this.showContent = true
         } else {
