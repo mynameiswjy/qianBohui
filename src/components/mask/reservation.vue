@@ -77,7 +77,7 @@ export default {
   data() {
     return {
       isShow: false,
-      one: false,
+      isReservationPage: false,
       p_bottom: false,
       imgNum: 0,
       userInputList: {},
@@ -161,7 +161,7 @@ export default {
       console.log(data)
       putRegisterInfo(data).then(res => {
         if (res.data.returnCode === '0000') {
-          this.$emit("closeTemp", this.one)
+          this.$emit("closeTemp", this.isReservationPage)
           this.$message.success('报名成功！')
         } else {
           this.$message.error('服务器错误或上传失败，请重新填写');
@@ -176,7 +176,7 @@ export default {
       })
     },
     closeTemp() {
-      this.$emit("closeTemp", this.one)
+      this.$emit("closeTemp", false)
     },
     handlePictureCardPreview(e) { // 点击文件列表中已上传的文件时的钩子
       console.log(e)

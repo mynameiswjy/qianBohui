@@ -15,30 +15,21 @@
       </li>
     </ul>
     <visit @closeVisit="visitClose" v-if="tow"></visit>
-    <reservation ref="reservation" @closeTemp="tempClose" v-if="one"></reservation>
-    <consulting v-if="three" @closeZixun="tempZixun"></consulting>
+    <reservation @closeTemp="tempClose" v-if="isReservationPage"></reservation>
+    <consulting @closeZixun="tempZixun" v-if="three"></consulting>
   </div>
 </template>
 
 <script>
-/*!function(d, w) {
-  var c = d.documentElement;
-  debugger
-  w = function() {
-    var a = c.clientWidth; // 375
-    a && (c.style.fontSize = a/375 * 100 + "px")
-  };
-  window.addEventListener("orientationchange" in window ? "orientationchange" : "resize", w, !1);
-  d.addEventListener("DOMContentLoaded", w, !1)
-}(document, window);*/
 import visit from "@/components/mask/visit.vue"
 import reservation from "@/components/mask/reservation.vue"
 import consulting from "@/components/mask/consulting.vue"
+import * as types from '../store/mutation-types'
 export default {
   name: "tabBar",
   data() {
     return {
-      one: false,
+      isReservationPage: false,
       tow: false,
       three: false,
     }
@@ -50,11 +41,12 @@ export default {
       this.three = e
     },
     cilckTabBarOne(e) {
-      this.one = !this.one
+      this.isReservationPage = !this.isReservationPage
+      this.$store.commit(types.IS_RESERVSTION_PAGE, this.isReservationPage)
     },
     // 通过子组件传过来的值 动态的改变 变量==> one
     tempClose(e) {
-      this.one = e
+      this.isReservationPage = e
     },
     visitClose(e) {
       this.tow = e

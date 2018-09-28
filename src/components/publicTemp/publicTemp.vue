@@ -14,73 +14,97 @@
         <ul>
           <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
             <div v-if="text.isTableType">
-              <!--<table class="outTable">
-                <thead>
-                <tr>
-                  <td width="160px">班级名称</td>
-                  <td width="150px">学生名称</td>
-                  <td width="150px">课程名称</td>
-                  <td>课程成绩</td>
+              <table class="table_wrap" border="1">
+                <caption class=""></caption>
+                <tr class="tr_head tr_head_l">
+                  <td class="td_head td_head_t td_head_r t_height t_flex">项目</td>
+                  <td class="td_head td_head_t td_head_r t_height t_flex">规格</td>
+                  <td class="td_head td_head_t td_head_r t_height t_flex">价格(元/个)</td>
                 </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>信息与计算科学1班</td>
-                  <td colspan="4">
-                    <table frame="void" class="inTable">
-                      <tr>
-                        <td width="149px">张三</td>
-                        <td colspan="3">
-                          <table frame="void" class="inTable">
-                            <tr>
-                              <td width="149px">高等数学</td>
-                              <td>80</td>
+                <tr class="tr_head tr_head_l">
+                  <td class="td_head td_head_t td_head_r td_head_w1 t_height t_flex">会刊内页</td>
+                  <td class="td_head td_head_t td_head_r td_head_w2 t_height t_flex">参见会刊广告信息</td>
+                  <td class="td_head td_head_t td_head_r td_head_w3 t_flex">5000/page</td>
+                </tr>
+                <tr class="tr_head tr_head_l">
+                  <td class="td_head td_head_t td_head_r td_head_b t_flex">展位</td>
+                  <td class="td_head td_head_t td_head_r">
+                    <table>
+                      <tr class="">
+                        <td class="td_head_r td_body_w2 t_flex">
+                          <div>特装位</div>
+                          <div>(空地)</div>
+                        </td>
+                        <td class="">
+                          <table>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">10mx10m</td>
                             </tr>
-                            <tr>
-                              <td>大学英语</td>
-                              <td>85</td>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">9mx9m</td>
+                            </tr>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">9mx6m</td>
+                            </tr>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">8mx6m</td>
+                            </tr>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">3mx9m</td>
+                            </tr>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">6mx6m</td>
+                            </tr>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">3mx6m</td>
                             </tr>
                           </table>
                         </td>
                       </tr>
-                      <tr>
-                        <td width="149px">李四</td>
-                        <td colspan="3">
-                          <table frame="void" class="inTable">
-                            <tr>
-                              <td width="149px">基础物理</td>
-                              <td>80</td>
+                      <tr class="">
+                        <td class="td_head_t td_head_r t_flex">A级</td>
+                        <td>
+                          <table>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">3mx3m标</td>
                             </tr>
-                            <tr>
-                              <td>形式政治</td>
-                              <td>80</td>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">3mx3m拐</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr class="">
+                        <td class="td_head_t td_head_r t_flex td_head_b">B级</td>
+                        <td>
+                          <table>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">3mx3m标</td>
+                            </tr>
+                            <tr class="">
+                              <td class="td_head_b td_body_w4 t_height t_flex">3mx3m拐</td>
                             </tr>
                           </table>
                         </td>
                       </tr>
                     </table>
                   </td>
+                  <td class="td_head td_head_t td_head_r">
+                    <table>
+                      <tr><td class="td_body_w3 t_height t_flex">275000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">225000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">150000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">130000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">68000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">99000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">45000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">20000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">22000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex">18000</td></tr>
+                      <tr><td class="td_head_t td_body_w3 t_height t_flex td_head_b">20000</td></tr>
+                    </table>
+                  </td>
                 </tr>
-                </tbody>
-              </table>-->
-              <table class="table_wrap" border="1">
-                <caption class="table_title1">展位明细表</caption>
-                <caption class="table_title2">公司营业执照复印件、安全责任书快递至组委会</caption>
-                <thead>
-                <tr class="tr_head">
-                  <td class="td_head td_head1">项目</td>
-                  <td class="td_head td_head1">规格</td>
-                  <td class="td_head td_head1">价格(元/个)</td>
-                  <td class="td_head">备注及数量</td>
-                </tr>
-                <tr class="tr_head">
-                  <td class="td_head td_head1 td_head_w1">会刊内页</td>
-                  <td class="td_head td_head1 td_head_w2">参见会刊广告信息</td>
-                  <td class="td_head td_head1 td_head_w3">5000/单 page</td>
-                  <td class="td_head td_head_w4">填报在协议中的"展览服务页"项</td>
-                </tr>
-                <tr></tr>
-                </thead>
               </table>
             </div>
             <div v-else>
@@ -220,29 +244,44 @@ export default {
       box-shadow 0rem 0 0.21rem #C6A056
       background-color: #fff
       .table_wrap
-        /*width 100%*/
-        overflow: auto
-        .table_title1
-          font-size 0.34rem
-          margin-bottom 0.2rem
-        .table_title2
-          font-size 0.24rem
-          margin-bottom 0.1rem
-          color: red
+        font-size: 0.28rem
+        width 100%
+        .t_flex
+          vertical-align: middle;
         .tr_head
-          border 0.01rem solid #333
-          .td_head1
-            border-right 0.01rem solid #333
-          .td_head
-            text-align center
-          .td_head_w1
-            width 1.8rem
-          .td_head_w2
-            width 2.2rem
-          .td_head_w3
-            width 2.2rem
-          .td_head_w4
-            width 2.5rem
+          text-align center
+        .tr_head_r
+          border-right 0.01rem solid #333
+        .tr_head_l
+          border-left 0.01rem solid #333
+        .tr_head_t
+          border-top 0.01rem solid #333
+        .tr_head_b
+          border-bottom 0.01rem solid #333
+        .td_head
+          text-align center
+        .td_head_r
+          border-right 0.01rem solid #333
+        .td_head_b
+          border-bottom 0.01rem solid #333
+        .td_head_t
+          border-top 0.01rem solid #333
+        .td_head_l
+          border-left 0.01rem solid #333
+        .td_head_w1
+          width 1.2rem
+        .td_head_w2
+          width 3rem
+        .td_body_w2
+          width 1.5rem
+        .td_body_w4
+          width 1.8rem
+        .td_body_w3
+          width 1.65rem
+        .td_head_w3
+          width 1.3rem
+        .t_height
+          height 0.65rem
       .a_full
         font-size: 0.28rem
         font-family:PingFangSC-Light;
