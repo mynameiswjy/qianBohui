@@ -13,14 +13,86 @@
       <div class="temp_content">
         <ul>
           <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
-            <div class="temp_content-li" :class="{show_temp: text.show_temp}"><!---->
+            <div v-if="text.isTableType">
+              <!--<table class="outTable">
+                <thead>
+                <tr>
+                  <td width="160px">班级名称</td>
+                  <td width="150px">学生名称</td>
+                  <td width="150px">课程名称</td>
+                  <td>课程成绩</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>信息与计算科学1班</td>
+                  <td colspan="4">
+                    <table frame="void" class="inTable">
+                      <tr>
+                        <td width="149px">张三</td>
+                        <td colspan="3">
+                          <table frame="void" class="inTable">
+                            <tr>
+                              <td width="149px">高等数学</td>
+                              <td>80</td>
+                            </tr>
+                            <tr>
+                              <td>大学英语</td>
+                              <td>85</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="149px">李四</td>
+                        <td colspan="3">
+                          <table frame="void" class="inTable">
+                            <tr>
+                              <td width="149px">基础物理</td>
+                              <td>80</td>
+                            </tr>
+                            <tr>
+                              <td>形式政治</td>
+                              <td>80</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>-->
+              <table class="table_wrap" border="1">
+                <caption class="table_title1">展位明细表</caption>
+                <caption class="table_title2">公司营业执照复印件、安全责任书快递至组委会</caption>
+                <thead>
+                <tr class="tr_head">
+                  <td class="td_head td_head1">项目</td>
+                  <td class="td_head td_head1">规格</td>
+                  <td class="td_head td_head1">价格(元/个)</td>
+                  <td class="td_head">备注及数量</td>
+                </tr>
+                <tr class="tr_head">
+                  <td class="td_head td_head1 td_head_w1">会刊内页</td>
+                  <td class="td_head td_head1 td_head_w2">参见会刊广告信息</td>
+                  <td class="td_head td_head1 td_head_w3">5000/单 page</td>
+                  <td class="td_head td_head_w4">填报在协议中的"展览服务页"项</td>
+                </tr>
+                <tr></tr>
+                </thead>
+              </table>
+            </div>
+            <div v-else>
+              <div class="temp_content-li" :class="{show_temp: text.show_temp}">
               <span v-for="(txt, idx) in text.text" :key="idx">
                 <span :class="{font_wei: isFontWei}">{{txt.title}}</span>
                 <span>{{txt.txt}}<br></span>
               </span>
-              <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
+                <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
+              </div>
+              <div class="a_full" v-show="text.showFullBtn>166 || initShowFullBtn>166" @click="showBts(index)">{{text.showText}}</div>
             </div>
-            <div class="a_full" v-show="text.showFullBtn>=166 || initShowFullBtn" @click="showBts(index)">{{text.showText}}</div>
           </li>
         </ul>
       </div>
@@ -71,7 +143,7 @@ export default {
       let item = this.aboutzhObj.textList[e]
       if (e == 0) {
         item.show_temp = !item.show_temp
-        if (item.showFullBtn > 166) {
+        if (item.show_temp) {
           item.showText = "显示全文"
         } else {
           item.showText = "收起全文"
@@ -147,6 +219,30 @@ export default {
       border-radius 0.08rem
       box-shadow 0rem 0 0.21rem #C6A056
       background-color: #fff
+      .table_wrap
+        /*width 100%*/
+        overflow: auto
+        .table_title1
+          font-size 0.34rem
+          margin-bottom 0.2rem
+        .table_title2
+          font-size 0.24rem
+          margin-bottom 0.1rem
+          color: red
+        .tr_head
+          border 0.01rem solid #333
+          .td_head1
+            border-right 0.01rem solid #333
+          .td_head
+            text-align center
+          .td_head_w1
+            width 1.8rem
+          .td_head_w2
+            width 2.2rem
+          .td_head_w3
+            width 2.2rem
+          .td_head_w4
+            width 2.5rem
       .a_full
         font-size: 0.28rem
         font-family:PingFangSC-Light;

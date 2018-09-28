@@ -17,7 +17,7 @@
       </div>
       <div class="sear_wrap left-margin" v-show="searchList.length">
         <ul class="sear_content">
-          <li class="sear_content_list" @click="goToDetail(item.code)" v-for="(item, index) in searchList" :key="index">
+          <li class="sear_content_list" @click="goToDetail(item.selectCode)" v-for="(item, index) in searchList" :key="index">
             <div class="sear_content_list_left">{{item.title}}</div>
             <div>{{item.time}}</div>
           </li>
