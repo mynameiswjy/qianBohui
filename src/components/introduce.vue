@@ -15,7 +15,7 @@
         <div class="header-text" :class="{show: show}" ref="contentTxt">
           <span>{{introduceObj.content}}</span>
           <div v-if="IsContactWay" class="contact_way">
-            <p>服务热线：<span class="contact_way_color">4008-188-666</span></p>
+            <p>服务热线：<a href="tel:4008-188-666" class="contact_way_color">4008-188-666</a></p>
             <p>服务传真：<span class="contact_way_color">010-59311250</span></p>
             <p>服务邮箱：<span class="contact_way_color">service@chngc.net</span></p>
           </div>
