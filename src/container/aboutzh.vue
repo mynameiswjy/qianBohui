@@ -46,8 +46,9 @@ export default {
             showFullBtn: 0,
             show_temp: true,
             showText: '显示全文',
+            isTableType: true, // 是否启用table表格
             text: [
-              {title: '', txt: '北京国际钱币博览会由中国金币总公司、中国印钞造币总公司、中国钱币博物馆联合主办的专业盛会。展会围绕并服务于中央银行职能及国家货币发行政策，以普及人民币知识，弘扬金币文化为主旨，为国内外钱币企业搭建交流平台。'}
+              {title: '', txt: ''}
             ]
           },
         ]

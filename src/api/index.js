@@ -101,6 +101,14 @@ export function putRegisterInfo(data = {}) {
   })
 }
 
+export function boothExplain(data = {}) {
+  return service({
+    url: '/register/boothExplain.do',
+    method: 'get',
+    params: data
+  })
+}
+
 export default {
   indexDo,
   successiveExhibitors,

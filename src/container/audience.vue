@@ -1,7 +1,7 @@
 <template>
     <div>
       <introduce class="lintr_bottom" :introduceObj="introduceObj" :text="text" :openStyle="true"></introduce>
-      <public-temp :aboutzhObj="aboutzhObj" class=""></public-temp>
+      <public-temp :aboutzhObj="aboutzhObj" :isVisitP="true" class=""></public-temp>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
       <tabBar class="menu-tab"></tabBar>
@@ -47,15 +47,7 @@ export default {
             showFullBtn: 0, // 控制每个list的按钮 是否显示全文
             show_temp: true, // 是否使用隐藏8行的class
             showText: '显示全文',
-            text: [
-              {title: '', txt: '搭建及展览期间国家会议中心提供各类午餐，搭建及参展人员可到指定位置购买并就餐，外部餐饮、盒饭一律严禁进入。'},
-              {title: '', txt: ' 国家会议中心所有建筑区域内严禁吸烟。'},
-              {title: '', txt: ' 国家会议中心所有建筑区域内严禁吸烟。'},
-              {title: '', txt: ' 国家会议中心所有建筑区域内严禁吸烟。'},
-              {title: '', txt: ' 国家会议中心所有建筑区域内严禁吸烟。'},
-              {title: '', txt: ' 国家会议中心所有建筑区域内严禁吸烟。'},
-              {title: '', txt: ' 国家会议中心所有建筑区域内严禁吸烟。'},
-            ]
+            text: []
           }
         ]
       }

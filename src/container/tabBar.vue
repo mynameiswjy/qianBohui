@@ -29,12 +29,13 @@ export default {
   name: "tabBar",
   data() {
     return {
-      isReservationPage: false,
+      isReservationPage: this.$store.state.isReservationPage,
       tow: false,
       three: false,
     }
   },
   created() {
+    console.log(this.isReservationPage);
   },
   methods: {
     tempZixun(e) {
@@ -47,6 +48,7 @@ export default {
     // 通过子组件传过来的值 动态的改变 变量==> one
     tempClose(e) {
       this.isReservationPage = e
+      this.$store.commit(types.IS_RESERVSTION_PAGE, e)
     },
     visitClose(e) {
       this.tow = e

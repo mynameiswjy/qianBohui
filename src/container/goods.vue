@@ -1,7 +1,7 @@
 <template>
     <div>
       <introduce class="lintr_bottom" :text="text" :introduceObj="introduceObj" :openStyle="true"></introduce>
-      <public-temp :aboutzhObj="aboutzhObj" :isFontWei="false" class=""></public-temp>
+      <public-temp :aboutzhObj="aboutzhObj" :isFontWei="false" :isReservaPage="true" class=""></public-temp>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
       <tabBar class="menu-tab"></tabBar>
@@ -22,7 +22,7 @@ export default {
       introduceObj: {},
       text: 'Instructions for exhibitors',
       aboutzhObj: {
-        navList: ["参展须知", "展商范围/展位费", "展位预定"],
+        navList: ["参展须知", "展位说明", "展位预订"],
         textList: [
           {
             showFullBtn: 0, // 控制每个list的按钮 是否显示全文

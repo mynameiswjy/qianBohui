@@ -12,8 +12,13 @@
         </div>
       </div>
       <div class="header_intro" :class="{height_hide: !introduceObj.content}">
-        <div  class="header-text" :class="{show: show}" ref="contentTxt">
-          {{introduceObj.content}}
+        <div class="header-text" :class="{show: show}" ref="contentTxt">
+          <span>{{introduceObj.content}}</span>
+          <div v-if="IsContactWay" class="contact_way">
+            <p>服务热线：<span class="contact_way_color">4008-188-666</span></p>
+            <p>服务传真：<span class="contact_way_color">010-59311250</span></p>
+            <p>服务邮箱：<span class="contact_way_color">service@chngc.net</span></p>
+          </div>
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
           <loading></loading>
@@ -46,6 +51,10 @@ export default {
       default: ''
     },
     openStyle: {
+      type: Boolean,
+      default: false
+    },
+    IsContactWay: {
       type: Boolean,
       default: false
     }
@@ -130,6 +139,10 @@ export default {
       color: rgba(72,72,71,1);
       background:rgba(255,255,255,1);
       line-height: 0.42rem
+      .contact_way
+        /*margin-left 1rem*/
+        .contact_way_color
+          color: #2C90FF
     .a_full
       font-size: 0.28rem
       font-family:PingFangSC-Light;

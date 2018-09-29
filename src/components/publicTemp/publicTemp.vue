@@ -14,98 +14,7 @@
         <ul>
           <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
             <div v-if="text.isTableType">
-              <table class="table_wrap" border="1">
-                <caption class=""></caption>
-                <tr class="tr_head tr_head_l">
-                  <td class="td_head td_head_t td_head_r t_height t_flex">项目</td>
-                  <td class="td_head td_head_t td_head_r t_height t_flex">规格</td>
-                  <td class="td_head td_head_t td_head_r t_height t_flex">价格(元/个)</td>
-                </tr>
-                <tr class="tr_head tr_head_l">
-                  <td class="td_head td_head_t td_head_r td_head_w1 t_height t_flex">会刊内页</td>
-                  <td class="td_head td_head_t td_head_r td_head_w2 t_height t_flex">参见会刊广告信息</td>
-                  <td class="td_head td_head_t td_head_r td_head_w3 t_flex">5000/page</td>
-                </tr>
-                <tr class="tr_head tr_head_l">
-                  <td class="td_head td_head_t td_head_r td_head_b t_flex">展位</td>
-                  <td class="td_head td_head_t td_head_r">
-                    <table>
-                      <tr class="">
-                        <td class="td_head_r td_body_w2 t_flex">
-                          <div>特装位</div>
-                          <div>(空地)</div>
-                        </td>
-                        <td class="">
-                          <table>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">10mx10m</td>
-                            </tr>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">9mx9m</td>
-                            </tr>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">9mx6m</td>
-                            </tr>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">8mx6m</td>
-                            </tr>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">3mx9m</td>
-                            </tr>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">6mx6m</td>
-                            </tr>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">3mx6m</td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                      <tr class="">
-                        <td class="td_head_t td_head_r t_flex">A级</td>
-                        <td>
-                          <table>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">3mx3m标</td>
-                            </tr>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">3mx3m拐</td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                      <tr class="">
-                        <td class="td_head_t td_head_r t_flex td_head_b">B级</td>
-                        <td>
-                          <table>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">3mx3m标</td>
-                            </tr>
-                            <tr class="">
-                              <td class="td_head_b td_body_w4 t_height t_flex">3mx3m拐</td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                  <td class="td_head td_head_t td_head_r">
-                    <table>
-                      <tr><td class="td_body_w3 t_height t_flex">275000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">225000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">150000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">130000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">68000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">99000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">45000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">20000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">22000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex">18000</td></tr>
-                      <tr><td class="td_head_t td_body_w3 t_height t_flex td_head_b">20000</td></tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
+              <table-temp></table-temp>
             </div>
             <div v-else>
               <div class="temp_content-li" :class="{show_temp: text.show_temp}">
@@ -115,25 +24,38 @@
               </span>
                 <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
               </div>
-              <div class="a_full" v-show="text.showFullBtn>166 || initShowFullBtn>166" @click="showBts(index)">{{text.showText}}</div>
+              <div class="a_full" v-show="text.showFullBtn>166 || initShowFullBtn>=166" @click="showBts(index)">{{text.showText}}</div>
             </div>
           </li>
         </ul>
       </div>
+      <reservation @closeTemp="tempCloseGoods" v-if="isReservation"></reservation>
+      <visit @closeVisit="closeVisit" v-if="isVisitTemp"></visit>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+import reservation from "@/components/mask/reservation.vue"
+import visit from "@/components/mask/visit.vue"
+import tableTemp from '../tableChart/tableChart'
 export default {
   name: 'publicTemp',
   props: {
-    aboutzhObj: {
+    aboutzhObj: {// 接收的数据
       type: Object,
       default: null
     },
-    isFontWei: {
+    isFontWei: { // 文字是否加粗
       type: Boolean,
       default: true
+    },
+    isReservaPage: { // 是否含有展位预订指令
+      type: Boolean,
+      default: false
+    },
+    isVisitP: { // 此页面是否含有参观登记指令
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -144,7 +66,11 @@ export default {
       listHeight: 0,
       showFullText: false,
       showContentTemp: false,
-      initShowFullBtn: 0
+      initShowFullBtn: 0,
+      isReservation: false,
+      isVisitTemp: false,
+      userLastStatus: 0, // 展商专区用户打开展位预订前的状态
+      userLastStatusVisit: 0 // 观众专区用户打开参观登记前的状态
     }
   },
   created() {
@@ -155,6 +81,24 @@ export default {
     })
   },
   methods: {
+    tempCloseGoods(e) {
+      this.isReservation = e
+      if (!e) {
+        this.idx = this.userLastStatus
+        this.$nextTick(function () {
+          this.ShowContentTemp()
+        })
+      }
+    },
+    closeVisit(e) {
+      this.isVisitTemp = e
+      if (!e) {
+        this.idx = this.userLastStatusVisit
+        this.$nextTick(function () {
+          this.ShowContentTemp()
+        })
+      }
+    },
     changeTempBtns(e = 0) {
       this.idx = e
       let item = this.aboutzhObj.textList[e]
@@ -162,6 +106,16 @@ export default {
         this.ShowContentTemp()
         item.showFullBtn = this.$refs.t_ref[e].clientHeight
       })
+      if (e == 2 && this.isReservaPage) { // 在展商专区打开展位预订模板
+        this.isReservation = true
+      } else {
+        this.userLastStatus = e
+      }
+      if (e == 1 && this.isVisitP) {
+        this.isVisitTemp = true
+      } else {
+        this.userLastStatusVisit = e
+      }
     },
     showBts(e) {
       let item = this.aboutzhObj.textList[e]
@@ -195,6 +149,11 @@ export default {
   watch: {
   },
   computed: {
+  },
+  components: {
+    reservation,
+    visit,
+    tableTemp
   }
 }
 </script>
@@ -243,45 +202,6 @@ export default {
       border-radius 0.08rem
       box-shadow 0rem 0 0.21rem #C6A056
       background-color: #fff
-      .table_wrap
-        font-size: 0.28rem
-        width 100%
-        .t_flex
-          vertical-align: middle;
-        .tr_head
-          text-align center
-        .tr_head_r
-          border-right 0.01rem solid #333
-        .tr_head_l
-          border-left 0.01rem solid #333
-        .tr_head_t
-          border-top 0.01rem solid #333
-        .tr_head_b
-          border-bottom 0.01rem solid #333
-        .td_head
-          text-align center
-        .td_head_r
-          border-right 0.01rem solid #333
-        .td_head_b
-          border-bottom 0.01rem solid #333
-        .td_head_t
-          border-top 0.01rem solid #333
-        .td_head_l
-          border-left 0.01rem solid #333
-        .td_head_w1
-          width 1.2rem
-        .td_head_w2
-          width 3rem
-        .td_body_w2
-          width 1.5rem
-        .td_body_w4
-          width 1.8rem
-        .td_body_w3
-          width 1.65rem
-        .td_head_w3
-          width 1.3rem
-        .t_height
-          height 0.65rem
       .a_full
         font-size: 0.28rem
         font-family:PingFangSC-Light;
