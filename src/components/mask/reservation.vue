@@ -55,8 +55,9 @@
                 <div class="upload-img-add">添加图片</div>
               </div>
             </el-upload>
+            <imgUpload></imgUpload>
           </div>
-          <div @click="sendData" class="btns">确定</div>
+          <div @click="sendData" class="btns">确定{{images}}</div>
           <div style="height: 0.18rem"></div>
         </div>
       </scroll>
@@ -69,6 +70,7 @@ import Scroll from '@/utils/scroll'
 import { isBottom } from '@/utils/utils'
 import Loading from '../loading/loading'
 import { getRegisterTypeInfo, deleteImage, putRegisterInfo } from '@/api/index'
+import imgUpload from '../imgUpload/imgUpload'
 
 var md5 = require('js-md5')
 
@@ -144,13 +146,11 @@ export default {
           return false
         }
       }
-      if (!this.images.length) {
+      if (this.images.length <= 0) {
         this.$message.error('图片为必须上传项');
         return false
       }
-      /*console.log(sendList)
       console.log('报名成功')
-      return false*/
       for (let i in sendList) {
         sendList[i] = sendList[i] ? md5(sendList[i]) : ' '
       }
@@ -221,7 +221,8 @@ export default {
   },
   components: {
     Scroll,
-    Loading
+    Loading,
+    imgUpload
   }
 }
 </script>
