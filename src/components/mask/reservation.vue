@@ -37,10 +37,7 @@
             <a class="upload" href="https://www.baidu.com/ssid=0844c0cff1c481eddf5e562c/from=844b/s?word=%E4%BD%A0%E6%83%B3%E8%A6%81%E6%90%9C%E4%BB%80%E4%B9%88&ts=6667273&t_kt=0&ie=utf-8&fm_kl=021394be2f&rsv_iqid=3412737581&rsv_t=70401nkEEm55acjeiklq7MZqKB39DKmDLeLh6wVZZbjW77QbxQ%252BSrGc%252BwQ&sa=ib&ms=1&rsv_pq=3412737581&rsv_sug4=7969&tj=1&inputT=5115&ss=100"  @click="downloadData">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></a>
           </div>
           <div class="add-img">
-            <!--<div class="user-img">
-              <img src="http://img.zcool.cn/community/0117e2571b8b246ac72538120dd8a4.jpg@1280w_1l_2o_100sh.jpg" alt="">
-            </div>-->
-            <el-upload
+            <!--<el-upload
               action="https://www.chqbh.com/qbh/uploadDownload/uploadImage.do"
               list-type="picture-card"
               :before-upload="beforUpload"
@@ -54,10 +51,10 @@
                 <img src="../../assets/images/add_img.png" alt="">
                 <div class="upload-img-add">添加图片</div>
               </div>
-            </el-upload>
-            <imgUpload></imgUpload>
+            </el-upload>-->
+            <imgUpload @imgIdObj="imgArr"></imgUpload>
           </div>
-          <div @click="sendData" class="btns">确定{{images}}</div>
+          <div @click="sendData" class="btns">确定</div>
           <div style="height: 0.18rem"></div>
         </div>
       </scroll>
@@ -72,7 +69,7 @@ import Loading from '../loading/loading'
 import { getRegisterTypeInfo, deleteImage, putRegisterInfo } from '@/api/index'
 import imgUpload from '../imgUpload/imgUpload'
 
-var md5 = require('js-md5')
+//var md5 = require('js-md5')
 
 export default {
   name: "consulting",
@@ -150,9 +147,9 @@ export default {
         this.$message.error('图片为必须上传项');
         return false
       }
-      console.log('报名成功')
+      console.log(sendList)
       for (let i in sendList) {
-        sendList[i] = sendList[i] ? md5(sendList[i]) : ' '
+        sendList[i] = sendList[i] ? sendList[i] : ' '//  md5(sendList[i])
       }
       let data = Object.assign({}, initData, sendList, {
         type: 'BOOTH_RESERVE',
@@ -175,11 +172,12 @@ export default {
         }
       })
     },
+    // 接受上传图片组件 成功上传后的id
+    imgArr(e) {
+      this.images = e
+    },
     closeTemp() {
       this.$emit("closeTemp", false)
-    },
-    handlePictureCardPreview(e) { // 点击文件列表中已上传的文件时的钩子
-      console.log(e)
     },
     successImg(res, file, fileList) { // 上传成功后
       this.images = this.images.concat(file.response.returnData.id)
@@ -198,12 +196,14 @@ export default {
     },
     beforUpload(file) { // 上传之前执行
       this.imgNum++
-      const isJPG = file.type === 'image/jpeg';
+      const isJPEG = file.type === 'image/jpeg';
+      const isJPG = file.type === 'image/jpg';
       const isPNG = file.type === 'image/png';
       const isBMP = file.type === 'image/bmp';
       const isLt2M = file.size / 1024 / 1024 < 2;
+      alert(file.type)
       let isImg = true
-      if (!isJPG && !isPNG && !isBMP) {
+      if (!isJPG && !isPNG && !isBMP && !isJPEG) {
         this.$message.error('上传图片必须是JPG/PNG/BMP 格式!');
       }
       if (!isLt2M) {

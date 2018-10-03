@@ -57,7 +57,7 @@ import Scroll from '@/utils/scroll'
 import { isBottom } from '@/utils/utils'
 import { getRegisterTypeInfo, putRegisterInfo } from '@/api/index'
 
-var md5 = require('js-md5')
+//var md5 = require('js-md5')
 
 export default {
   name: 'visit',
@@ -126,7 +126,7 @@ export default {
         }
       }
       for (let i in visitSendList) {
-        visitSendList[i] = visitSendList[i] ? md5(visitSendList[i]) : ' '
+        visitSendList[i] = visitSendList[i] ? visitSendList[i] : ' ' // md5(visitSendList[i])
       }
       let data = Object.assign({}, initData, visitSendList, {
         type: 'VISITOR_REGISTER',

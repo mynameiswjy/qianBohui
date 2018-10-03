@@ -13,6 +13,22 @@ const service = axios.create({
   }],*/
 
 })
+
+function reqServer (head = {}) {
+  const service = axios.create({
+    // api的base_url
+    baseURL: "https://www.chqbh.com/qbh",
+    // 请求超时时间
+    timeout: 20000,
+    headers: head,
+    /*transformRequest: [function(data) {
+      //依自己的需求对请求数据进行处理
+      return data;
+    }],*/
+  })
+  return service
+}
+
 export function indexDo() {
   return service({
     url: '/woa/index.do',
@@ -92,6 +108,16 @@ export function deleteImage(data = {}) {
   })
 }
 
+// 图片上传接口
+export function uploadImage(data = {}) {
+  let headers = {'Content-Type': 'multipart/form-data'}
+  return reqServer(headers)({
+    url: '/uploadDownload/uploadImage.do',
+    method: 'post',
+    data: data
+  })
+}
+
 // 报名接口
 export function putRegisterInfo(data = {}) {
   return service({
@@ -101,6 +127,7 @@ export function putRegisterInfo(data = {}) {
   })
 }
 
+// 图表接口
 export function boothExplain(data = {}) {
   return service({
     url: '/register/boothExplain.do',
