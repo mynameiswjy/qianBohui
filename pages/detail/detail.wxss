@@ -211,7 +211,7 @@ page {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 80%;
+    /*height: 80%;*/
     margin-top: 50rpx;
 }
 .showImg_img1 {
@@ -222,7 +222,7 @@ page {
 
 .showImg_img {
     width: 90%;
-    height: 100%;
+    height: 93%;
     border-radius: 15rpx;
 }
 .showImg_save {

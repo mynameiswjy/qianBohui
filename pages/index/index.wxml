@@ -26,12 +26,12 @@
     </view>
     <swiper class="banner" autoplay="true" circular="true">
         <swiper-item wx:for="{{dataSet.banner}}" wx:key="{{index}}">
-            <image class="banner-img" src="{{item.imgIndex}}"></image>
+            <image class="banner-img" mode="widthFix" src="{{item.imgIndex}}"></image>
         </swiper-item>
     </swiper>
-    <image wx:if="{{true}}" bindtap="goToDetail" class="advertising" src="./ad.png"></image>
+    <image wx:if="{{true}}" bindtap="goToDetail" mode="widthFix" class="advertising" src="./ad.png"></image>
     <view class="list" wx:if="{{MemorialMoney.length}}" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
-        <image src="{{item.url1}}"></image>
+        <image mode="aspectFit" src="{{item.url1}}"></image>
         <view class="list-right">
             <view class="list-right-top">{{item.tiele}}</view>
             <view class="list-right-bottom">{{item.strTime}}</view>

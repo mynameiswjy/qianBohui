@@ -2,7 +2,7 @@
     <image class="banner" src="./baner_ad.png"></image>
     <view style="height: 8rpx"></view>
     <view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
-        <image src="{{item.url1}}"></image>
+        <image mode="aspectFit" src="{{item.url1}}"></image>
         <view class="list-right">
             <view class="list-right-top">{{item.tiele}}</view>
             <view class="list-right-bottom">{{item.strTime}}</view>

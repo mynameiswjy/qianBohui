@@ -2,7 +2,7 @@
     <view class="detail_content" style='margin-bottom:{{btuBottom}}'>
         <view style="height: 37rpx"></view>
         <view class="content_images">
-            <image src="{{obj.url1}}"></image>
+            <image mode="aspectFit" src="{{obj.url1}}"></image>
         </view>
         <view class="tab_wrap">
             <view class="tab_tr">
@@ -78,7 +78,7 @@
     <view class="showImg" catchtouchstart='' wx:if="{{isShowImg}}">
         <view wx:if="{{tempFilePath}}" class="iconfont icon-guanbi {{iphoneX?'icon-guanbi_x':''}}" bindtap="closeImg"></view>
         <view class="showImg_wrap">
-            <image bindtap="lookImg" mode="aspectFit	" class="{{iphoneX?'showImg_img':'showImg_img1'}}" src="{{tempFilePath}}"></image>
+            <image bindtap="lookImg" mode="widthFix" class="{{iphoneX?'showImg_img':'showImg_img1'}}" src="{{tempFilePath}}"></image>
         </view>
         <view wx:if="{{tempFilePath}}" class="showImg_save {{iphoneX?'showImg_save1':''}}" catchtap="btnClick">保存后分享朋友圈</view>
     </view>
