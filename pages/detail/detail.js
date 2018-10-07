@@ -20,7 +20,8 @@ Page({
     moneyLike: 0,
     iphoneX: app.globalData.iphoneX,
     btuBottom: '',
-    isShowImg: false
+    isShowImg: false,
+    isContinue: false
   },
   onLoad: function (options) {
     let opt = this.parseUrlParam(options)
@@ -48,12 +49,10 @@ Page({
       return
     }
 		if (opt) {
-      debugger
 			this.init(opt)
 		} else {
 			this.init(options)
     }
-    this.getMinappCodeImage()
     /*if (options.isSendTo == 'like') { // like 为点赞
       this.clickGood()
     } else if (options.isSendTo == 'moments') { // 朋友圈
@@ -86,6 +85,7 @@ Page({
           isLike: res.data.returnData.isLike,
           moneyLike: res.data.returnData.moneyLike,
         })
+        this.initCanvas(res.data.returnData)
       } else if (res.data.returnCode === '3000') {
         wx.showModal({
           title: '温馨提示',
@@ -109,14 +109,22 @@ Page({
     return countNum
   },
   promisify(url) {
+    let that = this
     return new Promise(function (resolve, reject) {
       wx.getImageInfo({
         src: url,
         success: function (res) {
+          that.data.isContinue = true
           resolve(res)
         },
         fail(err) {
           console.log(err);
+          that.data.isContinue = false
+          /*wx.showToast({
+            title: '生成失败',
+            icon: 'none',
+            duration: 1000
+          })*/
           reject(err)
         }
       })
@@ -124,6 +132,7 @@ Page({
   },
   // 初始化canvas
   initCanvas(options) {
+    if (this.data.isContinue) return false
     let that = this
     const SystemInfo = wx.getSystemInfoSync()
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)

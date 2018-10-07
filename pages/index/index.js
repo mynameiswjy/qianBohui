@@ -6,7 +6,7 @@ Page({
 
   data: {
     array: ['美国', '中国', '巴西', '日本'],
-    valHot: '热门',
+    valHot: '推荐',
     indexHot: '',
     hotList: [],
     dataSet: {},

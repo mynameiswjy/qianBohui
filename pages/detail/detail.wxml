@@ -52,7 +52,7 @@
                 <view class="tab_td5 bottom">{{obj.moneyCompany}}</view>
             </view>
         </view>
-        <view class="captions"><!-- wx:if="{{options.IsShare == 1}}"-->
+        <view class="captions" wx:if="{{obj.moneyIntroduce}}"><!-- wx:if="{{options.IsShare == 1}}"-->
             <text style="color: #C6A056;">介绍: </text>{{obj.moneyIntroduce}}
         </view>
         <view class="footer">
