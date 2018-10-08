@@ -22,7 +22,7 @@
                 </div>
                 <div style="position: relative;">
                   <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
-                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.name">{{opt.name}}</option>
+                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.code">{{opt.name}}</option>
                   </select>
                   <div v-show="!item[item.code]" class="select-default">请选择</div>
                 </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--<img class="title-img" :src="imgIndex">-->
-    <introduce :introduceObj="dataList.expositionIntroduce" :text="text"></introduce>
+    <introduce :introduceObj="dataList.expositionIntroduce" :show="false" :text="text"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
     <successive-exhibitions :successiveList="SuccessiveList"></successive-exhibitions>
