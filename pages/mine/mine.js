@@ -131,7 +131,7 @@ Page({
       return
     }
     wx.showLoading({
-      title: '登陆中...',
+      title: '登录中...',
     })
     wx.login({
       success(even) {
@@ -152,7 +152,7 @@ Page({
             app.initUserData(res.data.returnData)
             wx.hideLoading()
             wx.showToast({
-              title: '登陆成功',
+              title: '登录成功',
               icon: 'success',
               duration: 1000
             })
@@ -180,7 +180,7 @@ Page({
     if (!userNameReg(that.data.mobileNum)) return
     if (!passwordReg(that.data.passWordUser)) return
     wx.showLoading({
-      title: '登陆中...',
+      title: '登录中...',
     })
     wx.login({
       success(even) {
@@ -208,7 +208,7 @@ Page({
             openRegister: false // 注册
           })
           wx.showToast({
-            title: '登陆成功',
+            title: '登录成功',
             icon: 'success',
             duration: 1000
           })
@@ -230,7 +230,7 @@ Page({
       return
     }
     wx.showLoading({
-      title: '登陆中...',
+      title: '登录中...',
     })
     let info = e.detail.userInfo
     let userName = info.nickName
@@ -259,7 +259,7 @@ Page({
               wx.hideLoading()
               app.initUserData(data)
               wx.showToast({
-                title: '登陆成功',
+                title: '登录成功',
                 icon: 'success',
                 duration: 1000
               })
