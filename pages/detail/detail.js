@@ -362,7 +362,8 @@ Page({
     // 钱币图
     ctx.save()
     this.scale(51/2, true)
-    this.roundRect(ctx, this.scale(137/2), this.data.drawY,  this.scale(475/2), this.scale(255/2), this.scale(20/2))
+    // this.roundRect(ctx, this.scale(137/2), this.data.drawY,  this.scale(475/2), this.scale(255/2), this.scale(20/2))
+    ctx.setShadow(0, 0, 15, 'rgba(0,0,0, 0.5)')
     ctx.drawImage(options.moneyImg, this.scale(137/2), this.data.drawY, this.scale(475/2), this.scale(255/2))
     this.scale(255/2, true)
     ctx.stroke()
@@ -513,8 +514,9 @@ Page({
     ctx.setShadow(0, 0, 15, 'rgba(0,0,0, 0.2)')
     // 因为边缘描边存在锯齿，最好指定使用 transparent 填充
     // 这里是使用 fill 还是 stroke都可以，二选一即可
-    ctx.setFillStyle('transparent')
-    // ctx.setStrokeStyle('transparent')
+    // ctx.setFillStyle('transparent')
+    ctx.setStrokeStyle('transparent')
+    ctx.setGlobalAlpha(0)
     // 左上角
     ctx.arc(x + r, y + r, r, Math.PI, Math.PI * 1.5)
 
