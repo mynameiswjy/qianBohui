@@ -136,6 +136,15 @@ export function boothExplain(data = {}) {
   })
 }
 
+// 分享接口 https://www.chqbh.com/qbh/share/getShareToken.do
+export function getShareToken(data = {}) {
+  return service({
+    url: '/share/getShareToken.do',
+    method: 'get',
+    params: data
+  })
+}
+
 export default {
   indexDo,
   successiveExhibitors,

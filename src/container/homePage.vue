@@ -21,8 +21,9 @@ import successiveExhibitions from '@/components/successiveExhibitions' // 历届
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
 import * as types from '../store/mutation-types'
-import {indexDo, successiveExhibitors} from '@/api/index'
+import {indexDo, successiveExhibitors, getShareToken} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件
+import { wxShareTemp } from '../utils/wx_share'
 
 export default {
   name: "index",
@@ -43,6 +44,14 @@ export default {
     document.title = '首页';
   },
   mounted() {
+    getShareToken({url: 'https://www.chqbh.com/web/index.html#/homePage'}).then(res => { // window.location.href
+      console.log(res.data.returnData)
+      let data = res.data.returnData
+      wxShareTemp(data, {})
+    }).catch(err => {
+      console.log(err)
+    })
+    console.log(this.$route.path)
   },
   methods: {
     initIndexList() {
