@@ -1,8 +1,9 @@
 import wx from 'weixin-js-sdk'
 
 function wxShareTemp(sd, data) {
+  console.log(sd);
   // alert(window.location.href)
-  let links = 'https://www.chqbh.com/web/index.html#/homePage'; //分享出去的链接
+  let links = sd.url; //分享出去的链接
   let title = '向您推荐：' + data.name + '的活动微站'; //分享的标题
   let desc = '关注' + data.name + '有新活动通知您'; //分享的详情介绍
   let imgUrl = data.img || './share.jpg';
@@ -10,7 +11,7 @@ function wxShareTemp(sd, data) {
     debug: true,
     appId: sd.appId,
     timestamp: sd.timestamp,
-    nonceStr: sd.nonceStr,
+    nonceStr: sd.noncestr,
     signature: sd.signature,
     jsApiList: [
       'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'

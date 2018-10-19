@@ -84,6 +84,7 @@ export default {
       this.initNewsList()
     },
     initNewsList() {
+      this.list = []
       let data = {
         pageIndex: this.pageIndexNews,
         pageSize: 10,

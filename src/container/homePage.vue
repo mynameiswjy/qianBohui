@@ -45,7 +45,8 @@ export default {
   },
   mounted() {
     getShareToken({url: 'https://www.chqbh.com/web/index.html#/homePage'}).then(res => { // window.location.href
-      console.log(res.data.returnData)
+      console.log(location.href.split('#')[0])
+      console.log('window.location.href.split(\'#\').toString()', window.location.href.split('#').toString())
       let data = res.data.returnData
       wxShareTemp(data, {})
     }).catch(err => {
