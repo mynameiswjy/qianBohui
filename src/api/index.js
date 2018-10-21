@@ -137,7 +137,16 @@ export function boothExplain(data = {}) {
 }
 
 // 分享接口 https://www.chqbh.com/qbh/share/getShareToken.do
-export function getShareToken(data = {}) {
+export function getShareToken(path, code) {
+  let url
+  if (code) {
+    url = 'https://www.chqbh.com/web/index.html#' + path + '?code=' + code
+  } else {
+    url = 'https://www.chqbh.com/web/index.html#' + path
+  }
+  let data = {
+    url: url
+  }
   return service({
     url: '/share/getShareToken.do',
     method: 'get',

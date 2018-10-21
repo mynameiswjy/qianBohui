@@ -23,7 +23,10 @@ import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 �
 import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
 import navBar from './navBar'
-import {getNewsContent} from '@/api/index'
+import {getNewsContent, getShareToken} from '@/api/index'
+import { wxShareTemp } from '../utils/wx_share'
+import { getURLParams } from '../utils/utils'
+
 export default {
   name: "contactUs",
   data() {
@@ -33,12 +36,26 @@ export default {
     }
   },
   created() {
-    document.title = '新闻资讯';
   },
   activated() {
-    this.initData(this.$route.params.code)
+    document.title = '新闻资讯';
+    let code = this.$route.params.code || getURLParams('code')
+    console.log('code', getURLParams('code'))
+    this.initData(code)
+  },
+  mounted() {
+    this.shareWxNewLanding()
   },
   methods: {
+    // 分享
+    shareWxNewLanding() {
+      getShareToken(this.$route.path, this.$route.params.code).then(res => { // window.location.href
+        let data = res.data.returnData
+        wxShareTemp(data, {title: this.detailObj.title})
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     initData(code) {
       getNewsContent({selectCode: code}).then(res => {
         let data = res.data

@@ -1,14 +1,12 @@
 import wx from 'weixin-js-sdk'
 
 function wxShareTemp(sd, data) {
-  console.log(sd);
-  // alert(window.location.href)
   let links = sd.url; //分享出去的链接
-  let title = '向您推荐：' + data.name + '的活动微站'; //分享的标题
-  let desc = '关注' + data.name + '有新活动通知您'; //分享的详情介绍
-  let imgUrl = data.img || './share.jpg';
+  let title = data.title; //分享的标题
+  let desc = '分享发现，传递价值！欢迎参加北京国际钱币博览会'; //分享的详情介绍
+  let imgUrl = sd.img;
   wx.config({
-    debug: true,
+    debug: false,
     appId: sd.appId,
     timestamp: sd.timestamp,
     nonceStr: sd.noncestr,

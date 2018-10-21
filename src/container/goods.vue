@@ -13,7 +13,8 @@ import introduce from '@/components/introduce' // 展会介绍模板
 import publicTemp from '@/components/publicTemp/publicTemp'
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
-import {etArticlesContent} from '@/api/index'
+import {etArticlesContent, getShareToken} from '@/api/index'
+import { wxShareTemp } from '../utils/wx_share'
 
 export default {
   name: "aboutzh",
@@ -84,7 +85,19 @@ export default {
   activated() {
     document.title = '展商专区';
   },
+  mounted() {
+    this.shareWxGoods()
+  },
   methods: {
+    // 分享
+    shareWxGoods() {
+      getShareToken(this.$route.path).then(res => { // window.location.href
+        let data = res.data.returnData
+        wxShareTemp(data, {title: '北京国家钱币博览会展商专区'})
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     context() {
       etArticlesContent({articlesCode: 'ZSXZ'}).then(res => {
         if (res.data.returnCode === '0000') {

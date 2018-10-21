@@ -14,3 +14,7 @@ export function isPoneAvailable(that, str) {
     return false;
   }
 }
+// 获取url里的参数
+export function getURLParams(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null
+}

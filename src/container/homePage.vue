@@ -44,21 +44,23 @@ export default {
     document.title = '首页';
   },
   mounted() {
-    getShareToken({url: 'https://www.chqbh.com/web/index.html#/homePage'}).then(res => { // window.location.href
-      console.log(location.href.split('#')[0])
-      console.log('window.location.href.split(\'#\').toString()', window.location.href.split('#').toString())
-      let data = res.data.returnData
-      wxShareTemp(data, {})
-    }).catch(err => {
-      console.log(err)
-    })
-    console.log(this.$route.path)
+    this.shareWx()
   },
   methods: {
+    // 分享
+    shareWx() {
+      getShareToken(this.$route.path).then(res => { // window.location.href
+        let data = res.data.returnData
+        wxShareTemp(data, {title: '北京国家钱币博览会首页'})
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     initIndexList() {
       indexDo().then((res) => {
         if (res.data.returnCode === '0000') {
           this.dataList = res.data.returnData
+          console.log('this.dataList', this.dataList)
           this.imgIndex = this.dataList.banner.imgIndex
           this.$store.commit(types.INDEX_IMG, res.data.returnData.banner.imgIndex)
         }

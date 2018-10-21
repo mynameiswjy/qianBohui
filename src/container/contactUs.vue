@@ -18,6 +18,9 @@ import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 �
 import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
 import navBar from './navBar'
+import {getShareToken} from '@/api/index'
+import { wxShareTemp } from '../utils/wx_share'
+
 export default {
   name: "contactUs",
   data() {
@@ -31,7 +34,19 @@ export default {
   activated() {
     document.title = '联系我们';
   },
+  mounted() {
+    this.shareWxCon()
+  },
   methods: {
+    // 分享
+    shareWxCon() {
+      getShareToken(this.$route.path).then(res => { // window.location.href
+        let data = res.data.returnData
+        wxShareTemp(data, {title: '北京国家钱币博览会联系我们'})
+      }).catch(err => {
+        console.log(err)
+      })
+    },
   },
   components: {
     introduce,

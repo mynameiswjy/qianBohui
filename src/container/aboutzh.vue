@@ -13,7 +13,8 @@ import introduce from '@/components/introduce' // 展会介绍模板
 import publicTemp from '@/components/publicTemp/publicTemp'
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
-import {etArticlesContent} from '@/api/index'
+import { etArticlesContent, getShareToken } from '@/api/index'
+import { wxShareTemp } from '../utils/wx_share'
 
 export default {
   name: "aboutzh",
@@ -61,6 +62,9 @@ export default {
   activated() {
     document.title = '关于展会';
   },
+  mounted() {
+    this.shareWxAbouthzh()
+  },
   methods: {
     contentTxt() {
       etArticlesContent({articlesCode: 'ZHJS'}).then(res => {
@@ -68,7 +72,16 @@ export default {
           this.introduceObj = res.data.returnData
         }
       })
-    }
+    },
+    // 分享
+    shareWxAbouthzh() {
+      getShareToken(this.$route.path).then(res => { // window.location.href
+        let data = res.data.returnData
+        wxShareTemp(data, {title: '北京国家钱币博览会关于展会'})
+      }).catch(err => {
+        console.log(err)
+      })
+    },
   },
   components: {
     tabBar,

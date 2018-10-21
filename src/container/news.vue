@@ -51,7 +51,8 @@
 <script>
 import tabBar from '@/container/tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
-import {getNewsCategory} from '@/api/index'
+import {getNewsCategory, getShareToken} from '@/api/index'
+import { wxShareTemp } from '../utils/wx_share'
 
 export default {
   name: "aboutzh",
@@ -77,7 +78,19 @@ export default {
   activated() {
     document.title = '新闻资讯';
   },
+  mounted() {
+    this.shareWxNews()
+  },
   methods: {
+    // 分享
+    shareWxNews() {
+      getShareToken(this.$route.path).then(res => { // window.location.href
+        let data = res.data.returnData
+        wxShareTemp(data, {title: '北京国家钱币博览会新闻资讯'})
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     goToDetail(e) {
       this.$router.push({
         name: "newsLandingPage",
