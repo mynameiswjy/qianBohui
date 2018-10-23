@@ -1,11 +1,24 @@
 import axios from 'axios'
 import qs from 'qs'
 
-const baseUrl = 'https://www.chbice.com'
+// const baseUrl = 'https://www.chbice.com/qbh'
+const baseUrl = 'https://www.chqbh.com/qbh'
 
 const service = axios.create({
   // api的base_url
   baseURL: baseUrl,
+  // 请求超时时间
+  timeout: 20000,
+  headers: null,
+  /*transformRequest: [function(data) {
+    //依自己的需求对请求数据进行处理
+    return data;
+  }],*/
+
+})
+const serviceShare = axios.create({
+  // api的base_url
+  baseURL: 'https://www.chqbh.com/qbh/',
   // 请求超时时间
   timeout: 20000,
   headers: null,
@@ -149,7 +162,7 @@ export function getShareToken(path, code) {
   let data = {
     url: url
   }
-  return service({
+  return serviceShare({
     url: '/share/getShareToken.do',
     method: 'get',
     params: data
