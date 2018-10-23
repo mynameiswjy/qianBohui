@@ -57,7 +57,7 @@
 					"id": 3,
 					"name": "详情页",
 					"pathName": "pages/detail/detail",
-					"query": "moneyCode=100003&IsShare=1",
+					"query": "moneyCode=600005&IsShare=1",
 					"scene": "1001"
 				}
 			]

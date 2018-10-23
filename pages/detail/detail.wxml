@@ -8,12 +8,10 @@
             <view class="tab_tr">
                 <view class="tab_td1">钱币名称</view>
                 <view class="tab_td6">{{obj.tiele}}</view>
-                <!--<view class="tab_td3">年份</view>
-                <view class="tab_td4">{{obj.moneyYear}}</view>-->
             </view>
             <view class="tab_tr">
-                <view class="tab_td1">编号</view>
-                <view class="tab_td2">{{obj.moneyCode}}</view>
+                <view class="tab_td1">年份</view>
+                <view class="tab_td2">{{obj.moneyYear}}</view>
                 <view class="tab_td3">直径(毫米)</view>
                 <view class="tab_td4">{{obj.moneyDiameter}}</view>
             </view>
@@ -32,20 +30,16 @@
             <view class="tab_tr">
                 <view class="tab_td1">质量</view>
                 <view class="tab_td2">{{obj.moneyQuality}}</view>
-                <view class="tab_td3">系列</view>
-                <view class="tab_td4">{{obj.moneySelectItem}}</view>
+                <view class="tab_td3">发行量(枚)</view>
+                <view class="tab_td4">{{obj.moneyCirculation}}</view>
             </view>
-            <!--<view class="tab_tr">
-                <view class="tab_td1 bottom">发行量(枚)</view>
-                <view class="tab_td2 bottom">{{obj.moneyCirculation}}</view>
-                <view class="tab_td3 bottom">铸造单位</view>
-                <view class="tab_td4 bottom {{obj.moneyCompany.length>6?'sb':''}}">{{obj.moneyCompany}}</view>
-            </view>-->
             <view class="tab_tr">
-                <view class="tab_td1 bottom">发行量(枚)</view>
+                <!--<view class="tab_td1 bottom">发行量(枚)</view>
                 <view class="tab_td2 bottom">{{obj.moneyCirculation}}</view>
                 <view class="tab_td3 bottom">年份</view>
-                <view class="tab_td4 bottom">{{obj.moneyYear}}</view>
+                <view class="tab_td4 bottom">{{obj.moneyYear}}</view>-->
+                <view class="tab_td1 bottom">系列</view>
+                <view class="tab_td5 bottom">{{obj.moneySelectItem}}</view>
             </view>
             <view class="tab_tr">
                 <view class="tab_td1 bottom">铸造单位</view>
