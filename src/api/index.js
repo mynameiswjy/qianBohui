@@ -1,9 +1,11 @@
 import axios from 'axios'
 import qs from 'qs'
 
+const baseUrl = 'https://www.chbice.com'
+
 const service = axios.create({
   // api的base_url
-  baseURL: "https://www.chqbh.com/qbh",
+  baseURL: baseUrl,
   // 请求超时时间
   timeout: 20000,
   headers: null,
@@ -17,7 +19,7 @@ const service = axios.create({
 function reqServer (head = {}) {
   const service = axios.create({
     // api的base_url
-    baseURL: "https://www.chqbh.com/qbh",
+    baseURL: baseUrl,
     // 请求超时时间
     timeout: 20000,
     headers: head,

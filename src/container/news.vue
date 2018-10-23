@@ -86,7 +86,7 @@ export default {
     shareWxNews() {
       getShareToken(this.$route.path).then(res => { // window.location.href
         let data = res.data.returnData
-        wxShareTemp(data, {title: '北京国家钱币博览会新闻资讯'})
+        wxShareTemp(data, {title: '北京国际钱币博览会新闻资讯'})
       }).catch(err => {
         console.log(err)
       })

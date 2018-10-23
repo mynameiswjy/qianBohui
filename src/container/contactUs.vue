@@ -42,7 +42,7 @@ export default {
     shareWxCon() {
       getShareToken(this.$route.path).then(res => { // window.location.href
         let data = res.data.returnData
-        wxShareTemp(data, {title: '北京国家钱币博览会联系我们'})
+        wxShareTemp(data, {title: '北京国际钱币博览会联系我们'})
       }).catch(err => {
         console.log(err)
       })

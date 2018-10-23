@@ -68,7 +68,7 @@ export default {
     shareWxAudien() {
       getShareToken(this.$route.path).then(res => { // window.location.href
         let data = res.data.returnData
-        wxShareTemp(data, {title: '北京国家钱币博览会观众专区'})
+        wxShareTemp(data, {title: '北京国际钱币博览会观众专区'})
       }).catch(err => {
         console.log(err)
       })
