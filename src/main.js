@@ -24,7 +24,7 @@ setRootFontSize()
 /*document.addEventListener('touchstart', function (e) {
   e.preventDefault();
 })*/
-
+console.log('new Vue()', new Vue())
 new Vue({
   el: '#app',
   router,
