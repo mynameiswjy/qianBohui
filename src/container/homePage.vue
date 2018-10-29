@@ -23,7 +23,7 @@ import tabBar from '@/container/tabBar' // 底部tabBar
 import * as types from '../store/mutation-types'
 import {indexDo, successiveExhibitors, getShareToken} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件
-import { wxShareTemp } from '../utils/wx_share'
+import { wxShareTemp, againUrl } from '../utils/wx_share'
 
 export default {
   name: "index",
@@ -37,6 +37,7 @@ export default {
     }
   },
   created() {
+    againUrl(this.$route.path)
     this.initIndexList()
     this.initIndexNewsList()
   },

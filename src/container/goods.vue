@@ -14,7 +14,7 @@ import publicTemp from '@/components/publicTemp/publicTemp'
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
 import {etArticlesContent, getShareToken} from '@/api/index'
-import { wxShareTemp } from '../utils/wx_share'
+import { wxShareTemp, againUrl } from '../utils/wx_share'
 
 export default {
   name: "aboutzh",
@@ -80,6 +80,7 @@ export default {
     }
   },
   created() {
+    againUrl(this.$route.path)
     this.context()
   },
   activated() {

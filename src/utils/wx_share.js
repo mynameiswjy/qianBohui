@@ -1,4 +1,6 @@
 import wx from 'weixin-js-sdk'
+import { baseUrl } from '../api/index'
+import { getURLParams } from './utils'
 
 function wxShareTemp(sd, data) {
   let links = sd.url; //分享出去的链接
@@ -88,6 +90,23 @@ function wxShareTemp(sd, data) {
   });
 }
 
+function againUrl(path, code) {
+  let from = getURLParams('from')
+  let isappinstalled = getURLParams('isappinstalled')
+  if (from != null || isappinstalled != null) {
+    if (code) {
+      // window.location.href = baseUrl + '/web/index.html#' + path + '?code=' + code
+      window.location.href = 'http://192.168.1.5:8080/#' + path + '?code=' + code
+    } else {
+      window.location.href = baseUrl + '/web/index.html#' + path
+      // window.location.href = 'http://192.168.1.5:8080/#' + path
+    }
+    return false
+  } else {
+  }
+}
+
 export {
-  wxShareTemp
+  wxShareTemp,
+  againUrl
 }

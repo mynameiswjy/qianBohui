@@ -16,7 +16,8 @@
 
 <script>
 import axios from 'axios'
-import { deleteImage } from '../../api/index'
+import { deleteImage, baseUrl } from '../../api/index'
+
 export default {
   name: "imgUpload",
   data() {
@@ -58,7 +59,7 @@ export default {
       const instance = axios.create({
         'Content-Type': 'multipart/form-data'
       })
-      instance.post('https://www.chqbh.com/qbh/uploadDownload/uploadImage.do', formData).then(res => {
+      instance.post(baseUrl + '/qbh/uploadDownload/uploadImage.do', formData).then(res => {
         if (res.data.returnCode == '0000') {
           this.imgLen++;
           this.imgId = this.imgId.concat(res.data.returnData.id)

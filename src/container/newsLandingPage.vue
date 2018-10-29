@@ -24,7 +24,7 @@ import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
 import navBar from './navBar'
 import {getNewsContent, getShareToken} from '@/api/index'
-import { wxShareTemp } from '../utils/wx_share'
+import { wxShareTemp, againUrl } from '../utils/wx_share'
 import { getURLParams } from '../utils/utils'
 
 export default {
@@ -36,6 +36,7 @@ export default {
     }
   },
   created() {
+    againUrl(this.$route.path, getURLParams('code'))
   },
   activated() {
     document.title = '新闻资讯';
