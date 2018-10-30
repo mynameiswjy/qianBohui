@@ -8,7 +8,9 @@
         </div>
       </div>
       <ul class="exhibition-news">
-        <li v-for="(item, index) in exhibitorsIntroduce" v-bind:key="index" @click="goToDetail(item.code)">{{item.title}}</li>
+        <li v-for="(item, index) in exhibitorsIntroduce" v-bind:key="index" @click="goToDetail(item.code)">
+          <router-link :to="detailPath(item.code)">{{item.title}}</router-link>
+        </li>
       </ul>
       <!--<img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">-->
     </div>
@@ -29,13 +31,17 @@ export default {
   },
   methods: {
     goToDetail(e) {
-      this.$router.push({
+      /*this.$router.push({
         name: "newsLandingPage",
         params: {
           name: 'newsLandingPage',
           code: e
         }
-      })
+      })*/
+    },
+    detailPath(code) {
+      let path = '/newsLandingPage?code=' + code
+      return path
     }
   }
 }

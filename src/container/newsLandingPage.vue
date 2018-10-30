@@ -50,7 +50,7 @@ export default {
   methods: {
     // 分享
     shareWxNewLanding() {
-      getShareToken(this.$route.path, this.$route.params.code).then(res => { // window.location.href
+      getShareToken(this.$route.path, this.$route.params.code || getURLParams('code')).then(res => { // window.location.href
         let data = res.data.returnData
         wxShareTemp(data, {title: this.detailObj.title})
       }).catch(err => {

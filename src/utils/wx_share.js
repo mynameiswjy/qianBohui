@@ -95,8 +95,8 @@ function againUrl(path, code) {
   let isappinstalled = getURLParams('isappinstalled')
   if (from != null || isappinstalled != null) {
     if (code) {
-      // window.location.href = baseUrl + '/web/index.html#' + path + '?code=' + code
-      window.location.href = 'http://192.168.1.5:8080/#' + path + '?code=' + code
+      window.location.href = baseUrl + '/web/index.html#' + path + '?code=' + code
+      // window.location.href = 'http://192.168.1.5:8080/#' + path + '?code=' + code
     } else {
       window.location.href = baseUrl + '/web/index.html#' + path
       // window.location.href = 'http://192.168.1.5:8080/#' + path
