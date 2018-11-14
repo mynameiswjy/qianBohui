@@ -159,9 +159,9 @@ export default {
       putRegisterInfo(data).then(res => {
         if (res.data.returnCode === '0000') {
           this.$emit("closeTemp", this.isReservationPage)
-          this.$message.success('报名成功！')
+          this.$message.success(res.data.returnMessage)
         } else {
-          this.$message.error('服务器错误或上传失败，请重新填写');
+          this.$message.error(res.data.returnMessage);
         }
       })
     },
