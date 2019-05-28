@@ -1,7 +1,6 @@
 <template>
     <div style="width: 100%">
-      <img v-if="showPath == 'homePage'" class="title-img" src="https://www.chqbh.com/imgFile/201808211619381528954869281.jpg">
-      <!--<img class="title-img" src="https://weixin.566.com/BizImage/CircleBgImage/201806/15/d58a_47de4ee4_47de4ee4.jpg">-->
+      <img v-show="isShowNavImg" class="title-img" :src="imgIndex">
       <div class="nav-wrapper" ref="viewport">
         <div ref="content" style="width: 100%">
           <ul class="tab-conten">
@@ -16,11 +15,17 @@
 </template>
 
 <script>
-import Slider from "../utils/slider.vue"
 import BScroll from 'better-scroll'
+import {ease} from '../utils/ease'
 
 export default {
   name: "navBar",
+  props: {
+    isShowNavImg: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       tabs: [
@@ -30,12 +35,11 @@ export default {
         {name: '观众专区', id: '3', path: '/audience'},
         {name: '新闻资讯', id: '4', path: '/news'},
       ],
-      idx: 0,
-      showPath: ''
+      navIdx: 0,
+      scrollToEasing: 'bounce'
     }
   },
   created() {
-    this.showPath = this.$router.history.current.name
   },
   mounted() {
     setTimeout(() => {
@@ -44,13 +48,10 @@ export default {
   },
   methods: {
     navBtn(e) {
-      this.idx = e
-      this.showPath = this.$router.history.current.name
-      console.log(this.showPath)
       if (e == 4) {
-        this.slider.scrollTo(-30, 0, 300)
+        this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])
       } else if (e == 1 || e == 0) {
-        this.slider.scrollTo(0, 0, 300)
+        this.slider.scrollTo(0, 0, 500, ease[this.scrollToEasing])
       }
     },
     _initSlider() {
@@ -110,9 +111,11 @@ export default {
     }
   },
   computed: {
+    imgIndex() {
+      return this.$store.state.imgIndex
+    }
   },
   components: {
-    Slider
   }
 }
 </script>
@@ -169,7 +172,7 @@ export default {
     text-align: center;
     top 0.09rem
     height: 0.72rem;
-    background rgba(255,255,255, 0.6)
+    background rgba(255,255,255, 0.9)
   }
   .search-icon{
     width: 0.32rem;

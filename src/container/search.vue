@@ -1,16 +1,26 @@
 <template>
     <div class="sear-wrap">
       <div class="sear">
-        <div class="sear-input">
-          <img class="sear-img" src="../assets/images/search.png" alt="">
-          <input type="text" placeholder="搜索" @keyup.enter="submit" v-model="searVal" style="vertical-align:middle">
-        </div>
+        <form action="" enctype='applicaion/json'>
+          <div class="sear-input">
+            <img class="sear-img" src="../assets/images/search.png" alt="">
+            <input type="text" placeholder="搜索" @keyup.enter="submit" v-model="searVal" style="vertical-align:middle">
+          </div>
+        </form>
         <div @click="Search_con">取消</div>
       </div>
-      <div v-if="keywordsList.length">
+      <div v-if="keywordsList.length" v-show="isShowSear">
         <p class="hot-sear">热门搜索</p>
         <ul class="keywords">
           <li v-for="(item, index) in keywordsList" @click="changeClick(index)" v-bind:key="index">{{item.name}}</li>
+        </ul>
+      </div>
+      <div class="sear_wrap left-margin" v-show="searchList.length">
+        <ul class="sear_content">
+          <li class="sear_content_list" @click="goToDetail(item.selectCode)" v-for="(item, index) in searchList" :key="index">
+            <div class="sear_content_list_left">{{item.title}}</div>
+            <div>{{item.time}}</div>
+          </li>
         </ul>
       </div>
     </div>
@@ -24,7 +34,9 @@ export default {
   data() {
     return{
       searVal: '',
-      keywordsList: {}
+      keywordsList: {},
+      searchList: [],
+      isShowSear: true
     }
   },
   created() {
@@ -34,14 +46,40 @@ export default {
   },
   mounted() {
   },
+  activated() {
+    document.title = '搜索';
+  },
+  destroyed() {
+    this.searchList = []
+  },
   methods: {
     // 搜索
     submit() {
       let data = {
+        searchType: 'H5_HOME',
         searchName: this.searVal
       }
       searchName(data).then((res) => {
-        console.log(res)
+        if (res.data.returnCode === '0000' && res.data.returnData) {
+          this.searchList = res.data.returnData
+          this.isShowSear = false
+        } else {
+          this.searchList = []
+          this.isShowSear = true
+          this.$message({
+            message: '暂无搜索内容',
+            type: 'warning'
+          });
+        }
+      })
+    },
+    goToDetail(e) {
+      this.$router.push({
+        name: "newsLandingPage",
+        params: {
+          name: 'newsLandingPage',
+          code: e
+        }
       })
     },
     // 关键词
@@ -54,7 +92,7 @@ export default {
       this.searVal = this.keywordsList[e].name
     },
     initgetAntistop() {
-      getAntistop().then((res) => {
+      getAntistop({searchType: 'H5_HOME'}).then((res) => {
         this.keywordsList = res.data.returnData
       })
     }
@@ -75,6 +113,27 @@ export default {
     background-color: rgba(255,255,255,1);
     /*background-color: #bfa;*/
     z-index 333
+    .sear_wrap
+      box-shadow: 0.0rem 0rem 0.21rem rgba(198,160,86, 0.6);
+      width: 6.21rem;
+      padding: 0.38rem 0.29rem 0.29rem 0.29rem; // 0.18
+      border-radius: 0.08rem;
+      margin-top 0.55rem
+      .sear_content
+        .sear_content_list
+          display flex
+          justify-content space-between
+          height: 0.76rem;
+          line-height: 0.76rem;
+          padding-left: 0.35rem;
+          padding-right 0.35rem
+          margin-bottom: 0.14rem;
+          font-size: 0.3rem;
+          font-family: PingFangSC-Regular;
+          color: #717170;
+          background:rgba(198,160,86, 0.08)
+          .sear_content_list_left
+            width: 3.21rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
     .sear
       width 100%
       display: flex
@@ -102,22 +161,22 @@ export default {
         padding-left 0.32rem
         margin-top 0.18rem
         line-height 0.54rem
-  .hot-sear
-    margin-top 0.36rem
-    margin-left 0.27rem
-    margin-bottom 0.24rem
-    font-family:PingFangSC-Regular;
-    color:rgba(135,135,135,1)
-  .keywords
-    display flex
-    color:rgba(74,73,73,1)
-    flex-wrap: wrap
-    margin-left 0.28rem
-    li
-      padding 0.17rem 0.2rem
-      background-color #F4F4F4
-      border-radius 0.08rem
-      color #4A4949
-      margin-bottom 0.22rem
-      margin-right 0.22rem
+    .hot-sear
+      margin-top 0.36rem
+      margin-left 0.27rem
+      margin-bottom 0.24rem
+      font-family:PingFangSC-Regular;
+      color:rgba(135,135,135,1)
+    .keywords
+      display flex
+      color:rgba(74,73,73,1)
+      flex-wrap: wrap
+      margin-left 0.28rem
+      li
+        padding 0.17rem 0.2rem
+        background-color #F4F4F4
+        border-radius 0.08rem
+        color #4A4949
+        margin-bottom 0.22rem
+        margin-right 0.22rem
 </style>

@@ -22,7 +22,7 @@
                 </div>
                 <div style="position: relative;">
                   <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
-                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" value="opt.name">{{opt.name}}</option>
+                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.code">{{opt.name}}</option>
                   </select>
                   <div v-show="!item[item.code]" class="select-default">请选择</div>
                 </div>
@@ -34,18 +34,16 @@
           </ul>
           <div class="list-upload">
             <div>资料上传</div>
-            <div class="upload">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></div>
+            <a class="upload" href="https://pan.baidu.com/s/1UwVaprZ7bFgClP2ntVSfkg"  @click="downloadData">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></a>
           </div>
           <div class="add-img">
-            <!--<div class="user-img">
-              <img src="http://img.zcool.cn/community/0117e2571b8b246ac72538120dd8a4.jpg@1280w_1l_2o_100sh.jpg" alt="">
-            </div>-->
-            <el-upload
+            <!--<el-upload
               action="https://www.chqbh.com/qbh/uploadDownload/uploadImage.do"
               list-type="picture-card"
               :before-upload="beforUpload"
               :limit="8"
               :before-remove="beforRemove"
+              :on-remove="onRemoveImg"
               :on-preview="handlePictureCardPreview"
               :on-success="successImg"
             >
@@ -53,7 +51,8 @@
                 <img src="../../assets/images/add_img.png" alt="">
                 <div class="upload-img-add">添加图片</div>
               </div>
-            </el-upload>
+            </el-upload>-->
+            <imgUpload @imgIdObj="imgArr"></imgUpload>
           </div>
           <div @click="sendData" class="btns">确定</div>
           <div style="height: 0.18rem"></div>
@@ -68,15 +67,16 @@ import Scroll from '@/utils/scroll'
 import { isBottom } from '@/utils/utils'
 import Loading from '../loading/loading'
 import { getRegisterTypeInfo, deleteImage, putRegisterInfo } from '@/api/index'
+import imgUpload from '../imgUpload/imgUpload'
 
-var md5 = require('js-md5')
+//var md5 = require('js-md5')
 
 export default {
   name: "consulting",
   data() {
     return {
       isShow: false,
-      one: false,
+      isReservationPage: false,
       p_bottom: false,
       imgNum: 0,
       userInputList: {},
@@ -115,7 +115,23 @@ export default {
         let value = data[key]
         sendList[key] = value
         let isRequired = data.isRequired
-        if (key === 'phoneNum') {
+        // qq号码验证
+        if (key === 'qqCode' && value) {
+          if (!/^[1-9][0-9]{4,14}$/.test(value)) {
+            this.$message.error('请输入正确的QQ号！');
+            return false
+          }
+        }
+        // 邮箱验证
+        if (key === 'emailAddress' && value) {
+          let regEmail = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")
+          if (!regEmail.test(value)) {
+            this.$message.error('请输入正确的邮箱！');
+            return false
+          }
+        }
+        // 手机号验证
+        if (key === 'phoneNum' && value) {
           let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
           if (!myreg.test(value)) {
             this.$message.error('请输入正确的手机号！');
@@ -127,8 +143,13 @@ export default {
           return false
         }
       }
+      if (this.images.length <= 0) {
+        this.$message.error('图片为必须上传项');
+        return false
+      }
+      console.log(sendList)
       for (let i in sendList) {
-        sendList[i] = sendList[i] ? md5(sendList[i]) : ' '
+        sendList[i] = sendList[i] ? sendList[i] : ' '//  md5(sendList[i])
       }
       let data = Object.assign({}, initData, sendList, {
         type: 'BOOTH_RESERVE',
@@ -137,8 +158,8 @@ export default {
       console.log(data)
       putRegisterInfo(data).then(res => {
         if (res.data.returnCode === '0000') {
-          this.$emit("closeTemp", this.one)
-          this.$message.success('上传成功！')
+          this.$emit("closeTemp", this.isReservationPage)
+          this.$message.success('报名成功！')
         } else {
           this.$message.error('服务器错误或上传失败，请重新填写');
         }
@@ -151,31 +172,38 @@ export default {
         }
       })
     },
-    closeTemp() {
-      this.$emit("closeTemp", this.one)
+    // 接受上传图片组件 成功上传后的id
+    imgArr(e) {
+      this.images = e
     },
-    handlePictureCardPreview(e) { // 点击文件列表中已上传的文件时的钩子
-      console.log(e)
+    closeTemp() {
+      this.$emit("closeTemp", false)
     },
     successImg(res, file, fileList) { // 上传成功后
       this.images = this.images.concat(file.response.returnData.id)
       console.log(this.images.join(','))
     },
-    beforRemove(file, fileList) {
-      console.log(fileList)
+    beforRemove(file, fileList) { // 删除图片
       let id = file.response.returnData.id
       deleteImage({id: id}).then(res => {
         console.log(res)
       })
     },
+    onRemoveImg(file, fileList) {
+      this.images = fileList.map(item => {
+        return item.response.returnData.id
+      })
+    },
     beforUpload(file) { // 上传之前执行
       this.imgNum++
-      const isJPG = file.type === 'image/jpeg';
+      const isJPEG = file.type === 'image/jpeg';
+      const isJPG = file.type === 'image/jpg';
       const isPNG = file.type === 'image/png';
       const isBMP = file.type === 'image/bmp';
       const isLt2M = file.size / 1024 / 1024 < 2;
+      alert(file.type)
       let isImg = true
-      if (!isJPG && !isPNG && !isBMP) {
+      if (!isJPG && !isPNG && !isBMP && !isJPEG) {
         this.$message.error('上传图片必须是JPG/PNG/BMP 格式!');
       }
       if (!isLt2M) {
@@ -186,11 +214,15 @@ export default {
         isImg = false
       }
       return (isJPG || isPNG || isBMP) && isLt2M && isImg;
+    },
+    downloadData() {
+      console.log(2222)
     }
   },
   components: {
     Scroll,
-    Loading
+    Loading,
+    imgUpload
   }
 }
 </script>

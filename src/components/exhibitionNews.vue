@@ -10,7 +10,7 @@
       <ul class="exhibition-news">
         <li v-for="(item, index) in expositionNews" @click="goToDetail(item.code)" v-bind:key="index">{{item.title}}</li>
       </ul>
-      <img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">
+      <!--<img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">-->
     </div>
 </template>
 
@@ -88,11 +88,15 @@ export default {
   .exhibition-news li{
     height: 0.76rem;
     line-height: 0.76rem;
+    /*padding: 0.15rem 0.3rem 0.15rem 0.35rem;*/
     padding-left: 0.35rem;
     margin-bottom: 0.14rem;
     font-size: 0.3rem;
     font-family: PingFangSC-Regular;
     color: #717170;
     background:rgba(198,160,86, 0.08);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 </style>

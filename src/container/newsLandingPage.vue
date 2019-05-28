@@ -1,13 +1,15 @@
 <template>
     <div class="landing_wrap">
-      <scroll class="news_landing_content" :data="content">
+      <scroll class="news_landing_content" :data="detailObj">
         <div class="footer_position">
+          <nav-bar></nav-bar>
           <div style="height: 0.58rem"></div>
-          <div class="landing_title left-margin">纪念币的保存、清洗及赝品识别</div>
-          <div class="landing_time left-margin">2018-06-28</div>
+          <div class="landing_title left-margin">{{detailObj.title}}</div>
+          <div class="landing_time left-margin">{{detailObj.articlesTime}}</div>
           <div class="landing_content left-margin">
-            <img class="landing_img" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="">
-            <div class="landing_text">{{content}}</div>
+            <dl class="landing_text" v-html="detailObj.content">
+              {{detailObj.content}}
+            </dl>
           </div>
           <temp-footer class="temp_footer"></temp-footer>
         </div>
@@ -20,31 +22,55 @@
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
-import {getNewsContent} from '@/api/index'
+import navBar from './navBar'
+import {getNewsContent, getShareToken} from '@/api/index'
+import { wxShareTemp, againUrl } from '../utils/wx_share'
+import { getURLParams } from '../utils/utils'
+
 export default {
   name: "contactUs",
   data() {
     return {
-      content: '宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。全面关注国内外钱币信息，宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。全面关注国内外钱币信息，宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。'
+      content: '宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。全面关注国内外钱币信息，宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。全面关注国内外钱币信息，宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。',
+      detailObj: {}
     }
   },
   created() {
-    document.title = '新闻资讯';
+    againUrl(this.$route.path, getURLParams('code'))
   },
   activated() {
-    this.initData(this.$route.params.code)
+    document.title = '新闻资讯';
+    let code = this.$route.params.code || getURLParams('code')
+    console.log('code', getURLParams('code'))
+    this.initData(code)
+  },
+  mounted() {
+    this.shareWxNewLanding()
   },
   methods: {
+    // 分享
+    shareWxNewLanding() {
+      getShareToken(this.$route.path, this.$route.params.code || getURLParams('code')).then(res => { // window.location.href
+        let data = res.data.returnData
+        wxShareTemp(data, {title: this.detailObj.title})
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     initData(code) {
       getNewsContent({selectCode: code}).then(res => {
-        console.log(res);
+        let data = res.data
+        if (data.returnCode === '0000') {
+          this.detailObj = data.returnData
+        }
       })
     }
   },
   components: {
     tempFooter,
     tabBar,
-    scroll
+    scroll,
+    navBar
   }
 }
 </script>
@@ -67,6 +93,8 @@ export default {
       .landing_title
         font-size: 0.32rem
         color: #010101
+        font-weight 600
+        line-height 0.5rem
         font-family:PingFangSC-Regular
         margin-bottom 0.41rem
       .landing_time
@@ -79,8 +107,8 @@ export default {
         border-radius: 0.08rem
         box-shadow:0 0 0.21rem rgba(198,160,86,0.2);
         .landing_img
-          width 6.2rem
-          height 4.21rem
+          width 6.2rem!important
+          height 4.21rem!important
           margin-bottom 0.41rem
         .landing_text
           color: #4C4C4C
@@ -88,6 +116,10 @@ export default {
           line-height 0.42rem
           text-align justify
           font-size 0.28rem
+          >>> img
+            width 6.2rem!important
+            height 4.21rem!important
+            margin-bottom 0.41rem
   .temp_footer
     height 2.156rem
     position absolute

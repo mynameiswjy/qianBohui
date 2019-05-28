@@ -12,13 +12,18 @@
         </div>
       </div>
       <div class="header_intro" :class="{height_hide: !introduceObj.content}">
-        <div  class="header-text" :class="{show: false}" ref="contentTxt">
-          {{introduceObj.content}}
+        <div class="header-text" :class="{show: show}" ref="contentTxt">
+          <span>{{introduceObj.content}}</span>
+          <div v-if="IsContactWay" class="contact_way">
+            <p>服务热线：<a href="tel:4008-188-666" class="contact_way_color">4008-188-666</a></p>
+            <p>服务传真：<span class="contact_way_color">010-59311250</span></p>
+            <p>服务邮箱：<span class="contact_way_color">service@chngc.net</span></p>
+          </div>
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
           <loading></loading>
         </div>
-        <div v-if="openStyle" v-show="showBtns" class="a_full" @click="showBts">{{showText}}</div>
+        <div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>
       </div>
     </div>
 </template>
@@ -37,6 +42,10 @@ export default {
         }
       }
     },
+    show: {
+      type: Boolean,
+      default: true
+    },
     text: {
       type: String,
       default: ''
@@ -45,21 +54,22 @@ export default {
       type: Boolean,
       default: false
     },
-    showBtns: {
+    IsContactWay: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data() {
     return {
       obj: {},
-      show: true,
-      showText: "显示全文"
+      showText: "显示全文",
+      showContent: false
     }
   },
   created() {
   },
   mounted() {
+    this.ShowContent()
   },
   methods: {
     showBts() {
@@ -70,7 +80,18 @@ export default {
         this.show = true
         this.showText = "显示全文"
       }
+    },
+    ShowContent() {
+      setTimeout(() => {
+        if (this.$refs.contentTxt.offsetHeight >= 166) {
+          this.showContent = true
+        } else {
+          this.showContent = false
+        }
+      }, 200)
     }
+  },
+  computed: {
   },
   components: {
     Loading
@@ -118,6 +139,10 @@ export default {
       color: rgba(72,72,71,1);
       background:rgba(255,255,255,1);
       line-height: 0.42rem
+      .contact_way
+        /*margin-left 1rem*/
+        .contact_way_color
+          color: #2C90FF
     .a_full
       font-size: 0.28rem
       font-family:PingFangSC-Light;

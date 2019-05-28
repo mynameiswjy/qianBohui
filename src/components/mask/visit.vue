@@ -8,14 +8,26 @@
           </div>
           <ul>
             <li v-for="(item, index) in userVisitList.selectItem" :key="index">
-              <div v-if="(item.code !='remark')" class="list">
+              <div v-if="(item.isType == 'I')" class="list">
                 <div class="list-left">
                   <div>{{item.name}}</div>
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
                 <input v-model="item[item.code]" type="text"/>
               </div>
-              <div v-else>
+              <div class="list" v-if="(item.isType == 'S')">
+                <div class="list-left">
+                  <div>{{item.name}}</div>
+                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
+                </div>
+                <div style="position: relative;">
+                  <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
+                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.code">{{opt.name}}</option>
+                  </select>
+                  <div v-show="!item[item.code]" class="select-default">请选择</div>
+                </div>
+              </div>
+              <div  v-if="(item.isType == 'A')">
                 <div class="note">{{item.name}}</div>
                 <textarea name="" v-model="item[item.code]" class="textarea" id="" cols="30" rows="10"></textarea>
               </div>
@@ -45,7 +57,7 @@ import Scroll from '@/utils/scroll'
 import { isBottom } from '@/utils/utils'
 import { getRegisterTypeInfo, putRegisterInfo } from '@/api/index'
 
-var md5 = require('js-md5')
+//var md5 = require('js-md5')
 
 export default {
   name: 'visit',
@@ -85,13 +97,36 @@ export default {
         let value = data[key]
         visitSendList[key] = value
         let isRequired = data.isRequired
+        // qq号码验证
+        if (key === 'qqCode' && value) {
+          if (!/^[1-9][0-9]{4,14}$/.test(value)) {
+            this.$message.error('请输入正确的QQ号！');
+            return false
+          }
+        }
+        // 手机号验证
+        if (key === 'phoneNum' && value) {
+          let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+          if (!myreg.test(value)) {
+            this.$message.error('请输入正确的手机号！');
+            return false
+          }
+        }
+        // 邮箱验证
+        if (key === 'emailAddress' && value) {
+          let regEmail = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$")
+          if (!regEmail.test(value)) {
+            this.$message.error('请输入正确的邮箱！');
+            return false
+          }
+        }
         if (isRequired === 'Y' && !value) {
           this.$message.error('带*为必填项，请填写完整');
           return false
         }
       }
       for (let i in visitSendList) {
-        visitSendList[i] = visitSendList[i] ? md5(visitSendList[i]) : ' '
+        visitSendList[i] = visitSendList[i] ? visitSendList[i] : ' ' // md5(visitSendList[i])
       }
       let data = Object.assign({}, initData, visitSendList, {
         type: 'VISITOR_REGISTER',
@@ -101,7 +136,7 @@ export default {
       putRegisterInfo(data).then(res => {
         if (res.data.returnCode === '0000') {
           this.$emit("closeVisit", this.tow)
-          this.$message.success('上传成功！')
+          this.$message.success('登记成功！')
         } else {
           this.$message.error('服务器错误或上传失败，请重新填写');
         }
@@ -150,6 +185,31 @@ export default {
     font-family: PingFangSC-Regular;
     padding-top: 0.14rem;
   }
+  .list select{
+    width: 4.77rem;
+    height: 0.75rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.08rem;
+    border: 0.01rem solid rgba(198,160,86,1);
+    color: #000;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    border: 0.01rem solid #d3d5d6;
+    color: #666;
+  }
+  .list .select1{
+    padding: 0 0.3rem;
+    background: url("../../assets/images/zh-drop-down.png") no-repeat scroll 92% center transparent;
+    background-size: 0.22rem 0.12rem;
+    padding-right: 0.2rem;
+  }
+  .select-default
+    position absolute
+    top: 0.02rem
+    left: 0.3rem
+    font-size 24rpx
+    color #b7b7b7
 
   .textarea {
     margin-left: 0.36rem;

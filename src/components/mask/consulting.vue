@@ -2,7 +2,7 @@
     <div class="mask">
       <div class="wraps">
         <p class="p1">如需咨询请联系QQ客服</p>
-        <p class="p2">QQ号码：123456789</p>
+        <p class="p2">QQ号码：3218882435</p>
         <div class="p3" @click="closeTemp">返回</div>
       </div>
     </div>

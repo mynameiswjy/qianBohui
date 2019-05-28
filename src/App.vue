@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-bar></nav-bar>
+    <nav-bar :isShowNavImg="isShowNavImg"></nav-bar>
     <keep-alive>
       <router-view/>
     </keep-alive>
@@ -9,7 +9,6 @@
 
 <script>
 import navBar from '@/container/navBar'
-
 export default {
   data() {
     return {
@@ -19,6 +18,11 @@ export default {
   created() {
   },
   methods: {
+  },
+  computed: {
+    isShowNavImg() {
+      return this.$route.name == 'homePage'
+    }
   },
   components: {
     navBar
