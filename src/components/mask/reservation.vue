@@ -34,7 +34,7 @@
           </ul>
           <div class="list-upload">
             <div>资料上传</div>
-            <a class="upload" href="https://pan.baidu.com/s/1UwVaprZ7bFgClP2ntVSfkg"  @click="downloadData">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></a>
+            <a class="upload" href="https://pan.baidu.com/s/1rMlRLngLGfIoUjTDzDROAg"  @click="downloadData">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></a>
           </div>
           <div class="add-img">
             <!--<el-upload
