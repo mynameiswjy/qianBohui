@@ -16,5 +16,6 @@ export function isPoneAvailable(that, str) {
 }
 // 获取url里的参数
 export function getURLParams(name) {
+  // eslint-disable-next-line
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null
 }
