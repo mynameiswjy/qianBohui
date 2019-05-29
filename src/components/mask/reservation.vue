@@ -34,7 +34,7 @@
           </ul>
           <div class="list-upload">
             <div>资料上传</div>
-            <a class="upload" href="https://pan.baidu.com/s/1UwVaprZ7bFgClP2ntVSfkg"  @click="downloadData">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></a>
+            <a class="upload" href="https://pan.baidu.com/s/1rMlRLngLGfIoUjTDzDROAg"  @click="downloadData">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></a>
           </div>
           <div class="add-img">
             <!--<el-upload
@@ -159,9 +159,9 @@ export default {
       putRegisterInfo(data).then(res => {
         if (res.data.returnCode === '0000') {
           this.$emit("closeTemp", this.isReservationPage)
-          this.$message.success('报名成功！')
+          this.$message.success(res.data.returnMessage)
         } else {
-          this.$message.error('服务器错误或上传失败，请重新填写');
+          this.$message.error(res.data.returnMessage);
         }
       })
     },

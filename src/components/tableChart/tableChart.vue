@@ -12,8 +12,8 @@
         <td>5000/page</td>
       </tr>
       <tr>
-        <td rowspan="11">展位</td>
-        <td rowspan="7">
+        <td rowspan="12">展位</td>
+        <td rowspan="8">
           <div>特装位</div>
           <div>(空地)</div>
         </td>
@@ -39,6 +39,10 @@
       <tr>
         <td>6mx6m</td>
         <td>99000</td>
+      </tr>
+      <tr>
+        <td>6mx4m</td>
+        <td>72000</td>
       </tr>
       <tr>
         <td>3mx6m</td>
