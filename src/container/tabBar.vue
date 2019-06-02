@@ -5,23 +5,23 @@
         <img class="tab-icon" src="../assets/images/booth-reservation.png">
         <div>展位预订</div>
       </li>
-      <li alt="" @click="cilckTabBarTwo">
-        <img class="tab-icon" src="../assets/images/visit-registration.png" alt="">
-        <div>参观登记</div>
-      </li>
+      <!--<li alt="" @click="cilckTabBarTwo">-->
+        <!--<img class="tab-icon" src="../assets/images/visit-registration.png" alt="">-->
+        <!--<div>参观登记</div>-->
+      <!--</li>-->
       <li class="consulting" alt="" @click="cilckTabBarThree">
         <img class="tab-img" src="../assets/images/consulting.png" alt="">
         <div>在线咨询</div>
       </li>
     </ul>
-    <visit @closeVisit="visitClose" v-if="tow"></visit>
+    <!--<visit @closeVisit="visitClose" v-if="tow"></visit>-->
     <reservation @closeTemp="tempClose" v-if="isReservationPage"></reservation>
     <consulting @closeZixun="tempZixun" v-if="three"></consulting>
   </div>
 </template>
 
 <script>
-import visit from "@/components/mask/visit.vue"
+//import visit from "@/components/mask/visit.vue"
 import reservation from "@/components/mask/reservation.vue"
 import consulting from "@/components/mask/consulting.vue"
 import * as types from '../store/mutation-types'
@@ -61,7 +61,7 @@ export default {
     }
   },
   components: {
-    visit,
+    // visit,
     reservation,
     consulting
   }

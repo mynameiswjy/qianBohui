@@ -1,6 +1,6 @@
 <template>
     <div class="temp_wrap left-margin">
-      <ul class="header_nav">
+      <ul class="header_nav" :class="{'header_nav1':isVisitP}">
         <li :class="{'text_active':idx == index, 'li_add_style': aboutzhObj.navList.length == 2}"
             @click="changeTempBtns(index)"
             v-for="(item, index) in aboutzhObj.navList"
@@ -227,4 +227,6 @@ export default {
         -webkit-box-orient: vertical;
         /* autoprefixer: on */
         -webkit-line-clamp:8;
+    .header_nav1
+      justify-content center
 </style>
