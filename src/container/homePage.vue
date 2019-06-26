@@ -1,6 +1,7 @@
 <template>
   <div>
     <!--<img class="title-img" :src="imgIndex">-->
+    <Swiper></Swiper>
     <introduce :introduceObj="dataList.expositionIntroduce" :show="false" :text="text"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
@@ -24,6 +25,7 @@ import * as types from '../store/mutation-types'
 import {indexDo, successiveExhibitors, getShareToken} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件
 import { wxShareTemp, againUrl } from '../utils/wx_share'
+import Swiper from '@/utils/swiper'
 
 export default {
   name: "index",
@@ -87,7 +89,8 @@ export default {
     successiveExhibitions,
     tempFooter,
     tabBar,
-    Scroll
+    Scroll,
+    Swiper
   }
 }
 </script>
