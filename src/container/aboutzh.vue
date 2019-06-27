@@ -13,6 +13,7 @@ import introduce from '@/components/introduce' // 展会介绍模板
 import publicTemp from '@/components/publicTemp/publicTemp'
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
+import * as types from '../store/mutation-types'
 import { etArticlesContent, getShareToken } from '@/api/index'
 import { wxShareTemp, againUrl } from '../utils/wx_share'
 
@@ -62,6 +63,7 @@ export default {
   },
   activated() {
     document.title = '关于展会';
+    this.$store.commit(types.ROUTER_PATH, this.$route.path)
   },
   mounted() {
     this.shareWxAbouthzh()

@@ -1,13 +1,6 @@
 <template>
   <div>
     <!--<img class="title-img" :src="imgIndex">-->
-    <div v-if="images.length">
-      <Swiper :len="images.length">
-        <div v-for="(item, index) in images" :key="index" class="swiper_item">
-          <img :src="item.img" alt="">
-        </div>
-      </Swiper>
-    </div>
     <introduce :introduceObj="dataList.expositionIntroduce" :show="false" :text="text"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
@@ -31,7 +24,6 @@ import * as types from '../store/mutation-types'
 import {indexDo, successiveExhibitors, getShareToken} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件
 import { wxShareTemp, againUrl } from '../utils/wx_share'
-import Swiper from '@/utils/swiper'
 
 export default {
   name: "index",
@@ -41,12 +33,6 @@ export default {
       text: 'Exhibition Introduction',
       dataList: {},
       SuccessiveList: [],
-      images: [
-        {img: 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'},
-        {img: 'https://www.chqbh.com/imgFile/20181014165937.jpg'},
-        {img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'},
-        {img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'}
-      ],
       imgIndex: ''
     }
   },
@@ -101,8 +87,7 @@ export default {
     successiveExhibitions,
     tempFooter,
     tabBar,
-    Scroll,
-    Swiper
+    Scroll
   }
 }
 </script>

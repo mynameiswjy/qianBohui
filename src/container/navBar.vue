@@ -1,33 +1,44 @@
 <template>
     <div style="width: 100%">
-      <img v-show="isShowNavImg" class="title-img" :src="imgIndex">
+      <!--<img v-show="isShowNavImg" class="title-img" :src="imgIndex">-->
+      <div v-if="images.length" v-show="isShowNavImg">
+        <Swiper :len="images.length">
+          <div v-for="(item, index) in images" :key="index" class="swiper_item">
+            <img :src="item.img" alt="">
+          </div>
+        </Swiper>
+      </div>
       <div class="nav-wrapper" ref="viewport">
         <div ref="content" style="width: 100%">
           <ul class="tab-conten">
-            <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn(tab.id)">
+            <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
               <router-link class="link-go" :to="tab.path">{{tab.name}}</router-link>
             </li>
-            <img src="../../../H5/images/未选中.png"/>
           </ul>
         </div>
         <div class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></div>
       </div>
-      <view class="">
-        <ul class="">
-          <li class="" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn(tab.id)">
-            <router-link class="link-go" :to="tab.path"><img src="../../../H5/images/未选中.png"/>
-              <img src="" alt="">
-              <div>{{tab.name}}</div>
+      <div class="nav_wrap">
+        <ul class="nav_content">
+          <li class="nav_item" :class="{'nav_item1': index != tabs.length-1}" v-for="(tab, index) in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
+            <router-link class="link-go" :to="tab.path">
+              <div class="nav_img" :class="{'nav_img1': routerPath == tab.path}">
+                <img :src="tab.selectImg" alt="nav" v-if="routerPath == tab.path">
+                <img :src="tab.img" alt="nav" v-else>
+              </div>
+              <div class="nav_name">{{tab.name}}</div>
             </router-link>
           </li>
         </ul>
-      </view>
+      </div>
     </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
 import {ease} from '../utils/ease'
+import * as types from '../store/mutation-types'
+import Swiper from '@/utils/swiper'
 
 export default {
   name: "navBar",
@@ -78,21 +89,30 @@ export default {
         },
       ],
       navIdx: 0,
+      images: [
+        {img: 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'},
+        {img: 'https://www.chqbh.com/imgFile/20181014165937.jpg'},
+        {img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'},
+        {img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'}
+      ],
       scrollToEasing: 'bounce'
     }
   },
   created() {
   },
   mounted() {
+    this.$store.commit(types.ROUTER_PATH, this.$route.path)
     setTimeout(() => {
       this._initSlider()
     }, 20)
   },
   methods: {
     navBtn(e) {
-      if (e == 4) {
+      this.$store.commit(types.ROUTER_PATH, e.path)
+      let idx = e.idx
+      if (idx == 4) {
         this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])
-      } else if (e == 1 || e == 0) {
+      } else if (idx == 1 || idx == 0) {
         this.slider.scrollTo(0, 0, 500, ease[this.scrollToEasing])
       }
     },
@@ -123,14 +143,45 @@ export default {
   computed: {
     imgIndex() {
       return this.$store.state.imgIndex
+    },
+    routerPath() {
+      return this.$store.state.routerPath
     }
   },
   components: {
+    Swiper
   }
 }
 </script>
 
 <style scoped lang="stylus">
+  .nav_wrap
+    .nav_content
+      display flex
+      margin 0.7rem 0
+      margin-left 0.38rem
+      .nav_item1
+        margin-right 0.46rem
+      .nav_item
+        width 0.98rem
+        margin-left
+        .nav_name
+          font-size 0.24rem
+          text-align center
+          margin-top 0.14rem
+        .nav_img
+          width 0.98rem
+          height 0.98rem
+          background-color: #fff
+          border-radius 0.98rem
+          display flex
+          justify-content center
+          align-items center
+          img
+            width 0.6rem
+            height: auto
+        .nav_img1
+          background-color: #F4BB43;
   .nav-wrapper
     position relative
     width 100%

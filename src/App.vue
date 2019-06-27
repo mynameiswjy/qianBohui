@@ -37,6 +37,9 @@ export default {
     font-family: "Helvetica Neue For Number", "PingFang SC Light", "Heiti SC", "San Francisco", "Helvetica", Arial, sans-serif;
     color: #2c3e50;
   }
+  body {
+    background-color: #F4F3F3;
+  }
   .menu-tab{
     position: fixed;
     bottom: 0;

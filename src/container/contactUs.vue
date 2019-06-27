@@ -15,6 +15,7 @@
 <script>
 import introduce from '@/components/introduce' // 展会介绍模板
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
+import * as types from '../store/mutation-types'
 import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
 import navBar from './navBar'
@@ -33,6 +34,7 @@ export default {
   },
   activated() {
     document.title = '联系我们';
+    this.$store.commit(types.ROUTER_PATH, this.$route.path)
   },
   mounted() {
     this.shareWxCon()

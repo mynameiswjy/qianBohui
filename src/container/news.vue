@@ -51,6 +51,7 @@
 <script>
 import tabBar from '@/container/tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
+import * as types from '../store/mutation-types'
 import {getNewsCategory, getShareToken} from '@/api/index'
 import { wxShareTemp, againUrl } from '../utils/wx_share'
 
@@ -78,6 +79,7 @@ export default {
   },
   activated() {
     document.title = '新闻资讯';
+    this.$store.commit(types.ROUTER_PATH, this.$route.path)
   },
   mounted() {
     this.shareWxNews()
