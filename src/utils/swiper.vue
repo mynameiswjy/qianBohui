@@ -2,9 +2,10 @@
     <div>
       <div class="swiper_wrap" ref="swiperWrap" style="width: 100%;">
         <div class="swiper_content">
-          <div v-for="(item, index) in images" :key="index" class="swiper_item">
-            <img :src="item.img" alt="">
-          </div>
+          <slot></slot>
+        </div>
+        <div class="doc">
+          <div class="doc_item" :class="{'active_doc_item': index == currentIdx}" v-for="(item, index) in len" :key="index"></div>
         </div>
       </div>
     </div>
@@ -15,18 +16,25 @@ import BScroll from 'better-scroll'
 export default {
   name: 'swiper',
   props: {
+    loop: {
+      type: Boolean,
+      default: true
+    },
     autoPlay: {
       type: Boolean,
       default: true
+    },
+    interval: {
+      type: Number,
+      default: 4000
+    },
+    len: {
+      type: Number,
+      default: 0
     }
   },
   data() {
     return {
-      images: [
-        {img: 'https://www.chqbh.com/imgFile/20181014165937.jpg'},
-        {img: 'https://www.chqbh.com/imgFile/20181014165937.jpg'},
-        {img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'}
-      ],
       swiper: null,
       currentIdx: 0
     }
@@ -34,31 +42,37 @@ export default {
   mounted() {
     setTimeout(() => {
       this.initSwiper()
-      this.getCurrent()
+      if (this.autoPlay) {
+        this.play()
+      }
     }, 20)
+  },
+  activated() {
+    if (this.autoPlay) {
+      this.play()
+    }
+  },
+  deactivated() {
+    clearTimeout(this.timer)
+  },
+  beforeDestroy() {
+    clearTimeout(this.timer)
   },
   methods: {
     initSwiper() {
       this.swiper = new BScroll(this.$refs.swiperWrap, {
         scrollX: true,
+        scrollY: false,
         cilck: true,
         freeScroll: true,
         momentum: false,
         snap: {
-          loop: true,
+          loop: this.loop,
           threshold: 0.3,
-          speed: 100
-        },
-        easing: {
-          style: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-          fn: function(t) {
-            return t * (2 - t)
-          }
+          speed: 400
         }
       })
-    },
-    getCurrent() {
-      this.swiper.on('scrollEnd', () => {
+      this.swiper.on('scrollEnd', (e) => {
         let page = this.swiper.getCurrentPage().pageX
         this.currentIdx = page
         if (this.autoPlay) {
@@ -66,16 +80,16 @@ export default {
           this.play()
         }
       })
+      this.swiper.on('beforeScrollStart', () => {
+        if (this.autoPlay) {
+          clearTimeout(this.timer)
+        }
+      })
     },
     play() {
-      let idx = this.currentIdx + 1
-      let sliderWidth = this.$refs.swiperWrap.clientWidth
-      if (idx === 2) {
-        idx = 0
-      }
-      this.timer = setInterval(() => {
-        this.swiper.scrollTo(-sliderWidth, 0, 500)
-      }, 500)
+      this.timer = setTimeout(() => {
+        this.swiper.next()
+      }, this.interval)
     }
   }
 }
@@ -85,7 +99,7 @@ export default {
   .swiper_wrap
     min-height 1px
     position relative
-    height: 3.41rem
+    height: 3.2rem
     overflow hidden
     .swiper_content
       display flex
@@ -93,8 +107,22 @@ export default {
       position absolute
       .swiper_item
         width: 7.5rem
-        height: 3.41rem
+        height: 3.2rem
         img
           width 7.5rem
-          height 3.41rem
+          height 3.2rem
+    .doc
+      position absolute
+      bottom 0.2rem
+      transform translateX(-50%)
+      left 50%
+      display flex
+      .doc_item
+        width 0.25rem
+        height 0.25rem
+        background-color: #969696
+        border-radius 18px
+        margin 0 0.1rem
+      .active_doc_item
+        background-color: #f4bb43
 </style>

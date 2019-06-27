@@ -7,10 +7,21 @@
             <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn(tab.id)">
               <router-link class="link-go" :to="tab.path">{{tab.name}}</router-link>
             </li>
+            <img src="../../../H5/images/未选中.png"/>
           </ul>
         </div>
         <div class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></div>
       </div>
+      <view class="">
+        <ul class="">
+          <li class="" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn(tab.id)">
+            <router-link class="link-go" :to="tab.path"><img src="../../../H5/images/未选中.png"/>
+              <img src="" alt="">
+              <div>{{tab.name}}</div>
+            </router-link>
+          </li>
+        </ul>
+      </view>
     </div>
 </template>
 
@@ -29,11 +40,42 @@ export default {
   data() {
     return {
       tabs: [
-        {name: '首页', id: '0', path: '/homePage', show: true},
-        {name: '关于展会', id: '1', path: '/aboutzh'},
-        {name: '展商专区', id: '2', path: '/goods'},
-        {name: '观众专区', id: '3', path: '/audience'},
-        {name: '新闻资讯', id: '4', path: '/news'},
+        {
+          name: '首页',
+          id: '0',
+          path: '/homePage',
+          show: true,
+          img: 'https://www.chqbh.com/imgFile/cut/index.png',
+          selectImg: 'https://www.chqbh.com/imgFile/cut/index_active.png'
+        },
+        {
+          name: '关于展会',
+          id: '1',
+          path: '/aboutzh',
+          img: 'https://www.chqbh.com/imgFile/cut/exhibition.png',
+          selectImg: 'https://www.chqbh.com/imgFile/cut/exhibition_active.png'
+        },
+        {
+          name: '展商专区',
+          id: '2',
+          path: '/goods',
+          img: 'https://www.chqbh.com/imgFile/cut/exhibitor.png',
+          selectImg: 'https://www.chqbh.com/imgFile/cut/exhibitor_active.png'
+        },
+        {
+          name: '观众专区',
+          id: '3',
+          path: '/audience',
+          img: 'https://www.chqbh.com/imgFile/cut/audience.png',
+          selectImg: 'https://www.chqbh.com/imgFile/cut/audience_active.png'
+        },
+        {
+          name: '新闻资讯',
+          id: '4',
+          path: '/news',
+          img: 'https://www.chqbh.com/imgFile/cut/news.png',
+          selectImg: 'https://www.chqbh.com/imgFile/cut/news_active.png'
+        },
       ],
       navIdx: 0,
       scrollToEasing: 'bounce'
@@ -63,43 +105,11 @@ export default {
         click: true, // 这个click 可能会在移动端出现点击的问题 因为它禁掉了 浏览器的默认行为 可以修改为false试一下
         freeScroll: true,
         eventPassthrough: 'vertical',
-        /*snap: {
-          loop: false, //loop 为 true 是为了支持循环轮播
-          threshold: this.threshold, // 表示可滚动到下一个的阈值，easing 表示滚动的缓动函数
-          speed: this.speed
-        },*/
         probeType: 3,
       })
       this.slider.on('scrollEnd', (pos) => {
       })
     },
-    /*_initTabListWidth() {
-      const tabList = this.$refs.content
-      const items = tabList.children
-      let width = 0
-      for (let i = 0; i < items.length; i++) {
-        width += items[i].clientWidth
-      }
-      tabList.style.width = (width + 38) + 'px'
-    },
-    _adjust(tabId) {
-      const viewportWidth = this.$refs.viewport.clientWidth
-      const tabListWidth = this.$refs.content.clientWidth
-      const minTranslate = Math.min(0, viewportWidth - tabListWidth)
-      const middleTranslate = viewportWidth / 2
-      const items = this.$refs.content.children
-      let width = 0
-      this.tabs.every((item, index) => {
-        if (item.id === tabId) {
-          return false
-        }
-        width += items[index].clientWidth
-        return true
-      })
-      let translate = middleTranslate - width
-      translate = Math.max(minTranslate, Math.min(0, translate))
-      this.$refs.content.scrollTo(translate, 0, 300)
-    },*/
     Initslider() {
       if (!this.$refs.content) {
         return
