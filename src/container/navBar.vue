@@ -1,6 +1,12 @@
 <template>
     <div style="width: 100%">
       <!--<img v-show="isShowNavImg" class="title-img" :src="imgIndex">-->
+      <div class="search_btn" @click="searchBtn">
+        <div>钱币博览会</div>
+        <div class="search_icon">
+          <img src="https://www.chqbh.com/imgFile/cut/search.png" class="search-icon" alt=""/>
+        </div>
+      </div>
       <div v-if="images.length" v-show="isShowNavImg">
         <Swiper :len="images.length">
           <div v-for="(item, index) in images" :key="index" class="swiper_item">
@@ -8,7 +14,7 @@
           </div>
         </Swiper>
       </div>
-      <div class="nav-wrapper" ref="viewport">
+      <div class="nav-wrapper" ref="viewport" v-if="NewNav">
         <div ref="content" style="width: 100%">
           <ul class="tab-conten">
             <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
@@ -18,7 +24,7 @@
         </div>
         <div class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></div>
       </div>
-      <div class="nav_wrap">
+      <div class="nav_wrap" v-else>
         <ul class="nav_content">
           <li class="nav_item" :class="{'nav_item1': index != tabs.length-1}" v-for="(tab, index) in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
             <router-link class="link-go" :to="tab.path">
@@ -44,6 +50,10 @@ export default {
   name: "navBar",
   props: {
     isShowNavImg: {
+      type: Boolean,
+      default: false
+    },
+    NewNav: {
       type: Boolean,
       default: false
     }
@@ -155,10 +165,33 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .search_btn
+    width 6.75rem
+    height 0.62rem
+    margin 0.1rem 0 0.1rem 0.25rem
+    border-radius 0.25rem
+    display flex
+    font-size 0.26rem
+    background-color: #bfa
+    color #eee
+    align-items center
+    padding-left 0.25rem
+    justify-content space-between
+    .search_icon
+      width 0.61rem
+      height 0.62rem
+      background-color: #F4BB43
+      border-radius 0 0.25rem 0.25rem 0
+      img
+        width 0.46rem
+        height auto
+        display block
+        margin 0.1rem auto 0
   .nav_wrap
+    background-color: #F4F3F3;
     .nav_content
       display flex
-      margin 0.7rem 0
+      padding 0.7rem 0
       margin-left 0.38rem
       .nav_item1
         margin-right 0.46rem
@@ -212,16 +245,16 @@ export default {
           color: #C8A258
           padding-bottom: 0.16rem
           position: relative
-  .router-link-active:after
-    content: ''
-    position absolute
-    bottom: -0.04rem
-    left -0.02rem
-    width:100%
-    height:0
-    border-width:0 0.04rem 0.05rem 0.04rem
-    border-style:none solid solid
-    border-color:transparent transparent #c8a258
+        .router-link-active:after
+          content: ''
+          position absolute
+          bottom: -0.04rem
+          left -0.02rem
+          width:100%
+          height:0
+          border-width:0 0.04rem 0.05rem 0.04rem
+          border-style:none solid solid
+          border-color:transparent transparent #c8a258
   .title-img{
     width: 7.5rem;
     height: 3.41rem;
