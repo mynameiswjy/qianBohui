@@ -1,37 +1,69 @@
-<template>
-    <div class="temp_wrap left-margin">
-      <ul class="header_nav" :class="{'header_nav1':isVisitP}">
-        <li :class="{'text_active':idx == index, 'li_add_style': aboutzhObj.navList.length == 2}"
-            @click="changeTempBtns(index)"
-            v-for="(item, index) in aboutzhObj.navList"
-            :key="index"
-        >
-          {{item}}
-          <img v-show="idx == index" class="arrow" src="../../assets/images/arrow.png" alt="">
-        </li>
-      </ul>
-      <div class="temp_content">
-        <ul>
-          <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
-            <div v-if="text.isTableType">
-              <table-temp></table-temp>
-            </div>
-            <div v-else>
-              <div class="temp_content-li" :class="{show_temp: text.show_temp}">
-              <span v-for="(txt, idx) in text.text" :key="idx">
-                <span :class="{font_wei: isFontWei}">{{txt.title}}</span>
-                <span>{{txt.txt}}<br></span>
-              </span>
-                <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
-              </div>
-              <div class="a_full" v-show="text.showFullBtn>166 || initShowFullBtn>=166" @click="showBts(index)">{{text.showText}}</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <reservation @closeTemp="tempCloseGoods" v-if="isReservation"></reservation>
-      <visit @closeVisit="closeVisit" v-if="isVisitTemp"></visit>
-    </div>
+ <template>
+   <div>
+     <div class="new_tempwrap" v-if="newTemp === 1">
+       <ul class="header_nav" :class="{'header_nav1':isVisitP}">
+         <li :class="{'text_active':idx == index, 'li_add_style': aboutzhObj.navList.length == 2}"
+             @click="changeTempBtns(index)"
+             v-for="(item, index) in aboutzhObj.navList"
+             :key="index"
+         >
+           {{item}}
+         </li>
+       </ul>
+       <div class="temp_content">
+         <ul>
+           <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
+             <div v-if="text.isTableType">
+               <table-temp></table-temp>
+             </div>
+             <div v-else>
+               <div class="temp_content-li" :class="{show_temp: text.show_temp}">
+                  <span v-for="(txt, idx) in text.text" :key="idx">
+                    <span :class="{font_wei: isFontWei}">{{txt.title}}</span>
+                    <span>{{txt.txt}}<br></span>
+                  </span>
+                 <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
+               </div>
+               <div class="a_full" v-show="text.showFullBtn>166 || initShowFullBtn>=166" @click="showBts(index)">{{text.showText}}</div>
+             </div>
+           </li>
+         </ul>
+       </div>
+     </div>
+     <div class="temp_wrap left-margin" v-else>
+       <ul class="header_nav" :class="{'header_nav1':isVisitP}">
+         <li :class="{'text_active':idx == index, 'li_add_style': aboutzhObj.navList.length == 2}"
+             @click="changeTempBtns(index)"
+             v-for="(item, index) in aboutzhObj.navList"
+             :key="index"
+         >
+           {{item}}
+           <img v-show="idx == index" class="arrow" src="../../assets/images/arrow.png" alt="">
+         </li>
+       </ul>
+       <div class="temp_content">
+         <ul>
+           <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
+             <div v-if="text.isTableType">
+               <table-temp></table-temp>
+             </div>
+             <div v-else>
+               <div class="temp_content-li" :class="{show_temp: text.show_temp}">
+                 <span v-for="(txt, idx) in text.text" :key="idx">
+                   <span :class="{font_wei: isFontWei}">{{txt.title}}</span>
+                   <span>{{txt.txt}}<br></span>
+                 </span>
+                 <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
+               </div>
+               <div class="a_full" v-show="text.showFullBtn>166 || initShowFullBtn>=166" @click="showBts(index)">{{text.showText}}</div>
+             </div>
+           </li>
+         </ul>
+       </div>
+       <reservation @closeTemp="tempCloseGoods" v-if="isReservation"></reservation>
+       <visit @closeVisit="closeVisit" v-if="isVisitTemp"></visit>
+     </div>
+   </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -41,6 +73,10 @@ import tableTemp from '../tableChart/tableChart'
 export default {
   name: 'publicTemp',
   props: {
+    newTemp: {
+      type: Number,
+      default: 0
+    },
     aboutzhObj: {// 接收的数据
       type: Object,
       default: null
@@ -159,6 +195,58 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+  .new_tempwrap
+    width 7rem
+    /*height 5rem*/
+    background-color: #ffffff;
+    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+    border-radius: 0.14rem;
+    margin-left 0.25rem
+    .header_nav
+      width 7rem
+      height 0.94rem
+      border-radius 0.14rem 0.14rem 0 0
+      background-color: #bfa
+      font-size: 0.3rem
+      display flex
+      justify-content space-between
+      overflow hidden
+      li
+        width 2.333rem
+        background-color: #eed582;
+        text-align center
+        line-height 0.98rem
+        font-weight 550
+      .text_active
+        background-color: #fff
+        position relative
+      .text_active:after {
+        content ''
+        width 2.09rem
+        height 0.04rem
+        background-color: #eed582;
+        transform translateX(-50%)
+        position absolute
+        left 50%
+        bottom: 0
+      }
+    .temp_content
+      font-size 0.28rem
+      line-height 0.6rem
+      width 6.19rem
+      margin 0 auto
+      text-align: justify;
+      padding-top 0.2rem
+      padding-bottom 0.3rem
+      .show_temp
+        overflow:hidden;
+        text-overflow:ellipsis;
+        display:-webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp:8;
+      .a_full
+        color #eed582
+      /*以下老版本样式*/
   .font_wei {
     font-weight 600
   }

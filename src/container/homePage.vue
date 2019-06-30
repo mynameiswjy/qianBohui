@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <!--<img class="title-img" :src="imgIndex">-->
-    <introduce :introduceObj="dataList.expositionIntroduce" :show="false" :text="text"></introduce>
+  <div style="background-color: #F4F3F3;">
+    <introduce :introduceObj="dataList.expositionIntroduce" :newTemp="1" :show="false" :text="text"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
     <successive-exhibitions :successiveList="SuccessiveList"></successive-exhibitions>
     <!--<img class="footer-img left-margin" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="">-->
-    <div style="height: 0.47rem"></div>
+    <div style="height: 1rem"></div>
     <temp-footer></temp-footer>
     <div style="height: 0.98rem"></div>
     <tab-bar class="menu-tab"></tab-bar>

@@ -1,29 +1,50 @@
 <template>
-    <div class="wrap">
-      <div v-if="openStyle" class="title_ab">
-        <h2>{{introduceObj.title}}</h2>
-        <div class="">{{text}}</div><!--Exhibition Introduction-->
-      </div>
-      <div class="title" v-else>
-        <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
-        <div class="title-right">
+    <div :class="{'wrap': !newTemp}">
+      <div v-if="newTemp === 1">
+        <div class="intr_wrap intr_wrap1">
           <h2>{{introduceObj.title}}</h2>
-          <div class="title-right-en">{{text}}</div>
-        </div>
-      </div>
-      <div class="header_intro" :class="{height_hide: !introduceObj.content}">
-        <div class="header-text" :class="{show: show}" ref="contentTxt">
-          <span>{{introduceObj.content}}</span>
-          <div v-if="IsContactWay" class="contact_way">
-            <p>服务热线：<a href="tel:4008-188-666" class="contact_way_color">4008-188-666</a></p>
-            <p>服务传真：<span class="contact_way_color">010-59311250</span></p>
-            <p>服务邮箱：<span class="contact_way_color">service@chngc.net</span></p>
-          </div>
+          <p class="other_con">{{introduceObj.content}}</p>
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
           <loading></loading>
         </div>
-        <div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>
+      </div>
+      <div v-else-if="newTemp === 2">
+        <div class="intr_wrap intr_wrap2">
+          <h2 class="intr_wrap2_h2">{{introduceObj.title}}</h2>
+          <p :class="{show: show}" ref="contentTxt">{{introduceObj.content}}</p>
+          <div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>
+        </div>
+        <div class="loading-container" v-show="!introduceObj.content">
+          <loading></loading>
+        </div>
+      </div>
+      <div v-else style="margin-left: 0.36rem">
+        <div v-if="openStyle" class="title_ab">
+          <h2>{{introduceObj.title}}</h2>
+          <div class="">{{text}}</div><!--Exhibition Introduction-->
+        </div>
+        <div class="title" v-else>
+          <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
+          <div class="title-right">
+            <h2>{{introduceObj.title}}</h2>
+            <div class="title-right-en">{{text}}</div>
+          </div>
+        </div>
+        <div class="header_intro" :class="{height_hide: !introduceObj.content}">
+          <div class="header-text" :class="{show: show}" ref="contentTxt">
+            <span>{{introduceObj.content}}</span>
+            <div v-if="IsContactWay" class="contact_way">
+              <p>服务热线：<a href="tel:4008-188-666" class="contact_way_color">4008-188-666</a></p>
+              <p>服务传真：<span class="contact_way_color">010-59311250</span></p>
+              <p>服务邮箱：<span class="contact_way_color">service@chngc.net</span></p>
+            </div>
+          </div>
+          <div class="loading-container" v-show="!introduceObj.content">
+            <loading></loading>
+          </div>
+          <div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>
+        </div>
       </div>
     </div>
 </template>
@@ -33,6 +54,10 @@ import Loading from './loading/loading'
 export default {
   name: "introduce",
   props: {
+    newTemp: {
+      type: Number,
+      default: 0
+    },
     introduceObj: {
       type: Object,
       default: function () {
@@ -83,7 +108,7 @@ export default {
     },
     ShowContent() {
       setTimeout(() => {
-        if (this.$refs.contentTxt.offsetHeight >= 166) {
+        if (this.$refs.contentTxt.offsetHeight >= 160) {
           this.showContent = true
         } else {
           this.showContent = false
@@ -100,6 +125,42 @@ export default {
 </script>
 
 <style lang="stylus">
+  .intr_wrap1
+    height 2.45rem
+  .intr_wrap2
+    padding-bottom 0.3rem
+    .a_full
+      font-size: 0.28rem
+      margin-left 0.3rem
+      margin-top 0.15rem
+      color #eed582
+  .intr_wrap
+    width 7rem
+    background-color: #ffffff;
+    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+    border-radius: 0.14rem;
+    margin-left 0.25rem
+    .intr_wrap2_h2
+      padding-top 0.4rem
+      padding-bottom 0.2rem
+    h2
+      text-align center
+      padding-top 0.25rem
+      font-size 0.36rem
+      color rgb(2,2,2)
+      font-weight 600
+    p
+      font-size 0.28rem
+      color rgb(32,32,32)
+      margin 0.15rem auto 0
+      line-height 0.5rem
+      width 6.19rem
+    .other_con
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;//向显示多少行就给多大值
+      -webkit-box-orient: vertical;
   .title_ab
     text-align center
     margin-left -0.36rem
@@ -149,10 +210,6 @@ export default {
       color: #C6A056
       padding-top 0.2rem
       width 1.5rem
-  .wrap{
-    width: 7.14rem;
-    margin-left: 0.36rem;
-  }
   .title{
     display: flex;
     margin-bottom: 0.32rem;
@@ -162,7 +219,7 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 8;//向显示多少行就给多大值
+    -webkit-line-clamp: 6;//向显示多少行就给多大值
     -webkit-box-orient: vertical;
   }
   .title-right{

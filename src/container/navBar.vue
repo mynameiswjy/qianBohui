@@ -1,6 +1,7 @@
 <template>
-    <div style="width: 100%">
+    <div style="width: 100%;background-color: #F4F3F3;">
       <!--<img v-show="isShowNavImg" class="title-img" :src="imgIndex">-->
+      <div style="height: 0.1rem;"></div>
       <div class="search_btn" @click="searchBtn">
         <div>钱币博览会</div>
         <div class="search_icon">
@@ -42,7 +43,7 @@
 
 <script>
 import BScroll from 'better-scroll'
-import {ease} from '../utils/ease'
+//import { ease } from '../utils/ease'
 import * as types from '../store/mutation-types'
 import Swiper from '@/utils/swiper'
 
@@ -121,9 +122,9 @@ export default {
       this.$store.commit(types.ROUTER_PATH, e.path)
       let idx = e.idx
       if (idx == 4) {
-        this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])
+        // this.slider.scrollTo(-30, 0, 500, ease[this.scrollToEasing])
       } else if (idx == 1 || idx == 0) {
-        this.slider.scrollTo(0, 0, 500, ease[this.scrollToEasing])
+        // this.slider.scrollTo(0, 0, 500, ease[this.scrollToEasing])
       }
     },
     _initSlider() {
@@ -168,12 +169,13 @@ export default {
   .search_btn
     width 6.75rem
     height 0.62rem
-    margin 0.1rem 0 0.1rem 0.25rem
-    border-radius 0.25rem
+    margin 0 0 0.1rem 0.25rem
+    box-shadow: 0.03rem 0.05rem 0.06rem 0  rgba(86, 88, 89, 0.18);
+    border-radius: 0.14rem;
     display flex
     font-size 0.26rem
-    background-color: #bfa
-    color #eee
+    background-color: #fff
+    color #666
     align-items center
     padding-left 0.25rem
     justify-content space-between
@@ -181,14 +183,13 @@ export default {
       width 0.61rem
       height 0.62rem
       background-color: #F4BB43
-      border-radius 0 0.25rem 0.25rem 0
+      border-radius 0 0.14rem 0.14rem 0
       img
         width 0.46rem
         height auto
         display block
         margin 0.1rem auto 0
   .nav_wrap
-    background-color: #F4F3F3;
     .nav_content
       display flex
       padding 0.7rem 0

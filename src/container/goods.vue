@@ -1,7 +1,7 @@
 <template>
-    <div>
-      <introduce class="lintr_bottom" :text="text" :introduceObj="introduceObj" :openStyle="true"></introduce>
-      <public-temp :aboutzhObj="aboutzhObj" :isFontWei="false" :isReservaPage="true" class=""></public-temp>
+    <div style="background-color: #F4F3F3;">
+      <introduce class="lintr_bottom" :text="text" :introduceObj="introduceObj" :openStyle="true" :newTemp="2"></introduce>
+      <public-temp :aboutzhObj="aboutzhObj" :isFontWei="false" :isReservaPage="true" :newTemp="1" style="margin-top: 1rem"></public-temp>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
       <tabBar class="menu-tab"></tabBar>

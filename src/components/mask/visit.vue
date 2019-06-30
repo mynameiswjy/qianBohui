@@ -1,5 +1,5 @@
 <template>
-    <div class="mask" ref="wrapper">
+    <div class="mask" ref="wrapper" style="z-index: 999;">
       <scroll :data="userVisitList.selectItem" style="height: 100%">
         <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
           <div class="res-title">

@@ -1,7 +1,7 @@
 <template>
-    <div>
-      <introduce class="lintr_bottom" :text="text" :introduceObj="introduceObj" :openStyle="true"></introduce>
-      <public-temp :aboutzhObj="aboutzhObj" class=""></public-temp>
+    <div style="background-color: #F4F3F3;">
+      <introduce class="lintr_bottom" :text="text" :newTemp="2" :introduceObj="introduceObj" :openStyle="true"></introduce>
+      <public-temp :aboutzhObj="aboutzhObj" :newTemp="1" class=""></public-temp>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
       <tabBar class="menu-tab"></tabBar>
@@ -97,7 +97,7 @@ export default {
 
 <style scoped lang="stylus">
 .lintr_bottom
-  margin-bottom 0.29rem
+  margin-bottom 1rem
 .footer-top
-  margin-top 0.57rem
+  margin-top 1rem
 </style>

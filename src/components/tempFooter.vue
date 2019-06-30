@@ -39,11 +39,10 @@ export default {
   .about {
     align-self: center;
     display: flex;
-    font-size: 0.3rem;
-    font-family:PingFangSC-Regular;
-    color: #232323;
+    font-size: 0.22rem;
+    color: #888888;
     line-height: 0.44rem;
-    margin-bottom: 0.3rem;
+    /*margin-bottom: 0.3rem;*/
   }
   .border{
     width: 0.01rem;
@@ -58,11 +57,10 @@ export default {
     padding-left: 0.37rem;
   }
   .copyright{
-    font-size: 0.24rem;
-    font-family:PingFangSC-Regular;
+    font-size: 0.22rem;
     color: #9B9A9A;
-    line-height: 0.44rem;
+    line-height: 0.36rem;
     text-align: center;
-    margin-bottom: 0.56rem;
+    margin-bottom: 0.5rem;
   }
 </style>
