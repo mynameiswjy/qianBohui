@@ -14,14 +14,14 @@
          <ul>
            <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
              <div v-if="text.isTableType">
-               <table-temp></table-temp>
+               <table-temp style="width: 6.3rem;margin-left: -0.06rem"></table-temp>
              </div>
              <div v-else>
                <div class="temp_content-li" :class="{show_temp: text.show_temp}">
-                  <span v-for="(txt, idx) in text.text" :key="idx">
-                    <span :class="{font_wei: isFontWei}">{{txt.title}}</span>
-                    <span>{{txt.txt}}<br></span>
-                  </span>
+                 <span v-for="(txt, idx) in text.text" :key="idx">
+                   <span :class="{font_wei: isFontWei}">{{txt.title}}</span>
+                   <span>{{txt.txt}}<br></span>
+                 </span>
                  <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
                </div>
                <div class="a_full" v-show="text.showFullBtn>166 || initShowFullBtn>=166" @click="showBts(index)">{{text.showText}}</div>
@@ -60,9 +60,9 @@
            </li>
          </ul>
        </div>
-       <reservation @closeTemp="tempCloseGoods" v-if="isReservation"></reservation>
-       <visit @closeVisit="closeVisit" v-if="isVisitTemp"></visit>
      </div>
+     <reservation @closeTemp="tempCloseGoods" v-if="isReservation"></reservation>
+     <visit @closeVisit="closeVisit" v-if="isVisitTemp"></visit>
    </div>
 </template>
 
@@ -288,7 +288,7 @@ export default {
       margin-top 0.55rem
       padding 0.34rem 0.3rem 0.38rem 0.27rem
       border-radius 0.08rem
-      box-shadow 0rem 0 0.21rem #C6A056
+      box-shadow 0 0 0.21rem #C6A056
       background-color: #fff
       .a_full
         font-size: 0.28rem
