@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="header_intro" :class="{height_hide: !introduceObj.content}">
-          <div class="header-text" :class="{show: show}" ref="contentTxt">
+          <div class="header-text" :class="{show: show}"><!-- ref="contentTxt"-->
             <span>{{introduceObj.content}}</span>
             <div v-if="IsContactWay" class="contact_way">
               <p>服务热线：<a href="tel:4008-188-666" class="contact_way_color">4008-188-666</a></p>
@@ -99,21 +99,25 @@ export default {
   methods: {
     showBts() {
       if (this.show) {
-        this.show = false
         this.showText = "收起全文"
       } else {
-        this.show = true
         this.showText = "显示全文"
       }
+      this.show = !this.show
     },
     ShowContent() {
-      setTimeout(() => {
-        if (this.$refs.contentTxt.offsetHeight >= 160) {
-          this.showContent = true
-        } else {
-          this.showContent = false
-        }
-      }, 200)
+      if (this.introduceObj.content) {
+        this.$nextTick(() => {
+          if (this.$refs.contentTxt.offsetHeight >= 150) {
+            this.showContent = true
+          } else {
+            this.showContent = false
+          }
+        })
+      }
+      /*setTimeout(() => {
+
+      }, 200)*/
     }
   },
   computed: {
