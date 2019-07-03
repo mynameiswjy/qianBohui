@@ -238,6 +238,7 @@ export default {
       text-align: justify;
       padding-top 0.2rem
       padding-bottom 0.3rem
+      color #000
       .show_temp
         overflow:hidden;
         text-overflow:ellipsis;

@@ -131,6 +131,7 @@ export default {
 <style lang="stylus">
   .intr_wrap1
     height 2.45rem
+    padding-bottom 0.2rem
   .intr_wrap2
     padding-bottom 0.3rem
     .a_full
