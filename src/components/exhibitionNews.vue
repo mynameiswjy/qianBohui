@@ -92,6 +92,7 @@ export default {
     line-height: 0.69rem;
     font-size: 0.28rem;
     display: flex;
+    color: #000;
     justify-content: space-between;
   }
   .exhibition_news li p{

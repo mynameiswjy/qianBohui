@@ -120,6 +120,7 @@ export default {
     height: 0.7rem;
     overflow: hidden;
     white-space: nowrap;
+    color: #000;
     text-overflow: ellipsis;
   }
   .ad{

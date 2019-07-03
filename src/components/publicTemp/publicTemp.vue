@@ -14,7 +14,7 @@
          <ul>
            <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
              <div v-if="text.isTableType">
-               <table-temp style="width: 6.3rem;margin-left: -0.06rem"></table-temp>
+               <table-temp style="width: 6.3rem;margin-left: -0.06rem;padding-top: 0.3rem;padding-bottom: 0.2rem;"></table-temp>
              </div>
              <div v-else>
                <div class="temp_content-li" :class="{show_temp: text.show_temp}">

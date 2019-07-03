@@ -145,8 +145,8 @@ export default {
     border-radius: 0.14rem;
     margin-left 0.25rem
     .intr_wrap2_h2
-      padding-top 0.4rem
-      padding-bottom 0.2rem
+      padding-top 0.28rem
+      /*padding-bottom 0.2rem*/
     h2
       text-align center
       padding-top 0.25rem
@@ -156,8 +156,8 @@ export default {
     p
       font-size 0.28rem
       color rgb(32,32,32)
-      margin 0.15rem auto 0
-      line-height 0.5rem
+      margin 0.14rem auto 0
+      line-height 0.56rem
       width 6.19rem
     .other_con
       overflow: hidden;

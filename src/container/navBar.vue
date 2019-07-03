@@ -33,7 +33,7 @@
                 <img :src="tab.selectImg" alt="nav" v-if="routerPath == tab.path">
                 <img :src="tab.img" alt="nav" v-else>
               </div>
-              <div class="nav_name">{{tab.name}}</div>
+              <div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>
             </router-link>
           </li>
         </ul>
@@ -175,7 +175,7 @@ export default {
     display flex
     font-size 0.26rem
     background-color: #fff
-    color #666
+    color rgba(0,0,0,0.5)
     align-items center
     padding-left 0.25rem
     justify-content space-between
@@ -199,8 +199,11 @@ export default {
       .nav_item
         width 0.98rem
         margin-left
+        .nav_name1
+          font-weight 600
         .nav_name
           font-size 0.24rem
+          color: #000
           text-align center
           margin-top 0.14rem
         .nav_img

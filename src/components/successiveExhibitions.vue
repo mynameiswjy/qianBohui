@@ -328,6 +328,7 @@ export default {
     display: flex;
     justify-content: space-between;
     height: 0.7rem;
+    color #000
   }
   .exhibition_news li .h3 .h3_con {
     overflow: hidden;
