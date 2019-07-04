@@ -1,13 +1,27 @@
 <template>
   <div>
-    <ul class="wraps">
+    <!--<ul class="wraps">
       <li class="booth" @click="cilckTabBarOne">
         <img class="tab-icon" src="../assets/images/booth-reservation.png">
         <div>展位预订</div>
       </li>
+      &lt;!&ndash;<li alt="" @click="cilckTabBarTwo">&ndash;&gt;
+        &lt;!&ndash;<img class="tab-icon" src="../assets/images/visit-registration.png" alt="">&ndash;&gt;
+        &lt;!&ndash;<div>参观登记</div>&ndash;&gt;
+      &lt;!&ndash;</li>&ndash;&gt;
+      <li class="consulting" alt="" @click="cilckTabBarThree">
+        <img class="tab-img" src="../assets/images/consulting.png" alt="">
+        <div>在线咨询</div>
+      </li>
+    </ul>-->
+    <ul class="tab_wrap">
+      <li class="booth" @click="cilckTabBarOne">
+        <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/reservation.png">
+        <div>展位预订</div>
+      </li>
       <!--<li alt="" @click="cilckTabBarTwo">-->
-        <!--<img class="tab-icon" src="../assets/images/visit-registration.png" alt="">-->
-        <!--<div>参观登记</div>-->
+      <!--<img class="tab-icon" src="../assets/images/visit-registration.png" alt="">-->
+      <!--<div>参观登记</div>-->
       <!--</li>-->
       <li class="consulting" alt="" @click="cilckTabBarThree">
         <img class="tab-img" src="../assets/images/consulting.png" alt="">
