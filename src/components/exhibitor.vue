@@ -10,7 +10,7 @@
     <div class="exhibi_wrap">
       <div class="exhibi_title">
         <h2>展商介绍</h2>
-        <div class="exhibi_more">更多</div>
+        <div class="exhibi_more" @click="moreNews">更多</div>
       </div>
       <ul class="exhibition_news">
         <li :class="{'exhibition_news1': index != exhibitorsIntroduce.length-1}" v-for="(item, index) in exhibitorsIntroduce" @click="goToDetail(item.code)" v-bind:key="index">
@@ -64,6 +64,9 @@ export default {
           code: e
         }
       })*/
+    },
+    moreNews() {
+      this.$router.push({path: 'news'});
     },
     detailPath(code) {
       let path = '/newsLandingPage?code=' + code

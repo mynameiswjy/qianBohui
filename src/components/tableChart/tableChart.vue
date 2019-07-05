@@ -1,7 +1,7 @@
 <template>
   <div>
     <table class="table_wrap" cellpadding="0" cellspacing="0" border="0">
-      <tr>
+      <tr><!--https://www.chqbh.com/imgFile/cut/sell_out.png已售完图片-->
         <td class="td_left bg_yellow">项目</td>
         <td colspan="2" class="bg_hui">规格</td>
         <td class="bg_hui bor_left">

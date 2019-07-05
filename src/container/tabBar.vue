@@ -15,16 +15,16 @@
       </li>
     </ul>-->
     <ul class="tab_wrap">
-      <li class="booth" @click="cilckTabBarOne">
+      <li class="tab_item" @click="cilckTabBarOne">
         <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/reservation.png">
         <div>展位预订</div>
       </li>
       <!--<li alt="" @click="cilckTabBarTwo">-->
-      <!--<img class="tab-icon" src="../assets/images/visit-registration.png" alt="">-->
+      <!--<img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/visit.png" alt="">-->
       <!--<div>参观登记</div>-->
       <!--</li>-->
-      <li class="consulting" alt="" @click="cilckTabBarThree">
-        <img class="tab-img" src="../assets/images/consulting.png" alt="">
+      <li class="" alt="" @click="cilckTabBarThree">
+        <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/online_consult.png" alt="">
         <div>在线咨询</div>
       </li>
     </ul>
@@ -83,6 +83,28 @@ export default {
 </script>
 
 <style scoped>
+  .tab_wrap {
+    width: 100%;
+    height: 1rem;
+    display: flex;
+    background-color: #fff;
+  }
+  .tab_wrap li {
+    width: 3.75rem;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 0.3rem;
+    color: #353535;
+  }
+  .tab_item {
+    border-right: 0.01rem solid #ccc;
+  }
+  .tab-icon{
+    width: 0.34rem;
+    height: 0.34rem;
+    padding-top: 0.16rem;
+    padding-bottom: 0.07rem;
+  }
   .wraps{
     width: 7.5rem;
     height: 0.98rem;
@@ -103,11 +125,5 @@ export default {
     height: 0.38rem;
     padding-top: 0.14rem;
     padding-bottom: 0.08rem;
-  }
-  .tab-icon{
-    width: 0.34rem;
-    height: 0.34rem;
-    padding-top: 0.16rem;
-    padding-bottom: 0.10rem;
   }
 </style>
