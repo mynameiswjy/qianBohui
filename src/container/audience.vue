@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <introduce class="lintr_bottom" :introduceObj="introduceObj" :text="text" :openStyle="true"></introduce>
+    <div  style="background-color: #F4F3F3;">
+      <introduce class="lintr_bottom" :introduceObj="introduceObj" :text="text" :openStyle="true" :newTemp="2"></introduce>
       <public-temp :aboutzhObj="aboutzhObj" :isVisitP="true" class=""></public-temp>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
