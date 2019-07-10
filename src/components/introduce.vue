@@ -110,7 +110,9 @@ export default {
         this.$nextTick(() => {
           if (this.$refs.contentTxt.offsetHeight >= 150) {
             this.showContent = true
+            debugger
           } else {
+            debugger
             this.showContent = false
           }
         })
@@ -130,8 +132,8 @@ export default {
 
 <style lang="stylus">
   .intr_wrap1
-    height 2.45rem
-    padding-bottom 0.2rem
+    /*height 4rem*/
+    padding-bottom 0.3rem
   .intr_wrap2
     padding-bottom 0.3rem
     .a_full
@@ -164,7 +166,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 3;//向显示多少行就给多大值
+      -webkit-line-clamp: 6;//向显示多少行就给多大值
       -webkit-box-orient: vertical;
   .title_ab
     text-align center
