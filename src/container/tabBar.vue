@@ -23,7 +23,7 @@
       <!--<img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/visit.png" alt="">-->
       <!--<div>参观登记</div>-->
       <!--</li>-->
-      <li class="" alt="" @click="cilckTabBarThree">
+      <li class="" :class="{'cous_active': IsClass}" alt="" @click="cilckTabBarThree">
         <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/online_consult.png" alt="">
         <div>在线咨询</div>
       </li>
@@ -46,6 +46,7 @@ export default {
       isReservationPage: this.$store.state.isReservationPage,
       tow: false,
       three: false,
+      IsClass: false
     }
   },
   created() {
@@ -54,6 +55,7 @@ export default {
   methods: {
     tempZixun(e) {
       this.three = e
+      this.IsClass = e
     },
     cilckTabBarOne(e) {
       this.isReservationPage = !this.isReservationPage
@@ -71,6 +73,7 @@ export default {
       this.tow = !this.tow
     },
     cilckTabBarThree() {
+      this.IsClass = true
       this.three = !this.three
     }
   },
@@ -88,6 +91,9 @@ export default {
     height: 1rem;
     display: flex;
     background-color: #fff;
+  }
+  .cous_active {
+    background-color: #f4ba43;
   }
   .tab_wrap li {
     width: 3.75rem;

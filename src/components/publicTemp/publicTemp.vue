@@ -20,7 +20,7 @@
                <div class="temp_content-li" :class="{show_temp: text.show_temp}" @click="showBts(index)">
                  <span v-for="(txt, idx) in text.text" :key="idx">
                    <span :class="{font_wei: isFontWei, 'border_s': txt.title}" v-show="txt.title">{{txt.title}}<br></span>
-                   <span>{{txt.txt}}<br></span>
+                   <span v-show="txt.txt">{{txt.txt}}<br></span>
                  </span>
                  <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
                </div>
@@ -206,7 +206,7 @@ export default {
       width 7rem
       height 0.94rem
       border-radius 0.14rem 0.14rem 0 0
-      /*background-color: #bfa*/
+      background-color: #eed582
       font-size: 0.3rem
       display flex
       justify-content space-between

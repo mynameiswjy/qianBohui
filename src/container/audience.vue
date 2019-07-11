@@ -1,7 +1,7 @@
 <template>
     <div  style="background-color: #F4F3F3;">
       <introduce class="lintr_bottom" :introduceObj="introduceObj" :text="text" :openStyle="true" :newTemp="2"></introduce>
-      <public-temp :aboutzhObj="aboutzhObj" :isVisitP="true" :newTemp="0"></public-temp>
+      <public-temp :aboutzhObj="aboutzhObj" :isVisitP="true" :newTemp="1"></public-temp>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
       <tabBar class="menu-tab"></tabBar>
@@ -30,7 +30,7 @@ export default {
             show_temp: true, // 是否使用隐藏8行的class
             showText: '显示全文',
             text: [
-              {title: '地址：国家会议中心位于北京市朝阳区天辰东路7号', txt: ''},
+              {title: '地址', txt: '国家会议中心位于北京市朝阳区天辰东路7号'},
               {title: '途经公交线路', txt: ''},
               {title: '', txt: '新闻中心站：83路, 85路, 510路'},
               {title: '', txt: '国家体育馆站：81路, 82路, 86路, 510路'},

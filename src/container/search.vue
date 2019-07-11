@@ -23,6 +23,15 @@
           </li>
         </ul>
       </div>
+      <div class="confirm_mask" v-show="false">
+        <div class="confirm_content">
+          <img class="confirm_img" src="https://www.chqbh.com/imgFile/cut/confirm.png" alt="">
+          <p class="confirm_txt" style="margin-top: 0.68rem">确认删除</p>
+          <p class="confirm_txt">全部历史记录?</p>
+          <p class="confirm_yes confirm_btn" :class="{'confirm_active': true}">确认</p>
+          <p class="confirm_cansel confirm_btn" :class="{'confirm_active': false}">取消</p>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -113,6 +122,44 @@ export default {
     background-color: rgba(255,255,255,1);
     /*background-color: #bfa;*/
     z-index 333
+    .confirm_mask
+      position fixed
+      top: 0
+      width 100%
+      bottom 0
+      background-color: rgba(0,0,0, 0.5)
+      .confirm_content
+        position absolute
+        top: 50%
+        left 50%
+        width 4.72rem
+        height 4.8rem
+        background-color: #f6f6f6;
+        transform translate(-50%, -50%)
+        .confirm_img
+          width 2.22rem
+          height auto
+          display block
+          margin -0.6rem auto 0
+        .confirm_txt
+          font-size: 0.36rem
+          line-height: 0.48rem
+          color: #000000;
+          text-align center
+        .confirm_btn
+          font-size: 0.36rem
+          line-height: 0.6rem
+          color: #000000
+          text-align center
+        .confirm_yes
+          margin  0.4rem auto 0.1rem
+        .confirm_active
+          width: 4.39rem
+          height: 0.6rem
+          background-color: #f4ba43;
+          border-radius: 0.2rem
+        .confirm_cansel
+          margin 0 auto
     .sear_wrap
       box-shadow: 0.0rem 0rem 0.21rem rgba(198,160,86, 0.6);
       width: 6.21rem;

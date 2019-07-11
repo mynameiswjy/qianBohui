@@ -9,6 +9,7 @@
     <temp-footer></temp-footer>
     <div style="height: 0.98rem"></div>
     <tab-bar class="menu-tab"></tab-bar>
+    <reload @reloadBtn="reloadBtn" v-show="IsReloadTemp"></reload>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import exhibitor from '@/components/exhibitor' // 展商介绍模板
 import successiveExhibitions from '@/components/successiveExhibitions' // 历届展会模板
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
+import reload from '@/components/reloadTemp'
 import * as types from '../store/mutation-types'
 import {indexDo, successiveExhibitors, getShareToken} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件
@@ -32,7 +34,8 @@ export default {
       text: 'Exhibition Introduction',
       dataList: {},
       SuccessiveList: [],
-      imgIndex: ''
+      imgIndex: '',
+      IsReloadTemp: false
     }
   },
   created() {
@@ -64,8 +67,12 @@ export default {
           this.imgIndex = this.dataList.banner.imgIndex
           this.$store.commit(types.INDEX_IMG, res.data.returnData.banner.imgIndex)
         }
+        if(this.IsReloadTemp) {
+          this.IsReloadTemp = false
+        }
       }).catch((err) => {
         console.log(err)
+        this.IsReloadTemp = true
       })
     },
     initIndexNewsList() {
@@ -76,7 +83,17 @@ export default {
       }
       successiveExhibitors(data).then(res => {
         this.SuccessiveList = res.data.returnData
+        if(this.IsReloadTemp) {
+          this.IsReloadTemp = false
+        }
+      }).catch(err => {
+        console.log(err);
+        this.IsReloadTemp = true
       })
+    },
+    reloadBtn() {
+      this.initIndexList()
+      this.initIndexNewsList()
     }
   },
   components: {
@@ -86,7 +103,8 @@ export default {
     successiveExhibitions,
     tempFooter,
     tabBar,
-    Scroll
+    Scroll,
+    reload
   }
 }
 </script>
