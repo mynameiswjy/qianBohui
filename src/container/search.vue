@@ -1,6 +1,6 @@
 <template>
-    <div class="sear-wrap">
-      <div class="sear">
+    <div class="sear-wrap"  style="background-color: #F4F3F3;">
+      <!--<div class="sear">
         <form action="" enctype='applicaion/json'>
           <div class="sear-input">
             <img class="sear-img" src="../assets/images/search.png" alt="">
@@ -8,28 +8,48 @@
           </div>
         </form>
         <div @click="Search_con">取消</div>
+      </div>-->
+      <div class="search_input">
+        <img class="search_icon" src="https://www.chqbh.com/imgFile/cut/search.png" alt="">
+        <div>
+          <form action="" enctype='applicaion/json'>
+            <input type="text" placeholder="钱币博览会" @keyup.enter="submit" v-model="searVal">
+          </form>
+        </div>
+        <div class="search_cansel" @click="Search_con">取消</div>
+      </div>
+      <div v-show="storageKeywords && !searchList.length">
+        <div style="height: 0.12rem;"></div>
+        <p class="hot-sear hot-sear1">
+          <span>搜索历史</span>
+          <span @click="deleteHistory" class="iconfont icon-icon_delete"></span>
+        </p>
+        <ul class="keywords">
+          <li v-for="(item, index) in storageKeywords" @click="changeClick(item)" v-bind:key="index">{{item}}</li>
+        </ul>
       </div>
       <div v-if="keywordsList.length" v-show="isShowSear">
         <p class="hot-sear">热门搜索</p>
         <ul class="keywords">
-          <li v-for="(item, index) in keywordsList" @click="changeClick(index)" v-bind:key="index">{{item.name}}</li>
+          <li v-for="(item, index) in keywordsList" @click="changeClick(item.name)" v-bind:key="index">{{item.name}}</li>
         </ul>
       </div>
-      <div class="sear_wrap left-margin" v-show="searchList.length">
+      <div class="sear_wrap" v-show="searchList.length">
         <ul class="sear_content">
           <li class="sear_content_list" @click="goToDetail(item.selectCode)" v-for="(item, index) in searchList" :key="index">
             <div class="sear_content_list_left">{{item.title}}</div>
-            <div>{{item.time}}</div>
+            <!--<div>{{item.time}}</div>-->
+            <div class="iconfont icon-gengduo"></div>
           </li>
         </ul>
       </div>
-      <div class="confirm_mask" v-show="false">
+      <div class="confirm_mask" v-show="isOpenHistory">
         <div class="confirm_content">
           <img class="confirm_img" src="https://www.chqbh.com/imgFile/cut/confirm.png" alt="">
           <p class="confirm_txt" style="margin-top: 0.68rem">确认删除</p>
           <p class="confirm_txt">全部历史记录?</p>
-          <p class="confirm_yes confirm_btn" :class="{'confirm_active': true}">确认</p>
-          <p class="confirm_cansel confirm_btn" :class="{'confirm_active': false}">取消</p>
+          <p class="confirm_yes confirm_btn" :class="{'confirm_active': !maskBtn}" @click="confirmBtn(true)">确认</p>
+          <p class="confirm_cansel confirm_btn" :class="{'confirm_active': maskBtn}" @click="confirmBtn(false)">取消</p>
         </div>
       </div>
     </div>
@@ -45,10 +65,14 @@ export default {
       searVal: '',
       keywordsList: {},
       searchList: [],
-      isShowSear: true
+      isShowSear: true,
+      storageKeywords: [],
+      isOpenHistory: false,
+      maskBtn: false
     }
   },
   created() {
+    this.getKeywords()
     this.$nextTick(function () {
       this.initgetAntistop()
     })
@@ -62,8 +86,43 @@ export default {
     this.searchList = []
   },
   methods: {
+    // 删除搜索历史
+    confirmBtn(e) {
+      if (e) {
+        localStorage.removeItem("storageKeywords");
+        this.maskBtn = false
+        setTimeout(() => {
+          this.isOpenHistory = false
+        }, 200)
+        this.storageKeywords = null
+      } else {
+        this.maskBtn = true
+        setTimeout(() => {
+          this.isOpenHistory = false
+        }, 200)
+      }
+    },
+    //  打开删除搜索历史
+    deleteHistory() {
+      this.isOpenHistory = true
+    },
+    // 获取关键词
+    getKeywords() {
+      console.log(JSON.parse(localStorage.getItem('storageKeywords')));
+      this.storageKeywords = JSON.parse(localStorage.getItem('storageKeywords'))
+    },
     // 搜索
     submit() {
+      if (!this.searVal) {
+        console.log('搜索内容不能为空')
+        return false
+      }
+      const storage = JSON.parse(localStorage.getItem('storageKeywords'))
+      if (!storage || (storage && storage.indexOf(this.searVal) === -1)) {
+        this.storageKeywords = storage || []
+        this.storageKeywords.push(this.searVal)
+        localStorage.setItem('storageKeywords', JSON.stringify(this.storageKeywords));
+      }
       let data = {
         searchType: 'H5_HOME',
         searchName: this.searVal
@@ -98,7 +157,7 @@ export default {
         : this.$router.push('/')
     },
     changeClick(e) {
-      this.searVal = this.keywordsList[e].name
+      this.searVal = e
     },
     initgetAntistop() {
       getAntistop({searchType: 'H5_HOME'}).then((res) => {
@@ -113,15 +172,41 @@ export default {
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .sear-wrap
     position fixed
-    top: 0rem
-    left: 0rem
-    right 0
+    top: 0
     width 100%
-    bottom: 0rem
+    bottom: 0
     font-size 0.24rem
     background-color: rgba(255,255,255,1);
-    /*background-color: #bfa;*/
     z-index 333
+    .search_input
+      display flex
+      width 6.95rem
+      height: 0.61rem
+      font-size 0.3rem
+      background-color: #fff
+      box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+      border-radius: 0.14rem
+      box-sizing border-box
+      margin 0.1rem 0 0 0.25rem
+      align-items center
+      .search_cansel
+        width 0.78rem
+        border-radius: 0 0.14rem 0.14rem 0
+        letter-spacing: 0.03rem
+        color: #000000;
+        background-color: #f4ba43;
+        height 0.61rem
+        line-height 0.61rem
+        text-align center
+      input
+        width 5.37rem
+        height 0.61rem
+        box-sizing border-box
+      .search_icon
+        width 0.45rem
+        max-height 0.39rem
+        height auto
+        margin 0 0.24rem 0 0.11rem
     .confirm_mask
       position fixed
       top: 0
@@ -161,24 +246,25 @@ export default {
         .confirm_cansel
           margin 0 auto
     .sear_wrap
-      box-shadow: 0.0rem 0rem 0.21rem rgba(198,160,86, 0.6);
-      width: 6.21rem;
-      padding: 0.38rem 0.29rem 0.29rem 0.29rem; // 0.18
-      border-radius: 0.08rem;
-      margin-top 0.55rem
+      margin-top 0.23rem
       .sear_content
         .sear_content_list
           display flex
           justify-content space-between
-          height: 0.76rem;
-          line-height: 0.76rem;
-          padding-left: 0.35rem;
-          padding-right 0.35rem
-          margin-bottom: 0.14rem;
+          width: 7.5rem;
+          height: 1rem;
+          background-color: #fff;
+          box-sizing border-box
+          line-height: 1rem;
+          padding-left: 0.25rem;
+          margin-bottom: 0.08rem;
           font-size: 0.3rem;
           font-family: PingFangSC-Regular;
-          color: #717170;
-          background:rgba(198,160,86, 0.08)
+          color: #000000;
+          .icon-gengduo
+            font-size 0.31rem
+            font-weight 600
+            margin-right 0.25rem
           .sear_content_list_left
             width: 3.21rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
     .sear
@@ -187,7 +273,7 @@ export default {
       justify-content: center;
       font-size 0.26rem
       border-bottom 0.01rem solid rgba(245,245,245,1)
-      .sear-input
+      /*.sear-input
         width 5.97rem
         height: 0.54rem
         background rgba(245,245,245,1)
@@ -201,29 +287,52 @@ export default {
         input
           height 100%
           width 100%
-          background rgba(245,245,245,1)
+          background rgba(245,245,245,1)*/
       div
         font-family:PingFangSC-Regular;
         color:rgba(51,51,51,1);
         padding-left 0.32rem
         margin-top 0.18rem
         line-height 0.54rem
+    .hot-sear1
+      display flex
+      justify-content space-between
+      .icon-icon_delete
+        font-size 0.32rem
+        padding-right 0.27rem
+        padding-left 0.25rem
     .hot-sear
-      margin-top 0.36rem
-      margin-left 0.27rem
-      margin-bottom 0.24rem
+      margin-top 0.38rem
+      margin-left 0.25rem
+      margin-bottom 0.33rem
       font-family:PingFangSC-Regular;
-      color:rgba(135,135,135,1)
+      color: #888888;
     .keywords
       display flex
-      color:rgba(74,73,73,1)
       flex-wrap: wrap
       margin-left 0.28rem
+      font-size: 0.28rem;
+      color: #353535;
       li
-        padding 0.17rem 0.2rem
-        background-color #F4F4F4
-        border-radius 0.08rem
-        color #4A4949
-        margin-bottom 0.22rem
-        margin-right 0.22rem
+        background-color: #fffefe;
+        border-radius: 0.2rem
+        padding 0.12rem 0.25rem
+        margin-bottom 0.26rem
+        margin-right 0.3rem
+  input::-webkit-input-placeholder {
+    color: #000000;
+    opacity: 0.5;
+  }
+  input::-moz-placeholder {
+    color: #000000;
+    opacity: 0.5;
+  }
+  input::-moz-placeholder {
+    color: #000000;
+    opacity: 0.5;
+  }
+  input::-ms-input-placeholder {
+    color: #000000;
+    opacity: 0.5;
+  }
 </style>

@@ -12,8 +12,8 @@
       <div v-else-if="newTemp === 2">
         <div class="intr_wrap intr_wrap2">
           <h2 class="intr_wrap2_h2">{{introduceObj.title}}</h2>
-          <p :class="{show: show}" ref="contentTxt">{{introduceObj.content}}</p>
-          <div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>
+          <p :class="{show: show}" ref="contentTxt" @click="showBts">{{introduceObj.content}}</p>
+          <!--<div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>-->
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
           <loading></loading>
