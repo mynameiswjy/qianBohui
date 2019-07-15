@@ -93,7 +93,7 @@ export default {
 
 <style scoped lang="stylus">
   .lintr_bottom
-    margin-bottom 0.29rem
+    margin-bottom 1rem
   .footer-top
     margin-top 0.57rem
 </style>

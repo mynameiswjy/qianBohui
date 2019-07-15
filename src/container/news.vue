@@ -1,6 +1,6 @@
 <template>
-    <div class="news_container">
-      <div class="title_ab">
+    <div class="news_container"  style="background-color: #F4F3F3;">
+      <!--<div class="title_ab">
         <h2>展会新闻</h2>
         <div class="news-en">Expo News</div>
       </div>
@@ -18,6 +18,21 @@
           <div v-show="!prevHide" @click="nextClick" class="next">
             <span class="iconfont icon-gengduo" :class="{span_icon_qianjin: pageCount == pageIndex}"></span>
           </div>
+        </div>
+      </div>-->
+      <div class="news_wrap_new">
+        <div class="exhibi_title">展会新闻</div>
+        <ul class="exhibition_news">
+          <li :class="{'exhibition_news1': index != listZHXW.length-1}" v-for="(item, index) in listZHXW" :key="item.id" @click="goToDetail(item.code)">
+            <div class="h3">
+              <span class="span">{{item.title}}</span>
+              <span class="">{{item.newsTime}}</span>
+            </div>
+          </li>
+        </ul>
+        <div class="btns">
+          <div @click="prevClick" class="prev">上一页</div>
+          <div v-show="!prevHide" @click="nextClick" class="next">下一页</div>
         </div>
       </div>
       <ul class="news_title_nav">
@@ -191,6 +206,48 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .news_wrap_new
+    margin-left: 0.25rem;
+    width: 7rem;
+    /*height: 4.71rem;*/
+    background-color: #ffffff;
+    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+    border-radius: 0.14rem;
+    .exhibi_title
+      height: 0.94rem;
+      background-color: #eed582;
+      border-radius: 0.14rem 0.14rem 0 0;
+      position: relative;
+      font-size: 0.36rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 0.94rem;
+      color #000
+      .exhibi_more
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.38rem 0.24rem 0 0;
+        font-size: 0.24rem;
+    .exhibition_news
+      padding: 0.13rem 0 0.13rem 0.22rem;
+      li
+        width: 6.48rem;
+        line-height: 0.69rem;
+        font-size: 0.28rem;
+        .h3
+          display: flex;
+          justify-content: space-between;
+          height: 0.7rem;
+          color: #000;
+          .span
+            width: 4.5rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+    .exhibition_news1
+      border-bottom: 0.01rem solid #949494;
+    /*old style*/
   .news_container
     width: 100%
     .title_ab

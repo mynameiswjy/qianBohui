@@ -2,7 +2,7 @@
    <div>
      <div class="new_tempwrap" v-if="newTemp === 1">
        <ul class="header_nav" :class="{'header_nav1':isVisitP}">
-         <li :class="{'text_active':idx == index, 'li_add_style': aboutzhObj.navList.length == 2}"
+         <li :class="{'text_active':idx == index, 'li_add_style': aboutzhObj.navList.length <= 2}"
              @click="changeTempBtns(index)"
              v-for="(item, index) in aboutzhObj.navList"
              :key="index"
@@ -222,7 +222,7 @@ export default {
         position relative
       .text_active:after {
         content ''
-        width 2.09rem
+        width 89.6%
         height 0.04rem
         background-color: #eed582;
         transform translateX(-50%)
@@ -230,6 +230,8 @@ export default {
         left 50%
         bottom: 0
       }
+      .li_add_style
+        width 50%
     .temp_content
       font-size 0.28rem
       line-height 0.6rem
