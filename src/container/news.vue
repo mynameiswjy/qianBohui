@@ -31,17 +31,17 @@
           </li>
         </ul>
         <div class="btns">
-          <div @click="prevClick" class="prev">上一页</div>
-          <div v-show="!prevHide" @click="nextClick" class="next">下一页</div>
+          <div @click="prevClick" :class="{'page_btn': pageActive}" class="prev">上一页</div>
+          <div v-show="!prevHide" :class="{'page_btn': !pageActive}" @click="nextClick" class="next">下一页</div>
         </div>
       </div>
-      <ul class="news_title_nav">
+      <!--<ul class="news_title_nav">
         <li class="li_add_style" @click="selectNewsTitle(index)" :class="{'text_active':idx == index,}" v-for="(item,index) in navNews" :key="index">
           {{item}}
           <img v-show="idx == index" class="arrow" src="../assets/images/arrow.png" alt="">
         </li>
-      </ul>
-      <div class="news_wrap left-margin">
+      </ul>-->
+      <!--<div class="news_wrap left-margin">
         <ul class="news_content">
           <li class="news_content_list" @click="goToDetail(item.code)" v-for="(item, index) in listZSJS" :key="index">
             <div class="news_content_list_left">{{item.title}}</div>
@@ -56,6 +56,23 @@
             <span class="iconfont icon-gengduo" :class="{span_icon_qianjin:pageIndexZSJS >= pageCountZSJS}"></span>
           </div>
         </div>
+      </div>-->
+      <div class="news_detail">
+        <ul class="nav_news">
+          <li class="li_add_style" @click="selectNewsTitle(index)" :class="{'nav_news1':idx == index,}" v-for="(item,index) in navNews" :key="index">
+            {{item}}
+          </li>
+        </ul>
+        <ul class="news_list">
+          <li class="" :class="{'news_boeder': index != listZSJS.length-1}" @click="goToDetail(item.code)" v-for="(item, index) in listZSJS" :key="index">
+            <div class="news_content_list_left">{{item.title}}</div>
+            <div>{{item.newsTime}}</div>
+          </li>
+        </ul>
+        <div class="btns">
+          <div class="prev" :class="{'page_btn': newsContentAct}" @click="prevZSJS">上一页</div>
+          <div class="next" :class="{'page_btn': !newsContentAct}" @click="nextZSJS">下一页</div>
+        </div>
       </div>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
@@ -63,7 +80,7 @@
     </div>
 </template>
 
-<script>
+<script >
 import tabBar from '@/container/tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import * as types from '../store/mutation-types'
@@ -84,7 +101,9 @@ export default {
       prevHide: false,
       dialogVisible: true,
       type: 'ZSJS', // 展商介绍
-      listZSJS: []
+      listZSJS: [],
+      pageActive: false,
+      newsContentAct: false
     }
   },
   created() {
@@ -158,6 +177,7 @@ export default {
       })
     },
     prevClick() {
+      this.pageActive = true
       --this.pageIndex
       if (this.pageIndex < 1) {
         this.pageIndex = 1
@@ -170,6 +190,7 @@ export default {
       this.initDataZHXW()
     },
     nextClick() {
+      this.pageActive = false
       ++this.pageIndex
       if(this.pageIndex > this.pageCount) {
         this.pageIndex = this.pageCount
@@ -179,6 +200,7 @@ export default {
     },
     prevZSJS() {
       --this.pageIndexZSJS
+      this.newsContentAct = true
       if (this.pageIndexZSJS < 1) {
         this.pageIndexZSJS = 1
         this.$message({
@@ -191,6 +213,7 @@ export default {
     },
     nextZSJS() {
       ++this.pageIndexZSJS
+      this.newsContentAct = false
       if(this.pageIndexZSJS > this.pageCountZSJS) {
         this.pageIndexZSJS = this.pageCountZSJS
         return false
@@ -247,6 +270,69 @@ export default {
             text-overflow: ellipsis;
     .exhibition_news1
       border-bottom: 0.01rem solid #949494;
+  .news_detail
+    width 7rem
+    height 5.4rem
+    background-color: #fff
+    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+    border-radius: 0.14rem;
+    margin-left 0.25rem
+    margin-top 1.22rem
+    overflow hidden
+    .nav_news1
+      background-color: #fff
+      position relative
+    .nav_news1:before
+      content ''
+      width 89.6%
+      height 0.04rem
+      background-color: #eed582;
+      position absolute
+      bottom 0
+      transform transLateX(-50%)
+      left 50%
+    .nav_news
+      display flex
+      font-size 0.3rem
+      color #000000
+      background-color: #eed582;
+      li
+        width 50%
+        text-align center
+        line-height 0.64rem
+        font-weight 600
+    .news_list
+      font-size: 0.28rem
+      color: #000000;
+      width 6.47rem
+      height 3.54rem
+      margin 0.15rem auto 0
+      .news_boeder
+        border-bottom: solid 0.02rem #949494;
+      li
+        display flex
+        height 0.7rem
+        line-height 0.7rem
+        justify-content space-between
+        .news_content_list_left
+          width: 3.5rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+  .btns
+    display flex
+    justify-content center
+    margin-top 0.15rem
+    padding-bottom 0.5rem
+    font-size: 0.22rem;
+    color: #000000;
+    .prev, .next
+      width: 1.06rem;
+      height: 0.37rem;
+      background-color: #f4f3f3;
+      border-radius: 0.18rem;
+      line-height 0.37rem
+      text-align center
+      margin 0 0.14rem
+    .page_btn
+      background-color: #eed582;
     /*old style*/
   .news_container
     width: 100%

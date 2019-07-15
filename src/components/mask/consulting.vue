@@ -30,15 +30,14 @@ export default {
 
 <style scoped lang="stylus">
   .mask
-    /*padding-top 0.82rem*/
     .wraps
       position: absolute
       top 50%
       left 50%
       transform translate(-50%, -50%)
       border-radius: 0.2rem;
-      width: 4.72rem;
-      /*height: 6.05rem;*/
+      width: 4.7rem;
+      /*height: 6.0rem;*/
       background-color: #f4f3f3;
       font-size: 0.32rem;
       font-family: PingFangSC-Regular;
@@ -47,12 +46,12 @@ export default {
         width 2.14rem
         height auto
         display block
-        margin 0.6rem auto 0
+        margin 0.35rem auto 0
       .p1
         text-align center
         font-size: 0.3rem
         line-height: 0.46rem
-        color: #1f1e1e
+        color: #1f1e1e;
         margin-top 0.15rem
       .p2
         font-size: 0.48rem;
@@ -62,12 +61,12 @@ export default {
         color: #1f1e1e;
       .p3
         width: 4.4rem
-        height: 0.6rem
-        background-color: #f4ba43;
+        height: 0.88rem
+        background-color: #eed582;
         border-radius: 0.2rem
         font-size: 0.36rem
-        line-height: 0.6rem
+        line-height: 0.88rem
         text-align center
         color: #000000;
-        margin 0.55rem auto 0.42rem
+        margin 0.4rem auto 0.29rem
 </style>
