@@ -1,9 +1,9 @@
 <template>
-    <div class="details_wrap">
+    <div class="details_wrap" style="background-color: #F4F3F3;">
       <scroll class="details-content" :data="list">
         <div>
           <nav-bar></nav-bar>
-          <div style="height: 0.58rem;width: 100%;"></div>
+          <!--<div style="height: 0.58rem;width: 100%;"></div>
           <div class="ex_detail_title">
             <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
             <div class="title-right">
@@ -34,6 +34,19 @@
                 <div class="next-txt" :class="{span_icon_qianjin:pageIndexNews >= pageCountNews}">下一页</div>
               </div>
             </div>
+          </div>-->
+          <div class="exhibition_wrap">
+            <h2>历届展会</h2>
+            <ul class="exhibition_list">
+              <li class="news_content_list exhibition_boeder" @click="goToDetail(item.code)" v-for="(item,index) in list" :key="index">
+                <div class="news_content_list_left">{{item.title}}</div>
+                <div>{{item.newsTime}}</div>
+              </li>
+            </ul>
+            <div class="btns">
+              <div class="prev" :class="{'page_btn': exhibitionPage}" @click="prevNews">上一页</div>
+              <div class="next" :class="{'page_btn': !exhibitionPage}" @click="nextNews">下一页</div>
+            </div>
           </div>
           <temp-footer class="footer-top"></temp-footer>
         </div>
@@ -48,6 +61,7 @@ import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 �
 import scroll from '@/utils/scroll'
 import navBar from './navBar'
 import {successiveExhibitors} from '@/api/index'
+import * as types from '../store/mutation-types'
 
 export default {
   name: "exhibitionDetail",
@@ -58,14 +72,18 @@ export default {
       pageIndexNews: 1,
       pageCountNews: '',
       selectVal: 'all',
-      selectType: 'all'
+      selectType: 'all',
+      exhibitionPage: false
     }
   },
   created() {
     document.title = '历届展会';
-    this.initNewsList()
   },
   mounted() {
+  },
+  activated() {
+    this.initNewsList()
+    this.$store.commit(types.ROUTER_PATH, this.$route.path)
   },
   methods: {
     goToDetail(e) {
@@ -85,10 +103,14 @@ export default {
     },
     initNewsList() {
       this.list = []
+      const exhibitionTime = localStorage.getItem("exhibitionTime")
+      if (this.$route.params.time != localStorage.getItem("exhibitionTime")) {
+        localStorage.setItem("exhibitionTime", this.$route.params.time)
+      }
       let data = {
         pageIndex: this.pageIndexNews,
         pageSize: 10,
-        selelctYears: this.selectType
+        selelctYears: this.$route.params.time || exhibitionTime // this.selectType this.$route.params.time
       }
       successiveExhibitors(data).then(res => {
         if (res.data.returnCode === '0000') {
@@ -99,6 +121,7 @@ export default {
       })
     },
     prevNews() {
+      this.exhibitionPage = true
       --this.pageIndexNews
       if (this.pageIndexNews < 1) {
         this.pageIndexNews = 1
@@ -111,6 +134,7 @@ export default {
       this.initNewsList()
     },
     nextNews() {
+      this.exhibitionPage = false
       ++this.pageIndexNews
       if(this.pageIndexNews > this.pageCountNews) {
         this.pageIndexNews = this.pageCountNews
@@ -149,6 +173,56 @@ select::-ms-expand { display: none; }
   .details-content
     height 100%
     overflow hidden
+    .exhibition_wrap
+      margin-top 0.3rem
+      width 7rem
+      background-color: #ffffff;
+      box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+      border-radius: 0.14rem
+      margin-left 0.25rem
+      overflow hidden
+      h2
+        width 100%
+        height 0.94rem
+        background-color: #eed582;
+        font-size: 0.36rem;
+        font-weight 600
+        text-align center
+        line-height 0.94rem
+        color: #000000;
+      .exhibition_list
+        font-size: 0.28rem
+        color: #000000;
+        width 6.47rem
+        /*height 3.54rem*/
+        margin 0.15rem auto 0
+        .exhibition_boeder
+          border-bottom: solid 0.02rem #949494;
+        li
+          display flex
+          height 0.7rem
+          line-height 0.7rem
+          justify-content space-between
+          .news_content_list_left
+            width: 3.5rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+      .btns
+        display flex
+        justify-content center
+        margin-top 0.45rem
+        padding-bottom 0.3rem
+        font-size: 0.22rem;
+        color: #000000;
+        .prev, .next
+          width: 1.06rem;
+          height: 0.37rem;
+          background-color: #f4f3f3;
+          border-radius: 0.18rem;
+          line-height 0.37rem
+          text-align center
+          margin 0 0.14rem
+        .page_btn
+          background-color: #eed582;
+    /*old Style*/
   .ex_detail_title
     width: 6.78rem;
     display: flex;

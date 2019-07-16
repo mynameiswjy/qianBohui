@@ -126,6 +126,13 @@ export default {
       this.selectName = e.name + '年'
       this.IpOpenSelect = false
       this.IsmaskSelect = false
+      this.$router.push({
+        name: "exhibitionDetail",
+        params: {
+          name: 'exhibitionDetail',
+          time: e.name
+        }
+      })
     },
     openSelect() {
       this.IpOpenSelect = !this.IpOpenSelect
