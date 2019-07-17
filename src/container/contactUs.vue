@@ -4,7 +4,7 @@
         <div class="contact_footer_position">
           <nav-bar></nav-bar>
           <!--<div style="height: 0.01rem"></div>-->
-          <introduce :openStyle="false" :IsContactWay="true" :show="false" :showBtns="false" :introduceObj="introduceObj"></introduce>
+          <introduce :newTemp="3" :introduceObj="introduceObj"></introduce>
           <temp-footer class="temp_footer"></temp-footer>
         </div>
       </scroll>
@@ -66,7 +66,7 @@ export default {
   top: 0
   bottom 0.98rem
   width 100%
-  background-color: #fff
+  background-color: #F4F3F3;
   .contact_content
     height 100%
     overflow hidden

@@ -7,6 +7,7 @@ import audience from '@/container/audience'
 import news from '@/container/news'
 import search from '@/container/search.vue'
 import exhibitionDetail from '@/container/exhibitionDetail.vue'
+import aboutUs from '@/container/aboutUs.vue'
 import contactUs from '@/container/contactUs.vue'
 import newsLandingPage from '@/container/newsLandingPage.vue'
 
@@ -59,6 +60,10 @@ export default new Router({
       path: "/contactUs",
       name: 'contactUs',
       component: contactUs
+    }, {
+      path: "/aboutUs",
+      name: 'aboutUs',
+      component: aboutUs
     },
     {
       path: "/newsLandingPage",

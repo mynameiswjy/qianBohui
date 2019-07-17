@@ -19,10 +19,20 @@
           <loading></loading>
         </div>
       </div>
-      <div v-else style="margin-left: 0.36rem">
-        <div v-if="openStyle" class="title_ab">
+      <div  v-else-if="newTemp === 3">
+        <div class="intr_wrap">
+          <h3 class="cantact_title">联系我们</h3>
+          <div class="">
+            <p>服务热线：<a href="tel:4008-188-666" class="">4008-188-666</a></p>
+            <p>服务传真：<span class="">010-59311250</span></p>
+            <p>服务邮箱：<span class="">service@chngc.net</span></p>
+          </div>
+        </div>
+      </div>
+      <!--<div v-else style="margin-left: 0.36rem">
+        &lt;!&ndash;<div v-if="openStyle" class="title_ab">
           <h2>{{introduceObj.title}}</h2>
-          <div class="">{{text}}</div><!--Exhibition Introduction-->
+          <div class="">{{text}}</div>&lt;!&ndash;Exhibition Introduction&ndash;&gt;
         </div>
         <div class="title" v-else>
           <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
@@ -30,9 +40,9 @@
             <h2>{{introduceObj.title}}</h2>
             <div class="title-right-en">{{text}}</div>
           </div>
-        </div>
+        </div>&ndash;&gt;
         <div class="header_intro" :class="{height_hide: !introduceObj.content}">
-          <div class="header-text" :class="{show: show}"><!-- ref="contentTxt"-->
+          <div class="header-text" :class="{show: show}">&lt;!&ndash; ref="contentTxt"&ndash;&gt;
             <span>{{introduceObj.content}}</span>
             <div v-if="IsContactWay" class="contact_way">
               <p>服务热线：<a href="tel:4008-188-666" class="contact_way_color">4008-188-666</a></p>
@@ -45,7 +55,7 @@
           </div>
           <div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>
         </div>
-      </div>
+      </div>-->
     </div>
 </template>
 
@@ -110,9 +120,7 @@ export default {
         this.$nextTick(() => {
           if (this.$refs.contentTxt.offsetHeight >= 150) {
             this.showContent = true
-            debugger
           } else {
-            debugger
             this.showContent = false
           }
         })
@@ -147,6 +155,17 @@ export default {
     box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
     border-radius: 0.14rem;
     margin-left 0.25rem
+    overflow hidden
+    .cantact_title
+      width 100%
+      height 0.94rem
+      background-color: #eed582;
+      font-size: 0.36rem;
+      font-weight 600
+      text-align center
+      line-height 0.94rem
+      color: #000000
+      box-sizing border-box
     .intr_wrap2_h2
       padding-top 0.28rem
       /*padding-bottom 0.2rem*/

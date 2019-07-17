@@ -23,7 +23,7 @@ export default {
       this.$router.push({path: 'contactUs'});
     },
     aboutUs() {
-      this.$router.push({path: 'aboutzh'});
+      this.$router.push({path: 'aboutUs'});
     }
   }
 }
