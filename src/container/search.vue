@@ -46,17 +46,21 @@
       <div class="confirm_mask" v-show="isOpenHistory">
         <div class="confirm_content">
           <img class="confirm_img" src="https://www.chqbh.com/imgFile/cut/confirm.png" alt="">
-          <p class="confirm_txt" style="margin-top: 0.68rem">确认删除</p>
+          <p class="confirm_txt" style="margin-top: 0.71rem">确认删除</p>
           <p class="confirm_txt">全部历史记录?</p>
+          <div style="height: 0.4rem;" v-show="!maskBtn"></div>
           <p class="confirm_yes confirm_btn" :class="{'confirm_active': !maskBtn}" @click="confirmBtn(true)">确认</p>
           <p class="confirm_cansel confirm_btn" :class="{'confirm_active': maskBtn}" @click="confirmBtn(false)">取消</p>
+          <div style="height: 0.4rem;" v-show="maskBtn"></div>
         </div>
       </div>
+      <reload @reloadBtn="searchReloadBtn" v-show="IsSearchReloadTemp"></reload>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
 import {getAntistop, searchName} from '@/api/index'
+import reload from '@/components/reloadTemp' // 网络错误
 
 export default {
   name: 'search',
@@ -68,7 +72,8 @@ export default {
       isShowSear: true,
       storageKeywords: [],
       isOpenHistory: false,
-      maskBtn: false
+      maskBtn: false,
+      IsSearchReloadTemp: false
     }
   },
   created() {
@@ -86,6 +91,9 @@ export default {
     this.searchList = []
   },
   methods: {
+    searchReloadBtn() {
+      this.initgetAntistop()
+    },
     // 删除搜索历史
     confirmBtn(e) {
       if (e) {
@@ -139,6 +147,8 @@ export default {
             type: 'warning'
           });
         }
+      }).catch(() => {
+        this.IsSearchReloadTemp = true
       })
     },
     goToDetail(e) {
@@ -162,8 +172,16 @@ export default {
     initgetAntistop() {
       getAntistop({searchType: 'H5_HOME'}).then((res) => {
         this.keywordsList = res.data.returnData
+        if (this.IsSearchReloadTemp) {
+          this.IsSearchReloadTemp = false
+        }
+      }).catch(() => {
+        this.IsSearchReloadTemp = true
       })
     }
+  },
+  components: {
+    reload
   }
 }
 
@@ -218,7 +236,7 @@ export default {
         top: 50%
         left 50%
         width 4.72rem
-        height 4.8rem
+        /*height 4.8rem*/
         background-color: #f6f6f6;
         transform translate(-50%, -50%)
         .confirm_img
@@ -233,15 +251,15 @@ export default {
           text-align center
         .confirm_btn
           font-size: 0.36rem
-          line-height: 0.6rem
+          line-height: 0.88rem
           color: #000000
           text-align center
         .confirm_yes
           margin  0.4rem auto 0.1rem
         .confirm_active
-          width: 4.39rem
-          height: 0.6rem
-          background-color: #f4ba43;
+          width: 4.4rem
+          height: 0.88rem
+          background-color: #eed582;
           border-radius: 0.2rem
         .confirm_cansel
           margin 0 auto

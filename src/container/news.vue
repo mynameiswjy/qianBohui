@@ -77,12 +77,14 @@
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
       <tabBar class="menu-tab"></tabBar>
+      <reload @reloadBtn="reloadNewsBtn" v-show="IsReloadTemp"></reload>
     </div>
 </template>
 
 <script >
 import tabBar from '@/container/tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
+import reload from '@/components/reloadTemp' // 网络错误
 import * as types from '../store/mutation-types'
 import {getNewsCategory, getShareToken} from '@/api/index'
 import { wxShareTemp, againUrl } from '../utils/wx_share'
@@ -103,7 +105,8 @@ export default {
       type: 'ZSJS', // 展商介绍
       listZSJS: [],
       pageActive: false,
-      newsContentAct: false
+      newsContentAct: false,
+      IsReloadTemp: false
     }
   },
   created() {
@@ -119,6 +122,10 @@ export default {
     this.shareWxNews()
   },
   methods: {
+    reloadNewsBtn() {
+      this.initDataZHXW()// 展会新闻
+      this.initDataZSJS()// 展商介绍 以及 行业动态
+    },
     // 分享
     shareWxNews() {
       getShareToken(this.$route.path).then(res => { // window.location.href
@@ -159,7 +166,12 @@ export default {
         if (res.data.returnCode === '0000') {
           this.pageCountZSJS = res.data.returnData.pageNum
           this.listZSJS = res.data.returnData.successiveExhibitors
+          if (this.IsReloadTemp) {
+            this.IsReloadTemp = false
+          }
         }
+      }).catch(() => {
+        this.IsReloadTemp = true
       })
     },
     initDataZHXW() {
@@ -173,7 +185,12 @@ export default {
           let data = res.data.returnData
           this.pageCount = data.pageNum
           this.listZHXW = data.successiveExhibitors
+          if (this.IsReloadTemp) {
+            this.IsReloadTemp = false
+          }
         }
+      }).catch(() => {
+        this.IsReloadTemp = true
       })
     },
     prevClick() {
@@ -223,7 +240,8 @@ export default {
   },
   components: {
     tabBar,
-    tempFooter
+    tempFooter,
+    reload
   }
 }
 </script>

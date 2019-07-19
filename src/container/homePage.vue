@@ -20,7 +20,7 @@ import exhibitor from '@/components/exhibitor' // 展商介绍模板
 import successiveExhibitions from '@/components/successiveExhibitions' // 历届展会模板
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
-import reload from '@/components/reloadTemp'
+import reload from '@/components/reloadTemp' // 网络错误
 import * as types from '../store/mutation-types'
 import {indexDo, successiveExhibitors, getShareToken} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件

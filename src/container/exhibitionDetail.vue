@@ -52,6 +52,7 @@
         </div>
       </scroll>
       <tab-bar class="menu-tab"></tab-bar>
+      <reload @reloadBtn="reloadExdBtn" v-show="IsExdReloadTemp"></reload>
     </div>
 </template>
 
@@ -60,6 +61,7 @@ import tabBar from './tabBar' // 底部tabBar
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import scroll from '@/utils/scroll'
 import navBar from './navBar'
+import reload from '@/components/reloadTemp' // 网络错误
 import {successiveExhibitors} from '@/api/index'
 import * as types from '../store/mutation-types'
 
@@ -73,7 +75,8 @@ export default {
       pageCountNews: '',
       selectVal: 'all',
       selectType: 'all',
-      exhibitionPage: false
+      exhibitionPage: false,
+      IsExdReloadTemp: false
     }
   },
   created() {
@@ -86,6 +89,9 @@ export default {
     this.$store.commit(types.ROUTER_PATH, this.$route.path)
   },
   methods: {
+    reloadExdBtn() {
+      this.initNewsList()
+    },
     goToDetail(e) {
       this.$router.push({
         name: "newsLandingPage",
@@ -117,7 +123,12 @@ export default {
           this.timeList = res.data.returnData.selelctYears
           this.pageCountNews = res.data.returnData.pageNum
           this.list = res.data.returnData.successiveExhibitors
+          if (this.IsExdReloadTemp) {
+            this.IsExdReloadTemp = false
+          }
         }
+      }).catch(() => {
+        this.IsExdReloadTemp = true
       })
     },
     prevNews() {
@@ -149,7 +160,8 @@ export default {
     tempFooter,
     tabBar,
     scroll,
-    navBar
+    navBar,
+    reload
   }
 }
 </script>

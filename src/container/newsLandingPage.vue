@@ -15,11 +15,13 @@
         </div>
       </scroll>
       <tab-bar class="menu-tab"></tab-bar>
+      <reload @reloadBtn="reloadBtn" v-show="IsOpenReloadTemp"></reload>
     </div>
 </template>
 
 <script>
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
+import reload from '@/components/reloadTemp' // 网络错误
 import * as types from '../store/mutation-types'
 import scroll from '@/utils/scroll'
 import tabBar from '@/container/tabBar' // 底部tabBar
@@ -33,7 +35,8 @@ export default {
   data() {
     return {
       content: '宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。全面关注国内外钱币信息，宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。全面关注国内外钱币信息，宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。',
-      detailObj: {}
+      detailObj: {},
+      IsOpenReloadTemp: false
     }
   },
   created() {
@@ -42,7 +45,6 @@ export default {
   activated() {
     document.title = '新闻资讯';
     let code = this.$route.params.code || getURLParams('code')
-    console.log('code', getURLParams('code'))
     this.initData(code)
     this.$store.commit(types.ROUTER_PATH, this.$route.path)
   },
@@ -64,15 +66,24 @@ export default {
         let data = res.data
         if (data.returnCode === '0000') {
           this.detailObj = data.returnData
+          if (this.IsOpenReloadTemp) {
+            this.IsOpenReloadTemp = false
+          }
         }
+      }).catch(() => {
+        this.IsOpenReloadTemp = true
       })
+    },
+    reloadBtn() {
+      this.initData(this.$route.params.code || getURLParams('code'))
     }
   },
   components: {
     tempFooter,
     tabBar,
     scroll,
-    navBar
+    navBar,
+    reload
   }
 }
 </script>

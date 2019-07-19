@@ -140,7 +140,6 @@ export default {
 
 <style lang="stylus">
   .intr_wrap1
-    /*height 4rem*/
     padding-bottom 0.3rem
   .intr_wrap2
     padding-bottom 0.3rem
@@ -187,7 +186,8 @@ export default {
       display: -webkit-box;
       -webkit-line-clamp: 6;//向显示多少行就给多大值
       -webkit-box-orient: vertical;
-  .title_ab
+  /*old style*/
+  /*.title_ab
     text-align center
     margin-left -0.36rem
     h2
@@ -219,7 +219,7 @@ export default {
       left 50%
       transform: translate(-50%, -50%)
     .header-text
-      /*height: 3.22rem;*/
+      !*height: 3.22rem;*!
       text-align: justify;
       font-size: 0.285rem;
       font-family:PingFangSC-Regular;
@@ -227,7 +227,7 @@ export default {
       background:rgba(255,255,255,1);
       line-height: 0.42rem
       .contact_way
-        /*margin-left 1rem*/
+        !*margin-left 1rem*!
         .contact_way_color
           color: #2C90FF
     .a_full
@@ -269,5 +269,5 @@ export default {
   .introduce-icon{
     width: 0.33rem;
     height: 0.32rem;
-  }
+  }*/
 </style>
