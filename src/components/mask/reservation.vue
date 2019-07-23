@@ -4,13 +4,13 @@
         <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
           <div class="res-title">
             <h2>{{userInputList.name}}</h2>
-            <img @click="closeTemp" src="../../assets/images/close.png" alt="">
+            <span class="iconfont icon-guanbi" @click="closeTemp"></span>
           </div>
           <ul style="position: relative;">
             <li v-for="(item, index) in userInputList.selectItem" :key="index">
               <div class="list" v-if="(item.isType == 'I')">
                 <div class="list-left">
-                  <div>{{item.name}}</div>
+                  <div>{{item.name}}</div><!-- :class="{'list-left-text': item.name.length === 4, 'list-left-text1': item.name.length === 3}"-->
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
                 <input v-model="item[item.code]" type="text"/>
@@ -20,10 +20,11 @@
                   <div>{{item.name}}</div>
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
-                <div style="position: relative;">
+                <div style="position: relative;" class="select_wrap">
                   <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
                     <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.code">{{opt.name}}</option>
                   </select>
+                  <div v-show="!item[item.code]" class="iconfont icon-xiala"></div>
                   <div v-show="!item[item.code]" class="select-default">请选择</div>
                 </div>
               </div>
@@ -55,7 +56,7 @@
             <imgUpload @imgIdObj="imgArr"></imgUpload>
           </div>
           <div @click="sendData" class="btns">确定</div>
-          <div style="height: 0.18rem"></div>
+          <div style="height: 0.25rem"></div>
         </div>
       </scroll>
     </div>
@@ -228,12 +229,24 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .select_wrap
+    .icon-xiala
+      position: absolute
+      top 0
+      color #959595
+      right 0.96rem
   .select-default
+    width 0.86rem
+    height 0.38rem
+    background-color: #eed582;
     position absolute
-    top: 0.02rem
-    left: 0.3rem
-    font-size 24rpx
-    color #b7b7b7
+    top: 0.08rem
+    right: 0
+    font-size 0.24rem
+    color #000
+    text-align center
+    line-height 0.4rem
+    border-radius 0 0.14rem 0.14rem 0
   .loading-wrap
     height 3rem
   .loading-container
@@ -244,38 +257,34 @@ export default {
     transform: translate(-50%, -50%)
   .mask
     .wraps
-      overflow hidden
+      /*overflow hidden*/
   .list select{
-    width: 4.77rem;
-    height: 0.75rem;
-    padding: 0.2rem 0.3rem;
-    border-radius: 0.08rem;
-    border: 0.01rem solid rgba(198,160,86,1);
+    width: 5rem;
+    height: 0.38rem;
+    background-color: #f4f3f3;
+    border-radius: 0.14rem;
+    padding-left 0.2rem
+    box-sizing border-box
     color: #000;
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
-    border: 0.01rem solid #d3d5d6;
-    color: #666;
+    border: 0 solid #d3d5d6;
   }
   .list .select1{
-    padding: 0 0.3rem;
-    background: url("../../assets/images/zh-drop-down.png") no-repeat scroll 92% center transparent;
-    background-size: 0.22rem 0.12rem;
-    padding-right: 0.2rem;
   }
   .upload{
     width: 4.77rem;
     text-align: left;
-    font-size: 0.24rem;
-    color: #C8A258;
-    margin-left: 0.3rem;
+    font-size: 0.18rem;
+    color: #f4ba43;
+    margin-left: 0.1rem;
   }
   select::-ms-expand { display: none; }
   .upload img{
     width: 0.1rem;
-    height: 0.19rem;
-    margin-left: 0.21rem;
+    height: 0.16rem;
+    margin-left: 0.15rem;
   }
   .add-img
     display: flex;
@@ -306,15 +315,17 @@ export default {
       /*position absolute
       top: 0*/
   .btns{
-    width:6.78rem;
-    height:0.72rem;
-    background:rgba(200,162,88,1);
-    border-radius:0.12rem;
-    font-size: 0.28rem;
+    width:7rem;
+    height:0.88rem;
+    background-color: #eed582;
+    border-radius: 0.14rem;
+    font-size: 0.36rem;
     font-family:PingFangSC-Regular;
-    color:rgba(255,255,255,1);
+    color: #000;
     text-align: center;
-    line-height: 0.72rem;
-    margin-left: 0.36rem;
+    line-height: 0.88rem;
+    font-weight 600
+    letter-spacing: 0.04rem;
+    margin-left: 0.25rem;
   }
 </style>
