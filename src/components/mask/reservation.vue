@@ -288,7 +288,7 @@ export default {
   }
   .add-img
     display: flex;
-    margin: 0 0.36rem 0.36rem;
+    margin: 0 0.36rem 0.3rem;
     font-size: 0.24rem;
     .user-img
       background-color: #bfa

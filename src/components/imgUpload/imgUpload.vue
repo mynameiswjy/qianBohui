@@ -3,12 +3,13 @@
     <ul class="upload_temp_img">
       <li class="show-img" :class="{'show-img1': index == 0}" v-for="(item, index) in imgs" :key="index">
         <img :src="getObjectURL(item)" alt="">
-        <span class="iconfont icon-guanbi" @click="delImg(index)"></span>
+        <span class="iconfont icon-close" @click="delImg(index)"></span>
       </li>
       <div class="upload-img">
-        <img src="../../assets/images/add_img.png" class="img_btn" alt="上传图标">
+        <!--<img src="../../assets/images/add_img.png" class="img_btn" alt="上传图标">-->
         <input type="file" value="" ref="inputer" class="input_file" @change='onUpload'>
-        <div class="upload-img-add">添加图片</div>
+        <!--<div class="upload-img-add">添加图片</div>-->
+        <span class="iconfont icon-add"></span>
       </div>
     </ul>
   </div>
@@ -99,39 +100,49 @@ export default {
     display: flex
     flex-wrap: wrap;
     .show-img
-      width: 1.66rem;
-      height: 1.66rem;
-      border: 0.01rem solid #BFBFBF;
-      border-radius 0.05rem
-      margin-right 0.33rem
-      margin-top 0.2rem
+      width: 0.86rem;
+      height: 0.86rem;
+      background-color: #f4f3f3;
+      box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+      border-radius: 0.14rem
+      margin-right 0.2rem
+      /*margin-top 0.2rem*/
       position relative
-      .icon-guanbi
-        font-size 0.16rem
-        color: #fff
+      .icon-close
+        font-size 0.08rem
+        color: #000
         border-radius 0.14rem
-        width 0.28rem
-        height 0.28rem
+        width 0.21rem
+        height 0.21rem
         text-align center
-        line-height 0.28rem
-        background-color: #DD1010
+        line-height 0.21rem
+        background-color: #f4ba43;
         position absolute
         top 0
-        right 0
+        right -0.1rem
       img
         width 100%
         height 100%
+        border-radius: 0.14rem
     .upload-img
-      width: 1.66rem;
-      height: 1.66rem;
-      border: 0.01rem dashed #BFBFBF;
+      width: 0.86rem;
+      height: 0.86rem;
+      /*border: 0.01rem dashed #BFBFBF;*/
+      background-color: #f4f3f3;
+      box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+      border-radius: 0.14rem
       position relative
       display: inline-block;
       overflow: hidden;
       text-decoration: none;
       text-indent: 0;
-      background-color: #FBFDFF
-      margin-top 0.2rem
+      /*margin-top 0.2rem*/
+      .icon-add
+        font-size 0.43rem
+        font-weight 600
+        display flex
+        justify-content center
+        line-height 0.86rem
       .input_file
         color: transparent;
         position: absolute;

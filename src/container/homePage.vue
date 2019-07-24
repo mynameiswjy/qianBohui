@@ -10,6 +10,7 @@
     <div style="height: 0.98rem"></div>
     <tab-bar class="menu-tab"></tab-bar>
     <reload @reloadBtn="reloadBtn" v-show="IsReloadTemp"></reload>
+    <Loading v-show="openLoading"></Loading>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import successiveExhibitions from '@/components/successiveExhibitions' // 历届
 import tempFooter from '@/components/tempFooter' // 关于我们 联系我们 模板
 import tabBar from '@/container/tabBar' // 底部tabBar
 import reload from '@/components/reloadTemp' // 网络错误
+import Loading from '../components/loading/loading'
 import * as types from '../store/mutation-types'
 import {indexDo, successiveExhibitors, getShareToken} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件
@@ -35,7 +37,8 @@ export default {
       dataList: {},
       SuccessiveList: [],
       imgIndex: '',
-      IsReloadTemp: false
+      IsReloadTemp: false,
+      openLoading: false
     }
   },
   created() {
@@ -60,18 +63,24 @@ export default {
       })
     },
     initIndexList() {
+      this.openLoading = true
       indexDo().then((res) => {
         if (res.data.returnCode === '0000') {
+          this.openLoading = false
           this.dataList = res.data.returnData
           console.log('this.dataList', this.dataList)
           this.imgIndex = this.dataList.banner.imgIndex
           this.$store.commit(types.INDEX_IMG, res.data.returnData.banner.imgIndex)
+        } else {
+          setTimeout(() => {
+            this.openLoading = false
+          }, 6000)
         }
         if(this.IsReloadTemp) {
           this.IsReloadTemp = false
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch(() => {
+        this.openLoading = false
         this.IsReloadTemp = true
       })
     },
@@ -104,7 +113,8 @@ export default {
     tempFooter,
     tabBar,
     Scroll,
-    reload
+    reload,
+    Loading
   }
 }
 </script>

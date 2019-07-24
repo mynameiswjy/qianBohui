@@ -6,7 +6,7 @@
           <p class="other_con">{{introduceObj.content}}</p>
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
-          <loading></loading>
+          <loading openSmall="true"></loading>
         </div>
       </div>
       <div v-else-if="newTemp === 2">
@@ -16,7 +16,7 @@
           <!--<div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>-->
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
-          <loading></loading>
+          <loading openSmall="true"></loading>
         </div>
       </div>
       <div  v-else-if="newTemp === 3">
