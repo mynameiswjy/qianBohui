@@ -3,13 +3,15 @@
       <scroll class="news_landing_content" :data="detailObj">
         <div class="footer_position">
           <nav-bar></nav-bar>
-          <div style="height: 0.58rem"></div>
-          <div class="landing_title left-margin">{{detailObj.title}}</div>
-          <div class="landing_time left-margin">{{detailObj.articlesTime}}</div>
-          <div class="landing_content left-margin">
-            <dl class="landing_text" v-html="detailObj.content">
-              {{detailObj.content}}
-            </dl>
+          <div class="landing_container">
+            <div style="height: 0.16rem"></div>
+            <div class="landing_title">{{detailObj.title}}</div>
+            <div class="landing_time">{{detailObj.articlesTime}}</div>
+            <div class="landing_content">
+              <dl class="landing_text" v-html="content"><!--detailObj.-->
+                {{content}}
+              </dl>
+            </div>
           </div>
           <temp-footer class="temp_footer"></temp-footer>
         </div>
@@ -34,7 +36,15 @@ export default {
   name: "contactUs",
   data() {
     return {
-      content: '宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。全面关注国内外钱币信息，宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。全面关注国内外钱币信息，宣传我国货币金银政策币金银机构的信息关注中国人民银行、中国金币总公司等权威机构的信息关注。',
+      content: '<p>最后，我们贴心的从隔壁中国金币编辑部为大家要来了活动现场录音，一起来听听中国金币总公司设计部的郝望舒小姐姐讲述书法纪念币的设计故事吧~</p >' +
+      '<p>最后，我们贴心的从隔壁中国金币编辑部为大家要来了活动现场录音，一起来听听中国金币总公司设计部的郝望舒小姐姐讲述书法纪念币的设计故事吧~</p>' +
+      '<p>最后，我们贴心的从隔壁中国金币编辑部为大家要来了活动现场录音，一起来听听中国金币总公司设计部的郝望舒小姐姐讲述书法纪念币的设计故事吧~ </p>' +
+      '<p><img width="6.75" height="auto" src="https://images.unsplash.com/photo-1551446591-142875a901a1?w=640" alt="" style=""></p><p></p><p>' +
+      '<video src="http://113.18.195.11/hc.yinyuetai.com/uploads/videos/common/E63C013133463BFF9547498EDD0A02CA.flv?sc=d677f5261e6de6df&br=726&vid=212678&aid=1589&area=KR&vst=3" ' +
+      'poster="" controls="controls">您的浏览器不支持video播放</video> <br></p><p><br></p><p></p ><p>&nbsp;' +
+      '<audio src=" http://localhost:8081/qbh/news/getPicture.do?fileUrl=E:/imgFile/20190727160720fdd1115ac2c3e1dc84ea878082741e1b.mp3" ' +
+      'controls="controls">您的浏览器不支持audio播放</audio>&nbsp;</p >' +
+      '<br><p></p><p><br></p ><p><br></p><br><p></p><p><br></p><p><br></p><p><br></p><p><br></p ><p><br></p>',
       detailObj: {},
       IsOpenReloadTemp: false
     }
@@ -94,7 +104,7 @@ export default {
   position fixed
   top: 0
   bottom 0.98rem
-  background-color: #fff
+  background-color: #F4F3F3;
   .news_landing_content
     height 100%
     overflow hidden
@@ -103,37 +113,59 @@ export default {
       position relative
       padding-bottom 2.736rem
       box-sizing border-box
-      .landing_title
-        font-size: 0.32rem
-        color: #010101
-        font-weight 600
-        line-height 0.5rem
-        font-family:PingFangSC-Regular
-        margin-bottom 0.41rem
-      .landing_time
-        font-size 0.24rem
-        color: #4C4C4C
-        margin-bottom 0.46rem
-      .landing_content
-        padding 0.43rem 0.29rem 0.45rem
-        width 6.2rem
-        border-radius: 0.08rem
-        box-shadow:0 0 0.21rem rgba(198,160,86,0.2);
-        .landing_img
-          width 6.2rem!important
-          height 4.21rem!important
-          margin-bottom 0.41rem
-        .landing_text
-          color: #4C4C4C
-          font-family:PingFangSC-Regular;
-          line-height 0.42rem
+      .landing_container
+        background-color: #fff
+        width 7rem
+        height 100%
+        margin-left 0.25rem
+        box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
+        border-radius: 0.14rem
+        .landing_title
+          font-family:PingFangSC-Regular
+          margin-left 0.27rem
+          max-width 6.48rem
+          font-size: 0.36rem
+          font-weight: 600
           text-align justify
-          font-size 0.28rem
-          >>> img
+          line-height: 0.6rem
+          letter-spacing: 0.01rem
+          color: #000000;
+          margin-bottom 0.06rem
+        .landing_time
+          font-size: 0.24rem
+          line-height: 1
+          margin-left 0.25rem
+          color: #232323;
+          margin-bottom 0.4rem
+        .landing_content
+          /*padding 0.43rem 0.29rem 0.45rem*/
+          padding-bottom 1rem
+          margin-left 0.25rem
+          max-width 6.48rem
+          .landing_img
             width 6.2rem!important
             height 4.21rem!important
             margin-bottom 0.41rem
-  .temp_footer
+          .landing_text
+            font-family:PingFangSC-Regular
+            text-align justify
+            font-size 0.28rem
+            line-height: 0.6rem
+            color: #000000
+            max-width 6.48rem
+            >>> img
+              width 6.2rem!important
+              height 4.21rem!important
+              margin-bottom 0.41rem
+            >>> video
+              width 6.75rem
+              height 2.86rem
+              margin 0.7rem auto
+              background-image
+              background-image url("https://images.unsplash.com/photo-1551446591-142875a901a1?w=640")
+              background-repeat no-repeat
+              background-size 6.75rem 2.86rem
+.temp_footer
     height 2.156rem
     position absolute
     bottom 0

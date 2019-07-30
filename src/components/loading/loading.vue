@@ -14,6 +14,7 @@
 </template>
 <script type="text/ecmascript-6">
 export default {
+  name: 'loading',
   props: {
     title: {
       type: String,
@@ -33,7 +34,7 @@ export default {
     position fixed
     top: 0
     bottom: 0
-    /*background-color: rgba(0,0,0,0.8)*/
+    background-color: rgba(0,0,0,0.4)
     .load_content
       width 2.4rem
       height 2.4rem

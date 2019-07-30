@@ -6,17 +6,17 @@
           <p class="other_con">{{introduceObj.content}}</p>
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
-          <loading openSmall="true"></loading>
+          <loading :openSmall="true"></loading>
         </div>
       </div>
       <div v-else-if="newTemp === 2">
         <div class="intr_wrap intr_wrap2">
           <h2 class="intr_wrap2_h2">{{introduceObj.title}}</h2>
-          <p :class="{show: show}" ref="contentTxt" @click="showBts">{{introduceObj.content}}</p>
+          <p :class="{'show': show}" ref="contentTxt" @click="showBts">{{introduceObj.content}}</p>
           <!--<div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>-->
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
-          <loading openSmall="true"></loading>
+          <loading :openSmall="true"></loading>
         </div>
       </div>
       <div  v-else-if="newTemp === 3">
@@ -97,7 +97,6 @@ export default {
   data() {
     return {
       obj: {},
-      showText: "显示全文",
       showContent: false
     }
   },
@@ -108,11 +107,6 @@ export default {
   },
   methods: {
     showBts() {
-      if (this.show) {
-        this.showText = "收起全文"
-      } else {
-        this.showText = "显示全文"
-      }
       this.show = !this.show
     },
     ShowContent() {
@@ -125,12 +119,12 @@ export default {
           }
         })
       }
-      /*setTimeout(() => {
-
-      }, 200)*/
     }
   },
   computed: {
+    showText() {
+      return this.show ? '收起全文' : '显示全文'
+    }
   },
   components: {
     Loading
@@ -139,6 +133,13 @@ export default {
 </script>
 
 <style lang="stylus">
+  .show{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;//向显示多少行就给多大值
+    -webkit-box-orient: vertical;
+  }
   .intr_wrap1
     padding-bottom 0.3rem
   .intr_wrap2
