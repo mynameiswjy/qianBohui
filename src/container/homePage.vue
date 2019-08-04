@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: #F4F3F3;">
-    <introduce :introduceObj="dataList.expositionIntroduce" :newTemp="1" :show="false" :text="text"></introduce>
+    <introduce :introduceObj="dataList.expositionIntroduce" :newTemp="2" :text="text"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
     <successive-exhibitions :successiveList="SuccessiveList"></successive-exhibitions>

@@ -1,25 +1,5 @@
 <template>
     <div class="news_container"  style="background-color: #F4F3F3;">
-      <!--<div class="title_ab">
-        <h2>展会新闻</h2>
-        <div class="news-en">Expo News</div>
-      </div>
-      <div class="news_wrap left-margin">
-        <ul class="news_content">
-          <li class="news_content_list" v-for="item in listZHXW" :key="item.id" @click="goToDetail(item.code)">
-            <div class="news_content_list_left">{{item.title}}</div>
-            <div>{{item.newsTime}}</div>
-          </li>
-        </ul>
-        <div class="btns">
-          <div @click="prevClick" class="prev">
-            <span class="iconfont icon-fanhui" :class="{span_icon_houtui: pageIndex > 1}"></span>
-          </div>
-          <div v-show="!prevHide" @click="nextClick" class="next">
-            <span class="iconfont icon-gengduo" :class="{span_icon_qianjin: pageCount == pageIndex}"></span>
-          </div>
-        </div>
-      </div>-->
       <div class="news_wrap_new">
         <div class="exhibi_title">展会新闻</div>
         <ul class="exhibition_news">
@@ -35,28 +15,6 @@
           <div v-show="!prevHide" :class="{'page_btn': !pageActive}" @click="nextClick" class="next">下一页</div>
         </div>
       </div>
-      <!--<ul class="news_title_nav">
-        <li class="li_add_style" @click="selectNewsTitle(index)" :class="{'text_active':idx == index,}" v-for="(item,index) in navNews" :key="index">
-          {{item}}
-          <img v-show="idx == index" class="arrow" src="../assets/images/arrow.png" alt="">
-        </li>
-      </ul>-->
-      <!--<div class="news_wrap left-margin">
-        <ul class="news_content">
-          <li class="news_content_list" @click="goToDetail(item.code)" v-for="(item, index) in listZSJS" :key="index">
-            <div class="news_content_list_left">{{item.title}}</div>
-            <div>{{item.newsTime}}</div>
-          </li>
-        </ul>
-        <div class="btns">
-          <div class="prev" @click="prevZSJS">
-            <span class="iconfont icon-fanhui" :class="{span_icon_houtui: pageIndexZSJS > 1}"></span>
-          </div>
-          <div class="next" @click="nextZSJS">
-            <span class="iconfont icon-gengduo" :class="{span_icon_qianjin:pageIndexZSJS >= pageCountZSJS}"></span>
-          </div>
-        </div>
-      </div>-->
       <div class="news_detail">
         <ul class="nav_news">
           <li class="li_add_style" @click="selectNewsTitle(index)" :class="{'nav_news1':idx == index,}" v-for="(item,index) in navNews" :key="index">

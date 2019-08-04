@@ -8,8 +8,8 @@
             <div class="landing_title">{{detailObj.title}}</div>
             <div class="landing_time">{{detailObj.articlesTime}}</div>
             <div class="landing_content">
-              <dl class="landing_text" v-html="content"><!--detailObj.-->
-                {{content}}
+              <dl class="landing_text" v-html="detailObj.content"><!--detailObj.-->
+                {{detailObj.content}}
               </dl>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default {
             max-width 6.48rem
             >>> img
               width 6.2rem!important
-              height 4.21rem!important
+              height auto!important
               margin-bottom 0.41rem
             >>> video
               width 6.75rem

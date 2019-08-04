@@ -1,7 +1,7 @@
 <template>
     <div class="mask">
       <div class="wraps">
-        <img class="consul_img" src="https://www.chqbh.com/imgFile/cut/consulting.png" alt="">
+        <img class="consul_img" src="https://www.chbice.com/imgFile/cut/consulting.png" alt="">
         <p class="p1">如需咨询请联系QQ客服</p>
         <p class="p2" style="margin-top: 0.4rem;">QQ号码</p>
         <p class="p2">3218882435</p>

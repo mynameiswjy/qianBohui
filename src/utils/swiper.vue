@@ -5,7 +5,7 @@
           <slot></slot>
         </div>
         <div class="doc">
-          <div class="doc_item" :class="{'active_doc_item': index == currentIdx}" v-for="(item, index) in len" :key="index"></div>
+          <div v-show="len > 1" class="doc_item" :class="{'active_doc_item': index == currentIdx}" v-for="(item, index) in len" :key="index"></div>
         </div>
       </div>
     </div>

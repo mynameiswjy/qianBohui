@@ -5,7 +5,7 @@
       <div class="search_btn" @click="searchBtn">
         <div>钱币博览会</div>
         <div class="search_icon">
-          <img src="https://www.chqbh.com/imgFile/cut/search.png" class="search-icon" alt=""/>
+          <img src="https://www.chbice.com/imgFile/cut/search.png" class="search-icon" alt=""/>
         </div>
       </div>
       <div v-if="images.length" v-show="isShowNavImg">
@@ -67,44 +67,44 @@ export default {
           id: '0',
           path: '/homePage',
           show: true,
-          img: 'https://www.chqbh.com/imgFile/cut/index.png',
-          selectImg: 'https://www.chqbh.com/imgFile/cut/index_active.png'
+          img: 'https://www.chbice.com/imgFile/cut/index.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/index_active.png'
         },
         {
           name: '关于展会',
           id: '1',
           path: '/aboutzh',
-          img: 'https://www.chqbh.com/imgFile/cut/exhibition.png',
-          selectImg: 'https://www.chqbh.com/imgFile/cut/exhibition_active.png'
+          img: 'https://www.chbice.com/imgFile/cut/exhibition.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/exhibition_active.png'
         },
         {
           name: '展商专区',
           id: '2',
           path: '/goods',
-          img: 'https://www.chqbh.com/imgFile/cut/exhibitor.png',
-          selectImg: 'https://www.chqbh.com/imgFile/cut/exhibitor_active.png'
+          img: 'https://www.chbice.com/imgFile/cut/exhibitor.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/exhibitor_active.png'
         },
         {
           name: '观众专区',
           id: '3',
           path: '/audience',
-          img: 'https://www.chqbh.com/imgFile/cut/audience.png',
-          selectImg: 'https://www.chqbh.com/imgFile/cut/audience_active.png'
+          img: 'https://www.chbice.com/imgFile/cut/audience.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/audience_active.png'
         },
         {
           name: '新闻资讯',
           id: '4',
           path: '/news',
-          img: 'https://www.chqbh.com/imgFile/cut/news.png',
-          selectImg: 'https://www.chqbh.com/imgFile/cut/news_active.png'
+          img: 'https://www.chbice.com/imgFile/cut/news.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/news_active.png'
         },
       ],
       navIdx: 0,
       images: [
-        {img: 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'},
-        {img: 'https://www.chqbh.com/imgFile/20181014165937.jpg'},
-        {img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'},
-        {img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'}
+        /*{img: 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'},*/
+        {img: 'https://www.chbice.com/imgFile/20181014165937.jpg'},
+        /*{img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'},
+        {img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'}*/
       ],
       scrollToEasing: 'bounce'
     }
@@ -113,6 +113,7 @@ export default {
   },
   mounted() {
     this.$store.commit(types.ROUTER_PATH, this.$route.path)
+    console.log(this.$store.state.imgIndex);
     setTimeout(() => {
       this._initSlider()
     }, 20)

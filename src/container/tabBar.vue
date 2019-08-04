@@ -16,7 +16,7 @@
     </ul>-->
     <ul class="tab_wrap">
       <li class="tab_item" @click="cilckTabBarOne">
-        <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/reservation.png">
+        <img class="tab-icon" src="https://www.chbice.com/imgFile/cut/reservation.png">
         <div>展位预订</div>
       </li>
       <!--<li alt="" @click="cilckTabBarTwo">-->
@@ -24,7 +24,7 @@
       <!--<div>参观登记</div>-->
       <!--</li>-->
       <li class="" :class="{'cous_active': IsClass}" alt="" @click="cilckTabBarThree">
-        <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/online_consult.png" alt="">
+        <img class="tab-icon" src="https://www.chbice.com/imgFile/cut/online_consult.png" alt="">
         <div>在线咨询</div>
       </li>
     </ul>

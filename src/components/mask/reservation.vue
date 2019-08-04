@@ -237,15 +237,15 @@ export default {
       right 0.96rem
   .select-default
     width 0.86rem
-    height 0.38rem
+    height 0.5rem
     background-color: #eed582;
     position absolute
-    top: 0.08rem
+    top: 0.04rem
     right: 0
     font-size 0.24rem
     color #000
     text-align center
-    line-height 0.4rem
+    line-height 0.55rem
     border-radius 0 0.14rem 0.14rem 0
   .loading-wrap
     height 3rem
@@ -255,12 +255,9 @@ export default {
     top: 50%
     left 50%
     transform: translate(-50%, -50%)
-  .mask
-    .wraps
-      /*overflow hidden*/
   .list select{
     width: 5rem;
-    height: 0.38rem;
+    height: 0.5rem;
     background-color: #f4f3f3;
     border-radius: 0.14rem;
     padding-left 0.2rem

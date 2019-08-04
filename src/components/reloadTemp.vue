@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="reload_wrap">
-        <img class="reload_img" src="https://www.chqbh.com/imgFile/cut/404.png" alt="">
+        <img class="reload_img" src="https://www.chbice.com/imgFile/cut/404.png" alt="">
         <p class="reload_txt">网络不给力</p>
         <p class="reload_btn" @click="reloadBtn">重新加载</p>
       </div>

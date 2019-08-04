@@ -2,8 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 
 // const baseUrl = 'https://www.chbice.com'
-export const baseUrl = 'https://www.chqbh.com'
-// export const baseUrl = 'http://localhost:8081'
+export const baseUrl = 'https://www.chbice.com'
 
 const service = axios.create({
   // api的base_url

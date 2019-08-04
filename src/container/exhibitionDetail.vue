@@ -3,38 +3,6 @@
       <scroll class="details-content" :data="list">
         <div>
           <nav-bar></nav-bar>
-          <!--<div style="height: 0.58rem;width: 100%;"></div>
-          <div class="ex_detail_title">
-            <img src="../assets/images/introduce.png" alt="333" class="introduce-icon">
-            <div class="title-right">
-              <div class="details_select">
-                <h2 class="details_h2">历届展会</h2>
-                <select v-model="selectVal" @change="timeChange">
-                  <option value="all">请选择</option>
-                  <option v-for="item in timeList" :label="item.name" :key="item.sore" :value="item.code">{{item.name}}</option>
-                </select>
-              </div>
-              <div class="title-right-en">Exhibition Introduction</div>
-            </div>
-          </div>
-          <div class="news_wrap left-margin">
-            <ul class="news_content">
-              <li class="news_content_list" :class="{'details_border_ex': list.length - 1 !== index}" @click="goToDetail(item.code)" v-for="(item,index) in list" :key="index">
-                <div class="news_content_list_left">{{item.title}}</div>
-                <div>{{item.newsTime}}</div>
-              </li>
-            </ul>
-            <div class="btns">
-              <div class="prev" @click="prevNews">
-                <div class="prev-txt" :class="{span_icon_houtui:pageIndexNews > 1}">上一页</div>
-                <span class="iconfont icon-fanhui" :class="{span_icon_houtui:pageIndexNews > 1}"></span>
-              </div>
-              <div class="next" @click="nextNews">
-                <span class="iconfont icon-gengduo" :class="{span_icon_qianjin:pageIndexNews >= pageCountNews}"></span>
-                <div class="next-txt" :class="{span_icon_qianjin:pageIndexNews >= pageCountNews}">下一页</div>
-              </div>
-            </div>
-          </div>-->
           <div class="exhibition_wrap">
             <h2>历届展会</h2>
             <ul class="exhibition_list">
@@ -109,14 +77,15 @@ export default {
     },
     initNewsList() {
       this.list = []
-      const exhibitionTime = localStorage.getItem("exhibitionTime")
-      if (this.$route.params.time != localStorage.getItem("exhibitionTime")) {
+      const exhibitionTime = localStorage.getItem("exhibitionTime") || 'all'
+      const param = this.$route.params.time
+      if (param && param != exhibitionTime) {
         localStorage.setItem("exhibitionTime", this.$route.params.time)
       }
       let data = {
         pageIndex: this.pageIndexNews,
         pageSize: 10,
-        selelctYears: this.$route.params.time || exhibitionTime // this.selectType this.$route.params.time
+        selelctYears: param || exhibitionTime // this.selectType this.$route.params.time
       }
       successiveExhibitors(data).then(res => {
         if (res.data.returnCode === '0000') {

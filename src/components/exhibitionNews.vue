@@ -1,12 +1,5 @@
 <template>
     <div><!--exhibitionNews.vue-->
-      <!--<div class="title">
-        <img src="../assets/images/exhibition_news.png" alt="333" class="introduce-icon">
-        <div class="title-right">
-          <h2>展会新闻</h2>
-          <div class="title-right-en">Expo News</div>
-        </div>
-      </div>-->
       <div class="exhibi_wrap">
         <div class="exhibi_title">
           <h2>展会新闻</h2>

@@ -10,7 +10,7 @@
         <div @click="Search_con">取消</div>
       </div>-->
       <div class="search_input">
-        <img class="search_icon" src="https://www.chqbh.com/imgFile/cut/search.png" alt="">
+        <img class="search_icon" src="https://www.chbice.com/imgFile/cut/search.png" alt="">
         <div>
           <form action="" enctype='applicaion/json'>
             <input type="text" placeholder="钱币博览会" @keyup.enter="submit" v-model="searVal">
@@ -45,7 +45,7 @@
       </div>
       <div class="confirm_mask" v-show="isOpenHistory">
         <div class="confirm_content">
-          <img class="confirm_img" src="https://www.chqbh.com/imgFile/cut/confirm.png" alt="">
+          <img class="confirm_img" src="https://www.chbice.com/imgFile/cut/confirm.png" alt="">
           <p class="confirm_txt" style="margin-top: 0.71rem">确认删除</p>
           <p class="confirm_txt">全部历史记录?</p>
           <div style="height: 0.4rem;" v-show="!maskBtn"></div>
