@@ -70,7 +70,7 @@ export default {
           this.dataList = res.data.returnData
           console.log('this.dataList', this.dataList)
           this.imgIndex = this.dataList.banner.imgIndex
-          this.$store.commit(types.INDEX_IMG, res.data.returnData.banner.imgIndex)
+          this.$store.commit(types.INDEX_IMG, res.data.returnData.banners)
         } else {
           setTimeout(() => {
             this.openLoading = false

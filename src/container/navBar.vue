@@ -8,10 +8,10 @@
           <img src="https://www.chbice.com/imgFile/cut/search.png" class="search-icon" alt=""/>
         </div>
       </div>
-      <div v-if="images.length" v-show="isShowNavImg">
-        <Swiper :len="images.length">
-          <div v-for="(item, index) in images" :key="index" class="swiper_item">
-            <img :src="item.img" alt="">
+      <div v-if="imgIndex.length" v-show="isShowNavImg">
+        <Swiper :len="imgIndex.length">
+          <div v-for="(item, index) in imgIndex" :key="index" class="swiper_item">
+            <img :src="item.imgIndex" alt="banner">
           </div>
         </Swiper>
       </div>

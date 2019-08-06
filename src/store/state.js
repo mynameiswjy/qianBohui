@@ -1,5 +1,5 @@
 const state = {
-  imgIndex: '',
+  imgIndex: [],
   navIndex: '0',
   isReservationPage: false,
   isVisitPage: false,
