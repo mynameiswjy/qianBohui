@@ -30,5 +30,6 @@
       }
     ]
   },
-  "debug": false
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
 }

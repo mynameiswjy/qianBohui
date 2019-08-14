@@ -1,5 +1,5 @@
 
-let host = 'https://www.chqbh.com'
+const host = 'https://www.chbice.com'
 
 export function requestAjaxGet(url, data, success, err) {
   wx.request({
