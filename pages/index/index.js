@@ -40,7 +40,6 @@ Page({
       return
     }
     index(data).then(res => {
-      console.log('res=====我是首页的数据', res);
       if (res.data.returnCode === '0000') {
         let data = res.data.returnData
         let hotList = data.selectItem.map(item => {
