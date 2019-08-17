@@ -21,6 +21,10 @@ export default {
     data: {
       type: [Array, String, Object],
       default: null
+    },
+    isRefrensh: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -71,7 +75,8 @@ export default {
         this.refresh()
       }, 20)
     }
-  }
+  },
+  computed: {}
 }
 </script>
 
