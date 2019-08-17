@@ -1,15 +1,8 @@
 <template>
   <div><!--exhibitionNews.vue-->
-    <!--<div class="title">
-      <img src="../assets/images/exhibition_news.png" alt="333" class="introduce-icon">
-      <div class="title-right">
-        <h2>展会新闻</h2>
-        <div class="title-right-en">Expo News</div>
-      </div>
-    </div>-->
     <div class="exhibi_wrap">
       <div class="exhibi_title">
-        <h2>展商介绍</h2>
+        <h2>{{title ? title : '展商介绍'}}</h2>
         <div class="exhibi_more" @click="moreNews">更多</div>
       </div>
       <ul class="exhibition_news">
@@ -25,21 +18,6 @@
     </div>
     <!--<img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">-->
   </div>
-    <!--<div class="wrap">
-      <div class="title">
-        <img src="../assets/images/exhibitor.png" alt="333" class="introduce-icon">
-        <div class="title-right">
-          <h2>展商介绍</h2>
-          <div class="title-right-en">Exhibitor</div>
-        </div>
-      </div>
-      <ul class="exhibition-news">
-        <li v-for="(item, index) in exhibitorsIntroduce" v-bind:key="index" @click="goToDetail(item.code)">
-          <router-link :to="detailPath(item.code)">{{item.title}}</router-link>
-        </li>
-      </ul>
-      &lt;!&ndash;<img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">&ndash;&gt;
-    </div>-->
 </template>
 
 <script>
@@ -49,6 +27,10 @@ export default {
     exhibitorsIntroduce: {
       type: Array,
       default: null
+    },
+    title: {
+      type: String,
+      value: ''
     }
   },
   data() {

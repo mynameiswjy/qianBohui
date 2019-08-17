@@ -2,7 +2,7 @@
     <div><!--exhibitionNews.vue-->
       <div class="exhibi_wrap">
         <div class="exhibi_title">
-          <h2>展会新闻</h2>
+          <h2>{{title ? title : '展会新闻'}}</h2>
           <div class="exhibi_more" @click="moreNews">更多</div>
         </div>
         <ul class="exhibition_news">
@@ -23,6 +23,10 @@ export default {
     expositionNews: {
       type: Array,
       default: null
+    },
+    title: {
+      type: String,
+      value: ''
     }
   },
   data() {

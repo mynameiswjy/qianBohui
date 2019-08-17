@@ -2,7 +2,7 @@
   <div>
     <div class="exhibi_wrap">
       <div class="exhibi_title">
-        <h2>历届展会</h2>
+        <h2>{{title ? title : '历届展会'}}</h2>
         <div class="selected_wrap">
           <div class="exhibi_more1" @click="openSelect">
             <span class="p1">{{selectName}}</span>
@@ -44,6 +44,10 @@ export default {
           successiveExhibitors: []
         }
       }
+    },
+    title: {
+      type: String,
+      value: ''
     }
   },
   data() {

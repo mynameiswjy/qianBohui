@@ -1,9 +1,9 @@
 <template>
   <div style="background-color: #F4F3F3;">
-    <introduce :introduceObj="dataList.expositionIntroduce" :newTemp="2" :text="text"></introduce>
-    <exhibitionNews :expositionNews="dataList.expositionNews"></exhibitionNews>
-    <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce"></exhibitor><!--展上介绍-->
-    <successive-exhibitions :successiveList="SuccessiveList"></successive-exhibitions>
+    <introduce :introduceObj="dataList.expositionIntroduce" title="" :newTemp="2"></introduce>
+    <exhibitionNews :expositionNews="dataList.expositionNews" :title="modelName.modelName2"></exhibitionNews>
+    <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce" :title="modelName.modelName3"></exhibitor><!--展上介绍-->
+    <successive-exhibitions :successiveList="SuccessiveList" :title="modelName.modelName4"></successive-exhibitions>
     <!--<img class="footer-img left-margin" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="">-->
     <div style="height: 1rem"></div>
     <temp-footer></temp-footer>
@@ -24,7 +24,7 @@ import tabBar from '@/container/tabBar' // 底部tabBar
 import reload from '@/components/reloadTemp' // 网络错误
 import Loading from '../components/loading/loading'
 import * as types from '../store/mutation-types'
-import {indexDo, successiveExhibitors, getShareToken} from '@/api/index'
+import {indexDo, successiveExhibitors, getShareToken, modelName, advertising} from '@/api/index'
 import Scroll from '@/utils/scroll' // 滑动组件
 import { wxShareTemp, againUrl } from '../utils/wx_share'
 
@@ -33,18 +33,26 @@ export default {
   data() {
     return {
       obj: 0,
-      text: 'Exhibition Introduction',
       dataList: {},
       SuccessiveList: [],
       imgIndex: '',
       IsReloadTemp: false,
-      openLoading: false
+      openLoading: false,
+      modelName: {}
     }
   },
   created() {
     againUrl(this.$route.path)
     this.initIndexList()
     this.initIndexNewsList()
+    modelName().then(res => {
+      this.modelName = JSON.parse(res.data.returnData)
+    })
+    advertising().then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    })
   },
   activated() {
     document.title = '首页';

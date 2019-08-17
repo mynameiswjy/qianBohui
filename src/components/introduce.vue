@@ -13,7 +13,6 @@
         <div class="intr_wrap intr_wrap2">
           <h2 class="intr_wrap2_h2">{{introduceObj.title}}</h2>
           <p :class="{'show': show}" ref="contentTxt" @click="showBts">{{introduceObj.content}}</p>
-          <!--<div v-if="openStyle" v-show="showContent" class="a_full" @click="showBts">{{showText}}</div>-->
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
           <loading :openSmall="true"></loading>
@@ -50,55 +49,31 @@ export default {
         }
       }
     },
-    show: {
+    showAll: {
       type: Boolean,
       default: true
     },
-    text: {
+    title: {
       type: String,
-      default: ''
-    },
-    openStyle: {
-      type: Boolean,
-      default: false
-    },
-    IsContactWay: {
-      type: Boolean,
-      default: false
+      value: ''
     }
   },
   data() {
     return {
       obj: {},
-      showContent: false
+      showContent: false,
+      show: true
     }
   },
   created() {
   },
-  mounted() {
-    this.ShowContent()
-  },
+  mounted() {},
   methods: {
     showBts() {
       this.show = !this.show
-    },
-    ShowContent() {
-      if (this.introduceObj.content) {
-        this.$nextTick(() => {
-          if (this.$refs.contentTxt.offsetHeight >= 150) {
-            this.showContent = true
-          } else {
-            this.showContent = false
-          }
-        })
-      }
     }
   },
-  computed: {
-    showText() {
-      return this.show ? '收起全文' : '显示全文'
-    }
-  },
+  computed: {},
   components: {
     Loading
   }

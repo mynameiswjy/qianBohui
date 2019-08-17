@@ -1,7 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
 
-// const baseUrl = 'https://www.chbice.com'
 export const baseUrl = 'https://www.chbice.com'
 
 const service = axios.create({
@@ -151,6 +150,22 @@ export function boothExplain(data = {}) {
   })
 }
 
+// 首页模块名称
+export function modelName(data = {}) {
+  return service({
+    url: '/qbh/app/modelName.do',
+    method: 'get'
+  })
+}
+
+// 广告位的显示与隐藏
+export function advertising(data = {}) {
+  return service({
+    url: '/qbh/woa/get/advertising.do',
+    method: 'get'
+  })
+}
+
 // 分享接口 https://www.chqbh.com/qbh/share/getShareToken.do
 export function getShareToken(path, code) {
   let url
@@ -161,7 +176,7 @@ export function getShareToken(path, code) {
   }
   let data = {
     url: url
-  }
+  };
   return serviceShare({
     url: '/qbh/share/getShareToken.do',
     method: 'get',
