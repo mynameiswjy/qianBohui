@@ -1,10 +1,9 @@
 <template>
   <div style="background-color: #F4F3F3;">
     <introduce :introduceObj="dataList.expositionIntroduce" title="" :newTemp="2"></introduce>
-    <exhibitionNews :expositionNews="dataList.expositionNews" :title="modelName.modelName2"></exhibitionNews>
-    <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce" :title="modelName.modelName3"></exhibitor><!--展上介绍-->
-    <successive-exhibitions :successiveList="SuccessiveList" :title="modelName.modelName4"></successive-exhibitions>
-    <!--<img class="footer-img left-margin" src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="">-->
+    <exhibitionNews :expositionNews="dataList.expositionNews" :title="modelName.modelName2" :ad="adData[0]"></exhibitionNews>
+    <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce" :title="modelName.modelName3" :ad="adData[1]"></exhibitor><!--展上介绍-->
+    <successive-exhibitions :successiveList="SuccessiveList" :title="modelName.modelName4" :ad="adData[2]"></successive-exhibitions>
     <div style="height: 1rem"></div>
     <temp-footer></temp-footer>
     <div style="height: 0.98rem"></div>
@@ -38,7 +37,21 @@ export default {
       imgIndex: '',
       IsReloadTemp: false,
       openLoading: false,
-      modelName: {}
+      modelName: {},
+      adData: [
+        {
+          "show": "N",
+          "url": ""
+        },
+        {
+          "show": "N",
+          "url": ""
+        },
+        {
+          "show": "N",
+          "url": "#"
+        }
+      ]
     }
   },
   created() {
@@ -49,7 +62,9 @@ export default {
       this.modelName = JSON.parse(res.data.returnData)
     })
     advertising().then(res => {
-      console.log(res);
+      if (res.data.returnCode === '0000') {
+        this.adData = res.data.returnData
+      }
     }).catch(err => {
       console.log(err);
     })
@@ -76,7 +91,7 @@ export default {
         if (res.data.returnCode === '0000') {
           this.openLoading = false
           this.dataList = res.data.returnData
-          console.log('this.dataList', this.dataList)
+          // console.log('this.dataList', this.dataList)
           this.imgIndex = this.dataList.banner.imgIndex
           this.$store.commit(types.INDEX_IMG, res.data.returnData.banners)
         } else {

@@ -16,7 +16,7 @@
         </li>
       </ul>
     </div>
-    <!--<img src="http://s2.mogucdn.com/mlcdn/c45406/170329_407g0k6lce0b3h78ddjg9dd39eh33_2400x800.jpg" alt="" class="ad">-->
+    <img v-show="ad.show == 'Y'" :src="ad.url" alt="" class="ad">
   </div>
 </template>
 
@@ -31,6 +31,13 @@ export default {
     title: {
       type: String,
       value: ''
+    },
+    ad: {
+      type: Object,
+      default: () => ({
+        url: '',
+        show: "N"
+      })
     }
   },
   data() {

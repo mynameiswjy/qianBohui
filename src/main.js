@@ -21,9 +21,6 @@ window.addEventListener('resize', function () {
   setRootFontSize()
 }, false)
 setRootFontSize()
-/*document.addEventListener('touchstart', function (e) {
-  e.preventDefault();
-})*/
 
 new Vue({
   el: '#app',
