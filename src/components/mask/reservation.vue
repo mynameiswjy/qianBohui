@@ -202,7 +202,6 @@ export default {
       const isPNG = file.type === 'image/png';
       const isBMP = file.type === 'image/bmp';
       const isLt2M = file.size / 1024 / 1024 < 2;
-      alert(file.type)
       let isImg = true
       if (!isJPG && !isPNG && !isBMP && !isJPEG) {
         this.$message.error('上传图片必须是JPG/PNG/BMP 格式!');

@@ -33,6 +33,7 @@ export default {
   methods: {
     onUpload(e) {
       let dataObj = e.target.files[0]
+      const imgType = dataObj.type.split('/')[0]
       // 图片限制
       let oldLen = this.imgLen;
       if(oldLen > 7) {
@@ -40,16 +41,21 @@ export default {
         return false;
       }
       let size = Math.floor(dataObj.size / 1024);
-      if (size > 2 * 1024 * 1024) {
+      if (imgType === 'image' && size > 2 * 1024) {
         this.$message.error('上传图片大小不能超过 2MB!');
+        return false
+      }
+      if (imgType === 'application' && size > 10 * 1024) {
+        this.$message.error('上传文件大小不能超过 10MB!');
         return false
       }
       const isJPEG = dataObj.type === 'image/jpeg';
       const isJPG = dataObj.type === 'image/jpg';
       const isPNG = dataObj.type === 'image/png';
       const isBMP = dataObj.type === 'image/bmp';
-      if (!isJPG && !isPNG && !isBMP && !isJPEG) {
-        this.$message.error('上传图片必须是JPG/PNG/BMP 格式!');
+      const isPDF = dataObj.type === 'application/pdf';
+      if (!isJPG && !isPNG && !isBMP && !isJPEG && !isPDF) {
+        this.$message.error('上传文件必须是JPG/PNG/BMP 格式!');
         return false
       }
       this.imgs = this.imgs.concat(dataObj)
@@ -60,6 +66,9 @@ export default {
       const instance = axios.create({
         'Content-Type': 'multipart/form-data'
       })
+      if (imgType === 'application') {
+        this.$message.success('文件过大，请耐心等候');
+      }
       instance.post(baseUrl + '/qbh/uploadDownload/uploadImage.do', formData).then(res => {
         if (res.data.returnCode == '0000') {
           this.imgLen++;
