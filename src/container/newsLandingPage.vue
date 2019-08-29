@@ -36,15 +36,7 @@ export default {
   name: "contactUs",
   data() {
     return {
-      content: '<p>最后，我们贴心的从隔壁中国金币编辑部为大家要来了活动现场录音，一起来听听中国金币总公司设计部的郝望舒小姐姐讲述书法纪念币的设计故事吧~</p >' +
-      '<p>最后，我们贴心的从隔壁中国金币编辑部为大家要来了活动现场录音，一起来听听中国金币总公司设计部的郝望舒小姐姐讲述书法纪念币的设计故事吧~</p>' +
-      '<p>最后，我们贴心的从隔壁中国金币编辑部为大家要来了活动现场录音，一起来听听中国金币总公司设计部的郝望舒小姐姐讲述书法纪念币的设计故事吧~ </p>' +
-      '<p><img width="6.75" @load="loadImg" height="auto" src="https://images.unsplash.com/photo-1551446591-142875a901a1?w=640" alt="" style=""></p><p></p><p>' +
-      '<video src="http://113.18.195.11/hc.yinyuetai.com/uploads/videos/common/E63C013133463BFF9547498EDD0A02CA.flv?sc=d677f5261e6de6df&br=726&vid=212678&aid=1589&area=KR&vst=3" ' +
-      'poster="" controls="controls">您的浏览器不支持video播放</video> <br></p><p><br></p><p></p ><p>&nbsp;' +
-      '<audio src=" http://localhost:8081/qbh/news/getPicture.do?fileUrl=E:/imgFile/20190727160720fdd1115ac2c3e1dc84ea878082741e1b.mp3" ' +
-      'controls="controls">您的浏览器不支持audio播放</audio>&nbsp;</p >' +
-      '<br><p></p><p><br></p ><p><br></p><br><p></p><p><br></p><p><br></p><p><br></p><p><br></p ><p><br></p>',
+      content: '',
       detailObj: {},
       IsOpenReloadTemp: false,
       isRefrensh: false
@@ -165,8 +157,6 @@ export default {
               width 6.75rem
               height 2.86rem
               margin 0.7rem auto
-              background-image
-              background-image url("https://images.unsplash.com/photo-1551446591-142875a901a1?w=640")
               background-repeat no-repeat
               background-size 6.75rem 2.86rem
 .temp_footer
