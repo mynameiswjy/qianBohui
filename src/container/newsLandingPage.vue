@@ -36,7 +36,7 @@ export default {
   name: "contactUs",
   data() {
     return {
-      content: '',
+      content: '<p>hadsfhadsjfkjadskfjadskjfk</p><p>&nbsp;<video src="https://cm15-c110-2.play.bokecc.com/flvs/FC811B3AFE595DA3/2019-08-29/123ECC033ABD9BC09C33DC5901307461-10.m3u8?t=1567597158&key=4F2A308505E02164B895FD25B82ED9D8&tpl=10" x5-playsinline="" playsinline="" style="width=100%; height=100%; object-fit: fill" poster="" controls="controls">您的浏览器不支持video播放</video>',
       detailObj: {},
       IsOpenReloadTemp: false,
       isRefrensh: false
