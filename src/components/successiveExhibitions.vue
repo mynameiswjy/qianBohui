@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="exhibi_wrap">
-      <div class="exhibi_title">
-        <h2>{{title ? title : '历届展会'}}</h2>
+      <div class="exhibi_title" :class="{'exhibi_title_active': IsActive}">
+        <h2 :class="{'exhibi_title_active1': IsActive}">{{title ? title : '历届展会'}}</h2>
         <div class="selected_wrap">
           <div class="exhibi_more1" @click="openSelect">
             <span class="p1">{{selectName}}</span>
@@ -76,7 +76,8 @@ export default {
       yearIdx: 0,
       IpOpenSelect: false,
       selectName: '请选择',
-      IsmaskSelect: false
+      IsmaskSelect: false,
+      IsActive: this.$store.state.IsActive
     }
   },
   created() {
@@ -241,6 +242,12 @@ export default {
     background-color: #eed582;
     border-radius: 0.14rem 0.14rem 0 0;
     position: relative;
+  }
+  .exhibi_wrap .exhibi_title_active {
+    background-color: #e20212;
+  }
+  .exhibi_wrap .exhibi_title_active1 {
+    color #fff
   }
   .exhibi_wrap .exhibi_title h2 {
     font-size: 0.36rem;

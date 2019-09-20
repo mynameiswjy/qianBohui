@@ -1,11 +1,13 @@
 <template>
     <div style="width: 100%;background-color: #F4F3F3;">
       <!--<img v-show="isShowNavImg" class="title-img" :src="imgIndex">-->
-      <div style="height: 0.1rem;"></div>
-      <div class="search_btn" @click="searchBtn">
-        <div>钱币博览会</div>
-        <div class="search_icon">
-          <img src="https://www.chbice.com/imgFile/cut/search.png" class="search-icon" alt=""/>
+      <!--<div style="height: 0.1rem;"></div>-->
+      <div style="padding: 0.12rem 0 0.12rem 0;" :class="{'sea-wrap': IsActive}">
+        <div class="search_btn" @click="searchBtn">
+          <div>钱币博览会</div>
+          <div class="search_icon">
+            <img src="https://www.chbice.com/imgFile/cut/search.png" class="search-icon" alt=""/>
+          </div>
         </div>
       </div>
       <div v-if="imgIndex.length" v-show="isShowNavImg">
@@ -29,9 +31,9 @@
         <ul class="nav_content">
           <li class="nav_item" :class="{'nav_item1': index != tabs.length-1}" v-for="(tab, index) in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
             <router-link class="link-go" :to="tab.path">
-              <div class="nav_img" :class="{'nav_img1': routerPath == tab.path}">
-                <img :src="tab.selectImg" alt="nav" v-if="routerPath == tab.path">
-                <img :src="tab.img" alt="nav" v-else>
+              <div class="nav_img" :class="{'nav_img1': routerPath == tab.path && !IsActive}">
+                <img :src="tab.selectImg" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
+                <img :src="tab.img" :class="{'img_node': IsActive}" alt="nav" v-else>
               </div>
               <div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>
             </router-link>
@@ -67,36 +69,36 @@ export default {
           id: '0',
           path: '/homePage',
           show: true,
-          img: 'https://www.chbice.com/imgFile/cut/index.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/index_active.png'
+          img: 'https://www.chbice.com/imgFile/nav_icon1.png', //cut/index.png
+          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon1.png' //cut/index_active.png
         },
         {
           name: '关于展会',
           id: '1',
           path: '/aboutzh',
-          img: 'https://www.chbice.com/imgFile/cut/exhibition.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/exhibition_active.png'
+          img: 'https://www.chbice.com/imgFile/nav_icon2.png', //cut/exhibition.png
+          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon2.png'// cut/exhibition_active.png
         },
         {
           name: '展商专区',
           id: '2',
           path: '/goods',
-          img: 'https://www.chbice.com/imgFile/cut/exhibitor.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/exhibitor_active.png'
+          img: 'https://www.chbice.com/imgFile/nav_icon3.png', // cut/exhibitor.png
+          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon3.png' // cut/exhibitor_active.png
         },
         {
           name: '观众专区',
           id: '3',
           path: '/audience',
-          img: 'https://www.chbice.com/imgFile/cut/audience.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/audience_active.png'
+          img: 'https://www.chbice.com/imgFile/nav_icon4.png', // cut/audience.png
+          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon4.png' //cut/audience_active.png
         },
         {
           name: '新闻资讯',
           id: '4',
           path: '/news',
-          img: 'https://www.chbice.com/imgFile/cut/news.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/news_active.png'
+          img: 'https://www.chbice.com/imgFile/nav_icon5.png', // cut/news.png
+          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon5.png' // cut/news_active.png
         },
       ],
       navIdx: 0,
@@ -106,7 +108,8 @@ export default {
         /*{img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'},
         {img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'}*/
       ],
-      scrollToEasing: 'bounce'
+      scrollToEasing: 'bounce',
+      IsActive: this.$store.state.IsActive // 十一活动样式控制器
     }
   },
   created() {
@@ -167,10 +170,12 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .sea-wrap
+    background-color: #e20212;
   .search_btn
     width 6.75rem
     height 0.62rem
-    margin 0 0 0.1rem 0.25rem
+    margin 0 0 0 0.25rem
     box-shadow: 0.03rem 0.05rem 0.06rem 0  rgba(86, 88, 89, 0.18);
     border-radius: 0.14rem;
     display flex
@@ -191,6 +196,9 @@ export default {
         display block
         margin 0.1rem auto 0
   .nav_wrap
+    background-image: url("../assets/images/actve_top.jpg")
+    background-repeat no-repeat
+    background-size 100% 100%
     .nav_content
       display flex
       padding 0.7rem 0
@@ -218,6 +226,8 @@ export default {
           img
             width 0.6rem
             height: auto
+          .img_node
+            width 0.98rem
         .nav_img1
           background-color: #F4BB43;
   .nav-wrapper

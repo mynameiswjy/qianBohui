@@ -1,7 +1,7 @@
 <template>
     <div><!--exhibitionNews.vue-->
       <div class="exhibi_wrap">
-        <div class="exhibi_title">
+        <div class="exhibi_title" :class="{'exhibi_title_active': IsActive}">
           <h2>{{title ? title : '展会新闻'}}</h2>
           <div class="exhibi_more" @click="moreNews">更多</div>
         </div>
@@ -38,6 +38,7 @@ export default {
   },
   data() {
     return {
+      IsActive: this.$store.state.IsActive
     }
   },
   methods: {
@@ -72,6 +73,10 @@ export default {
     background-color: #eed582;
     border-radius: 0.14rem 0.14rem 0 0;
     position: relative;
+  }
+  .exhibi_wrap .exhibi_title_active {
+    background-color: #e20212;
+    color: #fff;
   }
   .exhibi_wrap .exhibi_title h2 {
     font-size: 0.36rem;
