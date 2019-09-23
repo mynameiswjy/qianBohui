@@ -225,7 +225,7 @@ export default {
     content ''
     width 0.08rem
     height 0.35rem
-    background-color: #eed582;
+    background-color: #e20212;/*#eed582*/
     position absolute
     left -0.2rem
     top 50%
