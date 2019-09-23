@@ -13,8 +13,7 @@ export default new Router({
       path: '/homePage',
       component: (e) => import('@/container/homePage'),
       name: 'homePage',
-      children: [
-      ]
+      children: []
     },
     {
       path: '/aboutzh',
