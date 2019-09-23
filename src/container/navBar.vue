@@ -1,7 +1,5 @@
 <template>
     <div style="width: 100%;background-color: #F4F3F3;">
-      <!--<img v-show="isShowNavImg" class="title-img" :src="imgIndex">-->
-      <!--<div style="height: 0.1rem;"></div>-->
       <div style="padding: 0.12rem 0 0.12rem 0;" :class="{'sea-wrap': IsActive}">
         <div class="search_btn" @click="searchBtn">
           <div>钱币博览会</div>
@@ -35,12 +33,6 @@
                 <img :src="tab.selectImg_active" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
                 <img :src="tab.img_active" :class="{'img_node': IsActive}" alt="nav" v-else>
               </div>
-              <!--<div>
-                <div class="nav_img" :class="{'nav_img1': routerPath == tab.path}">
-                  <img :src="tab.selectImg" alt="nav" v-if="routerPath == tab.path">
-                  <img :src="tab.img" alt="nav" v-else>
-                </div>
-              </div>-->
               <div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>
             </router-link>
           </li>
