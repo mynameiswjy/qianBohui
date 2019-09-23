@@ -1,7 +1,7 @@
  <template>
    <div>
-     <div class="new_tempwrap" v-if="newTemp === 1">
-       <ul class="header_nav" :class="{'header_nav1':isVisitP}">
+     <div class="new_tempwrap">
+       <ul class="header_nav">
          <li :class="{'text_active':idx == index, 'li_add_style': aboutzhObj.navList.length <= 2}"
              @click="changeTempBtns(index)"
              v-for="(item, index) in aboutzhObj.navList"
@@ -42,10 +42,6 @@ import tableTemp from '../tableChart/tableChart'
 export default {
   name: 'publicTemp',
   props: {
-    newTemp: {
-      type: Number,
-      default: 0
-    },
     aboutzhObj: {// 接收的数据
       type: Object,
       default: null
@@ -175,25 +171,27 @@ export default {
       width 7rem
       height 0.94rem
       border-radius 0.14rem 0.14rem 0 0
-      background-color: #eed582
+      background-color: #e20212/*#eed582*/
       font-size: 0.3rem
       display flex
       justify-content space-between
       overflow hidden
       li
         width 2.333rem
-        background-color: #eed582;
+        background-color: #e20212;/*#eed582*/
+        color #fff
         text-align center
         line-height 0.98rem
         font-weight 550
       .text_active
         background-color: #fff
+        color #e20212 /*活动过了可以去掉*/
         position relative
       .text_active:after {
         content ''
         width 89.6%
         height 0.04rem
-        background-color: #eed582;
+        background-color: #e20212;/*#eed582*/
         transform translateX(-50%)
         position absolute
         left 50%

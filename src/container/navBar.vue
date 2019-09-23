@@ -27,14 +27,20 @@
         </div>
         <div class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></div>
       </div>
-      <div class="nav_wrap" v-else>
+      <div class="nav_wrap" :class="{'nav_wrap1': IsActive}" v-else>
         <ul class="nav_content">
           <li class="nav_item" :class="{'nav_item1': index != tabs.length-1}" v-for="(tab, index) in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
             <router-link class="link-go" :to="tab.path">
               <div class="nav_img" :class="{'nav_img1': routerPath == tab.path && !IsActive}">
-                <img :src="tab.selectImg" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
-                <img :src="tab.img" :class="{'img_node': IsActive}" alt="nav" v-else>
+                <img :src="tab.selectImg_active" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
+                <img :src="tab.img_active" :class="{'img_node': IsActive}" alt="nav" v-else>
               </div>
+              <!--<div>
+                <div class="nav_img" :class="{'nav_img1': routerPath == tab.path}">
+                  <img :src="tab.selectImg" alt="nav" v-if="routerPath == tab.path">
+                  <img :src="tab.img" alt="nav" v-else>
+                </div>
+              </div>-->
               <div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>
             </router-link>
           </li>
@@ -59,6 +65,10 @@ export default {
     NewNav: {
       type: Boolean,
       default: false
+    },
+    IsOpenActiveBg: {// 十一活动开关
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -69,36 +79,46 @@ export default {
           id: '0',
           path: '/homePage',
           show: true,
-          img: 'https://www.chbice.com/imgFile/nav_icon1.png', //cut/index.png
-          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon1.png' //cut/index_active.png
+          img_active: 'https://www.chbice.com/imgFile/nav_icon1.png',
+          img: 'https://www.chbice.com/imgFile/cut/index.png',
+          selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon1.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/index_active.png'
         },
         {
           name: '关于展会',
           id: '1',
           path: '/aboutzh',
-          img: 'https://www.chbice.com/imgFile/nav_icon2.png', //cut/exhibition.png
-          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon2.png'// cut/exhibition_active.png
+          img: 'https://www.chbice.com/imgFile/cut/exhibition.png',
+          img_active: 'https://www.chbice.com/imgFile/nav_icon2.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/exhibition_active.png',
+          selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon2.png'
         },
         {
           name: '展商专区',
           id: '2',
           path: '/goods',
-          img: 'https://www.chbice.com/imgFile/nav_icon3.png', // cut/exhibitor.png
-          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon3.png' // cut/exhibitor_active.png
+          img: 'https://www.chbice.com/imgFile/cut/exhibitor.png',
+          img_active: 'https://www.chbice.com/imgFile/nav_icon3.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/exhibitor_active.png',
+          selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon3.png'
         },
         {
           name: '观众专区',
           id: '3',
           path: '/audience',
-          img: 'https://www.chbice.com/imgFile/nav_icon4.png', // cut/audience.png
-          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon4.png' //cut/audience_active.png
+          img: 'https://www.chbice.com/imgFile/cut/audience.png',
+          img_active: 'https://www.chbice.com/imgFile/nav_icon4.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/audience_active.png',
+          selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon4.png'
         },
         {
           name: '新闻资讯',
           id: '4',
           path: '/news',
-          img: 'https://www.chbice.com/imgFile/nav_icon5.png', // cut/news.png
-          selectImg: 'https://www.chbice.com/imgFile/select_nav_icon5.png' // cut/news_active.png
+          img: 'https://www.chbice.com/imgFile/cut/news.png',
+          img_active: 'https://www.chbice.com/imgFile/nav_icon5.png',
+          selectImg: 'https://www.chbice.com/imgFile/cut/news_active.png',
+          selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon5.png'
         },
       ],
       navIdx: 0,
@@ -195,10 +215,11 @@ export default {
         height auto
         display block
         margin 0.1rem auto 0
-  .nav_wrap
-    background-image: url("../assets/images/actve_top.jpg")
+  .nav_wrap1
+    background-image: url("https://www.chbice.com/imgFile/actve_top.jpg")
     background-repeat no-repeat
     background-size 100% 100%
+  .nav_wrap
     .nav_content
       display flex
       padding 0.7rem 0

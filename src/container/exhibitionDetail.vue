@@ -165,12 +165,12 @@ select::-ms-expand { display: none; }
       h2
         width 100%
         height 0.94rem
-        background-color: #eed582;
+        background-color: #e20212;/*#eed582*/
         font-size: 0.36rem;
         font-weight 600
         text-align center
         line-height 0.94rem
-        color: #000000;
+        color: #FFF/*#000000;*/
       .exhibition_list
         font-size: 0.28rem
         color: #000000;
@@ -202,7 +202,8 @@ select::-ms-expand { display: none; }
           text-align center
           margin 0 0.14rem
         .page_btn
-          background-color: #eed582;
+          background-color: #e20212;/*#eed582*/
+          color: #FFF/*活动过了去掉*/
     /*old Style*/
   .ex_detail_title
     width: 6.78rem;

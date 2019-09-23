@@ -43,7 +43,8 @@
   padding-left: 0.12rem;
   padding-top: 0.02rem;
   line-height: 0.59rem;
-  background-color: #f4ba43;
+  background-color: #e20212;/*#eed582*/
+  color: #fff;/*活动后去掉*/
   position: absolute;
   right: 0.27rem;
   top: -0.7rem;

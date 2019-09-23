@@ -11,8 +11,13 @@
             <span class="iconfont icon-gengduo"></span>
           </li>
         </ul>
+        <img src="../assets/images/yanhua1.png" class="bg_active" alt="">
       </div>
-      <img v-show="ad.show == 'Y'" :src="ad.url" alt="" class="ad">
+      <div v-show="ad.show == 'Y'" style="position: relative">
+        <img :src="ad.url" alt="" class="ad">
+        <img src="https://www.chbice.com/imgFile/deng3.png" class="ad_bg1" alt="">
+        <img src="https://www.chbice.com/imgFile/deng1.png" class="ad_bg2" alt="">
+      </div>
     </div>
 </template>
 
@@ -67,6 +72,14 @@ export default {
     background-color: #ffffff;
     box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
     border-radius: 0.14rem;
+    position: relative;
+  }
+  .bg_active {
+    position: absolute;
+    width: 1.06rem;
+    height: auto;
+    bottom: -1.06rem;
+    left: 70%;
   }
   .exhibi_wrap .exhibi_title {
     height: 0.94rem;
@@ -119,6 +132,23 @@ export default {
     max-height: 1.2rem;
     margin-top: 1rem;
     margin-left: 0.25rem;
+    z-index: 6;
+  }
+  .ad_bg1 {
+    position: absolute;
+    bottom: -1.2rem;
+    right: 0.25rem;
+    width: 0.75rem;
+    height: auto;
+    max-height: 1.4rem;
+  }
+  .ad_bg2 {
+    position: absolute;
+    width: 0.85rem;
+    height: auto;
+    left: 0.2rem;
+    max-height: 0.81rem;
+    bottom: -0.8rem;
   }
   .title{
     display: flex;

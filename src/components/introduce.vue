@@ -13,13 +13,15 @@
         <div class="intr_wrap intr_wrap2">
           <h2 class="intr_wrap2_h2">{{introduceObj.title}}</h2>
           <p :class="{'show': show}" ref="contentTxt" @click="showBts">{{introduceObj.content}}</p>
+          <img v-if="IsActive" src="../assets/images/yanhua1.png" class="bg_img" alt="烟花">
+          <img v-if="IsActive" src="https://www.chbice.com/imgFile/deng1.png" class="bg_img1" alt="灯笼">
         </div>
         <div class="loading-container" v-show="!introduceObj.content">
           <loading :openSmall="true"></loading>
         </div>
       </div>
       <div  v-else-if="newTemp === 3">
-        <div class="intr_wrap">
+        <div class="intr_wrap" style="overflow: hidden">
           <h3 class="cantact_title">联系我们</h3>
           <div class="cantact_p">
             <div>服务热线：<a href="tel:4008-188-666" class="">4008-188-666</a></div>
@@ -49,9 +51,9 @@ export default {
         }
       }
     },
-    showAll: {
+    isOpenActive: {
       type: Boolean,
-      default: true
+      default: false
     },
     title: {
       type: String,
@@ -62,7 +64,8 @@ export default {
     return {
       obj: {},
       showContent: false,
-      show: true
+      show: true,
+      IsActive: this.$store.state.IsActive // 十一活动样式控制器
     }
   },
   created() {
@@ -103,16 +106,30 @@ export default {
     box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
     border-radius: 0.14rem;
     margin-left 0.25rem
-    overflow hidden
+    /*overflow hidden*/
+    position relative
+    .bg_img {
+      position absolute
+      width 0.83rem
+      height auto
+      bottom -0.9rem
+      left 0.5rem
+    }
+    .bg_img1
+      position absolute
+      width 0.86rem
+      height auto
+      bottom -0.86rem
+      right -0.25rem
     .cantact_title
       width 100%
       height 0.94rem
-      background-color: #eed582;
+      background-color: #e20212;/*#eed582*/
       font-size: 0.36rem;
       font-weight 600
       text-align center
       line-height 0.94rem
-      color: #000000
+      color: #FFF/*#000000;*/
       box-sizing border-box
     .intr_wrap2_h2
       padding-top 0.28rem

@@ -62,11 +62,11 @@ export default {
       .p3
         width: 4.4rem
         height: 0.88rem
-        background-color: #eed582;
+        background-color: #e20212;/*#eed582*/
         border-radius: 0.2rem
         font-size: 0.36rem
         line-height: 0.88rem
         text-align center
-        color: #000000;
+        color: #FFF/*#000000;*/
         margin 0.4rem auto 0.29rem
 </style>

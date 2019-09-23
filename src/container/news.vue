@@ -214,14 +214,14 @@ export default {
     border-radius: 0.14rem;
     .exhibi_title
       height: 0.94rem;
-      background-color: #eed582;
+      background-color: #e20212;/*#eed582*/
       border-radius: 0.14rem 0.14rem 0 0;
       position: relative;
       font-size: 0.36rem;
       font-weight: 600;
       text-align: center;
       line-height: 0.94rem;
-      color #000
+      color #fff/*#000*/
       .exhibi_more
         position: absolute;
         top: 0;
@@ -257,12 +257,13 @@ export default {
     overflow hidden
     .nav_news1
       background-color: #fff
+      color #e20212 /*活动过了去掉*/
       position relative
     .nav_news1:before
       content ''
       width 89.6%
       height 0.04rem
-      background-color: #eed582;
+      background-color: #e20212;/*#eed582*/
       position absolute
       bottom 0
       transform transLateX(-50%)
@@ -270,8 +271,8 @@ export default {
     .nav_news
       display flex
       font-size 0.3rem
-      color #000000
-      background-color: #eed582;
+      color #fff/*#000000*/
+      background-color: #e20212;/*#eed582*/
       li
         width 50%
         text-align center
@@ -308,7 +309,8 @@ export default {
       text-align center
       margin 0 0.14rem
     .page_btn
-      background-color: #eed582;
+      background-color: #e20212;/*#eed582*/
+      color #fff
     /*old style*/
   .news_container
     width: 100%

@@ -237,12 +237,12 @@ export default {
   .select-default
     width 0.86rem
     height 0.5rem
-    background-color: #eed582;
+    background-color: #e20212;/*#eed582*/
     position absolute
     top: 0.04rem
     right: 0
     font-size 0.24rem
-    color #000
+    color #FFF/*#000000;*/
     text-align center
     line-height 0.55rem
     border-radius 0 0.14rem 0.14rem 0
@@ -273,7 +273,7 @@ export default {
     width: 4.77rem;
     text-align: left;
     font-size: 0.18rem;
-    color: #f4ba43;
+    color: #e20212;/*#eed582*/
     margin-left: 0.1rem;
   }
   select::-ms-expand { display: none; }
@@ -313,11 +313,11 @@ export default {
   .btns{
     width:7rem;
     height:0.88rem;
-    background-color: #eed582;
+    background-color: #e20212;/*#eed582*/
     border-radius: 0.14rem;
     font-size: 0.36rem;
     font-family:PingFangSC-Regular;
-    color: #000;
+    color: #FFF/*#000000;*/
     text-align: center;
     line-height: 0.88rem;
     font-weight 600

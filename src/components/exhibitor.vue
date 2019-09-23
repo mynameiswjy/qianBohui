@@ -6,7 +6,8 @@
         <div class="exhibi_more" @click="moreNews">更多</div>
       </div>
       <ul class="exhibition_news">
-        <li :class="{'exhibition_news1': index != exhibitorsIntroduce.length-1}" v-for="(item, index) in exhibitorsIntroduce" @click="goToDetail(item.code)" v-bind:key="index">
+        <li :class="{'exhibition_news1': index != exhibitorsIntroduce.length-1}"
+            v-for="(item, index) in exhibitorsIntroduce" @click="goToDetail(item.code)" v-bind:key="index">
           <router-link :to="detailPath(item.code)">
             <div class="h3">
               <span>{{item.title}}</span>
@@ -15,8 +16,12 @@
           </router-link>
         </li>
       </ul>
+      <img src="https://www.chbice.com/imgFile/deng2.png" class="bg_deng2" alt="">
     </div>
-    <img v-show="ad.show == 'Y'" :src="ad.url" alt="" class="ad">
+    <div style="position: relative" v-show="ad.show == 'Y'">
+      <img :src="ad.url" alt="" class="ad">
+      <img src="https://www.chbice.com/imgFile/deng4.png" class="bg_ad3" alt="">
+    </div>
   </div>
 </template>
 
@@ -75,23 +80,36 @@ export default {
     background-color: #ffffff;
     box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
     border-radius: 0.14rem;
+    position: relative;
   }
+
+  .bg_deng2 {
+    position: absolute;
+    width: 0.85rem;
+    height: auto;
+    bottom: -0.83rem;
+    right: 0;
+  }
+
   .exhibi_wrap .exhibi_title {
     height: 0.94rem;
     background-color: #eed582;
     border-radius: 0.14rem 0.14rem 0 0;
     position: relative;
   }
+
   .exhibi_wrap .exhibi_title_active {
     background-color: #e20212;
     color: #fff;
   }
+
   .exhibi_wrap .exhibi_title h2 {
     font-size: 0.36rem;
     font-weight: 600;
     text-align: center;
     line-height: 0.94rem;
   }
+
   .exhibi_wrap .exhibi_title .exhibi_more {
     position: absolute;
     top: 0;
@@ -100,18 +118,22 @@ export default {
     /*z-index: 2;*/
     font-size: 0.24rem;
   }
+
   .exhibition_news {
     padding: 0.13rem 0 0.13rem 0.22rem;
   }
+
   .exhibition_news1 {
     border-bottom: 0.01rem solid #949494;
   }
-  .exhibition_news li{
+
+  .exhibition_news li {
     width: 6.48rem;
     line-height: 0.69rem;
     font-size: 0.28rem;
   }
-  .exhibition_news li .h3{
+
+  .exhibition_news li .h3 {
     display: flex;
     justify-content: space-between;
     height: 0.7rem;
@@ -120,12 +142,21 @@ export default {
     color: #000;
     text-overflow: ellipsis;
   }
-  .ad{
+
+  .ad {
     width: 7rem;
     height: 1.2rem;
     max-height: 1.2rem;
     margin-top: 1rem;
     margin-left: 0.25rem;
+  }
+  .bg_ad3 {
+    position: absolute;
+    bottom: -1.2rem;
+    width: 0.75rem;
+    height: auto;
+    max-height: 1.4rem;
+    left: 0.25rem;
   }
   /*.wrap{
     width: 7.14rem;
