@@ -23,7 +23,7 @@ export default {
       introduceObj: {},
       text: 'Notice of visit',
       aboutzhObj: {
-        navList: ["乘车路线"], // , "参观登记"
+        navList: ["乘车路线", "参观登记"],
         textList: [
           {
             showFullBtn: 0, // 控制每个list的按钮 是否显示全文

@@ -19,23 +19,23 @@
         <img class="tab-icon" src="https://www.chbice.com/imgFile/cut/reservation.png">
         <div>展位预订</div>
       </li>
-      <!--<li alt="" @click="cilckTabBarTwo">-->
-      <!--<img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/visit.png" alt="">-->
-      <!--<div>参观登记</div>-->
-      <!--</li>-->
+      <li class="tab_item" alt="" @click="cilckTabBarTwo">
+        <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/visit.png" alt="">
+        <div>参观登记</div>
+      </li>
       <li class="" :class="{'cous_active': IsClass}" alt="" @click="cilckTabBarThree">
         <img class="tab-icon" src="https://www.chbice.com/imgFile/cut/online_consult.png" alt="">
         <div>在线咨询</div>
       </li>
     </ul>
-    <!--<visit @closeVisit="visitClose" v-if="tow"></visit>-->
+    <visit @closeVisit="visitClose" v-if="tow"></visit>
     <reservation @closeTemp="tempClose" v-if="isReservationPage"></reservation>
     <consulting @closeZixun="tempZixun" v-if="three"></consulting>
   </div>
 </template>
 
 <script>
-//import visit from "@/components/mask/visit.vue"
+import visit from "@/components/mask/visit.vue"
 import reservation from "@/components/mask/reservation.vue"
 import consulting from "@/components/mask/consulting.vue"
 import * as types from '../store/mutation-types'
@@ -78,7 +78,7 @@ export default {
     }
   },
   components: {
-    // visit,
+    visit,
     reservation,
     consulting
   }
@@ -96,7 +96,7 @@ export default {
     background-color: #f4ba43;
   }
   .tab_wrap li {
-    width: 3.75rem;
+    width: 2.5rem;
     text-align: center;
     box-sizing: border-box;
     font-size: 0.3rem;
