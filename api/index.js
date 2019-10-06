@@ -12,16 +12,27 @@ export function index(data = {}) {
   })
 }
 
-// 钱币详情页
-export function successiveExhibitors(data = {}) {
-  let url = '/qbh/coin/coinInfo.do'
+export function getSubjects(data = {}) {// ?type=firstSubject&id=0
+  let url = '/qbh/coin/getSubjects.do'
   return new Promise((resolve, reject) => {
-    requestAjaxPost(url, data, function (res) {
+    requestAjaxGet(url, data, function (res) {
       resolve(res)
     }, function (err) {
       reject(err)
     })
-  })
+})
+}
+
+// 钱币详情页
+export function successiveExhibitors(data = {}) {
+  let url = '/qbh/coin/coinInfo.do';
+  return new Promise((resolve, reject) => {
+    requestAjaxPost(url, data, function (res) {
+      resolve(res);
+    }, function (err) {
+      reject(err);
+    });
+  });
 }
 
 // 搜索关键词

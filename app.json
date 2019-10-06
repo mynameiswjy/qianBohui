@@ -8,7 +8,8 @@
     "pages/specialExhibition/specialExhibition",
     "pages/mine/mine",
     "pages/search/search",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/topicUnit/topicUnit"
   ],
   "tabBar": {
     "color": "#8A8A8A",

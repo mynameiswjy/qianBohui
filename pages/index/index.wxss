@@ -83,7 +83,7 @@ page {
 
 .list-right-top {
     line-height: 40rpx;
-    color:rgba(51,51,51,1);
+    color: rgba(51,51,51,1);
     height: 77rpx;
     font-size: 30rpx;
     overflow: hidden;

@@ -35,13 +35,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
-					"name": "333",
+					"name": "专题展示",
 					"pathName": "pages/specialExhibition/specialExhibition",
-					"query": "parentType=series&seedtType=giantPanda"
+					"query": "parentType=series&seedtType=giantPanda",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -50,10 +51,11 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/mine/mine",
-					"query": ""
+					"id": 2,
+					"name": "子单元",
+					"pathName": "pages/topicUnit/topicUnit",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": 3,

@@ -1,4 +1,4 @@
-import {index} from '../../api/index'
+import {getSubjects} from '../../api/index'
 
 var app = getApp()
 
@@ -22,7 +22,7 @@ Page({
       seedtType: '',
       selectType: 'first'
     }
-    index(data).then(res => {
+    /*index(data).then(res => {
       console.log(res.data);
       if (res.data.returnCode === '0000') {
         let list = this.data.list.concat(res.data.returnData.MemorialMoney)
@@ -35,6 +35,20 @@ Page({
       } else {
         console.error('服务器错误')
       }
+    })*/
+    getSubjects({type: "firstSubject", id: 0}).then(res => {
+      console.log(res.data);
+      /*if (res.data.returnCode === '0000') {
+        let list = this.data.list.concat(res.data.returnData.MemorialMoney)
+        this.setData({
+          pageNum: res.data.returnData.pageNum,
+          list: list,
+          isSend:true,
+          pageIndex: this.data.pageIndex
+        })
+      } else {
+        console.error('服务器错误')
+      }*/
     })
   },
   goToDetailsPage(e) {
