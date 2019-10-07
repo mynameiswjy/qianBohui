@@ -4,18 +4,14 @@
     <view class="apeci_txt">
         2018年，马克思诞辰200周年，中国改革开放40周年。这两个纪念节点的“汇合”，让中国社会有了回望与前瞻的历史契机。改革开放40年来，关于社会主义建设、关于党的建设、关于中国和世界的关系，每一个问题的展开和推进，都始终贯穿着实践检验真理的原则。
     </view>-->
-    <!--<view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+    <view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
         <image mode="aspectFit" src="{{item.url1}}"></image>
         <view class="list-right">
             <view class="list-right-top">{{item.tiele}}</view>
             <view class="list-right-bottom">{{item.strTime}}</view>
         </view>
     </view>
-    <block>
+    <!--<block>
         <view class="is-end" wx:if="{{isLoading}}" bindtap="loadMore">加载更多</view>
     </block>-->
-    <view class="title">中国金币云展室</view>
-    <view class="sub_item" wx:for="{{3}}" wx:key="index">
-        <view class="item_txt">中国钱币云展示</view>
-    </view>
 </view>

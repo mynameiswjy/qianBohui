@@ -9,7 +9,8 @@
     "pages/mine/mine",
     "pages/search/search",
     "pages/detail/detail",
-    "pages/topicUnit/topicUnit"
+    "pages/mainTheme/topicUnit/topicUnit",
+    "pages/mainTheme/mainTheme"
   ],
   "tabBar": {
     "color": "#8A8A8A",

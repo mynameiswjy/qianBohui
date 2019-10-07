@@ -12,6 +12,7 @@ export function index(data = {}) {
   })
 }
 
+// 专题
 export function getSubjects(data = {}) {// ?type=firstSubject&id=0
   let url = '/qbh/coin/getSubjects.do'
   return new Promise((resolve, reject) => {
@@ -20,7 +21,19 @@ export function getSubjects(data = {}) {// ?type=firstSubject&id=0
     }, function (err) {
       reject(err)
     })
-})
+  })
+}
+
+// 专题列表
+export function getMoneyList(data) {
+  let url = '/qbh/coin/subjects/getMoneyList.do'
+  return new Promise((resolve, reject) => {
+    requestAjaxGet(url, data, function (res) {
+      resolve(res)
+    }, function (err) {
+      reject(err)
+    })
+  })
 }
 
 // 钱币详情页

@@ -35,13 +35,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "专题展示",
-					"pathName": "pages/specialExhibition/specialExhibition",
-					"query": "parentType=series&seedtType=giantPanda",
+					"pathName": "pages/mainTheme/mainTheme",
+					"query": "",
 					"scene": null
 				},
 				{

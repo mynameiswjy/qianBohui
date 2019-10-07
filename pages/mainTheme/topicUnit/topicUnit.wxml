@@ -1,0 +1,19 @@
+<block>
+    <view style="height: 10rpx;"></view>
+    <view
+            class="cell_item"
+            wx:for="{{list}}"
+            wx:key="index"
+            data-id="{{item.id}}"
+            bindtap="navDetails"
+    >
+        <image src="{{item.imagesUrl}}" class="bg" mode="widthFix"></image>
+        <view class="flex cell_title">
+            <image src="./cell.png" class="icon_cell"></image>
+            <view class="cell_title_txt">{{item.name}}</view>
+        </view>
+        <view class="cell_txt">
+            <text>健身房和说的说的放假卡顿卡顿 看肯德基广东省看快递黄飞鸿返回和</text>
+        </view>
+    </view>
+</block>

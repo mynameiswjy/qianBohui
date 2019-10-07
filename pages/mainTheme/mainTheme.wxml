@@ -1,0 +1,14 @@
+<block>
+    <view class="title">中国金币云展室</view>
+    <view
+            class="sub_item"
+            wx:for="{{list}}"
+            wx:key="{{index}}"
+            style="background-image: url({{item.imagesUrl}});"
+            data-is-son="{{item.sonSubject == 'Y'}}"
+            data-id="{{item.id}}"
+            bindtap="navDetails"
+    >
+        <view class="item_txt">{{item.name}}</view>
+    </view>
+</block>

@@ -1,0 +1,40 @@
+page {
+    background-color: #f4f3f3;
+}
+
+.cell_item {
+    background-color: #fff;
+    width: 700rpx;
+    height: 380rpx  ;
+    margin: 0 auto 15rpx;
+    overflow: hidden;
+    box-shadow: 3rpx 5rpx 6rpx 0rpx rgba(86, 88, 89, 0.18);
+    border-radius: 14rpx;
+}
+.cell_item .bg {
+    width: 700rpx;
+    max-height: 180rpx;
+    background-color: #bfa;
+    display: block;
+}
+.cell_item .icon_cell {
+    width: 15rpx;
+    height: 30rpx;
+    margin-right: 12rpx;
+}
+
+.cell_title_txt{
+    font-size: 30rpx;
+    color: #bd322a;
+    line-height: 1;
+}
+.cell_title {
+    margin: 25rpx 0 12rpx 24rpx;
+}
+
+.cell_txt {
+    line-height: 37rpx;
+    max-width: 645rpx;margin: 0 auto;
+    font-size: 25rpx;
+    letter-spacing: 2rpx;
+}

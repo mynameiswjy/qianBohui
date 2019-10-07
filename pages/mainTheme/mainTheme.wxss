@@ -1,0 +1,27 @@
+.title {
+    font-size: 40rpx;
+    color: #000;
+    text-align: center;
+    line-height: 1;
+    margin: 40rpx 0;
+    font-weight: 500;
+}
+.sub_item {
+    width: 700rpx;
+    height: 320rpx;
+    background-color: #bfa;
+    background-repeat: no-repeat;
+    background-size: 700rpx 320rpx;
+    margin: 0 auto 45rpx;
+    position: relative;
+}
+
+.item_txt {
+    font-size: 32rpx;
+    color: #000;
+    line-height: 70rpx;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}

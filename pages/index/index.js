@@ -68,6 +68,7 @@ Page({
           MemorialMoney: MemorialMoney,
           hotList: hotList,
           isSend:true,
+          subject: data.subject,
           pageIndex: this.data.pageIndex
         })
       } else {
@@ -122,7 +123,7 @@ Page({
   },
   goToDetail() {
     wx.navigateTo({
-      url: "/pages/specialExhibition/specialExhibition"
+      url: "/pages/mainTheme/mainTheme"
     })
   },
   onPullDownRefresh: function () {

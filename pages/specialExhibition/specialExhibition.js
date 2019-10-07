@@ -1,4 +1,4 @@
-import {getSubjects} from '../../api/index'
+import {getMoneyList} from '../../api/index'
 
 var app = getApp()
 
@@ -15,19 +15,19 @@ Page({
     this.initData(options)
   },
   initData(options) {
-    let data = {
+    /*let data = {
       pageIndex: this.data.pageIndex,
       pageSize:10,
       parentType: 'decennial',
       seedtType: '',
       selectType: 'first'
-    }
-    /*index(data).then(res => {
-      console.log(res.data);
+    }*/
+    getMoneyList({id: options.id}).then(res => {
+      console.log(res);
       if (res.data.returnCode === '0000') {
-        let list = this.data.list.concat(res.data.returnData.MemorialMoney)
+        let list = this.data.list.concat(res.data.returnData)
         this.setData({
-          pageNum: res.data.returnData.pageNum,
+          // pageNum: res.data.returnData.pageNum,
           list: list,
           isSend:true,
           pageIndex: this.data.pageIndex
@@ -35,20 +35,6 @@ Page({
       } else {
         console.error('服务器错误')
       }
-    })*/
-    getSubjects({type: "firstSubject", id: 0}).then(res => {
-      console.log(res.data);
-      /*if (res.data.returnCode === '0000') {
-        let list = this.data.list.concat(res.data.returnData.MemorialMoney)
-        this.setData({
-          pageNum: res.data.returnData.pageNum,
-          list: list,
-          isSend:true,
-          pageIndex: this.data.pageIndex
-        })
-      } else {
-        console.error('服务器错误')
-      }*/
     })
   },
   goToDetailsPage(e) {
@@ -77,13 +63,5 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    /*this.data.pageIndex++
-    if (this.data.pageNum < this.data.pageIndex) {
-      this.setData({
-        isLoading: false
-      })
-      return
-    }
-    this.initData()*/
   },
-})
+});
