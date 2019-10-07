@@ -29,7 +29,7 @@
             <image class="banner-img" mode="widthFix" src="{{item.imgIndex}}"></image>
         </swiper-item>
     </swiper>
-    <image wx:if="{{true}}" bindtap="goToDetail" mode="widthFix" class="advertising" src="{{subject}}"></image>
+    <image bindtap="goToDetail" mode="widthFix" class="advertising" src="{{subject}}"></image>
     <view class="list" wx:if="{{MemorialMoney.length}}" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
         <image mode="aspectFit" src="{{item.url1}}"></image>
         <view class="list-right">
@@ -40,13 +40,13 @@
     <view wx:if="{{!MemorialMoney.length}}" class="empty">还没有相关内容</view>
     <block>
         <view class="is-end" wx:if="{{isLoading}}" bindtap="loadMore">加载更多</view>
-        <!--<view class="is-end" wx:if="{{!isLoading}}" bindtap="loadMore">已经到底啦</view>-->
     </block>
-    <!--<block>
-        <view class="is-end" wx:if="{{!isLoading}}" bindtap="loadMore">已经到底啦</view>
-        <view class="weui-loadmore" wx:if="{{isLoading}}">
-            <view class="weui-loading"></view>
-            <view class="weui-loadmore_tips">正在加载</view>
+    <block wx:for="{{adList}}" wx:key="index">
+        <view class="ad1" wx:if="{{item.type=='WX_APP_FLOATING'}}">{{item.adverName}}</view>
+        <view class="ad2" wx:if="{{item.type=='WX_APP_BELOW'}}">{{item.adverName}}</view>
+        <view class="ad3" wx:if="{{item.type=='WX_APP_HOME'&&IsOpenAd}}">
+            <viex class="close_ad" bindtap="closeAd">X</viex>
+            <image src="{{item.imagesUrl}}" mode=""></image>
         </view>
-    </block>-->
+    </block>
 </block>

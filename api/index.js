@@ -48,6 +48,18 @@ export function successiveExhibitors(data = {}) {
   });
 }
 
+// 广告接口
+export function advertising(data = {}) {
+  let url = '/qbh/woa/get/app/advertising.do';
+  return new Promise((resolve, reject) => {
+    requestAjaxGet(url, data, function (res) {
+      resolve(res);
+    }, function (err) {
+      reject(err);
+    });
+  });
+}
+
 // 搜索关键词
 export function getAntistop(data = {}) {
   let url = '/qbh/search/getAntistop.do'

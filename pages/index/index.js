@@ -1,4 +1,4 @@
-import {index} from '../../api/index'
+import {index, advertising} from '../../api/index'
 
 var app = getApp()
 
@@ -19,9 +19,19 @@ Page({
     pageNum: '',
     isSend: true,
     isLoading: true,
-    selectType: 'first'
+    selectType: 'first',
+    adList: null,
+    IsOpenAd: true
   },
   onLoad: function (options) {
+    advertising().then(res => {
+      console.log(res);
+      if (res.data.returnCode === '0000') {
+        this.setData({
+          adList: res.data.returnData
+        })
+      }
+    })
     this.initList()
   },
 
@@ -80,6 +90,11 @@ Page({
     let moneyCode = e.currentTarget.dataset.moneyCode
     wx.navigateTo({
       url: "/pages/detail/detail?moneyCode=" + moneyCode
+    })
+  },
+  closeAd() {
+    this.setData({
+      IsOpenAd: false
     })
   },
   hotSelect(e) {
