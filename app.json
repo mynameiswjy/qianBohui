@@ -10,7 +10,8 @@
     "pages/search/search",
     "pages/detail/detail",
     "pages/mainTheme/topicUnit/topicUnit",
-    "pages/mainTheme/mainTheme"
+    "pages/mainTheme/mainTheme",
+    "pages/mainTheme/adAccepPage/adAccepPage"
   ],
   "tabBar": {
     "color": "#8A8A8A",

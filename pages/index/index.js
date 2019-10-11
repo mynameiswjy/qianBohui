@@ -141,6 +141,15 @@ Page({
       url: "/pages/mainTheme/mainTheme"
     })
   },
+  // 广告跳转
+  Advertising(e) {
+    const url = e.currentTarget.dataset.url
+    if (url) {
+      wx.navigateTo({
+        url: `/pages/mainTheme/adAccepPage/adAccepPage?url=${url}`
+      })
+    }
+  },
   onPullDownRefresh: function () {
 
   },
