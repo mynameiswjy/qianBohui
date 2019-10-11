@@ -12,6 +12,9 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: options.themeName
+    })
     this.initData(options)
   },
   initData(options) {

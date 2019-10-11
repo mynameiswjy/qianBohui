@@ -26,13 +26,14 @@ Page({
     let target = e.currentTarget.dataset
     let isSon = target.isSon
     let id = target.id
+    let themeName = target.themeName
     if (isSon) {
       wx.navigateTo({
-        url: `./topicUnit/topicUnit?id=${id}`
+        url: `./topicUnit/topicUnit?id=${id}&themeName=${themeName}`
       })
     } else {
       wx.navigateTo({
-        url: "/pages/specialExhibition/specialExhibition?id=" + id
+        url: "/pages/specialExhibition/specialExhibition?id=" + id + '&themeName=' + themeName
       })
     }
 

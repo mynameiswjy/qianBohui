@@ -14,6 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: options.themeName
+    })
     getSubjects({type: "secondSubject", id: options.id}).then(res => {
       console.log(res.data);
       if (res.data.returnCode === '0000') {

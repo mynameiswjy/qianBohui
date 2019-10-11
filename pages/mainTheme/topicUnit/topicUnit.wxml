@@ -13,7 +13,7 @@
             <view class="cell_title_txt">{{item.name}}</view>
         </view>
         <view class="cell_txt">
-            <text>健身房和说的说的放假卡顿卡顿 看肯德基广东省看快递黄飞鸿返回和</text>
+            <text>{{item.imagesRemark}}</text>
         </view>
     </view>
 </block>
