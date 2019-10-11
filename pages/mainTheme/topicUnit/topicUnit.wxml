@@ -3,6 +3,7 @@
     <view
             class="cell_item"
             wx:for="{{list}}"
+            data-theme-name="{{item.name}}"
             wx:key="index"
             data-id="{{item.id}}"
             bindtap="navDetails"

@@ -45,8 +45,9 @@ Page({
   navDetails(e) {
     let target = e.currentTarget.dataset
     let id = target.id
+    let themeName = target.themeName
     wx.navigateTo({
-      url: "/pages/specialExhibition/specialExhibition?id=" + id
+      url: "/pages/specialExhibition/specialExhibition?id=" + id + '&themeName=' + themeName
     })
 
   },
