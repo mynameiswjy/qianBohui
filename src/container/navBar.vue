@@ -15,7 +15,7 @@
           </div>
         </Swiper>
       </div>
-      <div class="nav-wrapper" ref="viewport" v-if="NewNav">
+      <!--<div class="nav-wrapper" ref="viewport" v-if="NewNav">
         <div ref="content" style="width: 100%">
           <ul class="tab-conten">
             <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
@@ -24,14 +24,14 @@
           </ul>
         </div>
         <div class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></div>
-      </div>
-      <div class="nav_wrap" :class="{'nav_wrap1': IsActive}" v-else>
+      </div>-->
+      <div class="nav_wrap" :class="{'nav_wrap1': IsActive}">
         <ul class="nav_content">
           <li class="nav_item" :class="{'nav_item1': index != tabs.length-1}" v-for="(tab, index) in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
             <router-link class="link-go" :to="tab.path">
               <div class="nav_img" :class="{'nav_img1': routerPath == tab.path && !IsActive}">
-                <img :src="tab.selectImg_active" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
-                <img :src="tab.img_active" :class="{'img_node': IsActive}" alt="nav" v-else>
+                <img :src="tab.selectImg" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
+                <img :src="tab.img" :class="{'img_node': IsActive}" alt="nav" v-else>
               </div>
               <div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>
             </router-link>

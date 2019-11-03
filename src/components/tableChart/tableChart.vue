@@ -138,8 +138,7 @@ export default {
   p
     line-height 1.3
   .bg_yellow
-    background-color: #e20212;/*#eed582*/
-    color #fff/*活动之后去掉*/
+    background-color: #eed582;
   .bg_hui
     background-color: #CFCFCF;
   .bg_hui1

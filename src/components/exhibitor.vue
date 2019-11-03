@@ -16,11 +16,9 @@
           </router-link>
         </li>
       </ul>
-      <img src="https://www.chbice.com/imgFile/deng2.png" class="bg_deng2" alt="">
     </div>
     <div style="position: relative" v-show="ad.show == 'Y'">
       <img :src="ad.url" alt="" class="ad">
-      <img src="https://www.chbice.com/imgFile/deng4.png" class="bg_ad3" alt="">
     </div>
   </div>
 </template>
@@ -83,14 +81,6 @@ export default {
     position: relative;
   }
 
-  .bg_deng2 {
-    position: absolute;
-    width: 0.85rem;
-    height: auto;
-    bottom: -0.83rem;
-    right: 0;
-  }
-
   .exhibi_wrap .exhibi_title {
     height: 0.94rem;
     background-color: #eed582;
@@ -149,14 +139,6 @@ export default {
     max-height: 1.2rem;
     margin-top: 1rem;
     margin-left: 0.25rem;
-  }
-  .bg_ad3 {
-    position: absolute;
-    bottom: -1.2rem;
-    width: 0.75rem;
-    height: auto;
-    max-height: 1.4rem;
-    left: 0.25rem;
   }
   /*.wrap{
     width: 7.14rem;

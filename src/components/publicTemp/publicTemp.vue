@@ -171,27 +171,25 @@ export default {
       width 7rem
       height 0.94rem
       border-radius 0.14rem 0.14rem 0 0
-      background-color: #e20212/*#eed582*/
+      background-color: #eed582
       font-size: 0.3rem
       display flex
       justify-content space-between
       overflow hidden
       li
         width 2.333rem
-        background-color: #e20212;/*#eed582*/
-        color #fff
+        background-color: #eed582;/*#*/
         text-align center
         line-height 0.98rem
         font-weight 550
       .text_active
         background-color: #fff
-        color #e20212 /*活动过了可以去掉*/
         position relative
       .text_active:after {
         content ''
         width 89.6%
         height 0.04rem
-        background-color: #e20212;/*#eed582*/
+        background-color: #eed582;/*#*/
         transform translateX(-50%)
         position absolute
         left 50%
@@ -225,7 +223,7 @@ export default {
     content ''
     width 0.08rem
     height 0.35rem
-    background-color: #e20212;/*#eed582*/
+    background-color: #eed582;/*#*/
     position absolute
     left -0.2rem
     top 50%

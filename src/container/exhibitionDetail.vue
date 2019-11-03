@@ -165,12 +165,12 @@ select::-ms-expand { display: none; }
       h2
         width 100%
         height 0.94rem
-        background-color: #e20212;/*#eed582*/
+        background-color: #eed582;/*#*/
         font-size: 0.36rem;
         font-weight 600
         text-align center
         line-height 0.94rem
-        color: #FFF/*#000000;*/
+        color: #000000/*#;*/
       .exhibition_list
         font-size: 0.28rem
         color: #000000;
@@ -202,9 +202,8 @@ select::-ms-expand { display: none; }
           text-align center
           margin 0 0.14rem
         .page_btn
-          background-color: #e20212;/*#eed582*/
-          color: #FFF/*活动过了去掉*/
-    /*old Style*/
+          background-color: #eed582;
+  /*  !*old Style*!
   .ex_detail_title
     width: 6.78rem;
     display: flex;
@@ -219,7 +218,7 @@ select::-ms-expand { display: none; }
       .details_select
         width 6.22rem
         display flex
-        /*justify-content space-between*/
+        !*justify-content space-between*!
         select
           width: 2.6rem;
           height: 0.5rem;
@@ -302,7 +301,7 @@ select::-ms-expand { display: none; }
           font-size 0.23rem
           color #C6A056
         .span_icon_qianjin
-          color #AAA9A8
+          color #AAA9A8*/
   .footer-top
     margin-top 0.56rem
 </style>

@@ -48,12 +48,12 @@ export default {
       h2
         width 100%
         height 0.94rem
-        background-color: #e20212;/*#eed582*/
+        background-color: #eed582;/*#*/
         font-size: 0.36rem;
         font-weight 600
         text-align center
         line-height 0.94rem
-        color: #FFF/*#000000;*/
+        color: #000000/*#;*/
         box-sizing border-box
       p
         font-size: 0.28rem

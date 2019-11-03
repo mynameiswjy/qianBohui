@@ -240,16 +240,16 @@ export default {
       background: url("../../assets/images/zh-drop-down.png") no-repeat scroll 92% center transparent;
       background-size: 0.22rem 0.12rem;
       padding-right: 0.2rem;
-      border: 0.01rem solid #e20212;
-      color: #e20212
+      border: 0.01rem solid #eed582;
+      color: #eed582
       padding-left 1rem
     div
       width:3.2rem;
       height:0.72rem;
-      background: #e20212;
+      background: #eed582;
       border-radius: 0.12rem;
       font-size 0.28rem
-      color: #fff
+      color: #000
       text-align center
       line-height 0.72rem
       margin-left 0.74rem
