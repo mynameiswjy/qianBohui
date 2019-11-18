@@ -1,7 +1,7 @@
 <template>
     <div  style="background-color: #F4F3F3;">
       <introduce class="lintr_bottom" :introduceObj="introduceObj" :text="text" :openStyle="true" :newTemp="2"></introduce>
-      <public-temp :aboutzhObj="aboutzhObj" :isVisitP="true" :newTemp="1"></public-temp>
+      <public-temp :aboutzhObj="aboutzhObj" :isVisitP="IsShowVisit" :newTemp="1"></public-temp>
       <temp-footer class="footer-top"></temp-footer>
       <div style="height: 0.98rem"></div>
       <tabBar class="menu-tab"></tabBar>
@@ -22,8 +22,9 @@ export default {
     return {
       introduceObj: {},
       text: 'Notice of visit',
+      IsShowVisit: this.$store.state.IsShowVisit,
       aboutzhObj: {
-        navList: ["乘车路线", "参观登记"],
+        navList: this.$store.state.IsShowVisit ? ["乘车路线", "参观登记"] : ["乘车路线"],
         textList: [
           {
             showFullBtn: 0, // 控制每个list的按钮 是否显示全文

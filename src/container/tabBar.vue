@@ -14,12 +14,12 @@
         <div>在线咨询</div>
       </li>
     </ul>-->
-    <ul class="tab_wrap">
+    <ul class="tab_wrap" :class="{'tab_wrap1': IsShowVisit}">
       <li class="tab_item" @click="cilckTabBarOne">
         <img class="tab-icon" src="https://www.chbice.com/imgFile/cut/reservation.png">
         <div>展位预订</div>
       </li>
-      <li class="tab_item" alt="" @click="cilckTabBarTwo">
+      <li class="tab_item" alt="" @click="cilckTabBarTwo" v-if="IsShowVisit">
         <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/visit.png" alt="">
         <div>参观登记</div>
       </li>
@@ -46,7 +46,8 @@ export default {
       isReservationPage: this.$store.state.isReservationPage,
       tow: false,
       three: false,
-      IsClass: false
+      IsClass: false,
+      IsShowVisit: this.$store.state.IsShowVisit
     }
   },
   created() {
@@ -96,11 +97,14 @@ export default {
     background-color: #f4ba43;
   }
   .tab_wrap li {
-    width: 2.5rem;
+    width: 3.75rem;/*2.5rem*/
     text-align: center;
     box-sizing: border-box;
     font-size: 0.3rem;
     color: #353535;
+  }
+  .tab_wrap1 li {
+    width: 2.5rem;
   }
   .tab_item {
     border-right: 0.01rem solid #ccc;
