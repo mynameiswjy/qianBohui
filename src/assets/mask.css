@@ -5,18 +5,17 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: rgba(1, 1, 1, 0.5);
+  background-color: #fff;
   overflow: hidden;
+}
+
+.mask_reserve {
+  background-color: #B8231E;
 }
 
 .wraps {
   width: 100%;
   background-color: #fff;
-}
-
-.p_bottom{
-  position: absolute;
-  bottom: 0;
 }
 
 .res-title {
@@ -59,27 +58,29 @@
 }
 
 .list {
-  font-size: 0.28rem;
+  font-size: 0.32rem;
   display: flex;
   justify-content: space-between;
-  line-height: 0.56rem;
   align-items: center;
-  margin: 0 0.26rem;
-  color: #000;
-  margin-bottom: 0.34rem;
+  height: .94rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.mask-margin {
+  margin: 0 0.3rem;
 }
 
 .mandatory {
-  line-height: 0.56rem;
-  color: #F5C665;
+  color: #EA2C43;
+  margin-right: .15rem;
 }
 
 .list-left {
   min-width: 1.55rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  text-align: justify;
+  line-height: 1;
 }
 .list-left-text {
   letter-spacing: 0.1rem;
@@ -89,20 +90,32 @@
 }
 
 .list-upload {
-  font-size: 0.28rem;
+  font-size: 0.32rem;
   line-height: 1;
   display: flex;
-  margin: 0.55rem 0.26rem 0.25rem;
-  align-items: center;
-  color: #000;
+  margin: 0.5rem 0.26rem 0.25rem;
+  align-items: flex-end;
+  font-weight: 600;
+  color: #333;
 }
 
 .list input {
-  border-radius: 0;
-  width: 5rem;
-  height: 0.35rem;
+  width: 4.8rem;
+  height: 100%;
+  line-height: .94rem;
   box-sizing: border-box;
-  border-bottom: 0.01rem solid #959595;
-  color: #000;
-  margin-bottom: 0.05rem;
+  color: #333;
+  border-radius: .2rem;
+}
+input::-webkit-input-placeholder {
+  color: #999 ; /*WebKit browsers*/
+}
+input::-moz-placeholder {
+  color: #999 ; /*Mozilla Firefox 4 to 18 */
+}
+input::-moz-placeholder {
+  color: #999 ; /*Mozilla Firefox 19+ */
+}
+input::-ms-input-placeholder {
+  color: #999 ; /*Internet Explorer 10+*/
 }

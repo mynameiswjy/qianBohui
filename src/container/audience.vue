@@ -1,5 +1,5 @@
 <template>
-    <div  style="background-color: #F4F3F3;">
+    <div>
       <introduce class="lintr_bottom" :introduceObj="introduceObj" :text="text" :openStyle="true" :newTemp="2"></introduce>
       <public-temp :aboutzhObj="aboutzhObj" :isVisitP="IsShowVisit" :newTemp="1"></public-temp>
       <temp-footer class="footer-top"></temp-footer>
@@ -24,7 +24,7 @@ export default {
       text: 'Notice of visit',
       IsShowVisit: this.$store.state.IsShowVisit,
       aboutzhObj: {
-        navList: this.$store.state.IsShowVisit ? ["乘车路线", "参观登记"] : ["乘车路线"],
+        navList: this.$store.state.IsShowVisit ? [{name: "乘车路线"}, {name: "参观登记"}] : [{name: "乘车路线"}],
         textList: [
           {
             showFullBtn: 0, // 控制每个list的按钮 是否显示全文
@@ -94,7 +94,7 @@ export default {
 
 <style scoped lang="stylus">
   .lintr_bottom
-    margin-bottom 1rem
+    margin-bottom .3rem
   .footer-top
     margin-top 0.57rem
 </style>

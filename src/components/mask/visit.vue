@@ -1,24 +1,25 @@
 <template>
-    <div class="mask" ref="wrapper" style="z-index: 999;">
+    <div class="mask" ref="wrapper">
       <scroll :data="userVisitList.selectItem" style="height: 100%">
-        <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
-          <div class="res-title">
-            <h2>{{userVisitList.name}}</h2>
-            <img @click="closeTemp" src="../../assets/images/close.png" alt="">
-          </div>
-          <ul>
+        <div class="mask_reserve" ref="content">
+<!--          <div class="res-title">-->
+<!--            <h2>{{userVisitList.name}}</h2>-->
+<!--            <img @click="closeTemp" src="../../assets/images/close.png" alt="">-->
+<!--          </div>-->
+          <div class="reserve_bg"></div>
+          <ul class="reserve_ul">
             <li v-for="(item, index) in userVisitList.selectItem" :key="index">
               <div v-if="(item.isType == 'I')" class="list">
                 <div class="list-left">
-                  <div>{{item.name}}</div>
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
+                  <div>{{item.name}}</div>
                 </div>
                 <input v-model="item[item.code]" type="text"/>
               </div>
               <div class="list" v-if="(item.isType == 'S')">
                 <div class="list-left">
-                  <div>{{item.name}}</div>
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
+                  <div>{{item.name}}</div>
                 </div>
                 <div style="position: relative;">
                   <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
@@ -27,7 +28,7 @@
                   <div v-show="!item[item.code]" class="select-default">请选择</div>
                 </div>
               </div>
-              <div  v-if="(item.isType == 'A')">
+              <div v-if="(item.isType == 'A')" class="textarea_wrap">
                 <div class="note">{{item.name}}</div>
                 <textarea name="" v-model="item[item.code]" class="textarea" id="" cols="30" rows="10"></textarea>
               </div>
@@ -54,7 +55,6 @@
 <script type="text/ecmascript-6">
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
-import { isBottom } from '@/utils/utils'
 import { getRegisterTypeInfo, putRegisterInfo } from '@/api/index'
 
 //var md5 = require('js-md5')
@@ -64,7 +64,6 @@ export default {
   data() {
     return {
       tow: false,
-      p_bottom: false,
       userVisitList: {},
       visitSendList: [],
       personNum: 1
@@ -91,7 +90,7 @@ export default {
       }
       let selectItem = this.userVisitList.selectItem
       let visitSendList = {}
-      for (var i = 0; i < selectItem.length; i++) {
+      for (let i = 0; i < selectItem.length; i++) {
         let data = selectItem[i]
         let key = data.code
         let value = data[key]
@@ -150,14 +149,14 @@ export default {
         console.log(res);
         if (res.data.returnCode === '0000') {
           this.userVisitList = res.data.returnData
+          document.title = res.data.returnData.name;
         }
       })
     }
   },
   mounted() {
-    let wrapper = this.$refs.wrapper.clientHeight
-    let content = this.$refs.content.clientHeight
-    this.p_bottom = isBottom(wrapper, content)
+    // let wrapper = this.$refs.wrapper.clientHeight
+    // let content = this.$refs.content.clientHeight
   },
   computed: {
   },
@@ -170,62 +169,83 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .reserve_ul
+    width 6.9rem
+    background-color #fff
+    margin 0 auto
+    border-radius .2rem
+    padding-top .08rem
+  .reserve_bg
+    width 7.5rem
+    height 5.7rem
+    background-image url("../../assets/images/reserve_bg.png")
+    background-size cover
+    background-repeat no-repeat
+    overflow hidden
   .waring
     border-color red
   .mask
-    /*padding-top 0.82rem*/
     .wraps
       overflow hidden
   .note {
     font-size: 0.3rem;
-    line-height: 0.87rem;
+    line-height .92rem
+    height .92rem
     margin: 0 0.26rem;
-    color: #000;
-    /*font-weight: 600;*/
+    color: #333;
     font-family: PingFangSC-Regular;
-    padding-top: 0.14rem;
+  }
+  .list .mandatory {
+    margin 0 .16rem 0 .18rem
   }
   .list select{
-    width: 4.77rem;
-    height: 0.75rem;
-    padding: 0.2rem 0.3rem;
+    width: 4.6rem;
+    height: 0.74rem;
+    padding: 0.1rem 0.3rem;
     border-radius: 0.08rem;
-    border: 0.01rem solid rgba(198,160,86,1);
-    color: #000;
+    font-size .32rem
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
-    border: 0.01rem solid #d3d5d6;
-    color: #666;
+    background-color #fff
+    border: none;
+    color: #333;
   }
   .list .select1{
     padding: 0 0.3rem;
     background: url("../../assets/images/zh-drop-down.png") no-repeat scroll 92% center transparent;
     background-size: 0.22rem 0.12rem;
     padding-right: 0.2rem;
+    background-color #fff
   }
   .select-default
     position absolute
-    top: 0.02rem
+    top: 50%
+    transform translateY(-50%)
     left: 0.3rem
     font-size 24rpx
     color #b7b7b7
 
+  .textarea_wrap {
+    display flex
+    justify-content space-between
+  }
+
   .textarea {
-    margin-left: 0.36rem;
     margin-top: 0.1rem;
     margin-bottom 0.42rem;
-    width: 6.18rem;
+    width: 4.2rem;
     height: 0.92rem;
     border-radius: 0.08rem;
+    border .01rem solid #888;
     padding: 0.2rem 0.3rem;
-    border: 0.01rem solid #eee;
-    border: 0.01rem solid #d3d5d6;
-    color: #b7b7b7;
+    font-size .32rem
+    color: #333;
+    margin-right .3rem
   }
 
   .foot-select
-    border-top: 0.01rem solid rgba(238,240,242,1)
+    /*border-top: 0.01rem solid rgba(238,240,242,1)*/
     padding-top 0.38rem
     padding-bottom 0.39rem
     display flex

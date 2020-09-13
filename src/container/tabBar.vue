@@ -28,15 +28,13 @@
         <div>在线咨询</div>
       </li>
     </ul>
-    <visit @closeVisit="visitClose" v-if="tow"></visit>
-    <reservation @closeTemp="tempClose" v-if="isReservationPage"></reservation>
+<!--    <visit @closeVisit="visitClose" v-if="tow"></visit>-->
+<!--    <reservation @closeTemp="tempClose" v-if="isReservationPage"></reservation>-->
     <consulting @closeZixun="tempZixun" v-if="three"></consulting>
   </div>
 </template>
 
 <script>
-import visit from "@/components/mask/visit.vue"
-import reservation from "@/components/mask/reservation.vue"
 import consulting from "@/components/mask/consulting.vue"
 import * as types from '../store/mutation-types'
 export default {
@@ -51,7 +49,6 @@ export default {
     }
   },
   created() {
-    console.log(this.isReservationPage);
   },
   methods: {
     tempZixun(e) {
@@ -59,7 +56,8 @@ export default {
       this.IsClass = e
     },
     cilckTabBarOne(e) {
-      this.isReservationPage = !this.isReservationPage
+      this.$router.push({path: 'reservation'});
+      // this.isReservationPage = !this.isReservationPage
       this.$store.commit(types.IS_RESERVSTION_PAGE, this.isReservationPage)
     },
     // 通过子组件传过来的值 动态的改变 变量==> one
@@ -71,7 +69,8 @@ export default {
       this.tow = e
     },
     cilckTabBarTwo() {
-      this.tow = !this.tow
+      // this.tow = !this.tow
+      this.$router.push({path: 'visit'});
     },
     cilckTabBarThree() {
       this.IsClass = true
@@ -79,8 +78,6 @@ export default {
     }
   },
   components: {
-    visit,
-    reservation,
     consulting
   }
 }

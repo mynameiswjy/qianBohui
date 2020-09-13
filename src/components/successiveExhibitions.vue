@@ -6,7 +6,7 @@
         <div class="selected_wrap">
           <div class="exhibi_more1" @click="openSelect">
             <span class="p1">{{selectName}}</span>
-            <span class="iconfont icon-Stone-arrow-dropdown"></span>
+            <div class="iconfont icon-jiantou"></div>
           </div>
           <ul class="sel_options" v-show="IpOpenSelect">
             <li @click.prevent="selectOption({index: index, name: item.name})" v-for="(item, index) in successiveList.selelctYears" :key="index">{{item.name}}</li>
@@ -14,12 +14,12 @@
           <div @click="closeSelectMask" :class="{'mask_select': IsmaskSelect}"></div>
         </div>
       </div>
-      <ul class="exhibition_news">
-        <li :class="{'exhibition_news1': index != yearList.length-1}" v-for="(item, index) in yearList" v-bind:key="index">
+      <ul class="exhibition_Exhibitions">
+        <li class="exhibition_news1" v-for="(item, index) in yearList" v-bind:key="index">
           <router-link :to="detailPath(item.code)">
             <div class="h3">
               <p class="h3_con">{{item.title}}</p>
-              <span class="iconfont icon-gengduo"></span>
+              <span class="iconfont icon-jiantou"></span>
             </div>
           </router-link>
         </li>
@@ -229,18 +229,13 @@ export default {
 
 <style lang="stylus">
   .exhibi_wrap {
-    margin-left: 0.25rem;
-    margin-top: 0.96rem;
-    width: 7rem;
-    height: 4.71rem;
+    margin-left: 0.3rem;
+    padding-top: 0.32rem;
+    width: 6.9rem;
     background-color: #ffffff;
-    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-    border-radius: 0.14rem;
+    position: relative;
   }
   .exhibi_wrap .exhibi_title {
-    height: 0.94rem;
-    background-color: #eed582;
-    border-radius: 0.14rem 0.14rem 0 0;
     position: relative;
   }
   .exhibi_wrap .exhibi_title_active {
@@ -250,31 +245,41 @@ export default {
     color #fff
   }
   .exhibi_wrap .exhibi_title h2 {
-    font-size: 0.36rem;
-    font-weight: 600;
+    background-image: url("https://www.chbice.com/imgFile/icon/title_bg.png");
+    background-repeat: no-repeat;
+    background-size: 2.45rem 0.53rem;
+    width: 2.45rem;
+    height: 0.53rem;
+    margin: 0 auto 0.2rem;
+    font-size: 0.32rem;
+    color: #fff;
+    line-height: 0.53rem;
     text-align: center;
-    line-height: 0.94rem;
   }
   .selected_wrap {
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
-    margin: 0.36rem 0.24rem 0 0;
+    transform: translateY(-50%)
   }
   .exhibi_wrap .exhibi_title .exhibi_more1 {
     font-size: 0.22rem;
-    width 1.28rem
     height 0.28rem
-    background-color: #fff
-    line-height 0.28rem
-    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-    border-radius: 0.04rem;
     display flex
+    align-items center
+    color #999
   }
   .exhibi_more1 .p1 {
-    width 0.96rem
     display flex
     justify-content center
+  }
+  .exhibi_more1 .icon-jiantou {
+      font-size .2rem
+      color #999
+  }
+  .exhibition_Exhibitions .icon-jiantou {
+    color: #bfa267;
+    font-size: .24rem;
   }
   .icon-Stone-arrow-dropdown {
     width 0.32rem
@@ -285,7 +290,7 @@ export default {
   }
   .sel_options {
     position absolute
-    width 1.26rem
+    width 1rem
     left 0
     top: 0.29rem
     text-align center
@@ -305,24 +310,21 @@ export default {
     height 0.35rem
     line-height 0.35rem
   }
-  .exhibition_news {
-    padding: 0.13rem 0 0.13rem 0.22rem;
-  }
   .exhibition_news1 {
-    border-bottom: 0.01rem solid #949494;
+    border-bottom: 0.01rem solid #e6e6e6;
   }
-  .exhibition_news li{
-    width: 6.48rem;
-    line-height: 0.69rem;
+  .exhibition_Exhibitions li{
+    width: 6.9rem;
+    height .85rem
+    line-height .85rem
     font-size: 0.28rem;
   }
-  .exhibition_news li .h3{
+  .exhibition_Exhibitions li .h3{
     display: flex;
     justify-content: space-between;
-    height: 0.7rem;
-    color #000
+    color #333
   }
-  .exhibition_news li .h3 .h3_con {
+  .exhibition_Exhibitions li .h3 .h3_con {
     overflow: hidden;
     white-space: nowrap;
     width 5rem;

@@ -1,14 +1,17 @@
 <template>
     <div><!--exhibitionNews.vue-->
-      <div class="exhibi_wrap">
-        <div class="exhibi_title" :class="{'exhibi_title_active': IsActive}">
+      <div class="exhibi_wrap_news">
+        <div class="exhibi_title_news" :class="{'exhibi_title_active': IsActive}">
           <h2>{{title ? title : '展会新闻'}}</h2>
-          <div class="exhibi_more" @click="moreNews">更多</div>
+          <div class="exhibi_more" @click="moreNews">
+            <span>更多</span>
+            <div class="iconfont icon-jiantou"></div>
+          </div>
         </div>
         <ul class="exhibition_news">
-          <li :class="{'exhibition_news1': index != expositionNews.length-1}" v-for="(item, index) in expositionNews" @click="goToDetail(item.code)" v-bind:key="index">
+          <li class="exhibition_news1" v-for="(item, index) in expositionNews" @click="goToDetail(item.code)" v-bind:key="index">
             <p>{{item.title}}</p>
-            <span class="iconfont icon-gengduo"></span>
+            <span class="iconfont icon-jiantou item_icon"></span>
           </li>
         </ul>
       </div>
@@ -61,53 +64,60 @@ export default {
 </script>
 
 <style scoped>
-  .exhibi_wrap {
-    margin-left: 0.25rem;
-    margin-top: 0.96rem;
-    width: 7rem;
-    height: 4.71rem;
+  .exhibi_wrap_news {
+    margin-left: 0.3rem;
+    margin-top: 0.32rem;
+    width: 6.9rem;
     background-color: #ffffff;
-    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-    border-radius: 0.14rem;
     position: relative;
   }
-  .exhibi_wrap .exhibi_title {
-    height: 0.94rem;
-    background-color: #eed582;
+  .exhibi_wrap_news .exhibi_title_news {
     border-radius: 0.14rem 0.14rem 0 0;
     position: relative;
   }
-  .exhibi_wrap .exhibi_title_active {
+  .icon-jiantou {
+    font-size: 0.2rem;
+  }
+  .item_icon {
+    color: #BFA267;
+    font-size: 0.24rem;
+  }
+  .exhibi_wrap_news .exhibi_title_active {
     background-color: #e20212;
     color: #fff;
   }
-  .exhibi_wrap .exhibi_title h2 {
-    font-size: 0.36rem;
-    font-weight: 600;
+  .exhibi_wrap_news .exhibi_title_news h2 {
+    background-image: url("https://www.chbice.com/imgFile/icon/title_bg.png");
+    background-repeat: no-repeat;
+    background-size: 2.45rem 0.53rem;
+    width: 2.45rem;
+    height: 0.53rem;
+    margin: 0.3rem auto 0.2rem;
+    font-size: 0.32rem;
+    color: #fff;
+    line-height: 0.53rem;
     text-align: center;
-    line-height: 0.94rem;
   }
-  .exhibi_wrap .exhibi_title .exhibi_more {
+  .exhibi_wrap_news .exhibi_title_news .exhibi_more {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 0.38rem 0.24rem 0 0;
-    /*z-index: 2;*/
+    display: flex;
+    align-items: center;
+    padding: 0.15rem 0rem 0 0;
+    color: #999;
     font-size: 0.24rem;
   }
-  .exhibition_news {
-    padding: 0.13rem 0 0.13rem 0.22rem;
-  }
   .exhibition_news1 {
-    border-bottom: 0.01rem solid #949494;
+    border-bottom: 0.01rem solid #e6e6e6;
   }
   .exhibition_news li{
-    width: 6.48rem;
-    height: 0.7rem;
-    line-height: 0.69rem;
+    width: 6.9rem;
+    height: 0.85rem;
+    line-height: 0.85rem;
     font-size: 0.28rem;
     display: flex;
-    color: #000;
+    color: #333;
     justify-content: space-between;
   }
   .exhibition_news li p{

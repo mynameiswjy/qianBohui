@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: #F4F3F3;">
+    <div>
       <introduce class="lintr_bottom" :newTemp="2" :introduceObj="introduceObj"></introduce>
       <public-temp :aboutzhObj="aboutzhObj" :newTemp="1" class=""></public-temp>
       <temp-footer class="footer-top"></temp-footer>
@@ -24,7 +24,7 @@ export default {
       introduceObj: {},
       text: 'Exhibition Introduction',
       aboutzhObj: {
-        navList: ["主办机构", "组织机构", "展位分布"],
+        navList: [{name: "主办机构", type: 'tab'}, {name: "组织机构", type: 'tab'}, {name: "展位分布", type: 'tab'}],
         textList: [
           {
             showFullBtn: 0, // 控制每个list的按钮 是否显示全文
@@ -97,7 +97,7 @@ export default {
 
 <style scoped lang="stylus">
 .lintr_bottom
-  margin-bottom 1rem
+  margin-bottom .3rem
 .footer-top
   margin-top 1rem
 </style>

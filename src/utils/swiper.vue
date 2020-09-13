@@ -99,18 +99,21 @@ export default {
   .swiper_wrap
     min-height 1px
     position relative
-    height: 3.2rem
+    height: 3.45rem
     overflow hidden
     .swiper_content
       display flex
       /*width: 7.5rem*/
       position absolute
       .swiper_item
-        width: 7.5rem
-        height: 3.2rem
+        width: 6.9rem
+        height: 3.45rem
+        background-color #eee
+        margin 0 0.3rem
         img
-          width 7.5rem
-          height 3.2rem
+          width 6.9rem
+          height 3.45rem
+          border-radius 0.2rem
     .doc
       position absolute
       bottom 0.2rem

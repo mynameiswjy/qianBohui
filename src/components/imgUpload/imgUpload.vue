@@ -6,10 +6,10 @@
         <span class="iconfont icon-close" @click="delImg(index)"></span>
       </li>
       <div class="upload-img">
-        <!--<img src="../../assets/images/add_img.png" class="img_btn" alt="上传图标">-->
+        <img src="../../assets/images/add_img.png" class="img_btn" alt="上传图标">
         <input type="file" value="" ref="inputer" class="input_file" @change='onUpload'>
         <!--<div class="upload-img-add">添加图片</div>-->
-        <span class="iconfont icon-add"></span>
+<!--        <span class="iconfont icon-add"></span>-->
       </div>
     </ul>
   </div>
@@ -115,7 +115,6 @@ export default {
       box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
       border-radius: 0.14rem
       margin-right 0.2rem
-      /*margin-top 0.2rem*/
       position relative
       .icon-close
         font-size 0.08rem
@@ -134,12 +133,8 @@ export default {
         height 100%
         border-radius: 0.14rem
     .upload-img
-      width: 0.86rem;
-      height: 0.86rem;
-      /*border: 0.01rem dashed #BFBFBF;*/
-      background-color: #f4f3f3;
-      box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-      border-radius: 0.14rem
+      width: 1.28rem;
+      height: 1.28rem;
       position relative
       display: inline-block;
       overflow: hidden;
@@ -163,9 +158,8 @@ export default {
       .img_btn
         display: block;
         margin: 0 auto;
-        width: 0.44rem;
-        height: 0.39rem;
-        margin-top: 0.44rem;
+        width: 100%;
+        height: 100%;
       .upload-img-add
         height 0.82rem
         line-height: 0.72rem;

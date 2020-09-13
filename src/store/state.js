@@ -5,6 +5,6 @@ const state = {
   isVisitPage: false,
   routerPath: '',
   IsActive: false, // 十一活动样式控制器
-  IsShowVisit: false
+  IsShowVisit: true
 }
 export default state

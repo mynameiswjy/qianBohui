@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #F4F3F3;">
+  <div>
     <introduce :introduceObj="dataList.expositionIntroduce" :isOpenActive="true" :newTemp="2"></introduce>
     <exhibitionNews :expositionNews="dataList.expositionNews" :title="modelName.modelName2" :ad="adData[0]"></exhibitionNews>
     <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce" :title="modelName.modelName3" :ad="adData[1]"></exhibitor><!--展上介绍-->

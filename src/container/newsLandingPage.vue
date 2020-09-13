@@ -2,7 +2,7 @@
     <div class="landing_wrap">
       <scroll class="news_landing_content" :data="detailObj">
         <div class="footer_position">
-          <nav-bar></nav-bar>
+          <nav-bar style="padding-top: .3rem;"></nav-bar>
           <div class="landing_container">
             <div style="height: 0.16rem"></div>
             <div class="landing_title">{{detailObj.title}}</div>
@@ -100,7 +100,7 @@ export default {
   position fixed
   top: 0
   bottom 0.98rem
-  background-color: #F4F3F3;
+  background-color: #fff;
   .news_landing_content
     height 100%
     overflow hidden
@@ -111,33 +111,26 @@ export default {
       box-sizing border-box
       .landing_container
         background-color: #fff
-        width 7rem
+        width 6.9rem
         height 100%
-        margin-left 0.25rem
-        box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-        border-radius: 0.14rem
+        margin-left 0.3rem
         .landing_title
           font-family:PingFangSC-Regular
-          margin-left 0.27rem
-          max-width 6.48rem
-          font-size: 0.36rem
-          font-weight: 600
+          max-width 6.72rem
+          font-size: 0.32rem
           text-align justify
-          line-height: 0.6rem
+          line-height: 0.46rem
           letter-spacing: 0.01rem
-          color: #000000;
-          margin-bottom 0.06rem
+          color: #333;
+          margin 0 auto 0.06rem
         .landing_time
-          font-size: 0.24rem
+          font-size: 0.26rem
           line-height: 1
-          margin-left 0.25rem
-          color: #232323;
-          margin-bottom 0.4rem
+          color: #888;
+          margin 0.32rem 0 .32rem 0
         .landing_content
-          /*padding 0.43rem 0.29rem 0.45rem*/
           padding-bottom 1rem
-          margin-left 0.25rem
-          max-width 6.48rem
+          max-width 6.9rem
           .landing_img
             width 6.2rem!important
             height 4.21rem!important
@@ -146,9 +139,9 @@ export default {
             font-family:PingFangSC-Regular
             text-align justify
             font-size 0.28rem
-            line-height: 0.6rem
-            color: #000000
-            max-width 6.48rem
+            line-height: 0.5rem
+            color: #333
+            max-width 6.9rem
             >>> img
               width 6.2rem!important
               height 4rem!important
