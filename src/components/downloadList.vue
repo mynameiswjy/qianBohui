@@ -16,18 +16,26 @@
           <div class="mask_bottom">
             <div
               class="mask_bottom_btn"
-              style="margin-right: .89rem"
+              :class="{'margin_r': currentData.access.linkUrl}"
               ref="copyBtn"
-              data-clipboard-text="666"
-              @mouseenter="copyBtn"
-              @click="copyBtn"
+              :data-clipboard-text="currentData.access.qqCode"
+              @mouseenter="copyQQCode"
+              @click="copyQQCode"
+              v-if="currentData.access.qqCode"
             >
               <img src="https://www.chbice.com/imgFile/icon/qq_url.png" alt="">
               <p class="p1">获取管理员QQ号</p>
             </div>
-            <div class="mask_bottom_btn">
+            <div
+              class="mask_bottom_btn"
+              ref="copyLink"
+              :data-clipboard-text="currentData.access.link"
+              @mouseenter="copyLinkBtn"
+              @click="copyLinkBtn"
+              v-if="currentData.access.linkUrl"
+            >
               <img src="https://www.chbice.com/imgFile/icon/copy_url.png" alt="">
-              <p class="p1">获取管理员QQ号</p>
+              <p class="p1">复制私密链接</p>
             </div>
           </div>
         </div>
@@ -43,7 +51,8 @@ export default {
   data() {
     return {
       downloadList: null,
-      IsOpenDownloadMask: false
+      IsOpenDownloadMask: false,
+      currentData: null
     }
   },
   created() {
@@ -52,19 +61,31 @@ export default {
     this.initList()
   },
   methods: {
-    copyBtn() {
-      let clipboard = new this.Clipboard(this.$refs.copyBtn); //在main.js中引用
+    copyQQCode() {
+      this.copyBtn(this.$refs.copyBtn)
+    },
+    copyLinkBtn() {
+      this.copyBtn(this.$refs.copyLink)
+    },
+    copyBtn(ref) {
+      const _this = this;
+      let clipboard = new this.Clipboard(ref); //在main.js中引用
       clipboard.on("success", e => {
+        _this.IsOpenDownloadMask = false
+        _this.$message({
+          message: '复制成功',
+          type: 'success'
+        });
         // 释放内存
-        // clipboard.destroy();
+        clipboard.destroy();
       });
       clipboard.on("error", e => {
-        console.log(e, 'error');
+        _this.IsOpenDownloadMask = false
         // 不支持复制
-        // Message({
-        //   message: "该浏览器不支持自动复制",
-        //   type: "warning"
-        // });
+        _this.$message({
+          message: '该浏览器不支持自动复制!',
+          type: 'warning'
+        });
         // 释放内存
         clipboard.destroy();
       });
@@ -78,7 +99,16 @@ export default {
       })
     },
     downloadBtn(idx) {
-      // const item = this.downloadList[idx]
+      let downloadList = this.downloadList[idx];
+      if (downloadList.access.linkPassword && downloadList.access.linkUrl) {
+        downloadList.access.link = `百度云地址：${downloadList.access.linkUrl}，密码：${downloadList.access.linkPassword}`
+      } else if (downloadList.access.linkUrl) {
+        downloadList.access.link = `百度云地址：${downloadList.access.linkUrl}`
+      }
+      if (downloadList.access.qqCode) {
+        downloadList.access.qqCode = `管理员QQ号：${downloadList.access.qqCode}`
+      }
+      this.currentData = downloadList
       this.IsOpenDownloadMask = true
     },
     closeMask() {
@@ -90,6 +120,9 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .margin_r {
+    margin-right: .89rem
+  }
   .download_wrap
     width 7.5rem
     position fixed
