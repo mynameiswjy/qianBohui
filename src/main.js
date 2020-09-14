@@ -8,6 +8,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/recompose_ele_ui.css'
 import router from './router'
+import Clipboard from 'clipboard';
+
+Vue.prototype.Clipboard = Clipboard;
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

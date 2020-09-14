@@ -1,9 +1,9 @@
 <template>
-    <div class="news_container"  style="background-color: #F4F3F3;">
+    <div class="news_container">
       <div class="news_wrap_new">
         <div class="exhibi_title">展会新闻</div>
         <ul class="exhibition_news">
-          <li :class="{'exhibition_news1': index != listZHXW.length-1}" v-for="(item, index) in listZHXW" :key="item.id" @click="goToDetail(item.code)">
+          <li :class="{'exhibition_news1': index + 1 !== listZHXW.length}" v-for="(item, index) in listZHXW" :key="item.id" @click="goToDetail(item.code)">
             <div class="h3">
               <span class="span">{{item.title}}</span>
               <span class="">{{item.newsTime}}</span>
@@ -206,22 +206,20 @@ export default {
 
 <style scoped lang="stylus">
   .news_wrap_new
-    margin-left: 0.25rem;
-    width: 7rem;
-    /*height: 4.71rem;*/
+    margin-left: 0.3rem;
+    width: 6.9rem;
     background-color: #ffffff;
-    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-    border-radius: 0.14rem;
     .exhibi_title
-      height: 0.94rem;
-      background-color: #eed582;/*#*/
-      border-radius: 0.14rem 0.14rem 0 0;
-      position: relative;
-      font-size: 0.36rem;
-      font-weight: 600;
+      background-image: url("https://www.chbice.com/imgFile/icon/title_bg.png");
+      background-repeat: no-repeat;
+      background-size: 2.45rem 0.53rem;
+      width: 2.45rem;
+      height: 0.53rem;
+      margin: 0 auto 0.2rem;
+      font-size: 0.32rem;
+      color: #fff;
+      line-height: 0.53rem;
       text-align: center;
-      line-height: 0.94rem;
-      color #000/*#*/
       .exhibi_more
         position: absolute;
         top: 0;
@@ -229,66 +227,85 @@ export default {
         padding: 0.38rem 0.24rem 0 0;
         font-size: 0.24rem;
     .exhibition_news
-      padding: 0.13rem 0 0.13rem 0.22rem;
       li
-        width: 6.48rem;
-        line-height: 0.69rem;
+        line-height: 0.85rem;
         font-size: 0.28rem;
+        color: #333;
+        height: 0.85rem;
         .h3
           display: flex;
           justify-content: space-between;
-          height: 0.7rem;
-          color: #000;
+          color #333
+          font-size .28rem
           .span
             width: 4.5rem;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
     .exhibition_news1
-      border-bottom: 0.01rem solid #949494;
+      border-bottom: 0.01rem solid #e6e6e6;
   .news_detail
-    width 7rem
-    height 5.4rem
+    width 6.9rem
     background-color: #fff
-    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-    border-radius: 0.14rem;
-    margin-left 0.25rem
-    margin-top 1.22rem
+    margin-left 0.3rem
+    /*margin-top .5rem*/
     overflow hidden
-    .nav_news1
-      background-color: #fff
-      position relative
-    .nav_news1:before
+    .nav_news:after
       content ''
-      width 89.6%
-      height 0.04rem
-      background-color: #eed582;/*#*/
+      width .28rem
+      height .53rem
+      background-image url("https://www.chbice.com/imgFile/icon/title_left.png")
+      background-size cover
+      background-repeat no-repeat
       position absolute
-      bottom 0
-      transform transLateX(-50%)
-      left 50%
+      left -0.28rem
+      top 0
+    .nav_news:before
+      content ''
+      width .28rem
+      height .53rem
+      background-image url("https://www.chbice.com/imgFile/icon/title_right.png")
+      background-size cover
+      background-repeat no-repeat
+      position absolute
+      right -0.28rem
+      top 0
     .nav_news
+      font-size: 0.3rem
+      width 3.2rem
       display flex
-      font-size 0.3rem
-      color #000000/*#*/
-      background-color: #eed582;/*#*/
+      justify-content center
+      color #BFA267
+      margin 0 auto
+      height .53rem
+      border-top .02rem solid #BFA267
+      border-bottom .02rem solid #BFA267
+      position relative
       li
-        width 50%
+        width 1.6rem
+        background-color: #BFA267;
         text-align center
-        line-height 0.64rem
-        font-weight 600
+        line-height 0.53rem
+        font-weight 550
+        color #fff
+    .nav_news1
+      background-color: #fff!important
+      position relative
+      color #BFA267!important
     .news_list
       font-size: 0.28rem
       color: #000000;
-      width 6.47rem
-      height 3.54rem
+      width 6.9rem
       margin 0.15rem auto 0
       .news_boeder
-        border-bottom: solid 0.02rem #949494;
+        border-bottom: solid 0.02rem #e6e6e6;
       li
         display flex
-        height 0.7rem
-        line-height 0.7rem
+        width: 6.9rem;
+        line-height: 0.85rem;
+        font-size: 0.28rem;
+        color: #333;
+        height: 0.85rem;
         justify-content space-between
         .news_content_list_left
           width: 3.5rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
@@ -298,18 +315,18 @@ export default {
     margin-top 0.15rem
     padding-bottom 0.5rem
     font-size: 0.22rem;
-    color: #000000;
+    color: #fff;
     .prev, .next
       width: 1.06rem;
       height: 0.37rem;
-      background-color: #f4f3f3;
+      background-color: #ccc;
       border-radius: 0.18rem;
       line-height 0.37rem
       text-align center
       margin 0 0.14rem
     .page_btn
-      background-color: #eed582;/*#*/
-      color #000
+      background-color: #BFA267;/*#*/
+      color #fff
     /*old style*/
   .news_container
     width: 100%

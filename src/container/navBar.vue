@@ -1,10 +1,11 @@
 <template>
-    <div style="width: 100%;background-color: #F4F3F3;">
-      <div style="padding: 0.12rem 0 0.12rem 0;" :class="{'sea-wrap': IsActive}">
+    <div style="width: 100%;">
+      <div :class="{'sea-wrap': IsActive}">
         <div class="search_btn" @click="searchBtn">
           <div>钱币博览会</div>
           <div class="search_icon">
-            <img src="https://www.chbice.com/imgFile/cut/search.png" class="search-icon" alt=""/>
+<!--            <img src="https://www.chbice.com/imgFile/cut/search.png" class="search-icon" alt=""/>-->
+            <span class="iconfont icon-sousuo"></span>
           </div>
         </div>
       </div>
@@ -15,25 +16,15 @@
           </div>
         </Swiper>
       </div>
-      <!--<div class="nav-wrapper" ref="viewport" v-if="NewNav">
-        <div ref="content" style="width: 100%">
-          <ul class="tab-conten">
-            <li class="tab-li" v-for="tab in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
-              <router-link class="link-go" :to="tab.path">{{tab.name}}</router-link>
-            </li>
-          </ul>
-        </div>
-        <div class="search" @click="searchBtn"><img src="../assets/images/search.png" class="search-icon" alt=""/></div>
-      </div>-->
       <div class="nav_wrap" :class="{'nav_wrap1': IsActive}">
         <ul class="nav_content">
           <li class="nav_item" :class="{'nav_item1': index != tabs.length-1}" v-for="(tab, index) in tabs" v-bind:key="tab.id" @click="navBtn({idx: tab.id, path: tab.path})">
             <router-link class="link-go" :to="tab.path">
-              <div class="nav_img" :class="{'nav_img1': routerPath == tab.path && !IsActive}">
+              <div class="nav_img">
                 <img :src="tab.selectImg" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
                 <img :src="tab.img" :class="{'img_node': IsActive}" alt="nav" v-else>
               </div>
-              <div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>
+              <!--<div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>-->
             </router-link>
           </li>
         </ul>
@@ -72,53 +63,53 @@ export default {
           path: '/homePage',
           show: true,
           img_active: 'https://www.chbice.com/imgFile/nav_icon1.png',
-          img: 'https://www.chbice.com/imgFile/cut/index.png',
+          img: 'https://www.chbice.com/imgFile/icon/index.png',
           selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon1.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/index_active.png'
+          selectImg: 'https://www.chbice.com/imgFile/icon/index_active.png'
         },
         {
           name: '关于展会',
           id: '1',
           path: '/aboutzh',
-          img: 'https://www.chbice.com/imgFile/cut/exhibition.png',
+          img: 'https://www.chbice.com/imgFile/icon/exhibition.png',
           img_active: 'https://www.chbice.com/imgFile/nav_icon2.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/exhibition_active.png',
+          selectImg: 'https://www.chbice.com/imgFile/icon/exhibition_active.png',
           selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon2.png'
         },
         {
           name: '展商专区',
           id: '2',
           path: '/goods',
-          img: 'https://www.chbice.com/imgFile/cut/exhibitor.png',
+          img: 'https://www.chbice.com/imgFile/icon/exhibitor.png',
           img_active: 'https://www.chbice.com/imgFile/nav_icon3.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/exhibitor_active.png',
+          selectImg: 'https://www.chbice.com/imgFile/icon/exhibitor_active.png',
           selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon3.png'
         },
         {
           name: '观众专区',
           id: '3',
           path: '/audience',
-          img: 'https://www.chbice.com/imgFile/cut/audience.png',
+          img: 'https://www.chbice.com/imgFile/icon/audience.png',
           img_active: 'https://www.chbice.com/imgFile/nav_icon4.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/audience_active.png',
+          selectImg: 'https://www.chbice.com/imgFile/icon/audience_active.png',
           selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon4.png'
         },
         {
           name: '新闻资讯',
           id: '4',
           path: '/news',
-          img: 'https://www.chbice.com/imgFile/cut/news.png',
+          img: 'https://www.chbice.com/imgFile/icon/news.png',
           img_active: 'https://www.chbice.com/imgFile/nav_icon5.png',
-          selectImg: 'https://www.chbice.com/imgFile/cut/news_active.png',
+          selectImg: 'https://www.chbice.com/imgFile/icon/news_active.png',
           selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon5.png'
         },
       ],
       navIdx: 0,
       images: [
-        /*{img: 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'},*/
+        {img: 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'},
         {img: 'https://www.chbice.com/imgFile/20181014165937.jpg'},
-        /*{img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'},
-        {img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'}*/
+        {img: 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640'},
+        {img: 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640'}
       ],
       scrollToEasing: 'bounce',
       IsActive: this.$store.state.IsActive // 十一活动样式控制器
@@ -128,7 +119,6 @@ export default {
   },
   mounted() {
     this.$store.commit(types.ROUTER_PATH, this.$route.path)
-    console.log(this.$store.state.imgIndex);
     setTimeout(() => {
       this._initSlider()
     }, 20)
@@ -185,11 +175,11 @@ export default {
   .sea-wrap
     background-color: #e20212;
   .search_btn
-    width 6.75rem
-    height 0.62rem
-    margin 0 0 0 0.25rem
-    box-shadow: 0.03rem 0.05rem 0.06rem 0  rgba(86, 88, 89, 0.18);
-    border-radius: 0.14rem;
+    width 6.65rem
+    height 0.56rem
+    margin 0.3rem 0.3rem 0.3rem
+    border-radius: 0.28rem;
+    border: 0.01rem solid #BFA267;
     display flex
     font-size 0.26rem
     background-color: #fff
@@ -200,13 +190,13 @@ export default {
     .search_icon
       width 0.61rem
       height 0.62rem
-      background-color: #F4BB43
-      border-radius 0 0.14rem 0.14rem 0
-      img
-        width 0.46rem
-        height auto
-        display block
-        margin 0.1rem auto 0
+      border-radius 0 0.28rem 0.28rem 0
+      text-align center
+      line-height 0.62rem
+      .icon-sousuo
+        font-size 0.34rem
+        font-weight 600
+        color #BFA267
   .nav_wrap1
     background-image: url("https://www.chbice.com/imgFile/actve_top.jpg")
     background-repeat no-repeat
@@ -214,12 +204,12 @@ export default {
   .nav_wrap
     .nav_content
       display flex
-      padding 0.7rem 0
-      margin-left 0.38rem
+      padding 0.3rem 0 0.3rem
+      margin-left 0.5rem
       .nav_item1
-        margin-right 0.46rem
+        margin-right 0.62rem
       .nav_item
-        width 0.98rem
+        width 0.8rem
         margin-left
         .nav_name1
           font-weight 600
@@ -229,20 +219,17 @@ export default {
           text-align center
           margin-top 0.14rem
         .nav_img
-          width 0.98rem
-          height 0.98rem
-          background-color: #fff
-          border-radius 0.98rem
+          width 0.8rem
+          height 0.8rem
+          border-radius 0.8rem
           display flex
           justify-content center
           align-items center
           img
-            width 0.6rem
+            width 0.8rem
             height: auto
           .img_node
             width 0.98rem
-        .nav_img1
-          background-color: #F4BB43;
   .nav-wrapper
     position relative
     width 100%

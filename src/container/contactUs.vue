@@ -66,7 +66,6 @@ export default {
   top: 0
   bottom 0.98rem
   width 100%
-  background-color: #F4F3F3;
   .contact_content
     height 100%
     overflow hidden

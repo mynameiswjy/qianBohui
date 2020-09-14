@@ -1,17 +1,8 @@
 <template>
-    <div class="sear-wrap"  style="background-color: #F4F3F3;">
-      <!--<div class="sear">
-        <form action="" enctype='applicaion/json'>
-          <div class="sear-input">
-            <img class="sear-img" src="../assets/images/search.png" alt="">
-            <input type="text" placeholder="搜索" @keyup.enter="submit" v-model="searVal" style="vertical-align:middle">
-          </div>
-        </form>
-        <div @click="Search_con">取消</div>
-      </div>-->
+    <div class="sear-wrap">
       <div class="search_input">
-        <img class="search_icon" src="https://www.chbice.com/imgFile/cut/search.png" alt="">
-        <div>
+        <div class="seach_left">
+          <span class="iconfont icon-sousuo"></span>
           <form action="" enctype='applicaion/json'>
             <input type="text" placeholder="钱币博览会" @keyup.enter="submit" v-model="searVal">
           </form>
@@ -19,7 +10,6 @@
         <div class="search_cansel" @click="Search_con">取消</div>
       </div>
       <div v-show="storageKeywords && !searchList.length">
-        <div style="height: 0.12rem;"></div>
         <p class="hot-sear hot-sear1">
           <span>搜索历史</span>
           <span @click="deleteHistory" class="iconfont icon-icon_delete"></span>
@@ -194,37 +184,50 @@ export default {
     width 100%
     bottom: 0
     font-size 0.24rem
-    background-color: rgba(255,255,255,1);
+    background-color: #fff;
     z-index 333
     .search_input
       display flex
       width 6.95rem
       height: 0.61rem
       font-size 0.3rem
-      background-color: #fff
-      box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-      border-radius: 0.14rem
-      box-sizing border-box
-      margin 0.1rem 0 0 0.25rem
-      align-items center
+      margin .4rem 0.3rem
+      color #BFA267
+      .seach_left
+        display flex
+        width 5.96rem
+        height .56rem
+        border-radius: .28rem;
+        border: .01rem solid #BFA267;
+        input
+          width 100%
+          height 100%
+          color #BFA267
+          box-sizing border-box
+        input::-webkit-input-placeholder {
+          color: #BFA267 ; /*WebKit browsers*/
+        }
+        input::-moz-placeholder {
+          color: #BFA267 ; /*Mozilla Firefox 4 to 18 */
+        }
+        input::-moz-placeholder {
+          color: #BFA267 ; /*Mozilla Firefox 19+ */
+        }
+        input::-ms-input-placeholder {
+          color: #BFA267 ; /*Internet Explorer 10+*/
+        }
+        .icon-sousuo
+          font-size .34rem
+          width .64rem
+          text-align center
+          line-height .61rem
+          font-weight 600
       .search_cansel
-        width 0.78rem
-        border-radius: 0 0.14rem 0.14rem 0
-        letter-spacing: 0.03rem
-        color: #000000;
-        background-color: #f4ba43;
+        width 0.94rem
+        color: #BFA267;
         height 0.61rem
         line-height 0.61rem
         text-align center
-      input
-        width 5.37rem
-        height 0.61rem
-        box-sizing border-box
-      .search_icon
-        width 0.45rem
-        max-height 0.39rem
-        height auto
-        margin 0 0.24rem 0 0.11rem
     .confirm_mask
       position fixed
       top: 0
@@ -269,20 +272,19 @@ export default {
         .sear_content_list
           display flex
           justify-content space-between
-          width: 7.5rem;
-          height: 1rem;
+          width: 6.9rem;
+          height: .85rem;
           background-color: #fff;
           box-sizing border-box
           line-height: 1rem;
-          padding-left: 0.25rem;
-          margin-bottom: 0.08rem;
-          font-size: 0.3rem;
+          margin 0 auto;
+          font-size: 0.28rem;
           font-family: PingFangSC-Regular;
-          color: #000000;
+          color: #333;
+          border-bottom .01rem solid #E6E6E6
           .icon-gengduo
-            font-size 0.31rem
-            font-weight 600
-            margin-right 0.25rem
+            font-size 0.28rem
+            color #BFA267
           .sear_content_list_left
             width: 3.21rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
     .sear
@@ -291,21 +293,6 @@ export default {
       justify-content: center;
       font-size 0.26rem
       border-bottom 0.01rem solid rgba(245,245,245,1)
-      /*.sear-input
-        width 5.97rem
-        height: 0.54rem
-        background rgba(245,245,245,1)
-        border-radius: 0.12rem
-        margin 0.18rem 0 0.17rem 0
-        display flex
-        .sear-img
-          width: 0.24rem;
-          height 0.24rem
-          margin 0.15rem 0.21rem 0.15rem 0
-        input
-          height 100%
-          width 100%
-          background rgba(245,245,245,1)*/
       div
         font-family:PingFangSC-Regular;
         color:rgba(51,51,51,1);
@@ -316,41 +303,26 @@ export default {
       display flex
       justify-content space-between
       .icon-icon_delete
-        font-size 0.32rem
-        padding-right 0.27rem
+        font-size 0.35rem
+        padding-right 0.3rem
         padding-left 0.25rem
     .hot-sear
-      margin-top 0.38rem
-      margin-left 0.25rem
+      margin-left 0.3rem
       margin-bottom 0.33rem
       font-family:PingFangSC-Regular;
-      color: #888888;
+      font-size .32rem
+      color: #333;
     .keywords
       display flex
       flex-wrap: wrap
       margin-left 0.28rem
-      font-size: 0.28rem;
       color: #353535;
       li
-        background-color: #fffefe;
-        border-radius: 0.2rem
-        padding 0.12rem 0.25rem
-        margin-bottom 0.26rem
-        margin-right 0.3rem
-  input::-webkit-input-placeholder {
-    color: #000000;
-    opacity: 0.5;
-  }
-  input::-moz-placeholder {
-    color: #000000;
-    opacity: 0.5;
-  }
-  input::-moz-placeholder {
-    color: #000000;
-    opacity: 0.5;
-  }
-  input::-ms-input-placeholder {
-    color: #000000;
-    opacity: 0.5;
-  }
+        background-color: #BFA267;
+        border-radius: 0.22rem
+        padding 0.08rem 0.16rem
+        line-height 1
+        margin-bottom 0.24rem
+        margin-right 0.24rem
+        color #fff
 </style>

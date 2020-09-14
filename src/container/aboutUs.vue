@@ -37,30 +37,28 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .us_wrap
-    background-color: #F4F3F3;
     .us_content
-      width 7rem
-      background-color: #ffffff;
-      box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
-      border-radius: 0.14rem
-      margin-left 0.25rem
+      width 6.9rem
+      margin-left 0.3rem
+      padding-top .3rem
       overflow hidden
       h2
-        width 100%
-        height 0.94rem
-        background-color: #eed582;/*#*/
-        font-size: 0.36rem;
-        font-weight 600
-        text-align center
-        line-height 0.94rem
-        color: #000000/*#;*/
-        box-sizing border-box
+        background-image: url("https://www.chbice.com/imgFile/icon/title_bg.png");
+        background-repeat: no-repeat;
+        background-size: 2.45rem 0.53rem;
+        width: 2.45rem;
+        height: 0.53rem;
+        margin: 0 auto 0.2rem;
+        font-size: 0.32rem;
+        color: #fff;
+        line-height: 0.53rem;
+        text-align: center;
       p
         font-size: 0.28rem
         line-height: 0.6rem
-        color: #000000;
-        width 6.5rem
-        margin 0.1rem 0.25rem 0.12rem
+        color: #333;
+        width 6.9rem
+        margin 0.1rem 0 0.12rem
     .us_temp_foot
       margin-top 0.9rem
 </style>

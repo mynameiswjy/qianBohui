@@ -1,20 +1,20 @@
  <template>
    <div>
      <div class="new_tempwrap">
-       <ul class="header_nav">
-         <li :class="{'text_active':idx == index, 'li_add_style': aboutzhObj.navList.length <= 2}"
+       <ul class="header_nav" :class="{'header_nav1': aboutzhObj.navList.length === 1}">
+         <li :class="{'text_active':idx == index && aboutzhObj.navList.length !== 1}"
              @click="changeTempBtns(index)"
              v-for="(item, index) in aboutzhObj.navList"
              :key="index"
          >
-           {{item}}
+           {{item.name}}
          </li>
        </ul>
        <div class="temp_content">
          <ul>
            <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
              <div v-if="text.isTableType">
-               <table-temp style="width: 6.3rem;margin-left: -0.06rem;padding-top: 0.3rem;padding-bottom: 0.2rem;"></table-temp>
+               <table-temp style="width: 6.9rem;margin-left: -0.06rem;padding-top: 0.3rem;padding-bottom: 0.2rem;"></table-temp>
              </div>
              <div v-else>
                <div class="temp_content-li" :class="{show_temp: text.show_temp}" @click="showBts(index)">
@@ -30,13 +30,12 @@
          </ul>
        </div>
      </div>
-     <reservation @closeTemp="tempCloseGoods" v-if="isReservation"></reservation>
+<!--     <reservation @closeTemp="tempCloseGoods" v-if="isReservation"></reservation>-->
      <visit @closeVisit="closeVisit" v-if="isVisitTemp"></visit>
    </div>
 </template>
 
 <script type="text/ecmascript-6">
-import reservation from "@/components/mask/reservation.vue"
 import visit from "@/components/mask/visit.vue"
 import tableTemp from '../tableChart/tableChart'
 export default {
@@ -68,7 +67,6 @@ export default {
       showFullText: false,
       showContentTemp: false,
       initShowFullBtn: 0,
-      isReservation: false,
       isVisitTemp: false,
       userLastStatus: 0, // 展商专区用户打开展位预订前的状态
       userLastStatusVisit: 0 // 观众专区用户打开参观登记前的状态
@@ -103,17 +101,21 @@ export default {
     changeTempBtns(e = 0) {
       this.idx = e
       let item = this.aboutzhObj.textList[e]
+      let titleItem = this.aboutzhObj.navList[e]
       this.$nextTick(function () {
         this.ShowContentTemp()
         item.showFullBtn = this.$refs.t_ref[e].clientHeight
       })
-      if (e == 2 && this.isReservaPage) { // 在展商专区打开展位预订模板
-        this.isReservation = true
+      if (e == 2 && titleItem.type === 'IsSkip') { // 在展商专区打开展位预订模板
+        this.$router.push({path: titleItem.path});
+        this.idx = this.userLastStatus
       } else {
         this.userLastStatus = e
       }
       if (e == 1 && this.isVisitP) {
-        this.isVisitTemp = true
+        // this.isVisitTemp = true
+        this.$router.push({path: titleItem.path});
+        this.idx = this.userLastStatus
       } else {
         this.userLastStatusVisit = e
       }
@@ -152,7 +154,6 @@ export default {
   computed: {
   },
   components: {
-    reservation,
     visit,
     tableTemp
   }
@@ -162,45 +163,56 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .new_tempwrap
     width 7rem
-    /*height 5rem*/
     background-color: #ffffff;
-    box-shadow: 0.03rem 0.05rem 0.06rem 0 rgba(86, 88, 89, 0.18);
     border-radius: 0.14rem;
     margin-left 0.25rem
+    .header_nav:after
+      content ''
+      width .28rem
+      height .53rem
+      background-image url("https://www.chbice.com/imgFile/icon/title_left.png")
+      background-size cover
+      background-repeat no-repeat
+      position absolute
+      left -0.28rem
+      top 0
+    .header_nav:before
+      content ''
+      width .28rem
+      height .53rem
+      background-image url("https://www.chbice.com/imgFile/icon/title_right.png")
+      background-size cover
+      background-repeat no-repeat
+      position absolute
+      right -0.28rem
+      top 0
     .header_nav
-      width 7rem
-      height 0.94rem
-      border-radius 0.14rem 0.14rem 0 0
-      background-color: #eed582
       font-size: 0.3rem
+      width 4.8rem
       display flex
-      justify-content space-between
-      overflow hidden
+      justify-content center
+      color #BFA267
+      margin 0 auto
+      border-top .02rem solid #BFA267
+      border-bottom .02rem solid #BFA267
+      position relative
       li
-        width 2.333rem
-        background-color: #eed582;/*#*/
+        width 1.6rem
+        background-color: #BFA267;
         text-align center
-        line-height 0.98rem
+        line-height 0.53rem
         font-weight 550
+        color #fff
       .text_active
         background-color: #fff
+        color #BFA267
         position relative
-      .text_active:after {
-        content ''
-        width 89.6%
-        height 0.04rem
-        background-color: #eed582;/*#*/
-        transform translateX(-50%)
-        position absolute
-        left 50%
-        bottom: 0
-      }
       .li_add_style
         width 50%
     .temp_content
       font-size 0.28rem
-      line-height 0.6rem
-      width 6.19rem
+      line-height 0.5rem
+      width 6.72rem
       margin 0 auto
       text-align: justify;
       padding-top 0.2rem
@@ -214,6 +226,8 @@ export default {
         -webkit-line-clamp:8;
       .a_full
         color #eed582
+  .header_nav1
+    width 1.6rem!important
   .border_s
     position relative
     font-size 0.36rem

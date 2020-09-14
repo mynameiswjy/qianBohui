@@ -1,30 +1,27 @@
 <template>
     <div class="mask" :class="{show: isShow}" ref="wrapper" @touchmove.prevent>
       <scroll style="height: 100%" :data="userInputList.selectItem">
-        <div class="wraps" :class="{p_bottom: p_bottom}" ref="content">
-          <div class="res-title">
-            <h2>{{userInputList.name}}</h2>
-            <span class="iconfont icon-guanbi" @click="closeTemp"></span>
-          </div>
+        <div class="wraps" ref="content">
           <ul style="position: relative;">
+            <div style="height: .13rem;"></div>
             <li v-for="(item, index) in userInputList.selectItem" :key="index">
-              <div class="list" v-if="(item.isType == 'I')">
+              <div class="list mask-margin" v-if="(item.isType == 'I')">
                 <div class="list-left">
+                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                   <div>{{item.name}}</div><!-- :class="{'list-left-text': item.name.length === 4, 'list-left-text1': item.name.length === 3}"-->
-                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
                 </div>
-                <input v-model="item[item.code]" type="text"/>
+                <input v-model="item[item.code]" :placeholder="'请输入' + item.name" type="text"/>
               </div>
-              <div class="list" v-if="(item.isType == 'S')">
+              <div class="list mask-margin" v-if="(item.isType == 'S')">
                 <div class="list-left">
-                  <div>{{item.name}}</div>
                   <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
+                  <div>{{item.name}}</div>
                 </div>
                 <div style="position: relative;" class="select_wrap">
                   <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
                     <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.code">{{opt.name}}</option>
                   </select>
-                  <div v-show="!item[item.code]" class="iconfont icon-xiala"></div>
+                  <div v-show="!item[item.code]" class="iconfont icon-jiantou"></div>
                   <div v-show="!item[item.code]" class="select-default">请选择</div>
                 </div>
               </div>
@@ -35,24 +32,9 @@
           </ul>
           <div class="list-upload">
             <div>资料上传</div>
-            <a class="upload" href="https://pan.baidu.com/s/1rMlRLngLGfIoUjTDzDROAg"  @click="downloadData">如需下载预定资料，请点击<img src="../../assets/images/zh-down.png" alt=""></a>
+            <a class="upload" href="#"  @click="downloadData">(如需下载预定资料，请点击)</a>
           </div>
           <div class="add-img">
-            <!--<el-upload
-              action="https://www.chqbh.com/qbh/uploadDownload/uploadImage.do"
-              list-type="picture-card"
-              :before-upload="beforUpload"
-              :limit="8"
-              :before-remove="beforRemove"
-              :on-remove="onRemoveImg"
-              :on-preview="handlePictureCardPreview"
-              :on-success="successImg"
-            >
-              <div class="upload-img">
-                <img src="../../assets/images/add_img.png" alt="">
-                <div class="upload-img-add">添加图片</div>
-              </div>
-            </el-upload>-->
             <imgUpload @imgIdObj="imgArr"></imgUpload>
           </div>
           <div @click="sendData" class="btns">确定</div>
@@ -65,7 +47,6 @@
 <script type="text/ecmascript-6">
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
-import { isBottom } from '@/utils/utils'
 import Loading from '../loading/loading'
 import { getRegisterTypeInfo, deleteImage, putRegisterInfo } from '@/api/index'
 import imgUpload from '../imgUpload/imgUpload'
@@ -78,7 +59,6 @@ export default {
     return {
       isShow: false,
       isReservationPage: false,
-      p_bottom: false,
       imgNum: 0,
       userInputList: {},
       sendList: [],
@@ -89,9 +69,8 @@ export default {
     this.initInputList()
   },
   mounted: function () {
-    let wrapper = this.$refs.wrapper.clientHeight
-    let content = this.$refs.content.clientHeight
-    this.p_bottom = isBottom(wrapper, content)
+    /*let wrapper = this.$refs.wrapper.clientHeight
+    let content = this.$refs.content.clientHeight*/
   },
   methods: {
     sendData() {
@@ -170,6 +149,7 @@ export default {
       getRegisterTypeInfo({registerType: 'BOOTH_RESERVE'}).then(res => {
         if (res.data.returnCode === '0000') {
           this.userInputList = res.data.returnData
+          document.title = res.data.returnData.name;
         }
       })
     },
@@ -216,7 +196,7 @@ export default {
       return (isJPG || isPNG || isBMP) && isLt2M && isImg;
     },
     downloadData() {
-      console.log(2222)
+      this.$router.push({path: 'downloadList'});
     }
   },
   components: {
@@ -229,23 +209,20 @@ export default {
 
 <style scoped lang="stylus">
   .select_wrap
-    .icon-xiala
+    .icon-jiantou
       position: absolute
-      top 0
-      color #959595
-      right 0.96rem
+      top 50%
+      transform translateY(-50%)
+      font-size .28rem
+      color #999
+      right 0
   .select-default
-    width 0.86rem
-    height 0.5rem
-    background-color: #eed582;/*#*/
     position absolute
-    top: 0.04rem
-    right: 0
-    font-size 0.24rem
-    color #000000/*#;*/
-    text-align center
-    line-height 0.55rem
-    border-radius 0 0.14rem 0.14rem 0
+    top: 50%
+    transform translateY(-50%)
+    left 0
+    font-size 0.32rem
+    color #999
   .loading-wrap
     height 3rem
   .loading-container
@@ -255,13 +232,13 @@ export default {
     left 50%
     transform: translate(-50%, -50%)
   .list select{
-    width: 5rem;
+    width: 4.8rem;
+    background-color #fff
     height: 0.5rem;
-    background-color: #f4f3f3;
     border-radius: 0.14rem;
     padding-left 0.2rem
     box-sizing border-box
-    color: #000;
+    color: #333;
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
@@ -273,7 +250,7 @@ export default {
     width: 4.77rem;
     text-align: left;
     font-size: 0.18rem;
-    color: #eed582;/*#*/
+    color: #BFA267;
     margin-left: 0.1rem;
   }
   select::-ms-expand { display: none; }
@@ -284,7 +261,7 @@ export default {
   }
   .add-img
     display: flex;
-    margin: 0 0.36rem 0.3rem;
+    margin: 0 0.36rem 0.76rem;
     font-size: 0.24rem;
     .user-img
       background-color: #bfa
@@ -311,13 +288,13 @@ export default {
       /*position absolute
       top: 0*/
   .btns{
-    width:7rem;
+    width: 6.9rem;
     height:0.88rem;
-    background-color: #eed582;/*#*/
-    border-radius: 0.14rem;
+    background-color: #BFA267;
+    border-radius: 0.44rem;
     font-size: 0.36rem;
     font-family:PingFangSC-Regular;
-    color: #000000/*#;*/
+    color: #fff/*#;*/
     text-align: center;
     line-height: 0.88rem;
     font-weight 600

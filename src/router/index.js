@@ -58,6 +58,21 @@ export default new Router({
       path: "/newsLandingPage",
       name: 'newsLandingPage',
       component: () => import('@/container/newsLandingPage.vue')
+    },
+    {
+      path: "/reservation",
+      name: 'reservation',
+      component: () => import('@/components/mask/reservation.vue')
+    },
+    {
+      path: "/visit",
+      name: 'visit',
+      component: () => import('@/components/mask/visit.vue')
+    },
+    {
+      path: "/downloadList",
+      name: 'downloadList',
+      component: () => import('@/components/downloadList.vue')
     }
   ]
 })

@@ -184,6 +184,15 @@ export function getShareToken(path, code) {
   })
 }
 
+// 下载列表
+export function downloadList(data = {}) {
+  return service({
+    url: '/qbh/material/getAll',
+    method: 'get',
+    params: data
+  })
+}
+
 export default {
   indexDo,
   successiveExhibitors,
@@ -194,5 +203,6 @@ export default {
   getNewsContent,
   getRegisterTypeInfo,
   deleteImage,
-  putRegisterInfo
+  putRegisterInfo,
+  downloadList
 }
