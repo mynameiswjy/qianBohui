@@ -15,9 +15,11 @@
           <p class="p">文件有效期2020-7-31  10:00</p>
           <div class="mask_bottom">
             <div
-              class="mask_bottom_btn copy1"
+              class="mask_bottom_btn"
               style="margin-right: .89rem"
+              ref="copyBtn"
               data-clipboard-text="666"
+              @mouseenter="copyBtn"
               @click="copyBtn"
             >
               <img src="https://www.chbice.com/imgFile/icon/qq_url.png" alt="">
@@ -51,18 +53,13 @@ export default {
   },
   methods: {
     copyBtn() {
-      const _this = this;
-      let clipboard = new this.Clipboard(".copy1"); //在main.js中引用
-      console.log(clipboard);
+      let clipboard = new this.Clipboard(this.$refs.copyBtn); //在main.js中引用
       clipboard.on("success", e => {
-        console.log(e);
-        debugger
         // 释放内存
         // clipboard.destroy();
       });
       clipboard.on("error", e => {
         console.log(e, 'error');
-        debugger
         // 不支持复制
         // Message({
         //   message: "该浏览器不支持自动复制",
