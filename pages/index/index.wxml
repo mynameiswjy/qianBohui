@@ -6,7 +6,7 @@
                     {{valHot}}
                 </view>
             </picker>
-            <image wx:if="{{!indexHot}}" class="section_hot_img" src="../../images/pageImg/select.png"></image>
+            <view wx:if="{{!indexHot}}" class="iconfont icon-jiantou1 picker_xiala"></view>
         </view>
         <view class="section_hot select-left">
             <picker class="" bindchange="hotSelectTo" range="{{valHotToList}}">
@@ -17,7 +17,7 @@
                     请选择
                 </view>
             </picker>
-            <image wx:if="{{!valHotTo}}" class="section_hot_img" src="../../images/pageImg/select.png"></image>
+            <view wx:if="{{!valHotTo}}" class="iconfont icon-jiantou1 picker_xiala"></view>
         </view>
         <!--<view wx:if="{{!valHotToList.length}}" style="width: 350rpx"></view>-->
         <view class="select-search-wrap" bindtap="goSearch">
