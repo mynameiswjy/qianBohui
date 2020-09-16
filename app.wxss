@@ -1,5 +1,8 @@
 @import "iconfont.wxss";
 
+view, text, input, textarea, button {
+  font-family: SourceHanSansSC-Regular, SourceHanSansSC;
+}
 /**app.wxss**/
 .container {
   height: 100%;

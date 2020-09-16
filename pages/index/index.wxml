@@ -1,15 +1,15 @@
 <block>
     <view class="select-wrap wraps">
-        <view class="section_hot">
-            <picker class="" bindchange="hotSelect" range="{{hotList}}">
+        <view class="section_hot common_wrap">
+            <picker class="common_content" bindchange="hotSelect" range="{{hotList}}">
                 <view class="picker">
                     {{valHot}}
                 </view>
             </picker>
             <view wx:if="{{!indexHot}}" class="iconfont icon-jiantou1 picker_xiala"></view>
         </view>
-        <view class="section_hot select-left">
-            <picker class="" bindchange="hotSelectTo" range="{{valHotToList}}">
+        <view class="section_hot common_wrap select-left">
+            <picker class="common_content" bindchange="hotSelectTo" range="{{valHotToList}}">
                 <view class="picker" wx:if="{{valHotTo}}">
                     {{valHotTo}}
                 </view>
@@ -19,22 +19,34 @@
             </picker>
             <view wx:if="{{!valHotTo}}" class="iconfont icon-jiantou1 picker_xiala"></view>
         </view>
-        <!--<view wx:if="{{!valHotToList.length}}" style="width: 350rpx"></view>-->
-        <view class="select-search-wrap" bindtap="goSearch">
-            <image class="select-search" src="../../images/pageImg/search.png"></image>
+        <view class="select-search-wrap common_wrap" bindtap="goSearch">
+<!--            <image class="select-search" src="../../images/pageImg/search.png"></image>-->
+            <view class="iconfont icon-sousuo1 common_content"></view>
         </view>
     </view>
     <swiper class="banner" autoplay="true" circular="true">
         <swiper-item wx:for="{{dataSet.banner}}" wx:key="{{index}}">
-            <image class="banner-img" mode="widthFix" src="{{item.imgIndex}}"></image>
+            <image class="banner-img" mode="" src="{{item.imgIndex}}"></image>
         </swiper-item>
     </swiper>
-    <image bindtap="goToDetail" mode="widthFix" class="advertising" src="{{subject}}"></image>
-    <view class="list" wx:if="{{MemorialMoney.length}}" wx:for="{{MemorialMoney}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
-        <image mode="aspectFit" src="{{item.url1}}"></image>
-        <view class="list-right">
-            <view class="list-right-top">{{item.tiele}}</view>
-            <view class="list-right-bottom">{{item.strTime}}</view>
+    <view class="subject_title">专题专场</view>
+<!--    <image bindtap="goToDetail" mode="widthFix" class="advertising" src="{{subject}}"></image>-->
+    <scroll-view scroll-x class="scroll_view">
+        <view style="display: flex;">
+            <view wx:for="{{5}}" class="subject_list">
+                <image src="" mode="widrhFix" class="subject_img"></image>
+            </view>
+        </view>
+    </scroll-view>
+
+<!--    <view class="subject_title">金币列表</view>-->
+    <view class="gold_item_wrap common_wrap" wx:if="{{MemorialMoney.length}}" wx:for="{{MemorialMoney}}" wx:key="{{index}}">
+        <view class="gold_item common_content" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+            <image mode="aspectFit" src="{{item.url1}}"></image>
+            <view class="list-right">
+                <view class="list-right-top">{{item.tiele}}</view>
+                <view class="list-right-bottom">{{item.strTime}}</view>
+            </view>
         </view>
     </view>
     <view wx:if="{{!MemorialMoney.length}}" class="empty">还没有相关内容</view>
