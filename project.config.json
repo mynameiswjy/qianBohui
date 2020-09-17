@@ -47,12 +47,16 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 0,
 			"list": [
 				{
 					"id": 0,
-					"name": "专题展示",
+					"name": "金币云展示",
 					"pathName": "pages/mainTheme/mainTheme",
 					"query": "",
 					"scene": null
@@ -66,8 +70,8 @@
 				{
 					"id": 2,
 					"name": "子单元",
-					"pathName": "pages/topicUnit/topicUnit",
-					"query": "",
+					"pathName": "pages/specialExhibition/specialExhibition",
+					"query": "id=25&themeName=金色符号",
 					"scene": null
 				},
 				{

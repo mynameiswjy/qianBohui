@@ -25,3 +25,17 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+/*new style*/
+.swiper {
+    height: 870rpx;
+    margin-top: 50rpx;
+}
+
+.banner_item {
+    width: 580rpx;
+    height: 870rpx;
+    background: #D8D8D8;
+    border-radius: 30rpx;
+    margin-right: 46rpx;
+}

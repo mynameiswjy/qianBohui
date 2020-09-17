@@ -1,6 +1,5 @@
 <block>
-    <view style="height:20rpx;"></view>
-    <view
+    <!--<view
             class="sub_item"
             wx:for="{{list}}"
             wx:key="{{index}}"
@@ -11,5 +10,10 @@
             bindtap="navDetails"
     >
         <view class="item_txt">{{item.name}}</view>
-    </view>
+    </view>-->
+    <swiper class="swiper" previous-margin="70rpx" next-margin="70rpx">
+        <swiper-item wx:for="{{5}}" wx:key="index">
+            <view class="banner_item"></view>
+        </swiper-item>
+    </swiper>
 </block>

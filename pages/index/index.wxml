@@ -30,17 +30,17 @@
         </swiper-item>
     </swiper>
     <view class="subject_title">专题专场</view>
-<!--    <image bindtap="goToDetail" mode="widthFix" class="advertising" src="{{subject}}"></image>-->
-    <scroll-view scroll-x class="scroll_view">
+    <image bindtap="goToDetail" mode="widthFix" class="advertising" src="{{subject}}"></image>
+    <!--<scroll-view scroll-x class="scroll_view">
         <view style="display: flex;">
             <view wx:for="{{5}}" class="subject_list">
                 <image src="" mode="widrhFix" class="subject_img"></image>
             </view>
         </view>
-    </scroll-view>
+    </scroll-view>-->
 
 <!--    <view class="subject_title">金币列表</view>-->
-    <view class="gold_item_wrap common_wrap" wx:if="{{MemorialMoney.length}}" wx:for="{{MemorialMoney}}" wx:key="{{index}}">
+    <view class="gold_item_wrap common_wrap" wx:if="{{MemorialMoney.length}}" wx:for="{{MemorialMoney}}" wx:key="index">
         <view class="gold_item common_content" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
             <image mode="aspectFit" src="{{item.url1}}"></image>
             <view class="list-right">

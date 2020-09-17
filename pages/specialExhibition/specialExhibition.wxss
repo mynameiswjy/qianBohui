@@ -1,13 +1,70 @@
 @import "../index/index.wxss";
-.banner {
-    width: 750rpx;
-    height: 260rpx;
+.showroom_sub_wrap {
+    width: 690rpx;
+    border-radius: 20rpx;
+    margin: 24rpx auto 50rpx;
+    justify-content: center;
+    align-items: center;
 }
-.apeci_txt {
-    width: 682rpx;
-    margin-left: 34rpx;
+
+.showroom_sub_content {
+    width: 690rpx;
+    border-radius: 20rpx;
+    background-color: #fff;
+    padding: 4rpx;
+}
+
+.showroom_sub_title {
+    font-size: 28rpx;
+    max-width: 640rpx;
+    color: #333;
+    line-height: 34rpx;
+    margin: 24rpx 0 0 20rpx;
+    padding-bottom: 24rpx;
+    border-bottom: 2rpx solid rgba(191, 162, 103, 0.5);
+}
+
+.showroom_sub_video {
+    width: 640rpx;
+    height: 366rpx;
+    background: #ccc;
+    border-radius: 20rpx;
+    margin: 24rpx 20rpx;
+}
+
+.voice_name {
     font-size: 30rpx;
-    color: rgb(51,51,51);
-    text-indent: 2em;
-    line-height: 50rpx;
+    color: #333333;
+    line-height: 44rpx;
+    margin: 24rpx 30rpx;
+}
+
+.progress_wrap {
+    position: relative;
+    margin: 0 20rpx 8rpx;
+}
+
+.progress {
+    width: 587rpx;
+    height: 4rpx;
+    background: #F2F2F2;
+    position: relative;
+}
+
+.progress_content {
+    width: 344rpx;
+    height: 4rpx;
+    background: #BFA267;
+    position: absolute;
+    left: 0;
+}
+
+.voice_time {
+    width: 587rpx;
+    height: 29rpx;
+    font-size: 20rpx;
+    color: #999;
+    line-height: 29rpx;
+    margin-left: 20rpx;
+    justify-content: space-between;
 }
