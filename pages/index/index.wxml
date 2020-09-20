@@ -25,7 +25,7 @@
         </view>
     </view>
     <swiper class="banner" autoplay="true" circular="true">
-        <swiper-item wx:for="{{dataSet.banner}}" wx:key="{{index}}">
+        <swiper-item wx:for="{{dataSet.banner}}" wx:key="index">
             <image class="banner-img" mode="" src="{{item.imgIndex}}"></image>
         </swiper-item>
     </swiper>

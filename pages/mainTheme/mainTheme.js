@@ -4,7 +4,10 @@ const app = getApp();
 
 Page({
   data: {
-    list: null
+    list: null,
+    currentIdx: 0,
+    isOpenClose: false,
+    videoUrl: null
   },
 
   onLoad: function (options) {
@@ -38,6 +41,37 @@ Page({
     }
 
   },
+
+  playBtn(e) {
+    const {idx} = e.currentTarget.dataset;
+    const videoUrl = this.data.list[idx].videoUrl;
+    if (!videoUrl) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '这个视频是空的',
+        showCancel: false
+      })
+      return
+    }
+    this.setData({
+      videoUrl: videoUrl,
+      isOpenClose: true
+    })
+  },
+
+  swiperChange(e) {
+    const index = e.detail.current;
+    this.setData({
+      currentIdx: index
+    })
+  },
+
+  closeVideo() {
+    this.setData({
+      isOpenClose: false
+    })
+  },
+
   onShareAppMessage: function () {
 
   }

@@ -18,22 +18,16 @@ Page({
     this.initData(options)
   },
   initData(options) {
-    /*let data = {
-      pageIndex: this.data.pageIndex,
-      pageSize:10,
-      parentType: 'decennial',
-      seedtType: '',
-      selectType: 'first'
-    }*/
     getMoneyList({id: options.id}).then(res => {
       console.log(res);
       if (res.data.returnCode === '0000') {
-        let list = this.data.list.concat(res.data.returnData)
+        let list = this.data.list.concat(res.data.returnData)//.dataList
         this.setData({
           // pageNum: res.data.returnData.pageNum,
           list: list,
           isSend:true,
-          pageIndex: this.data.pageIndex
+          pageIndex: this.data.pageIndex,
+          topVideo: this.data.list.content
         })
       } else {
         console.error('服务器错误')

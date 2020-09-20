@@ -150,7 +150,6 @@ page {
     color: #8E8D8D;
     font-size: 24rpx;
     margin-top: 10rpx;
-    text-align: right;
 }
 .look-more {
     font-size:28rpx;

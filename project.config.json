@@ -1,87 +1,105 @@
 {
-	"description": "项目配置文件。",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"scopeDataCheck": false,
-		"coverView": true,
-		"es6": true,
-		"postcss": true,
-		"compileHotReLoad": false,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"autoAudits": false,
-		"newFeature": true,
-		"uglifyFileName": false,
-		"uploadWithSourceMap": true,
-		"useIsolateContext": true,
-		"nodeModules": false,
-		"enhance": false,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false,
-		"showShadowRootInWxmlPanel": true
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
-	"appid": "wx5060b4dcb8908abc",
-	"projectname": "qbhMinapp",
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 0,
-			"list": [
-				{
-					"id": 0,
-					"name": "金币云展示",
-					"pathName": "pages/mainTheme/mainTheme",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "搜索",
-					"pathName": "pages/search/search",
-					"query": ""
-				},
-				{
-					"id": 2,
-					"name": "子单元",
-					"pathName": "pages/specialExhibition/specialExhibition",
-					"query": "id=25&themeName=金色符号",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "详情页",
-					"pathName": "pages/detail/detail",
-					"query": "moneyCode=600005&IsShare=1",
-					"scene": "1001"
-				}
-			]
-		}
-	}
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.0.4",
+  "appid": "wx5060b4dcb8908abc",
+  "projectname": "qbhMinapp",
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": 0,
+      "list": [
+        {
+          "id": 0,
+          "name": "金币云展示",
+          "pathName": "pages/mainTheme/mainTheme",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "搜索",
+          "pathName": "pages/search/search",
+          "query": ""
+        },
+        {
+          "id": 2,
+          "name": "子单元",
+          "pathName": "pages/specialExhibition/specialExhibition",
+          "query": "id=10&themeName=金色符号",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "详情页",
+          "pathName": "pages/detail/detail",
+          "query": "moneyCode=600002",
+          "scene": 1001
+        },
+        {
+          "id": -1,
+          "name": "展室二级页面",
+          "pathName": "pages/mainTheme/topicUnit/topicUnit",
+          "query": "id=23&themeName=金韵·光阴",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
