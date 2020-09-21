@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-export const baseUrl = 'https://www.chbice.com'
+export const baseUrl = 'https://www.mengniuhealth.cn' // https://www.mengniuhealth.cn https://www.chbice.com
 
 const service = axios.create({
   // api的base_url
@@ -204,5 +204,6 @@ export default {
   getRegisterTypeInfo,
   deleteImage,
   putRegisterInfo,
-  downloadList
+  downloadList,
+  advertising
 }
