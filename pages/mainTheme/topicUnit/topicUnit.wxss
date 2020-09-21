@@ -1,6 +1,4 @@
-page {
-    background-color: #f4f3f3;
-}
+@import "../../index/index.wxss";
 
 .cell_item {
     background-color: #fff;
@@ -37,4 +35,44 @@ page {
     max-width: 645rpx;margin: 0 auto;
     font-size: 25rpx;
     letter-spacing: 2rpx;
+}
+
+/*new style*/
+.gold_item_wrap {
+    height: 227rpx;
+}
+
+.gold_item {
+    height: 219rpx;
+}
+
+.gold_item .img {
+    width: 268rpx;
+    height: 179rpx;
+    background: #EAF3FA;
+    box-shadow: -6rpx -6rpx 20rpx 0rpx #FFFFFF, 6rpx 6rpx 20rpx 0rpx #C5D6F1;
+    border-radius: 20rpx;
+    border: 0rpx solid;
+    border-image: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(197, 214, 241, 1)) 4 4;
+}
+
+.list-right-top1 {
+    font-size: 32rpx;
+    color: #BFA267;
+    line-height: 38rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 300rpx;
+    margin-bottom: 30rpx;
+}
+
+.list-right-bottom {
+    font-size: 28rpx;
+    color: #BFA267;
+    line-height: 34rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }

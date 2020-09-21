@@ -1,22 +1,41 @@
 <view>
     <view class="search-content">
-        <view class="search-input">
-            <image src="../../images/pageImg/search.png"></image>
-            <input value="{{value}}" placeholder="{{keywords[0].name}}" bindinput="inputTyping" bindconfirm="search" type="text"/>
+        <view class="search-input_wrap common_wrap">
+            <view class="search-input common_content">
+                <image src="../../images/pageImg/search.png"></image>
+                <input value="{{value}}" placeholder="{{keywords[0].name}}" bindinput="inputTyping" bindconfirm="search" type="text"/>
+            </view>
         </view>
         <view class="gohome" bindtap="goBack">取消</view>
     </view>
     <block wx:if="{{isHide}}">
         <view class="hot-search">热门搜索</view>
         <ul class="keywords">
-            <li wx:for="{{keywords}}" wx:key="{{index}}" bindtap="keywordsChange" data-val="{{item.name}}">{{item.name}}</li>
+            <li wx:for="{{keywords}}" wx:key="{{index}}" class="common_wrap" bindtap="keywordsChange" data-val="{{item.name}}">
+                <view class="keywords_item">{{item.name}}</view>
+            </li>
         </ul>
     </block>
-    <view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+    <!--<view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
         <image src="{{item.url1}}"></image>
         <view class="list-right">
             <view class="list-right-top">{{item.title}}</view>
             <view class="list-right-bottom">{{item.time}}</view>
+        </view>
+    </view>-->
+    <view
+            class="gold_item_wrap common_wrap"
+            wx:for="{{list}}"
+            wx:key="index"
+            bindtap="goToDetailsPage"
+            data-money-code="{{item.moneyCode}}"
+    >
+        <view class="gold_item common_content" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+            <image mode="aspectFit" src="{{item.url1}}"></image>
+            <view class="list-right">
+                <view class="list-right-top">{{item.title}}</view>
+                <view class="list-right-bottom">{{item.strTime}}</view>
+            </view>
         </view>
     </view>
 </view>

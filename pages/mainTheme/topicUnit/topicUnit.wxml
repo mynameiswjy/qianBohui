@@ -1,6 +1,6 @@
 <block>
     <view style="height: 10rpx;"></view>
-    <view
+    <!--<view
             class="cell_item"
             wx:for="{{list}}"
             data-theme-name="{{item.name}}"
@@ -15,6 +15,24 @@
         </view>
         <view class="cell_txt">
             <text>{{item.imagesRemark}}</text>
+        </view>
+    </view>-->
+
+    <view
+            class="gold_item_wrap common_wrap"
+            wx:if="{{list.length}}"
+            wx:for="{{list}}"
+            wx:key="index"
+            data-theme-name="{{item.name}}"
+            data-id="{{item.id}}"
+            bindtap="navDetails"
+    >
+        <view class="gold_item common_content">
+            <image mode="" class="img" src="{{item.imagesUrl}}"></image>
+            <view class="list-right">
+                <view class="list-right-top1">{{item.name}}</view>
+                <view class="list-right-bottom">这一轮十二生肖本色银纪念 币采用写实手法，其设计者 是上海造币有限公司的朱熙华</view>
+            </view>
         </view>
     </view>
 </block>

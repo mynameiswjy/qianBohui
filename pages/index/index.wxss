@@ -2,14 +2,6 @@ page {
     background-color: #fff;
 }
 
-.common_wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: -6rpx -6rpx 20rpx 0px #FFFFFF, 6rpx 6rpx 20rpx 0 #C5D6F1;
-    background-image: linear-gradient(127deg, rgba(255, 255, 255, 1), rgba(191, 162, 103, 1));
-}
-
 .select-wrap {
     display: flex;
     margin-left: 37rpx;
@@ -28,12 +20,6 @@ page {
     height: 56rpx;
     border-radius: 56rpx;
     padding: 4rpx;
-}
-
-.common_content {
-    background-color: #fff;
-    box-sizing: border-box;
-    background-clip: content-box,padding-box;
 }
 
 .select-search-wrap {
@@ -95,7 +81,7 @@ page {
     width: 690rpx;
     height: 184rpx;
     display: block;
-    margin: 15rpx auto 0;
+    margin: 15rpx auto 30rpx;
 }
 
 .subject_title {
@@ -164,7 +150,6 @@ page {
     color: #8E8D8D;
     font-size: 24rpx;
     margin-top: 10rpx;
-    text-align: right;
 }
 .look-more {
     font-size:28rpx;

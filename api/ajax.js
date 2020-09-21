@@ -1,5 +1,6 @@
+const config = require("../config");
 
-const host = 'https://www.chbice.com'
+const host = config.iSDevelop ? config.DEV_BASE_URL : config.BASE_URL;
 
 export function requestAjaxGet(url, data, success, err) {
   wx.request({

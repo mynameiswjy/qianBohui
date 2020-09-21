@@ -1,17 +1,47 @@
 <view>
-    <!--<image class="banner" src="./baner_ad.png"></image>
-    <view style="height: 8rpx"></view>
-    <view class="apeci_txt">
-        2018年，马克思诞辰200周年，中国改革开放40周年。这两个纪念节点的“汇合”，让中国社会有了回望与前瞻的历史契机。改革开放40年来，关于社会主义建设、关于党的建设、关于中国和世界的关系，每一个问题的展开和推进，都始终贯穿着实践检验真理的原则。
-    </view>-->
-    <view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+    <view class="showroom_sub_wrap common_wrap">
+        <view class="showroom_sub_content common_content">
+            <view class="showroom_sub_title">中华人民共和国成立30周年纪念金币此处为文字介绍最多三行多了的用经中华人民共和国商务部、中国人 民银行批准，由中国金币总公司、中国印钞造</view>
+            <view class="showroom_sub_video"></view>
+            <view style="margin: 0 20rpx;height: 2rpx;background-color: rgba(191, 162, 103, 0.5);"></view>
+            <view class="voice_name">聚焦金币指南—赵金南</view>
+            <view class="flex progress_wrap">
+                <view class="progress">
+                    <view class="progress_content"></view>
+                </view>
+                <view class="iconfont"></view>
+            </view>
+
+            <view class="flex voice_time">
+                <view>04:00</view>
+                <view>06:00</view>
+            </view>
+            <view style="height: 50rpx;"></view>
+        </view>
+    </view>
+
+    <view
+            class="gold_item_wrap common_wrap"
+            wx:if="{{list.length}}"
+            wx:for="{{list}}"
+            wx:key="index"
+            bindtap="goToDetailsPage"
+            data-money-code="{{item.moneyCode}}"
+    >
+        <view class="gold_item common_content" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
+            <image mode="aspectFit" src="{{item.url1}}"></image>
+            <view class="list-right">
+                <view class="list-right-top">{{item.tiele}}</view>
+                <view class="list-right-bottom">{{item.strTime}}</view>
+            </view>
+        </view>
+    </view>
+
+    <!--<view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap="goToDetailsPage" data-money-code="{{item.moneyCode}}">
         <image mode="aspectFit" src="{{item.url1}}"></image>
         <view class="list-right">
             <view class="list-right-top">{{item.tiele}}</view>
             <view class="list-right-bottom">{{item.strTime}}</view>
         </view>
-    </view>
-    <!--<block>
-        <view class="is-end" wx:if="{{isLoading}}" bindtap="loadMore">加载更多</view>
-    </block>-->
+    </view>-->
 </view>

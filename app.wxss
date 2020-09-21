@@ -38,3 +38,17 @@ input{
   display: flex;
 }
 
+.common_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: -6rpx -6rpx 20rpx 0px #FFFFFF, 6rpx 6rpx 20rpx 0 #C5D6F1;
+  background-image: linear-gradient(127deg, rgba(255, 255, 255, 1), rgba(191, 162, 103, 1));
+}
+
+.common_content {
+  background-color: #fff;
+  box-sizing: border-box;
+  background-clip: content-box,padding-box;
+}
+

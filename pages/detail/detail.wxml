@@ -1,70 +1,89 @@
 <view class="detail_wrap">
-    <view class="detail_content" style='margin-bottom:{{btuBottom}}'>
-        <view style="height: 37rpx"></view>
-        <view class="content_images">
-            <image mode="aspectFit" src="{{obj.url1}}"></image>
-        </view>
-        <view class="tab_wrap">
-            <view class="tab_tr">
-                <view class="tab_td1">钱币名称</view>
-                <view class="tab_td6">{{obj.tiele}}</view>
+
+    <view class="detail_content_wrap common_wrap">
+        <view class="detail_content" style='margin-bottom:{{btuBottom}}'>
+            <view class="tab_td6">{{obj.tiele}}</view>
+            <view class="tab_name">500克圆形银 质纪念币</view>
+            <view class="content_images">
+                <image mode="aspectFit" src="{{obj.url1}}"></image>
             </view>
-            <view class="tab_tr">
-                <view class="tab_td1">年份</view>
-                <view class="tab_td2">{{obj.moneyYear}}</view>
-                <view class="tab_td3">直径(毫米)</view>
-                <view class="tab_td4">{{obj.moneyDiameter}}</view>
+            <view class="tab_wrap">
+                <!--<view class="tab_tr">
+                    <view class="tab_td1">钱币名称</view>
+                    <view class="tab_td6">{{obj.tiele}}</view>
+                </view>-->
+                <view class="tab_tr">
+                    <view class="flex tab_tr_item">
+                        <view class="tab_td1">年份</view>
+                        <view class="tab_td2">{{obj.moneyYear}}</view>
+                    </view>
+                    <view class="flex tab_tr_item">
+                        <view class="tab_td3">直径(毫米)</view>
+                        <view class="tab_td4">{{obj.moneyDiameter}}</view>
+                    </view>
+                </view>
+                <view class="tab_tr">
+                    <view class="flex tab_tr_item">
+                        <view class="tab_td1">面额(元)</view>
+                        <view class="tab_td2">{{obj.moneySum}}</view>
+                    </view>
+                    <view class="flex tab_tr_item">
+                        <view class="tab_td3">成色</view>
+                        <view class="tab_td4">{{obj.moneyFineness}}</view>
+                    </view>
+                </view>
+                <view class="tab_tr">
+                    <view class="flex tab_tr_item">
+                        <view class="tab_td1">材质</view>
+                        <view class="tab_td2 {{obj.moneyTexture.length>4?'sb':''}}">{{obj.moneyTexture}}</view>
+                    </view>
+                    <view class="flex tab_tr_item">
+                        <view class="tab_td3">重量</view>
+                        <view class="tab_td4">{{obj.moneyWeight}}</view>
+                    </view>
+                </view>
+                <view class="tab_tr">
+                    <view class="flex tab_tr_item">
+                        <view class="tab_td1">质量</view>
+                        <view class="tab_td2">{{obj.moneyQuality}}</view>
+                    </view>
+                    <view class="flex tab_tr_item">
+                        <view class="tab_td3">发行量(枚)</view>
+                        <view class="tab_td4">{{obj.moneyCirculation}}</view>
+                    </view>
+                </view>
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">系列</view>
+                    <view class="tab_td5">{{obj.moneySelectItem}}</view>
+                </view>
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">铸造单位</view>
+                    <view class="tab_td5">{{obj.moneyCompany}}</view>
+                </view>
             </view>
-            <view class="tab_tr">
-                <view class="tab_td1">面额(元)</view>
-                <view class="tab_td2">{{obj.moneySum}}</view>
-                <view class="tab_td3">成色</view>
-                <view class="tab_td4">{{obj.moneyFineness}}</view>
+            <view class="captions" wx:if="{{obj.moneyIntroduce}}"><!-- wx:if="{{options.IsShare == 1}}"-->
+                <text style="color: #C6A056;">介绍: </text>{{obj.moneyIntroduce}}
             </view>
-            <view class="tab_tr">
-                <view class="tab_td1">材质</view>
-                <view class="tab_td2 {{obj.moneyTexture.length>4?'sb':''}}">{{obj.moneyTexture}}</view>
-                <view class="tab_td3">重量</view>
-                <view class="tab_td4">{{obj.moneyWeight}}</view>
-            </view>
-            <view class="tab_tr">
-                <view class="tab_td1">质量</view>
-                <view class="tab_td2">{{obj.moneyQuality}}</view>
-                <view class="tab_td3">发行量(枚)</view>
-                <view class="tab_td4">{{obj.moneyCirculation}}</view>
-            </view>
-            <view class="tab_tr">
-                <!--<view class="tab_td1 bottom">发行量(枚)</view>
-                <view class="tab_td2 bottom">{{obj.moneyCirculation}}</view>
-                <view class="tab_td3 bottom">年份</view>
-                <view class="tab_td4 bottom">{{obj.moneyYear}}</view>-->
-                <view class="tab_td1 bottom">系列</view>
-                <view class="tab_td5 bottom">{{obj.moneySelectItem}}</view>
-            </view>
-            <view class="tab_tr">
-                <view class="tab_td1 bottom">铸造单位</view>
-                <view class="tab_td5 bottom">{{obj.moneyCompany}}</view>
-            </view>
-        </view>
-        <view class="captions" wx:if="{{obj.moneyIntroduce}}"><!-- wx:if="{{options.IsShare == 1}}"-->
-            <text style="color: #C6A056;">介绍: </text>{{obj.moneyIntroduce}}
-        </view>
-        <view class="footer">
-            <view class="give-like flex {{isLike? 'is_like':''}}" bindtap="clickGood">
-                <span class="iconfont icon-dianzan"></span>
-                <view>{{moneyLike}}</view>
-            </view>
-            <button open-type="share" class="flex share">
-                <!--<image class="footer-img2" src="../../images/pageImg/share.png"></image>-->
-                <span class="iconfont icon-fenxiang"></span>
-                <view>分享小程序</view>
-            </button>
-            <view class="flex friends-circle" bindtap="shareFriend">
-                <image class="footer-img3" src="../../images/pageImg/friends-circle.png"></image>
-                <view>炫耀一下</view>
+            <view class="footer">
+                <view class="give-like flex {{isLike? 'is_like':''}}" bindtap="clickGood">
+                    <!--<span class="iconfont icon-dianzan"></span>
+                    <view>{{moneyLike}}</view>-->
+                    <image src="./praise_icon.png"></image>
+                </view>
+                <button open-type="share" class="flex share">
+                    <!--<span class="iconfont icon-fenxiang"></span>
+                    <view>分享小程序</view>-->
+                    <image src="./share_icon.png"></image>
+                </button>
+                <view class="flex friends-circle" bindtap="shareFriend">
+                    <!--<image class="footer-img3" src="../../images/pageImg/friends-circle.png"></image>
+                    <view>炫耀一下</view>-->
+                    <image src="./friends_icon.png"></image>
+                </view>
             </view>
         </view>
     </view>
+
     <view wx:if="{{options.IsShare == 1}}" class="go-index" bindtap="goHome">
         <image class="go-index-img" src="../../images/pageImg/home1.png"></image>
         <view>返回主页</view>
