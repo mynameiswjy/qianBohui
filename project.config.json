@@ -31,7 +31,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.13.0",
 	"appid": "wx5060b4dcb8908abc",
 	"projectname": "qbhMinapp",
 	"cloudfunctionTemplateRoot": "",
@@ -90,10 +90,10 @@
 				},
 				{
 					"id": 3,
-					"name": "详情页",
+					"name": "详情",
 					"pathName": "pages/detail/detail",
-					"query": "moneyCode=600005&IsShare=1",
-					"scene": "1001"
+					"query": "moneyCode=600304",
+					"scene": 1001
 				}
 			]
 		}
