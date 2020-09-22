@@ -118,3 +118,15 @@ export function likeMoneyCode(data = {}) {
     })
   })
 }
+
+// 获取用户信息
+export function getUserInfo(data = {}) {
+  let url = '/qbh/coin/myInfo.do'
+  return new Promise((resolve, reject) => {
+    requestAjaxPost(url, data, function (res) {
+      resolve(res)
+    }, function (err) {
+      reject(err)
+    })
+  })
+}

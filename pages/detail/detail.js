@@ -1,4 +1,4 @@
-import {successiveExhibitors, getStoreRCs, likeMoneyCode} from '../../api/index'
+import {successiveExhibitors, getStoreRCs, likeMoneyCode, getUserInfo} from '../../api/index'
 var config = require("../../config.js")
 var app = getApp()
 
@@ -53,13 +53,9 @@ Page({
 		} else {
 			this.init(options)
     }
-    /*if (options.isSendTo == 'like') { // like 为点赞
-      this.clickGood()
-    } else if (options.isSendTo == 'moments') { // 朋友圈
-
-    } else if (options.isSendTo == 'transpond') {// 转发
-
-    }*/
+   /* getUserInfo().then(res => {
+      console.log(res, 'userinfo=======');
+    })*/
   },
 
   onShow: function () {
@@ -327,9 +323,13 @@ Page({
 
     // 绘制背景
     ctx.beginPath()
-    ctx.drawImage('./bg.png', 0, 0, width, this.scale(659/2))
+    ctx.drawImage('./bg.png', this.scale(50/2), this.scale(24/2), this.scale(650/2), this.scale(650/2))
     ctx.restore()
 
+    // 绘制头像
+    /*ctx.beginPath()
+    ctx.drawImage('./bg.png', this.scale(50/2), this.scale(24/2), this.scale(650/2), this.scale(650/2))
+    ctx.restore()*/
     // 绘制名字
     // ctx.beginPath()
     ctx.font = 'normal normal 17px PingFang SC,Microsoft Yahei,Untitled'

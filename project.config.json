@@ -89,7 +89,7 @@
           "id": 3,
           "name": "详情页",
           "pathName": "pages/detail/detail",
-          "query": "moneyCode=600002",
+          "query": "moneyCode=600003",
           "scene": 1001
         },
         {
