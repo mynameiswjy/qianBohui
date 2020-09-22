@@ -53,9 +53,6 @@ Page({
 		} else {
 			this.init(options)
     }
-   /* getUserInfo().then(res => {
-      console.log(res, 'userinfo=======');
-    })*/
   },
 
   onShow: function () {
@@ -136,16 +133,17 @@ Page({
     console.log(this.getMinappCodeImage())
     const fontImg = this.promisify(options.shareUrl)
     const moneyImg = this.promisify(options.url1)
-    // const bgImg = this.promisify('https://www.chqbh.com/imgFile/20180913113023.png')
+    const rahmen = this.promisify('https://www.chbice.com/imgFile/icon/rahmen.png'); //相框
     const minappCode = this.promisify(this.getMinappCodeImage())
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)
-    Promise.all([fontImg, moneyImg, minappCode]).then(res => {
+    Promise.all([fontImg, moneyImg, minappCode, rahmen]).then(res => {
       console.log(res);
       if (res.length > 0) {
         let options = {
           fontImg: res[0].path,
           moneyImg: res[1].path,
-          minCodeAdd: res[2].path
+          minCodeAdd: res[2].path,
+          rahmenIcon: res[3].path,
         }
         /*that.setData({
           options: options
@@ -321,105 +319,88 @@ Page({
     ctx.fill()
     ctx.restore()
 
-    // 绘制背景
-    ctx.beginPath()
+    // 绘制背景图
+    ctx.save()
     ctx.drawImage('./bg.png', this.scale(50/2), this.scale(24/2), this.scale(650/2), this.scale(650/2))
     ctx.restore()
 
-    // 绘制头像
-    /*ctx.beginPath()
-    ctx.drawImage('./bg.png', this.scale(50/2), this.scale(24/2), this.scale(650/2), this.scale(650/2))
-    ctx.restore()*/
+    // 用户头像
+    this.userAvatar(ctx, this.scale(470/2), this.scale(50/2), this.scale(60/2), this.scale(60/2), this.scale(30/2), './avatar.jpeg')
     // 绘制名字
-    // ctx.beginPath()
-    ctx.font = 'normal normal 17px PingFang SC,Microsoft Yahei,Untitled'
+    ctx.font = 'normal normal 13px PingFang SC,Microsoft Yahei,Untitled';
     ctx.setTextBaseline('bottom')
-    ctx.setFillStyle('#040000')
-    ctx.setTextAlign('center')
-    this.scale(38/2, true)
-    ctx.setFontSize(this.scale(36/2, true))
-    ctx.fillText(app.globalData.userData.NickName, this.scale(624/2), this.data.drawY)// this.data.NickName
-    // ctx.closePath()
-
-    // 短线
-    ctx.save()
-    // ctx.beginPath()
-    ctx.setStrokeStyle('#232323')
-    this.scale(21/2,true)
-    ctx.setLineWidth(this.scale(4/2,true), true)
-    ctx.moveTo(this.scale(601/2),  this.data.drawY)
-    ctx.lineTo(this.scale(647/2), this.data.drawY)
-    ctx.stroke()
+    ctx.setFillStyle('#BFA267')
+    // ctx.setTextAlign('center')
+    ctx.fillText(app.globalData.userData.NickName, this.scale(540/2), this.scale(95/2), this.scale(144/2));
 
     // 字体图
     ctx.save()
-    this.scale(42/2, true)
-    ctx.drawImage(options.fontImg, this.scale(503/2), this.data.drawY, this.scale(155/2), this.scale(388/2))
-    this.scale(388/2, true)
-    ctx.stroke()
-    ctx.restore()
+    this.scale(50/2, true); //options.fontImg
+    ctx.drawImage('./font.png', this.scale(89/2), this.data.drawY, this.scale(113/2), this.scale(391/2));
+    this.scale(391/2, true);
+    ctx.restore();
+
+    // 相框的白底
+    ctx.save();
+    ctx.beginPath();
+    this.scale(35/2, true);
+    ctx.rect(this.scale(129/2), this.data.drawY, this.scale(492/2), this.scale(336/2));
+    ctx.setFillStyle('#FFFFFF');
+    ctx.fill();
+    ctx.restore();
 
     // 钱币图
     ctx.save()
-    this.scale(51/2, true)
-    // this.roundRect(ctx, this.scale(137/2), this.data.drawY,  this.scale(475/2), this.scale(255/2), this.scale(20/2))
-    ctx.setShadow(0, 0, 15, 'rgba(0,0,0, 0.5)')
-    ctx.drawImage(options.moneyImg, this.scale(137/2), this.data.drawY, this.scale(475/2), this.scale(255/2))
-    this.scale(255/2, true)
-    ctx.stroke()
+    this.scale(26/2, true);
+    // ctx.setShadow(0, 0, 15, 'rgba(0,0,0, 0.5)')
+    ctx.drawImage(options.moneyImg, this.scale(147/2), this.data.drawY, this.scale(457/2), this.scale(255/2));
     ctx.restore()
 
-    // title
-    // ctx.beginPath()
-    ctx.setTextBaseline('bottom')
-    ctx.setFillStyle('#212024')
-    ctx.setTextAlign('center')
-    this.scale(57/2, true)
-    ctx.setFontSize(this.scale(28/2, true))
-    ctx.fillText('中国金币云展室', width/2, this.data.drawY)
-    // ctx.closePath()
-
-    // title right线
+    // 相框
     ctx.save()
-    ctx.beginPath()
-    ctx.setStrokeStyle('#232323')
-    ctx.setLineWidth(this.scale(10/2,true))
-    ctx.moveTo(this.scale(478/2),  this.data.drawY)
-    ctx.lineTo(this.scale(495/2), this.data.drawY)
-    ctx.stroke()
-
-    // title left线
-    ctx.save()
-    ctx.beginPath()
-    ctx.setStrokeStyle('#232323')
-    ctx.setLineWidth(this.scale(1/2,true))
-    this.scale(3/2,true)
-    ctx.moveTo(this.scale(270/2),  this.data.drawY)
-    ctx.lineTo(this.scale(489/2), this.data.drawY)
-    ctx.stroke()
+    ctx.drawImage(options.rahmenIcon, this.scale(147/2), this.data.drawY, this.scale(457/2), this.scale(255/2));
+    this.scale(255/2, true);
+    ctx.restore();
 
     // 二维码
     ctx.save()
-    this.scale(54/2, true)
-    ctx.drawImage(options.minCodeAdd, this.scale(286/2), this.data.drawY, this.scale(161/2), this.scale(150/2))
-    this.scale(150/2, true)
-    ctx.stroke()
-    ctx.restore()
+    this.scale(98/2, true);
+    ctx.drawImage(options.minCodeAdd, this.scale(325/2), this.data.drawY, this.scale(100/2), this.scale(100/2));
+    this.scale(100/2, true);
+    ctx.restore();
 
     // code text
-    ctx.beginPath()
-    ctx.setTextBaseline('bottom')
-    ctx.setFillStyle('#040000')
-    ctx.setTextAlign('center')
-    this.scale(18/2, true)
-    ctx.setFontSize(this.scale(22/2, true))
-    ctx.fillText('扫码查看钱币详情', width/2, this.data.drawY)
-    ctx.closePath()
+    ctx.font = 'normal normal 12px PingFang SC,Microsoft Yahei,Untitled'
+    ctx.setTextBaseline('bottom');
+    ctx.setFillStyle('#BFA267');
+    ctx.setTextAlign('center');
+    this.scale(20/2, true);
+    ctx.setFontSize(this.scale(22/2, true));
+    ctx.fillText('扫码查看钱币详情', width/2, this.data.drawY);
+    ctx.closePath();
 
-    ctx.draw(true, () => {
-      that.saveCanvasImg(width, height)
-    })
+    setTimeout(() => {
+      ctx.draw(true, () => {
+        that.saveCanvasImg(width, height)
+      })
+    }, 200)
   },
+
+  userAvatar(ctx, x, y, w, h, r, avatar) {
+    ctx.save()
+    ctx.beginPath()
+    ctx.setLineWidth(10)
+    ctx.arc(x + r, y + r, r, Math.PI, Math.PI*1.5)
+    ctx.arc(x + w - r, y + r, r, Math.PI * 1.5, Math.PI * 2)
+    ctx.arc(x + w - r, y + h - r, r, 0, Math.PI * 0.5)
+    ctx.arc(x + r, y + h - r, r, Math.PI * 0.5, Math.PI)
+    ctx.setFillStyle('#bfa')
+    ctx.closePath()
+    ctx.clip()
+    ctx.drawImage(avatar, x, y, w, h)
+    ctx.restore()
+  },
+
   // 预览图片
   lookImg() {
     wx.previewImage({
