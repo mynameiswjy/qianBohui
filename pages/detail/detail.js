@@ -123,8 +123,15 @@ Page({
       })
     });
   },
+
+  randomImg() {
+    var arr = ["太阳光大","成功是优点的发挥","不要小看自己", "口说好话","手心向下是助人" ];
+    console.log(arr[Math.floor((Math.random()*arr.length))]);
+  },
+
   // 初始化canvas
   initCanvas(options) {
+    this.randomImg()
     if (this.data.isContinue) return false
     let that = this
     const SystemInfo = wx.getSystemInfoSync()
