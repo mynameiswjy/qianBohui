@@ -25,7 +25,6 @@ Page({
   },
   onLoad: function (options) {
     let opt = this.parseUrlParam(options)
-		console.log(opt);
 		this.setData({
       options: options
     });
@@ -125,25 +124,25 @@ Page({
   },
 
   randomImg() {
-    var arr = ["太阳光大","成功是优点的发挥","不要小看自己", "口说好话","手心向下是助人" ];
-    console.log(arr[Math.floor((Math.random()*arr.length))]);
+    const baseUrl = config.iSDevelop ? config.DEV_BASE_URL : config.BASE_URL;
+    const arr = [baseUrl + "/imgFile/icon/short_bg1.png",baseUrl + "/imgFile/icon/short_bg2.png",baseUrl + "/imgFile/icon/short_bg3.png", baseUrl + "/imgFile/icon/short_bg4.png", baseUrl + "/imgFile/icon/short_bg5.png"];
+    return arr[Math.floor((Math.random() * arr.length))]
   },
 
   // 初始化canvas
   initCanvas(options) {
-    this.randomImg()
     if (this.data.isContinue) return false
     let that = this
     const SystemInfo = wx.getSystemInfoSync()
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)
-    that.setData({SystemInfo})
-    console.log(this.getMinappCodeImage())
+    that.setData({SystemInfo});
     const fontImg = this.promisify(options.shareUrl)
     const moneyImg = this.promisify(options.url1)
-    const rahmen = this.promisify('https://www.chbice.com/imgFile/icon/rahmen.png'); //相框
+    const rahmen = this.promisify('https://www.chbice.com/imgFile/icon/rahmen_icon.png'); //相框
     const minappCode = this.promisify(this.getMinappCodeImage())
+    const bg = this.promisify(this.randomImg());
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)
-    Promise.all([fontImg, moneyImg, minappCode, rahmen]).then(res => {
+    Promise.all([fontImg, moneyImg, minappCode, rahmen, bg]).then(res => {
       console.log(res);
       if (res.length > 0) {
         let options = {
@@ -151,6 +150,7 @@ Page({
           moneyImg: res[1].path,
           minCodeAdd: res[2].path,
           rahmenIcon: res[3].path,
+          bg: res[4].path
         }
         /*that.setData({
           options: options
@@ -328,7 +328,7 @@ Page({
 
     // 绘制背景图
     ctx.save()
-    ctx.drawImage('./bg.png', this.scale(50/2), this.scale(24/2), this.scale(650/2), this.scale(650/2))
+    ctx.drawImage(options.bg, this.scale(50/2), this.scale(24/2), this.scale(650/2), this.scale(650/2))
     ctx.restore()
 
     // 用户头像
