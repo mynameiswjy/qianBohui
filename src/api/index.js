@@ -1,19 +1,14 @@
 import axios from 'axios'
 import qs from 'qs'
-
-export const baseUrl = 'https://www.mengniuhealth.cn' // https://www.mengniuhealth.cn https://www.chbice.com
+const IsDev = false;
+export const baseUrl = IsDev ? 'https://www.mengniuhealth.cn' : 'https://www.chbice.com';
 
 const service = axios.create({
   // api的base_url
   baseURL: baseUrl,
   // 请求超时时间
   timeout: 20000,
-  headers: null,
-  /*transformRequest: [function(data) {
-    //依自己的需求对请求数据进行处理
-    return data;
-  }],*/
-
+  headers: null
 })
 const serviceShare = axios.create({
   // api的base_url
@@ -184,10 +179,73 @@ export function getShareToken(path, code) {
   })
 }
 
+// 广告分享接口 https://www.chbice.com/lottery/share/getShareToken.do
+export function getAdShareToken(path, code) {
+  let url
+  if (code) {
+    url = baseUrl + '/por/index.html#' + path + '?isShare=' + code
+  } else {
+    url = baseUrl + '/por/index.html#' + path
+  }
+  let data = {
+    url: url
+  };
+  return serviceShare({
+    url: '/lottery/share/getShareToken.do',
+    method: 'post',
+    data: qs.stringify(data)
+  })
+}
+
 // 下载列表
 export function downloadList(data = {}) {
   return service({
     url: '/qbh/material/getAll',
+    method: 'get',
+    params: data
+  })
+}
+
+const adService = axios.create({
+  // api的base_url
+  baseURL: baseUrl,
+  // 请求超时时间
+  timeout: 20000,
+  headers: {
+    "Content-type": "application/json"
+  }
+})
+
+// 广告 提交选择
+export function adSubmit(data = {}) {
+  return adService({
+    url: '/lottery/api/answer/submit',
+    method: 'post',
+    data: data
+  })
+}
+
+// 广告
+export function adList(data = {}) {
+  return adService({
+    url: '/lottery/api/offlineStore/list',
+    method: 'get',
+    params: data
+  })
+}
+// 广告 获奖提交
+export function winnerSubmit(data = {}) {
+  return adService({
+    url: '/lottery/api/winner/submit',
+    method: 'post',
+    data: data
+  })
+}
+
+// 广告 生成图片
+export function offlineStore(data = {}) {
+  return adService({
+    url: '/lottery/api/offlineStore/img',
     method: 'get',
     params: data
   })
@@ -205,5 +263,10 @@ export default {
   deleteImage,
   putRegisterInfo,
   downloadList,
-  advertising
+  advertising,
+  adSubmit,
+  winnerSubmit,
+  adList,
+  getAdShareToken,
+  offlineStore
 }

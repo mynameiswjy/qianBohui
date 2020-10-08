@@ -1,12 +1,13 @@
 import wx from 'weixin-js-sdk'
 import { baseUrl } from '../api/index'
 import { getURLParams } from './utils'
+const shareImg = require('./share.jpeg')
 
-function wxShareTemp(sd, data) {
+function wxShareTemp(sd, data, IsAd = false) {
+  let desc = IsAd ? '100%中奖，给你牛年小幸运' : '分享发现，传递价值！欢迎参加北京国际钱币博览会';
   let links = sd.url; //分享出去的链接
   let title = data.title; //分享的标题
-  let desc = '分享发现，传递价值！欢迎参加北京国际钱币博览会'; //分享的详情介绍
-  let imgUrl = sd.img;
+  let imgUrl = IsAd ? shareImg : sd.img;
   wx.config({
     debug: false,
     appId: sd.appId,
@@ -105,8 +106,24 @@ function againUrl(path, code) {
   } else {
   }
 }
+function againUrlAd(path, code) {
+  let from = getURLParams('from')
+  let isappinstalled = getURLParams('isappinstalled')
+  if (from != null || isappinstalled != null) {
+    if (code) {
+      window.location.href = baseUrl + '/por/index.html#' + path + '?isShare=' + code
+      // window.location.href = 'http://192.168.1.5:8080/#' + path + '?code=' + code
+    } else {
+      window.location.href = baseUrl + '/por/index.html#' + path
+      // window.location.href = 'http://192.168.1.5:8080/#' + path
+    }
+    return false
+  } else {
+  }
+}
 
 export {
   wxShareTemp,
-  againUrl
+  againUrl,
+  againUrlAd
 }

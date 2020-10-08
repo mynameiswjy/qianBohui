@@ -73,6 +73,31 @@ export default new Router({
       path: "/downloadList",
       name: 'downloadList',
       component: () => import('@/components/downloadList.vue')
+    },
+    {
+      path: "/qbh_ad",
+      name: 'qbhAd',
+      component: () => import('@/qbh_ad/index.vue')
+    },
+    {
+      path: "/ad_select",
+      name: 'adSelect',
+      component: () => import('@/qbh_ad/select.vue')
+    },
+    {
+      path: "/result",
+      name: 'result',
+      component: () => import('@/qbh_ad/result.vue')
+    },
+    {
+      path: "/LuckyDraw",
+      name: 'LuckyDraw',
+      component: () => import('@/qbh_ad/LuckyDraw.vue')
+    },
+    {
+      path: "/getPrize",
+      name: 'getPrize',
+      component: () => import('@/qbh_ad/getPrize.vue')
     }
   ]
 })

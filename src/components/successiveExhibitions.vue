@@ -25,7 +25,7 @@
         </li>
       </ul>
     </div>
-    <img v-show="ad.show == 'Y'" :src="ad.url" alt="" class="ad">
+    <img v-if="ad.bottom" :src="ad.bottom.imagesUrl" alt="" class="ad">
   </div>
 </template>
 
@@ -51,10 +51,7 @@ export default {
     },
     ad: {
       type: Object,
-      default: () => ({
-        url: '',
-        show: "N"
-      })
+      default: () => null
     }
   },
   data() {
@@ -331,10 +328,11 @@ export default {
     text-overflow: ellipsis;
   }
   .ad{
-    width: 7rem;
+    width: 6.9rem;
     height: 1.2rem;
     max-height: 1.2rem;
-    margin-top: 1rem;
-    margin-left: 0.25rem;
+    margin: 0.32rem auto 0;
+    display block;
+    border-radius 0.1rem
   }
 </style>

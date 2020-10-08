@@ -13,6 +13,7 @@ export function isPoneAvailable(that, str) {
     that.$message.error('手机号有误！')
     return false;
   }
+  return true
 }
 // 获取url里的参数
 export function getURLParams(name) {

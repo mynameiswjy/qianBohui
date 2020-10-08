@@ -1,10 +1,10 @@
 <template>
     <div style="width: 100%;">
-      <div :class="{'sea-wrap': IsActive}">
+      <!--<div :class="{'sea-wrap': IsActive}">
         <div class="search_btn" @click="searchBtn">
           <div>钱币博览会</div>
           <div class="search_icon">
-<!--            <img src="https://www.chbice.com/imgFile/cut/search.png" class="search-icon" alt=""/>-->
+&lt;!&ndash;            <img src="https://www.chbice.com/imgFile/cut/search.png" class="search-icon" alt=""/>&ndash;&gt;
             <span class="iconfont icon-sousuo"></span>
           </div>
         </div>
@@ -24,11 +24,11 @@
                 <img :src="tab.selectImg" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
                 <img :src="tab.img" :class="{'img_node': IsActive}" alt="nav" v-else>
               </div>
-              <!--<div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>-->
+              &lt;!&ndash;<div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>&ndash;&gt;
             </router-link>
           </li>
         </ul>
-      </div>
+      </div>-->
     </div>
 </template>
 

@@ -9,6 +9,12 @@ const mutations = {
   },
   [types.IS_RESERVSTION_PAGE](state, isOPen) {
     state.isReservationPage = isOPen
+  },
+  [types.AD_USER_ID](state, adUserId) {
+    state.adUserId = adUserId
+  },
+  [types.AD_REQ_PARAMS](state, params) {
+    state.adReqParams = params
   }
 }
 

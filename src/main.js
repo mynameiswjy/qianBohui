@@ -10,7 +10,13 @@ import '@/assets/recompose_ele_ui.css'
 import router from './router'
 import Clipboard from 'clipboard';
 
+import 'mint-ui/lib/style.css'
+import { DatetimePicker, Picker, Toast } from 'mint-ui';
+Vue.component(DatetimePicker.name, DatetimePicker);
+Vue.component(Picker.name, Picker);
+
 Vue.prototype.Clipboard = Clipboard;
+Vue.prototype.Toast = Toast;
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

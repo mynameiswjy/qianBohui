@@ -42,4 +42,16 @@ export default {
     bottom: 0;
     background-color: #fff;
   }
+  .anim_ad {
+    animation: animationAd .5s ease 1 alternate forwards;
+    transform: translateX(100%);
+  }
+  @keyframes animationAd {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
 </style>

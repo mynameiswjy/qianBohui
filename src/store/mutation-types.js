@@ -1,3 +1,5 @@
 export const INDEX_IMG = 'INDEX_IMG'
 export const ROUTER_PATH = 'ROUTER_PATH'
 export const IS_RESERVSTION_PAGE = 'IS_RESERVSTION_PAGE'
+export const AD_USER_ID = 'ad_user_id'
+export const AD_REQ_PARAMS = 'ad_req_params'

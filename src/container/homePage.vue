@@ -1,9 +1,9 @@
 <template>
   <div>
     <introduce :introduceObj="dataList.expositionIntroduce" :isOpenActive="true" :newTemp="2"></introduce>
-    <exhibitionNews :expositionNews="dataList.expositionNews" :title="modelName.modelName2" :ad="adData[0]"></exhibitionNews>
-    <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce" :title="modelName.modelName3" :ad="adData[1]"></exhibitor><!--展上介绍-->
-    <successive-exhibitions :successiveList="SuccessiveList" :title="modelName.modelName4" :ad="adData[2]"></successive-exhibitions>
+    <exhibitionNews :expositionNews="dataList.expositionNews" :title="modelName.modelName2"></exhibitionNews>
+    <exhibitor :exhibitorsIntroduce="dataList.exhibitorsIntroduce" :title="modelName.modelName3" :ad="adData"></exhibitor><!--展商介绍-->
+    <successive-exhibitions :successiveList="SuccessiveList" :title="modelName.modelName4" :ad="adData"></successive-exhibitions>
     <div style="height: 1rem"></div>
     <temp-footer></temp-footer>
     <div style="height: 0.98rem"></div>
@@ -38,20 +38,10 @@ export default {
       IsReloadTemp: false,
       openLoading: false,
       modelName: {},
-      adData: [
-        {
-          "show": "N",
-          "url": ""
-        },
-        {
-          "show": "N",
-          "url": ""
-        },
-        {
-          "show": "N",
-          "url": "#"
-        }
-      ]
+      adData: {
+        center: null,
+        bottom: null
+      }
     }
   },
   created() {
@@ -60,10 +50,18 @@ export default {
     this.initIndexNewsList()
     modelName().then(res => {
       this.modelName = JSON.parse(res.data.returnData)
-    })
+    });
     advertising().then(res => {
       if (res.data.returnCode === '0000') {
-        this.adData = res.data.returnData
+        const adData = res.data.returnData;
+        for (let i = 0; i < adData.length; i++) {
+          let item = adData[i];
+          if (item.sort === 'CENTRAL') {
+            this.adData.center = item;
+          } else if (item.sort === 'BELOW') {
+            this.adData.bottom = item;
+          }
+        }
       }
     }).catch(err => {
       console.log(err);
