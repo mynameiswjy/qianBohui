@@ -25,7 +25,8 @@
         <div class="part_prize_content">
           <p class="part_prize_title">您已获得</p>
           <div class="part_prize_center">
-            <img src="https://www.chbice.com/imgFile/ico/prize/5-1.png" alt="">
+<!--            <img class="part_prize1" src="https://www.chbice.com/imgFile/ico/prize/1-1.png" alt="">-->
+            <img class="part_prize2" src="https://www.chbice.com/imgFile/ico/prize/5.png" alt="">
           </div>
           <div class="part_prize_bott">
             <span class="iconfont icon-ic_gonggao"></span>
@@ -131,6 +132,7 @@ export default {
       this.IsOpenSelectAddr = false
     },
     closeMask() {
+      this.successSubmit = false
       if (this.hasPrize) {
         this.checkPrize = true
       } else {
@@ -254,6 +256,21 @@ export default {
     height: 2.36rem;
     background-color: #A40812;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  .part_prize_center img {
+    width: 2.96rem;
+    height: 2.36rem;
+  }
+  .part_prize_center .part_prize1 {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .part_prize_center .part_prize2 {
+    width: 2.36rem;
+    height: 2.36rem;
+    margin: 0 auto;
   }
   .Involved_content {
     width: 5.15rem;
@@ -268,17 +285,13 @@ export default {
     font-size: .15rem;
     color: #F4DEBA;
     margin: .1rem auto;
-    white-space: nowrap;
     display: flex;
     justify-content: center;
+    width: 3rem;
   }
   .part_prize_bott .icon-ic_gonggao {
     font-size: .18rem;
     color: #F4DEBA;
-  }
-  .part_prize_center img {
-    width: 2.96rem;
-    height: 2.36rem;
   }
   .Involved_content h3 {
     font-size: .4rem;

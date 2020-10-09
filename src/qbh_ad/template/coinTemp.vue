@@ -16,7 +16,7 @@
           <span class="iconfont icon-querenanniu" v-if="coinImgUrl === 3"></span>
         </div>
       </div>
-      <div class="coin_img flex">
+      <div class="coin_img coin_img1 flex">
         <div class="coin_img_li">
           <img src="https://www.chbice.com/imgFile/ico/money/4.png" alt="" @click="selectCoin(4)"/>
           <span class="iconfont icon-querenanniu" v-if="coinImgUrl === 4"></span>
@@ -26,13 +26,13 @@
           <span class="iconfont icon-querenanniu" v-if="coinImgUrl === 5"></span>
         </div>
       </div>
-      <div class="coin_img flex">
+      <div class="coin_img coin_img2 flex">
         <div class="coin_img_li">
           <img class="coin_img_img" src="https://www.chbice.com/imgFile/ico/money/6.png" alt="" @click="selectCoin(6)"/>
           <span class="iconfont icon-querenanniu" v-if="coinImgUrl === 6"></span>
         </div>
         <div class="coin_img_li">
-          <img src="https://www.chbice.com/imgFile/ico/money/7.png" alt="" @click="selectCoin(7)"/>
+          <img height="1.25rem" src="https://www.chbice.com/imgFile/ico/money/7.png" alt="" @click="selectCoin(7)"/>
           <span class="iconfont icon-querenanniu" v-if="coinImgUrl === 7"></span>
         </div>
       </div>
@@ -139,6 +139,14 @@ export default {
     height: 1.64rem;
     display: block;
   }
+  .coin_img1 img {
+    height: 1.74rem;
+  }
+
+  .coin_img2 img {
+    height: 1.3rem;
+  }
+
   .coin_img .mar_right {
     margin-right: .46rem;
   }

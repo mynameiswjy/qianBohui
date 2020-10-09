@@ -1,13 +1,12 @@
 import wx from 'weixin-js-sdk'
 import { baseUrl } from '../api/index'
 import { getURLParams } from './utils'
-const shareImg = require('./share.jpeg')
 
 function wxShareTemp(sd, data, IsAd = false) {
   let desc = IsAd ? '100%中奖，给你牛年小幸运' : '分享发现，传递价值！欢迎参加北京国际钱币博览会';
   let links = sd.url; //分享出去的链接
   let title = data.title; //分享的标题
-  let imgUrl = IsAd ? shareImg : sd.img;
+  let imgUrl = IsAd ? 'https://www.chbice.com/imgFile/ico/20201009151231.jpg' : sd.img;
   wx.config({
     debug: false,
     appId: sd.appId,

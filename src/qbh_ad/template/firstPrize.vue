@@ -2,13 +2,14 @@
     <div class="first_prize_wrap">
       <div class="first_prize_content">
         <img class="first_prize_title" src="https://www.chbice.com/imgFile/ico/12111.png" alt="">
-        <div class="prize_type">恭喜你获得参与奖</div>
+        <div class="prize_type">恭喜你获得一等奖</div>
         <div class="first_prize_img">
-          <img src="https://www.chbice.com/imgFile/ico/prize/5-1.png" alt="">
+<!--          <img class="prize_img1" src="https://www.chbice.com//imgFile/ico/prize/1-1.png" alt="">-->
+          <img class="prize_img2" src="https://www.chbice.com//imgFile/ico/prize/5-1.png" alt=""><!--https://www.chbice.com/imgFile/ico/prize/5-1.png-->
         </div>
         <div class="first_prize_bott">
           <span class="iconfont icon-ic_gonggao"></span>
-          <span class="">获得《中国金币文化》一本</span>
+          <span class="">获得《中国金币文化》一本</span><!--获得《中国金币文化》一本-->
         </div>
         <div class="first_prize_btn">
           <p style="margin-right: .4rem" @click="shareFriends">分享给好友</p>
@@ -83,18 +84,30 @@ export default {
     height: 2.36rem;
     background-color: #A40812;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
   }
-  .first_prize_img img {
+  .first_prize_img .prize_img1 {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .first_prize_img .prize_img2 {
     width: 2.96rem;
     height: 2.36rem;
   }
+  /*.first_prize_img img {
+    width: 2.96rem;
+    height: 2.36rem;
+    display: inline-block;
+  }*/
   .first_prize_bott {
     font-size: .15rem;
     color: #F4DEBA;
     margin: .1rem auto;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     display: flex;
     justify-content: center;
+    width: 3rem;
   }
   .first_prize_bott .icon-ic_gonggao {
     font-size: .15rem;

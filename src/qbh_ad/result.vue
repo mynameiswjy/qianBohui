@@ -9,7 +9,7 @@
     <div class="result_img_wrap">
       <img class="result_img" src="https://www.chbice.com/imgFile/ico/ad_sesult/ad_result_coin_bg.png" alt="">
       <img class="result_img_title" src="https://www.chbice.com/imgFile/ico/result/ad_ result_title.png" alt="">
-      <img :src="'https://www.chbice.com/imgFile/ico/coin/1' + coinUrl.coinImgUrl + '.png'" class="result_img_coin" alt="">
+      <img :src="'https://www.chbice.com/imgFile/ico/coin/1' + coinUrl.coinImgUrl + '.png'" :class="{'result_img_coin1': coinUrl.coinImgUrl === 6}" class="result_img_coin" alt="">
       <div class="result_coin_name">{{coinUrl.patternFlag}}</div>
     </div>
     <img class="result_border" src="https://www.chbice.com/imgFile/ico/12312312312312.png" alt="">
@@ -49,6 +49,7 @@
       </div>
     </div>
     <img class="result_border" src="https://www.chbice.com/imgFile/ico/12312312312312.png" alt="">
+    <div class="result_remind">* 渠道相关信息均以中国金币网公示内容为准。</div>
     <div class="save_img" v-if="dialogTableVisible" @click.stop="closeSaveImg()">
       <div class="iconfont icon-close"></div>
       <div class="save_img_content" @click.stop="lookImg">
@@ -106,17 +107,6 @@ export default {
           this.Toast('图片生成失败请重新保存')
         }
       })
-      /*html2canvas(this.$refs.imageWrapper, {
-        allowTaint: true,
-        useCORS: true,
-      }).then(canvas => {
-        let dataURL = canvas.toDataURL("image/png");
-        this.saveUrl = dataURL;
-        console.log(dataURL);
-        if (this.saveUrl) {
-          this.dialogTableVisible = true;
-        }
-      });*/
     },
     downloadIamge: function(imgsrc, name) {
       let image = new Image();
@@ -368,6 +358,11 @@ export default {
     width: 2.94rem;
     height: 2.94rem;
   }
+  .result_img_coin1 {
+    width: 2.94rem;
+    height: 1.92rem;
+    top: 1.9rem;
+  }
   .save_img {
     position: fixed;
     top: 0;
@@ -412,5 +407,10 @@ export default {
   }
   .save_img_content img {
     width: 6rem;
+  }
+  .result_remind {
+    font-size: .24rem;
+    color: #E6AF97;
+    margin: .2rem 0 0 .25rem;
   }
 </style>
