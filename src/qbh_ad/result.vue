@@ -226,6 +226,7 @@ export default {
     height: 3.23rem;
     display: block;
     margin: .47rem auto 0;
+    z-index: 1;
   }
   .code_img {
     width: 1.94rem;
@@ -277,9 +278,10 @@ export default {
     display: flex;
   }
   .result_border {
-    width: 7.5rem;
+    width: 7.52rem;
     height: .52rem;
     display: block;
+    margin-left: -0.02rem;
   }
   .result_border1 {
     width: 3.61rem;
@@ -409,8 +411,9 @@ export default {
     width: 6rem;
   }
   .result_remind {
-    font-size: .24rem;
+    font-size: .30rem;
     color: #E6AF97;
-    margin: .2rem 0 0 .25rem;
+    margin: .2rem 0 0 -1rem;
+    transform: scale(.7);
   }
 </style>

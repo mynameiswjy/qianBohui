@@ -2,7 +2,7 @@
     <div class="first_prize_wrap">
       <div class="first_prize_content">
         <img class="first_prize_title" src="https://www.chbice.com/imgFile/ico/12111.png" alt="">
-        <div class="prize_type">恭喜你获得一等奖</div>
+        <div class="prize_type">恭喜你获得参与奖</div>
         <div class="first_prize_img">
 <!--          <img class="prize_img1" src="https://www.chbice.com//imgFile/ico/prize/1-1.png" alt="">-->
           <img class="prize_img2" src="https://www.chbice.com//imgFile/ico/prize/5-1.png" alt=""><!--https://www.chbice.com/imgFile/ico/prize/5-1.png-->

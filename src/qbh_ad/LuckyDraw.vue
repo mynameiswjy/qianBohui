@@ -3,11 +3,11 @@
     <div style="height: 1.97rem;"></div>
     <img class="dial_wrap_img" src="https://www.chbice.com/imgFile/ico/dial/ad_ dial_select.png" alt="">
     <div class="dial_content">
-      <img class="dial" :class="{'dial_anim': IsStart}" src="https://www.chbice.com/imgFile/ico/121.png" alt="">
+      <img class="dial" :class="{'dial_anim': IsStart}" src="https://www.chbice.com/imgFile/ico/123456789.png" alt="">
       <img class="pointer" @click="startActive" src="https://www.chbice.com/imgFile/ico/dial/ad_ dial_btn.png" alt="">
     </div>
     <div class="dial_txt_wrap">
-      <h3 class="dial_txt">活动时间：即日起至2020年10月18日24:00止。</h3>
+      <h3 class="dial_txt">活动时间：即日起至2020年10月28日24:00止。</h3>
       <h3 class="dial_txt">活动规则：</h3>
       <h3 class="dial_txt">1. 每位用户有一次抽奖机会。</h3>
       <h3 class="dial_txt">2. 为防止不正当参与行为，我们将在"中国金币"官方微信上公布最终获奖名单。</h3>

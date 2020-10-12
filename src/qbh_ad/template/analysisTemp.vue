@@ -28,8 +28,10 @@ export default {
     nextQuestion() {
       setTimeout(() => {
         this.$router.push({path: 'result'});
+      }, 2000)
+      setTimeout(() => {
         this.$emit('select-input', {isShow: 1})
-      }, 3000)
+      }, 5000)
     }
 
   }

@@ -111,7 +111,7 @@ export default {
         "city": this.addr2,
         "district": this.addr3,
         "address": this.userAddrDetail,
-        "prize": "1"
+        "prize": "参与奖"
       }).then((res) => {
         if (res.data.code === 200) {
           this.successSubmit = true
