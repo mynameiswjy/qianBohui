@@ -8,7 +8,7 @@
       <p>祝你走向人生巅峰</p>
     </div>
     <div class="test_btn" @click="startTest">开始测试</div>
-    <img src="https://www.chbice.com/imgFile/ico/index/ad_logo.png" class="index_logo" alt="">
+    <img src="https://www.chbice.com/imgFile/ico/logo.png" class="index_logo" alt="">
   </div>
 </template>
 

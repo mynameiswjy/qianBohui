@@ -7,11 +7,12 @@
       <img class="pointer" @click="startActive" src="https://www.chbice.com/imgFile/ico/dial/ad_ dial_btn.png" alt="">
     </div>
     <div class="dial_txt_wrap">
-      <h3 class="dial_txt">活动时间：即日起至2020年10月28日24:00止。</h3>
-      <h3 class="dial_txt">活动规则：</h3>
-      <h3 class="dial_txt">1. 每位用户有一次抽奖机会。</h3>
-      <h3 class="dial_txt">2. 为防止不正当参与行为，我们将在"中国金币"官方微信上公布最终获奖名单。</h3>
-      <h3 class="dial_txt">3. 本活动最终解释权归中国金币总公司所有。</h3>
+      <h3 class="dial_txt">特别提示</h3>
+      <h3 class="dial_txt">1、活动时间：即日起至2020年10月28日24:00止。</h3>
+      <h3 class="dial_txt">2、每个手机号只能参与一次抽奖。</h3>
+      <h3 class="dial_txt">3、中奖后请正确填写收货信息，漏填或错填视为放弃奖项。</h3>
+      <h3 class="dial_txt">4、为防止不正当参与行为，一二三等奖最终中奖名单以中国金币微信公众号公布为准。</h3>
+      <h3 class="dial_txt">5、此活动最终解释权归中国金币总公司所有。</h3>
     </div>
     <firstPrize v-if="IsOpenPart" @close_prize_mask="ClosePrizeMask"></firstPrize>
   </div>
@@ -94,6 +95,7 @@ export default {
     background-image: url("https://www.chbice.com/imgFile/ico/ad_sesult/select_bg.png");
     background-repeat: no-repeat;
     background-size: 7.5rem;
+    overflow: auto;
   }
   .dial_wrap_img {
     width: 3.02rem;
@@ -121,13 +123,11 @@ export default {
     transform: translateX(-50%);
   }
   .dial_txt_wrap {
-    margin-top: .13rem;
-    margin-left: 1.36rem;
-    display: inline-block;
-
+    margin: 0 auto;
+    width: 5rem;
   }
   .dial_txt {
-    font-size: .2rem;
+    font-size: .18rem;
     line-height: .32rem;
     margin-bottom: .12rem;
     color: #F4DEBA;
