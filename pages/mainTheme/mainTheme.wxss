@@ -68,6 +68,10 @@
     line-height: 50rpx;
 }
 
+.banner_bottom1 {
+    justify-content: center;
+}
+
 .swiper_cot {
     width: 14rpx;
     height: 14rpx;

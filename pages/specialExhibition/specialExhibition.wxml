@@ -22,8 +22,8 @@
 
     <view
             class="gold_item_wrap common_wrap"
-            wx:if="{{list.length}}"
-            wx:for="{{list}}"
+            wx:if="{{list[0].dataList.length}}"
+            wx:for="{{list[0].dataList}}"
             wx:key="index"
             bindtap="goToDetailsPage"
             data-money-code="{{item.moneyCode}}"

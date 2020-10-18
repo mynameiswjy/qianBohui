@@ -46,29 +46,25 @@
     "hidedInDevtools": []
   },
   "scripts": {},
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
-      "current": -1,
       "list": []
     },
     "conversation": {
-      "current": -1,
       "list": []
     },
     "plugin": {
-      "current": -1,
       "list": []
     },
     "game": {
-      "current": -1,
       "list": []
     },
     "gamePlugin": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "current": -1,
       "list": [
         {
           "id": 0,
@@ -94,7 +90,7 @@
           "id": 3,
           "name": "详情页",
           "pathName": "pages/detail/detail",
-          "query": "moneyCode=600003",
+          "query": "moneyCode=600304",
           "scene": 1001
         },
         {

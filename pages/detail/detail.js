@@ -25,7 +25,6 @@ Page({
   },
   onLoad: function (options) {
     let opt = this.parseUrlParam(options)
-		console.log(opt);
 		this.setData({
       options: options
     });
@@ -48,22 +47,22 @@ Page({
       })
       return
     }
-		if (opt) {
-			this.init(opt)
-		} else {
-			this.init(options)
+    if (opt) {
+        this.init(opt)
+    } else {
+      this.init(options)
     }
   },
 
   onShow: function () {
   },
   onReady() {
-    /*const data = successiveExhibitors({moneyCode: this.data.options.moneyCode,token: app.globalData.header.Token})
-    Promise.all([data]).then(path => {
-      if (path[0].data.returnData != null) {
-        this.initCanvas(path[0].data.returnData)
-      }
-    })*/
+    // const data = successiveExhibitors({moneyCode: this.data.options.moneyCode,token: app.globalData.header.Token})
+    // Promise.all([data]).then(path => {
+    //   if (path[0].data.returnData != null) {
+    //     this.initCanvas(path[0].data.returnData)
+    //   }
+    // })
   },
   // 数据初始化
   init(options) {
@@ -123,20 +122,29 @@ Page({
       })
     });
   },
+
+  randomImg() {
+    const baseUrl = config.iSDevelop ? config.DEV_BASE_URL : config.BASE_URL;
+    const imgUrl = baseUrl + "/imgFile/icon/short_bg"
+    const arr = [imgUrl + "1.png",imgUrl + "2.png",imgUrl + "3.png", imgUrl + "4.png", imgUrl + "5.png"];
+    return arr[Math.floor((Math.random() * arr.length))]
+  },
+
   // 初始化canvas
   initCanvas(options) {
     if (this.data.isContinue) return false
     let that = this
     const SystemInfo = wx.getSystemInfoSync()
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)
-    that.setData({SystemInfo})
-    console.log(this.getMinappCodeImage())
+    that.setData({SystemInfo});
     const fontImg = this.promisify(options.shareUrl)
     const moneyImg = this.promisify(options.url1)
-    const rahmen = this.promisify('https://www.chbice.com/imgFile/icon/rahmen.png'); //相框
+    const rahmen = this.promisify('https://www.chbice.com/imgFile/icon/rahmen_icon.png'); //相框
     const minappCode = this.promisify(this.getMinappCodeImage())
+    const bg = this.promisify(this.randomImg());
+    const avatar = this.promisify(options.headUrl)
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)
-    Promise.all([fontImg, moneyImg, minappCode, rahmen]).then(res => {
+    Promise.all([fontImg, moneyImg, minappCode, rahmen, bg, avatar]).then(res => {
       console.log(res);
       if (res.length > 0) {
         let options = {
@@ -144,12 +152,15 @@ Page({
           moneyImg: res[1].path,
           minCodeAdd: res[2].path,
           rahmenIcon: res[3].path,
+          bg: res[4].path,
+          avatar: res[5].path
         }
         /*that.setData({
           options: options
         })*/
         if (res.length) {
-          that.drawCanvas(options)
+          // that.drawCanvas(options)
+          that.drawCanvasBig(options)
         }
 
       }
@@ -163,24 +174,24 @@ Page({
     url = `${url}?scene=${scene}&page=${page}`
     return url
   },
-	parseUrlParam: function (options) {
-		if (options.scene) {
-			const scene = decodeURIComponent(options.scene).split(',')
-			let params = {}
-			let key = [
-				"moneyCode",
-				"IsShare",
-				"isCode"
-			]
+  parseUrlParam: function (options) {
+    if (options.scene) {
+        const scene = decodeURIComponent(options.scene).split(',')
+        let params = {}
+        let key = [
+            "moneyCode",
+            "IsShare",
+            "isCode"
+        ]
 
-			for (let i = 0; i < scene.length; i++) {
-				params[key[i]] = scene[i]
-			}
+        for (let i = 0; i < scene.length; i++) {
+            params[key[i]] = scene[i]
+        }
 
-			return params
-		}
-		return null
-	},
+        return params
+    }
+      return null
+  },
   createUrlParam: function () {
     let params = ''
     let options = {
@@ -305,6 +316,66 @@ Page({
       }
     })
   },
+  drawCanvasBig(options) {
+    const ctx = wx.createCanvasContext('canvasShare', this)
+    const that = this
+    let width = this.data.SystemInfo.windowWidth
+    let height = this.data.SystemInfo.windowHeight
+    // 名称背景
+    ctx.save()
+    ctx.beginPath()
+    ctx.rect(0, 0, width, height)
+    ctx.setFillStyle('#FFFFFF')
+    ctx.fill()
+    ctx.restore()
+
+    // 绘制背景图
+    ctx.save()
+    ctx.drawImage('./short_bg6.png', 0, 0, this.scale(750/2), this.scale(1165/2))
+    ctx.restore()
+
+    // 相框的白底
+    ctx.save();
+    ctx.beginPath();
+    this.scale(124/2, true);
+    ctx.rect(this.scale(95/2), this.data.drawY, this.scale(560/2), this.scale(333/2));
+    ctx.setFillStyle('#FFFFFF');
+    ctx.fill();
+    ctx.restore();
+
+    // 钱币图
+    ctx.save()
+    this.scale(27/2, true);
+    // ctx.setShadow(0, 0, 15, 'rgba(0,0,0, 0.5)')
+    ctx.drawImage(options.moneyImg, this.scale(115/2), this.data.drawY, this.scale(520/2), this.scale(280/2));
+    ctx.restore()
+
+    // 相框
+    ctx.save()
+    ctx.drawImage(options.rahmenIcon, this.scale(115/2), this.data.drawY, this.scale(520/2), this.scale(280/2));
+    this.scale(305/2, true);
+    ctx.restore();
+
+    // 字体图
+    ctx.save()
+    this.scale(34/2, true); //options.fontImg
+    ctx.drawImage('./font.png', this.scale(305/2), this.data.drawY, this.scale(141/2), this.scale(452/2));
+    this.scale(446/2, true);
+    ctx.restore();
+
+    // 二维码
+    ctx.save()
+    this.scale(26/2, true);
+    ctx.drawImage(options.minCodeAdd, this.scale(313/2), this.data.drawY, this.scale(115/2), this.scale(115/2));
+    this.scale(100/2, true);
+    ctx.restore();
+
+    setTimeout(() => {
+      ctx.draw(true, () => {
+        that.saveCanvasImg(width, height)
+      })
+    }, 200)
+  },
   drawCanvas(options) {
     const ctx = wx.createCanvasContext('canvasShare', this)
     const that = this
@@ -321,11 +392,11 @@ Page({
 
     // 绘制背景图
     ctx.save()
-    ctx.drawImage('./bg.png', this.scale(50/2), this.scale(24/2), this.scale(650/2), this.scale(650/2))
+    ctx.drawImage(options.bg, 0, 0, this.scale(750/2), this.scale(750/2))
     ctx.restore()
 
     // 用户头像
-    this.userAvatar(ctx, this.scale(470/2), this.scale(50/2), this.scale(60/2), this.scale(60/2), this.scale(30/2), './avatar.jpeg')
+    this.userAvatar(ctx, this.scale(470/2), this.scale(50/2), this.scale(60/2), this.scale(60/2), this.scale(30/2), options.avatar)
     // 绘制名字
     ctx.font = 'normal normal 13px PingFang SC,Microsoft Yahei,Untitled';
     ctx.setTextBaseline('bottom')
@@ -335,46 +406,46 @@ Page({
 
     // 字体图
     ctx.save()
-    this.scale(50/2, true); //options.fontImg
-    ctx.drawImage('./font.png', this.scale(89/2), this.data.drawY, this.scale(113/2), this.scale(391/2));
-    this.scale(391/2, true);
+    this.scale(41/2, true); //options.fontImg
+    ctx.drawImage('./font.png', this.scale(44/2), this.data.drawY, this.scale(129/2), this.scale(446/2));
+    this.scale(446/2, true);
     ctx.restore();
 
     // 相框的白底
     ctx.save();
     ctx.beginPath();
-    this.scale(35/2, true);
-    ctx.rect(this.scale(129/2), this.data.drawY, this.scale(492/2), this.scale(336/2));
+    this.scale(40/2, true);
+    ctx.rect(this.scale(90/2), this.data.drawY, this.scale(561/2), this.scale(333/2));
     ctx.setFillStyle('#FFFFFF');
     ctx.fill();
     ctx.restore();
 
     // 钱币图
     ctx.save()
-    this.scale(26/2, true);
+    this.scale(29/2, true);
     // ctx.setShadow(0, 0, 15, 'rgba(0,0,0, 0.5)')
-    ctx.drawImage(options.moneyImg, this.scale(147/2), this.data.drawY, this.scale(457/2), this.scale(255/2));
+    ctx.drawImage(options.moneyImg, this.scale(111/2), this.data.drawY, this.scale(521/2), this.scale(280/2));
     ctx.restore()
 
     // 相框
     ctx.save()
-    ctx.drawImage(options.rahmenIcon, this.scale(147/2), this.data.drawY, this.scale(457/2), this.scale(255/2));
-    this.scale(255/2, true);
+    ctx.drawImage(options.rahmenIcon, this.scale(111/2), this.data.drawY, this.scale(521/2), this.scale(280/2));
+    this.scale(304/2, true);
     ctx.restore();
 
     // 二维码
     ctx.save()
-    this.scale(98/2, true);
-    ctx.drawImage(options.minCodeAdd, this.scale(325/2), this.data.drawY, this.scale(100/2), this.scale(100/2));
+    this.scale(60/2, true);
+    ctx.drawImage(options.minCodeAdd, this.scale(313/2), this.data.drawY, this.scale(114/2), this.scale(114/2));
     this.scale(100/2, true);
     ctx.restore();
 
     // code text
-    ctx.font = 'normal normal 12px PingFang SC,Microsoft Yahei,Untitled'
+    ctx.font = 'normal normal 14px PingFang SC,Microsoft Yahei,Untitled'
     ctx.setTextBaseline('bottom');
     ctx.setFillStyle('#BFA267');
     ctx.setTextAlign('center');
-    this.scale(20/2, true);
+    this.scale(30/2, true);
     ctx.setFontSize(this.scale(22/2, true));
     ctx.fillText('扫码查看钱币详情', width/2, this.data.drawY);
     ctx.closePath();
@@ -384,6 +455,22 @@ Page({
         that.saveCanvasImg(width, height)
       })
     }, 200)
+  },
+
+  dispose(ctx, text) {
+    let chr = text.split("");//这个方法是将一个字符串分割成字符串数组
+    let temp = "";
+    let row = [];
+    for (let a = 0; a < chr.length; a++) {
+      if (ctx.measureText(temp).width < 250) {
+        temp += chr[a];
+      }
+      else {
+        a--; //这里添加了a-- 是为了防止字符丢失，效果图中有对比
+        row.push(temp);
+        temp = "";
+      }
+    }
   },
 
   userAvatar(ctx, x, y, w, h, r, avatar) {
