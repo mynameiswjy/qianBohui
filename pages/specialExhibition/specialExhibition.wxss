@@ -20,7 +20,10 @@
     color: #333;
     line-height: 34rpx;
     margin: 24rpx 0 0 20rpx;
-    padding-bottom: 24rpx;
+}
+
+.bottom_border {
+    padding-top: 24rpx;
     border-bottom: 2rpx solid rgba(191, 162, 103, 0.5);
 }
 
@@ -67,4 +70,14 @@
     line-height: 29rpx;
     margin-left: 20rpx;
     justify-content: space-between;
+}
+
+.show_two_line {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }

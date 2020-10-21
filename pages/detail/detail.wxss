@@ -169,7 +169,7 @@ page {
     width: 750rpx;
     position: fixed;
     top: 0;
-    /*left: -750rpx;*/
+    left: -750rpx;
     bottom: 0;
     height: 100%;
     background-color: #fff;

@@ -8,7 +8,8 @@ Page({
     list: [],
     pageNum: '',
     isSend: true,
-    isLoading: true
+    isLoading: true,
+    IsShowTxt: false
   },
 
   onLoad: function (options) {
@@ -32,6 +33,11 @@ Page({
       } else {
         console.error('服务器错误')
       }
+    })
+  },
+  showTxt() {
+    this.setData({
+      IsShowTxt: !this.data.IsShowTxt
     })
   },
   goToDetailsPage(e) {

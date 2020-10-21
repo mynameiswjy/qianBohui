@@ -21,7 +21,8 @@ Page({
     iphoneX: app.globalData.iphoneX,
     btuBottom: '',
     isShowImg: false,
-    isContinue: false
+    isContinue: false,
+    IsBigImg: 0
   },
   onLoad: function (options) {
     let opt = this.parseUrlParam(options)
@@ -52,6 +53,7 @@ Page({
     } else {
       this.init(options)
     }
+    this.selectShowImg()
   },
 
   onShow: function () {
@@ -126,8 +128,18 @@ Page({
   randomImg() {
     const baseUrl = config.iSDevelop ? config.DEV_BASE_URL : config.BASE_URL;
     const imgUrl = baseUrl + "/imgFile/icon/short_bg"
-    const arr = [imgUrl + "1.png",imgUrl + "2.png",imgUrl + "3.png", imgUrl + "4.png", imgUrl + "5.png"];
+    let arr
+    if (!this.data.IsBigImg) {
+      arr = [imgUrl + "1.png",imgUrl + "2.png",imgUrl + "3.png", imgUrl + "4.png", imgUrl + "5.png"];
+    } else {
+      arr = [imgUrl + "6.png",imgUrl + "7.png",imgUrl + "8.png", imgUrl + "9.png", imgUrl + "10.png"];
+    }
     return arr[Math.floor((Math.random() * arr.length))]
+  },
+
+  selectShowImg() {
+    const arr = [0, 1];
+    this.data.IsBigImg =  arr[Math.floor((Math.random() * arr.length))]
   },
 
   // 初始化canvas
@@ -140,11 +152,12 @@ Page({
     const fontImg = this.promisify(options.shareUrl)
     const moneyImg = this.promisify(options.url1)
     const rahmen = this.promisify('https://www.chbice.com/imgFile/icon/rahmen_icon.png'); //相框
+    const bottomBg = this.promisify('https://www.chbice.com/imgFile/icon/details_bg.png'); //底条
     const minappCode = this.promisify(this.getMinappCodeImage())
     const bg = this.promisify(this.randomImg());
     const avatar = this.promisify(options.headUrl)
     this.data.scaleNum = (SystemInfo.windowWidth / 375).toFixed(2)
-    Promise.all([fontImg, moneyImg, minappCode, rahmen, bg, avatar]).then(res => {
+    Promise.all([fontImg, moneyImg, minappCode, rahmen, bg, avatar, bottomBg]).then(res => {
       console.log(res);
       if (res.length > 0) {
         let options = {
@@ -153,14 +166,18 @@ Page({
           minCodeAdd: res[2].path,
           rahmenIcon: res[3].path,
           bg: res[4].path,
-          avatar: res[5].path
+          avatar: res[5].path,
+          bottomBg: res[6].path
         }
         /*that.setData({
           options: options
         })*/
         if (res.length) {
-          // that.drawCanvas(options)
-          that.drawCanvasBig(options)
+          if (this.data.IsBigImg) {
+            that.drawCanvas(options)
+          } else {
+            that.drawCanvasBig(options)
+          }
         }
 
       }
@@ -363,12 +380,32 @@ Page({
     this.scale(446/2, true);
     ctx.restore();
 
+    // 二维码底部背景
+    ctx.save()
+    ctx.drawImage(options.bottomBg, this.scale(61/2), this.data.drawY + this.scale(49/2), this.scale(618/2), this.scale(71/2));
+    ctx.restore();
+
     // 二维码
     ctx.save()
     this.scale(26/2, true);
     ctx.drawImage(options.minCodeAdd, this.scale(313/2), this.data.drawY, this.scale(115/2), this.scale(115/2));
-    this.scale(100/2, true);
     ctx.restore();
+
+    // 用户头像
+    this.userAvatar(ctx, this.scale(105/2), this.scale(35/2) + this.data.drawY, this.scale(46/2), this.scale(46/2), this.scale(30/2), options.avatar)
+    // 绘制名字
+    ctx.font = 'normal normal 13px PingFang SC,Microsoft Yahei,Untitled';
+    ctx.setTextBaseline('bottom')
+    ctx.setFillStyle('#333333')
+    ctx.fillText(app.globalData.userData.NickName, this.scale(160/2), this.scale(72/2) + this.data.drawY, this.scale(138/2));
+
+    // code text
+    ctx.font = 'normal normal 14px PingFang SC,Microsoft Yahei,Untitled'
+    ctx.setTextBaseline('bottom');
+    ctx.setFillStyle('#333333');
+    ctx.setFontSize(this.scale(22/2));
+    ctx.fillText('扫码查看钱币详情', this.scale(456/2), this.scale(70/2) + this.data.drawY);
+    ctx.closePath();
 
     setTimeout(() => {
       ctx.draw(true, () => {
@@ -401,7 +438,6 @@ Page({
     ctx.font = 'normal normal 13px PingFang SC,Microsoft Yahei,Untitled';
     ctx.setTextBaseline('bottom')
     ctx.setFillStyle('#BFA267')
-    // ctx.setTextAlign('center')
     ctx.fillText(app.globalData.userData.NickName, this.scale(540/2), this.scale(95/2), this.scale(144/2));
 
     // 字体图

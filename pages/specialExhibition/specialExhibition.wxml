@@ -1,7 +1,10 @@
 <view>
     <view class="showroom_sub_wrap common_wrap">
         <view class="showroom_sub_content common_content">
-            <view class="showroom_sub_title">中华人民共和国成立30周年纪念金币此处为文字介绍最多三行多了的用经中华人民共和国商务部、中国人 民银行批准，由中国金币总公司、中国印钞造</view>
+            <view class="showroom_sub_title {{IsShowTxt?'':'show_two_line'}}" bindtap="showTxt">
+                <text>中华人民共和国成立30周年纪念金币此处为文字介绍最多三行多了的用经中华人民共和国商务部、中国人 民文字介绍最多三行多了的用经中华人民共和国商务部、中国人 民文字介绍最多三行多了的用经中华人民共和国商务部、中国人 民银行批准，由中国金币总公司、中国印钞造</text>
+            </view>
+            <view class="bottom_border"></view>
             <view class="showroom_sub_video"></view>
             <view style="margin: 0 20rpx;height: 2rpx;background-color: rgba(191, 162, 103, 0.5);"></view>
             <view class="voice_name">聚焦金币指南—赵金南</view>
