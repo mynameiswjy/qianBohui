@@ -33,6 +33,7 @@
     background: #ccc;
     border-radius: 20rpx;
     margin: 24rpx 20rpx;
+    position: relative;
 }
 
 .voice_name {
@@ -45,6 +46,8 @@
 .progress_wrap {
     position: relative;
     margin: 0 20rpx 8rpx;
+    align-items: center;
+    justify-content: center;
 }
 
 .progress {
@@ -80,4 +83,63 @@
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.icon-icon_play {
+    font-size: 28rpx;
+    color: #fff;
+    width: 60rpx;
+    height: 60rpx;
+    background-color: rgba(0,0,0,.5);
+    border-radius: 30rpx;
+    text-align: center;
+    line-height: 60rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.play_mask {
+    width: 750rpx;
+    background-color: rgba(0,0,0, .5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+
+.video_wrap {
+    width: 750rpx;
+    height: 450rpx;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.video {
+    width: 750rpx;
+    height: 450rpx;
+}
+
+.icon-guanbi {
+    color: #fff;
+    width: 80rpx;
+    height: 80rpx;
+    text-align: center;
+    margin: 30rpx auto 0;
+    border-radius: 50rpx;
+    line-height: 80rpx;
+    border: 1rpx solid #fff;
+}
+
+.icon-shengyin {
+    font-size: 26rpx;
+    color: #fff;
+    background-color: #BFA267;
+    border-radius: 20rpx;
+    width: 40rpx;
+    height: 40rpx;
+    text-align: center;
+    line-height: 40rpx;
+    margin-left: 15rpx;
 }

@@ -37,6 +37,5 @@
             <video class="video" autoplay src="https://www.mengniuhealth.cn/imgFile/29318801.mp4"></video>
             <view class="iconfont icon-guanbi" bindtap="closeVideo"></view>
         </view>
-
     </view>
 </block>

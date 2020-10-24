@@ -9,7 +9,8 @@ Page({
     pageNum: '',
     isSend: true,
     isLoading: true,
-    IsShowTxt: false
+    IsShowTxt: false,
+    isOpenClose: false
   },
 
   onLoad: function (options) {
@@ -38,6 +39,16 @@ Page({
   showTxt() {
     this.setData({
       IsShowTxt: !this.data.IsShowTxt
+    })
+  },
+  closeVideo() {
+    this.setData({
+      isOpenClose: false
+    })
+  },
+  openVideo() {
+    this.setData({
+      isOpenClose: true
     })
   },
   goToDetailsPage(e) {
