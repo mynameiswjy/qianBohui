@@ -30,7 +30,7 @@ export default {
     return {
       pickerVisible: false,
       IsOpenSelectAddr: false,
-      startDate: new Date('1950-01-01'),
+      startDate: new Date('1920-01-01'),
       endDate: new Date('2020-12-12'),
       pickerValue: '',
       userSelectAddrInfo: '',

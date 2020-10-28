@@ -3,7 +3,7 @@
     <div style="height: 1.45rem;"></div>
     <div class="result_title_wrap">
       <div class="result_title_bor"></div>
-      <img class="result_title" src="https://www.chbice.com/imgFile/ico/result/ad_ result_title_top.png" alt="">
+      <img class="result_title" src="https://www.chbice.com/imgFile/ico/logo.png" alt="">
       <div class="result_title_bor"></div>
     </div>
     <div class="result_img_wrap">
