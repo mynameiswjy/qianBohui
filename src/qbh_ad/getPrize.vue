@@ -17,7 +17,7 @@
       <div class="part_prize" v-if="successSubmit">
         <div class="Involved_content">
           <h3>{{hasPrize ? '已参与过抽奖' : '提交成功'}}</h3>
-          <p>活动结束后会有工作人员与您取得联系， 请注意保持手机畅通。</p>
+          <p>活动结束后会有工作人员与您取得联系，请注意保持手机畅通。</p>
           <div class="part_prize_btn prize_common_btn" @click="closeMask">{{hasPrize ? '我的奖品' : '确定'}}</div>
         </div>
       </div>
@@ -25,12 +25,15 @@
         <div class="part_prize_content">
           <p class="part_prize_title">您已获得</p>
           <div class="part_prize_center">
-<!--            <img class="part_prize1" src="https://www.chbice.com/imgFile/ico/prize/1-1.png" alt="">-->
-            <img class="part_prize2" src="https://www.chbice.com/imgFile/ico/prize/5.png" alt="">
+            <template v-if="userPrizeInfo.img.length > 1">
+              <img class="part_prize1" src="https://www.chbice.com/imgFile/ico/prize/1-1.png" alt="">
+              <img class="part_prize3" src="https://www.chbice.com/imgFile/ico/prize/2.png" alt="">
+            </template>
+            <img v-else class="part_prize2" :src="userPrizeInfo.img[0]" alt="">
           </div>
           <div class="part_prize_bott">
             <span class="iconfont icon-ic_gonggao"></span>
-            <span class="">获得《中国金币文化》一本</span>
+            <span class="">{{userPrizeInfo.value}}</span>
           </div>
           <div class="part_prize_btn prize_common_btn" @click="getPrizeBtn">确定</div>
         </div>
@@ -56,8 +59,47 @@ export default {
       addr3: '',
       successSubmit: false,
       hasPrize: false,
-      checkPrize: false,
-      IsAgree: false
+      checkPrize: false, // 查看奖品开关
+      IsAgree: false,
+      prizeList: [
+        {phone: 18611526670, type: 1},
+        {phone: 13911069706, type: 2},
+        {phone: 18811396321, type: 2},
+        {phone: 17710668797, type: 2},
+        {phone: 13801161791, type: 2},
+        {phone: 13720024307, type: 3},
+        {phone: 15831683109, type: 3},
+        {phone: 13901026953, type: 3},
+        {phone: 17896046998, type: 3},
+        {phone: 15611627119, type: 3},
+        {phone: 18712748159, type: 3},
+        {phone: 13537591619, type: 3},
+        {phone: 13817882788, type: 3},
+        {phone: 18611771690, type: 3}
+      ],
+      prizeInfo: {
+        1: {
+          img: ['https://www.chbice.com/imgFile/ico/prize/1-1.png', 'https://www.chbice.com/imgFile/ico/prize/1-2.png'],
+          value: '获得 2021 年中国辛丑（牛）年30克彩色金银套币（3克金+30克银）一套',
+          title: '一等奖'
+        },
+        2: {
+          img: ['https://www.chbice.com/imgFile/ico/prize/1-2.png'],
+          value: '获得 2021 年中国辛丑（牛）年30克彩色银币一枚',
+          title: '二等奖'
+        },
+        3: {
+          img: ['https://www.chbice.com/imgFile/ico/prize/3.png'],
+          value: '获得 2021 年版熊猫普制银币一枚',
+          title: '三等奖'
+        },
+        0: {
+          img: ['https://www.chbice.com/imgFile/ico/prize/5.png'],
+          value: '获得《中国金币文化》一本',
+          title: '参与奖'
+        }
+      },
+      userPrizeInfo: null
     }
   },
   activated() {
@@ -133,7 +175,16 @@ export default {
     },
     closeMask() {
       this.successSubmit = false
-      if (this.hasPrize) {
+      if (this.hasPrize) { // userPhone
+        const userPhone = this.userPhone;
+        const prizeInfo = this.prizeList.filter(item => {
+          return item.phone == userPhone
+        });
+        if (prizeInfo.length) {
+          this.userPrizeInfo = this.prizeInfo[prizeInfo[0].type]
+        } else {
+          this.userPrizeInfo = this.prizeInfo[0]
+        }
         this.checkPrize = true
       } else {
         this.successSubmit = false
@@ -270,6 +321,11 @@ export default {
   .part_prize_center .part_prize2 {
     width: 2.36rem;
     height: 2.36rem;
+    margin: 0 auto;
+  }
+  .part_prize_center .part_prize3 {
+    width: 1.8rem;
+    height: 1.8rem;
     margin: 0 auto;
   }
   .Involved_content {
