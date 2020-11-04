@@ -30,6 +30,7 @@ export default {
 
 <style scoped lang="stylus">
   .mask
+    background-color rgba(0,0,0,.6)
     .wraps
       position: absolute
       top 50%

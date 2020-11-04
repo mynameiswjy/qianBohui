@@ -1,5 +1,5 @@
 <template>
-    <div class="mask" :class="{show: isShow}" ref="wrapper" @touchmove.prevent>
+    <div class="mask mask_reser" :class="{show: isShow}" ref="wrapper" @touchmove.prevent>
       <scroll style="height: 100%" :data="userInputList.selectItem">
         <div class="wraps" ref="content">
           <ul style="position: relative;">
@@ -208,6 +208,8 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .mask_reser
+    overflow scroll
   .select_wrap
     .icon-jiantou
       position: absolute

@@ -1,54 +1,52 @@
 <template>
-    <div class="mask" ref="wrapper">
-      <scroll :data="userVisitList.selectItem" style="height: 100%">
-        <div class="mask_reserve" ref="content">
-<!--          <div class="res-title">-->
-<!--            <h2>{{userVisitList.name}}</h2>-->
-<!--            <img @click="closeTemp" src="../../assets/images/close.png" alt="">-->
-<!--          </div>-->
-          <div class="reserve_bg"></div>
-          <ul class="reserve_ul">
-            <li v-for="(item, index) in userVisitList.selectItem" :key="index">
-              <div v-if="(item.isType == 'I')" class="list">
-                <div class="list-left">
-                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
-                  <div>{{item.name}}</div>
-                </div>
-                <input v-model="item[item.code]" type="text"/>
+    <div class="mask mask_visit" ref="wrapper">
+      <div class="mask_reserve" ref="content">
+        <!--          <div class="res-title">-->
+        <!--            <h2>{{userVisitList.name}}</h2>-->
+        <!--            <img @click="closeTemp" src="../../assets/images/close.png" alt="">-->
+        <!--          </div>-->
+        <div class="reserve_bg"></div>
+        <ul class="reserve_ul">
+          <li v-for="(item, index) in userVisitList.selectItem" :key="index">
+            <div v-if="(item.isType == 'I')" class="list">
+              <div class="list-left">
+                <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
+                <div>{{item.name}}</div>
               </div>
-              <div class="list" v-if="(item.isType == 'S')">
-                <div class="list-left">
-                  <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
-                  <div>{{item.name}}</div>
-                </div>
-                <div style="position: relative;">
-                  <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
-                    <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.code">{{opt.name}}</option>
-                  </select>
-                  <div v-show="!item[item.code]" class="select-default">请选择</div>
-                </div>
+              <input v-model="item[item.code]" type="text"/>
+            </div>
+            <div class="list" v-if="(item.isType == 'S')">
+              <div class="list-left">
+                <div v-show="item.isRequired == 'Y'" class="mandatory">*</div>
+                <div>{{item.name}}</div>
               </div>
-              <div v-if="(item.isType == 'A')" class="textarea_wrap">
-                <div class="note">{{item.name}}</div>
-                <textarea name="" v-model="item[item.code]" class="textarea" id="" cols="30" rows="10"></textarea>
+              <div style="position: relative;">
+                <select v-model="item[item.code]" :class="{select1: !item[item.code]}">
+                  <option v-for="(opt, idx) in JSON.parse(item.exe1)" :key="idx" :value="opt.code">{{opt.name}}</option>
+                </select>
+                <div v-show="!item[item.code]" class="select-default">请选择</div>
               </div>
-            </li>
-          </ul>
-          <div class="foot-select">
-            <select v-model="personNum" class="select-bottom left-margin">
-              <option value ="1">1人</option>
-              <option value ="2">2人</option>
-              <option value ="3">3人</option>
-              <option value ="4">4人</option>
-              <option value ="5">5人</option>
-              <option value ="6">6人</option>
-              <option value ="7">7人</option>
-              <option value ="8">8人</option>
-            </select>
-            <div @click="sendDataVisit">确定</div>
-          </div>
+            </div>
+            <div v-if="(item.isType == 'A')" class="textarea_wrap">
+              <div class="note">{{item.name}}</div>
+              <textarea name="" v-model="item[item.code]" class="textarea" id="" cols="30" rows="10"></textarea>
+            </div>
+          </li>
+        </ul>
+        <div class="foot-select">
+          <select v-model="personNum" class="select-bottom left-margin">
+            <option value ="1">1人</option>
+            <option value ="2">2人</option>
+            <option value ="3">3人</option>
+            <option value ="4">4人</option>
+            <option value ="5">5人</option>
+            <option value ="6">6人</option>
+            <option value ="7">7人</option>
+            <option value ="8">8人</option>
+          </select>
+          <div @click="sendDataVisit">确定</div>
         </div>
-      </scroll>
+      </div>
     </div>
 </template>
 
@@ -169,6 +167,8 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .mask_visit
+    overflow scroll
   .reserve_ul
     width 6.9rem
     background-color #fff
