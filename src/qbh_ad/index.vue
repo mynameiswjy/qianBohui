@@ -32,7 +32,8 @@ export default {
   },
   methods: {
     startTest() {
-      this.$router.push({path: 'ad_select'});
+      this.Toast('活动已结束')
+      // this.$router.push({path: 'ad_select'});
     },
     shareWx() {
       getAdShareToken('/qbh_ad').then(res => { // window.location.href
