@@ -11,6 +11,10 @@
               <dl class="landing_text" v-html="detailObj.content"><!--detailObj.-->
                 {{detailObj.content}}
               </dl>
+              <div class="audio_wrap">
+                <audio ref="audio" src="https://www.chbice.com/imgFile/202011031355331111.mp3"></audio>
+                <div @click="playAudioBtn">播放</div>
+              </div>
             </div>
           </div>
           <temp-footer class="temp_footer"></temp-footer>
@@ -39,7 +43,8 @@ export default {
       content: '<p>hadsfhadsjfkjadskfjadskjfk</p><p>&nbsp;<video src="https://cm15-c110-2.play.bokecc.com/flvs/FC811B3AFE595DA3/2019-08-29/123ECC033ABD9BC09C33DC5901307461-10.m3u8?t=1567597158&key=4F2A308505E02164B895FD25B82ED9D8&tpl=10" x5-playsinline="" playsinline="" style="width=100%; height=100%; object-fit: fill" poster="" controls="controls">您的浏览器不支持video播放</video>',
       detailObj: {},
       IsOpenReloadTemp: false,
-      isRefrensh: false
+      isRefrensh: false,
+      audioState: false
     }
   },
   created() {
@@ -55,8 +60,14 @@ export default {
     this.shareWxNewLanding()
   },
   methods: {
-    loadImg() {
-      console.log(66666666666)
+    playAudioBtn() {
+      if (!this.audioState) {
+        this.$refs.audio.play()
+        this.audioState = true
+      } else {
+        this.$refs.audio.pause()
+        this.audioState = false
+      }
     },
     // 分享
     shareWxNewLanding() {
@@ -95,6 +106,11 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+  .audio_wrap
+    width 6.9rem
+    height .88rem
+    background-color #ccc
+    border-radius .45rem
 .landing_wrap
   width 100%
   position fixed
@@ -147,11 +163,15 @@ export default {
               height 4rem!important
               margin-bottom 0.41rem
             >>> video
-              width 6.75rem
-              height 2.86rem
-              margin 0.7rem auto
+              width 6.9rem
+              height 5.5rem
+              margin 0 auto
               background-repeat no-repeat
               background-size 6.75rem 2.86rem
+            >>> audio
+              width 6.9rem
+              margin 0
+              padding 0
 .temp_footer
     height 2.156rem
     position absolute
