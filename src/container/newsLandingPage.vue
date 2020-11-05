@@ -13,7 +13,8 @@
               </dl>
               <div class="audio_wrap">
                 <audio ref="audio" src="https://www.chbice.com/imgFile/202011031355331111.mp3"></audio>
-                <div @click="playAudioBtn">播放</div>
+                <div @click="playAudioBtn" class="iconfont" :class="!audioState?'icon-bofang':'icon-zanting'"></div>
+                <div class="iconfont icon-zyt-yinpinbofang"></div><!---->
               </div>
             </div>
           </div>
@@ -109,8 +110,22 @@ export default {
   .audio_wrap
     width 6.9rem
     height .88rem
-    background-color #ccc
+    background-color #F8F8FF
     border-radius .45rem
+    display flex
+    justify-content space-between
+    align-items center
+    .icon-bofang, .icon-zanting
+      padding-left .45rem
+    .icon-zyt-yinpinbofang
+      margin-right .2rem
+      width .6rem
+      height .6rem
+      color #4caf50
+      border-radius .3rem
+      text-align center
+      line-height .6rem
+      background-color #fff
 .landing_wrap
   width 100%
   position fixed
