@@ -14,6 +14,9 @@
               <div class="audio_wrap">
                 <audio ref="audio" src="https://www.chbice.com/imgFile/202011031355331111.mp3"></audio>
                 <div @click="playAudioBtn" class="iconfont" :class="!audioState?'icon-bofang':'icon-zanting'"></div>
+                <div class="progress">
+                  <div class="progress_center" :style="{width:progressWidth+'rem'}"></div>
+                </div>
                 <div class="iconfont icon-zyt-yinpinbofang"></div><!---->
               </div>
             </div>
@@ -45,7 +48,11 @@ export default {
       detailObj: {},
       IsOpenReloadTemp: false,
       isRefrensh: false,
-      audioState: false
+      audioState: false,
+      AudioStartTime: 0,
+      AudioEndTime: 0,
+      progressWidth: 0,
+      AudioTotalTime: 0
     }
   },
   created() {
@@ -56,18 +63,55 @@ export default {
     let code = this.$route.params.code || getURLParams('code')
     this.initData(code)
     this.$store.commit(types.ROUTER_PATH, this.$route.path)
+    this.getAudioTime()
+    this.audiointerval = null
   },
   mounted() {
     this.shareWxNewLanding()
   },
   methods: {
+    getAudioTime() {
+      const audio = new Audio('https://www.chbice.com/imgFile/202011031355331111.mp3');
+      audio.load()
+      audio.oncanplay = () => {
+        const time = audio.duration;
+        //分钟
+        let minute = time / 60;
+        let minutes = parseInt(minute);
+        if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+        //秒
+        let second = time % 60;
+        let seconds = Math.round(second);
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+        //总共时长的秒数
+        this.AudioEndTime = `${minutes}:${seconds}`;
+        this.AudioTotalTime = minutes * 60 + seconds
+      }
+    },
     playAudioBtn() {
       if (!this.audioState) {
         this.$refs.audio.play()
         this.audioState = true
+        this.audiointerval = setInterval(() => {
+          const audio = this.$refs.audio;
+          const coe = audio.currentTime / this.AudioTotalTime;
+          if (this.progressWidth > 5) {
+            this.progressWidth = 0
+            audio.pause()
+            this.audiointerval = null
+            this.audioState = false
+          } else {
+            this.progressWidth = coe * 5
+          }
+        }, 1000)
       } else {
-        this.$refs.audio.pause()
-        this.audioState = false
+        this.$refs.audio.pause();
+        this.audioState = false;
+        this.audiointerval = null
       }
     },
     // 分享
@@ -95,6 +139,8 @@ export default {
     reloadBtn() {
       this.initData(this.$route.params.code || getURLParams('code'))
     }
+  },
+  watch: {
   },
   components: {
     tempFooter,
@@ -126,6 +172,17 @@ export default {
       text-align center
       line-height .6rem
       background-color #fff
+    .progress
+      width 5rem
+      height 0.05rem
+      background-color #fff
+      position: relative;
+    .progress_center
+      height 0.05rem
+      position absolute
+      left 0
+      top 0
+      background-color #4caf50
 .landing_wrap
   width 100%
   position fixed
