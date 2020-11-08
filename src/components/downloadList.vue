@@ -12,7 +12,7 @@
       <div class="download_mask" v-if="IsOpenDownloadMask" @click="closeMask">
         <div class="mask_content" @click.stop="stopClick">
           <h2>文件下载</h2>
-          <p class="p">文件有效期2020-7-31  10:00</p>
+          <p class="p" v-if="endTime">文件有效期{{endTime}}</p>
           <div class="mask_bottom">
             <div
               class="mask_bottom_btn"
@@ -40,11 +40,17 @@
           </div>
         </div>
       </div>
+      <div class="download_mask" v-if="false">
+        <div class="copy_mask">
+
+        </div>
+      </div>
     </div>
 </template>
 
 <script>
 import {downloadList} from "@/api/index"
+import {MessageBox} from "mint-ui"
 
 export default {
   name: "downloadList",
@@ -52,7 +58,9 @@ export default {
     return {
       downloadList: null,
       IsOpenDownloadMask: false,
-      currentData: null
+      currentData: null,
+      endTime: null,
+      currentQQ: ''
     }
   },
   created() {
@@ -62,7 +70,19 @@ export default {
   },
   methods: {
     copyQQCode() {
-      this.copyBtn(this.$refs.copyBtn)
+      const that = this
+      MessageBox({
+        title: '提示',
+        message: `复制${this.currentQQ}?`,
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then((res => {
+        if (res === 'confirm') {
+          debugger
+          that.copyBtn(that.$refs.copyBtn)
+        } else {
+        }
+      }))
     },
     copyLinkBtn() {
       this.copyBtn(this.$refs.copyLink)
@@ -72,6 +92,7 @@ export default {
       let clipboard = new this.Clipboard(ref); //在main.js中引用
       clipboard.on("success", e => {
         _this.IsOpenDownloadMask = false
+        debugger
         _this.$message({
           message: '复制成功',
           type: 'success'
@@ -80,6 +101,7 @@ export default {
         clipboard.destroy();
       });
       clipboard.on("error", e => {
+        debugger
         _this.IsOpenDownloadMask = false
         // 不支持复制
         _this.$message({
@@ -100,6 +122,8 @@ export default {
     },
     downloadBtn(idx) {
       let downloadList = this.downloadList[idx];
+      this.endTime = downloadList.endTime;
+      this.currentQQ = downloadList.access.qqCode;
       if (downloadList.access.linkPassword && downloadList.access.linkUrl) {
         downloadList.access.link = `百度云地址：${downloadList.access.linkUrl}，密码：${downloadList.access.linkPassword}`
       } else if (downloadList.access.linkUrl) {
@@ -162,6 +186,15 @@ export default {
       bottom 0
       width 7.5rem
       background-color rgba(0,0,0, .4)
+      .copy_mask
+        width 6rem
+        height 5rem
+        background-color #fff
+        position absolute
+        left 50%
+        top 50%
+        transform translate(-50%, -50%)
+        border-radius .2rem
       .mask_content
         width 6.9rem
         padding 0 .3rem

@@ -8,17 +8,18 @@
             <div class="landing_title">{{detailObj.title}}</div>
             <div class="landing_time">{{detailObj.articlesTime}}</div>
             <div class="landing_content">
-              <dl class="landing_text" v-html="detailObj.content"><!--detailObj.-->
+              <dl class="landing_text" v-html="detailObj.content">
                 {{detailObj.content}}
               </dl>
-              <div class="audio_wrap">
-                <audio ref="audio" src="https://www.chbice.com/imgFile/202011031355331111.mp3"></audio>
-                <div @click="playAudioBtn" class="iconfont" :class="!audioState?'icon-bofang':'icon-zanting'"></div>
-                <div class="progress">
-                  <div class="progress_center" :style="{width:progressWidth+'rem'}"></div>
-                </div>
-                <div class="iconfont icon-zyt-yinpinbofang"></div><!---->
-              </div>
+<!--              <div class="audio_wrap">-->
+<!--                <audio ref="audio" src="https://www.chbice.com/imgFile/202011031355331111.mp3"></audio>-->
+<!--                <div @click="playAudioBtn" class="iconfont" :class="!audioState?'icon-bofang':'icon-zanting'"></div>-->
+<!--                <div class="progress">-->
+<!--                  <div class="progress_center" :style="{width:progressWidth+'rem'}"></div>-->
+<!--                </div>-->
+<!--                <div class="iconfont icon-zyt-yinpinbofang"></div>-->
+<!--              </div>-->
+
             </div>
           </div>
           <temp-footer class="temp_footer"></temp-footer>
@@ -70,6 +71,12 @@ export default {
     this.shareWxNewLanding()
   },
   methods: {
+    test(e) {
+      if (e.target.className === 'iconfont icon-bofang' && e.target.nodeName === 'DIV') {
+        console.log(e.target, 'testssss')
+        // this.playAudioBtn()
+      }
+    },
     getAudioTime() {
       const audio = new Audio('https://www.chbice.com/imgFile/202011031355331111.mp3');
       audio.load()
@@ -153,36 +160,39 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-  .audio_wrap
-    width 6.9rem
-    height .88rem
-    background-color #F8F8FF
-    border-radius .45rem
-    display flex
-    justify-content space-between
-    align-items center
-    .icon-bofang, .icon-zanting
-      padding-left .45rem
-    .icon-zyt-yinpinbofang
-      margin-right .2rem
-      width .6rem
-      height .6rem
-      color #4caf50
-      border-radius .3rem
-      text-align center
-      line-height .6rem
-      background-color #fff
-    .progress
-      width 5rem
-      height 0.05rem
-      background-color #fff
-      position: relative;
-    .progress_center
-      height 0.05rem
-      position absolute
-      left 0
-      top 0
-      background-color #4caf50
+  .landing_text
+    >>> .audio_wrap
+          width 6.9rem
+          height .88rem
+          background-color #F8F8FF
+          border-radius .45rem
+          display flex
+          justify-content space-between
+          align-items center
+          .icon-bofang
+            padding-left .45rem
+          .icon-zanting
+            padding-left .45rem
+          .icon-zyt-yinpinbofang
+            margin-right .2rem
+            width .6rem
+            height .6rem
+            color #4caf50
+            border-radius .3rem
+            text-align center
+            line-height .6rem
+            background-color #fff
+          .progress
+            width 5rem
+            height 0.05rem
+            background-color #fff
+            position: relative;
+          .progress_center
+            height 0.05rem
+            position absolute
+            left 0
+            top 0
+            background-color #4caf50
 .landing_wrap
   width 100%
   position fixed
