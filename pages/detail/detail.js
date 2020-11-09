@@ -376,7 +376,7 @@ Page({
     // 字体图
     ctx.save()
     this.scale(34/2, true); //options.fontImg
-    ctx.drawImage('./font.png', this.scale(305/2), this.data.drawY, this.scale(141/2), this.scale(452/2));
+    ctx.drawImage(options.fontImg, this.scale(305/2), this.data.drawY, this.scale(141/2), this.scale(452/2));
     this.scale(446/2, true);
     ctx.restore();
 
@@ -442,8 +442,8 @@ Page({
 
     // 字体图
     ctx.save()
-    this.scale(41/2, true); //options.fontImg
-    ctx.drawImage('./font.png', this.scale(44/2), this.data.drawY, this.scale(129/2), this.scale(446/2));
+    this.scale(41/2, true); //
+    ctx.drawImage(options.fontImg, this.scale(44/2), this.data.drawY, this.scale(129/2), this.scale(446/2));
     this.scale(446/2, true);
     ctx.restore();
 

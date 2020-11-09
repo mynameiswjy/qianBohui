@@ -65,19 +65,13 @@
                 <text style="color: #C6A056;">介绍: </text>{{obj.moneyIntroduce}}
             </view>
             <view class="footer">
-                <view class="give-like flex {{isLike? 'is_like':''}}" bindtap="clickGood">
-                    <!--<span class="iconfont icon-dianzan"></span>
-                    <view>{{moneyLike}}</view>-->
-                    <image src="https://www.chbice.com/imgFile/icon/praise_icon.png"></image>
+                <view class="give-like flex" bindtap="clickGood">
+                    <image src="https://www.chbice.com/imgFile/icon/{{isLike? 'praise_icon':'dislike_icon'}}.png"></image>
                 </view>
                 <button open-type="share" class="flex share">
-                    <!--<span class="iconfont icon-fenxiang"></span>
-                    <view>分享小程序</view>-->
                     <image src="https://www.chbice.com/imgFile/icon/share_icon.png"></image>
                 </button>
                 <view class="flex friends-circle" bindtap="shareFriend">
-                    <!--<image class="footer-img3" src="../../images/pageImg/friends-circle.png"></image>
-                    <view>炫耀一下</view>-->
                     <image src="https://www.chbice.com/imgFile/icon/friends_icon.png"></image>
                 </view>
             </view>
