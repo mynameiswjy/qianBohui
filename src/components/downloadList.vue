@@ -43,13 +43,13 @@
           <p>{{IsQQBtn?'QQ：'+currentData.access.qqCode:'链接密码'+currentData.access.link.keywords}}</p>
           <div class="download_mask_btn" v-if="IsQQBtn">
             <div class="cancel" @click="maskCancelBtn">取消</div>
-            <div
+            <button
               class="mask_confirm"
               ref="copyBtn"
               :data-clipboard-text="currentData.access.qqCode"
               @mouseenter="maskConfirmBtn"
               @click="maskConfirmBtn"
-            >复制</div>
+            >复制</button>
           </div>
           <div v-else class="download_mask_btn">
             <div
@@ -79,7 +79,8 @@ export default {
       endTime: null,
       currentQQ: '',
       IsOPenMaskTemp: false,
-      IsQQBtn: false
+      IsQQBtn: false,
+      IsUrlBtn: false
     }
   },
   created() {
@@ -96,12 +97,13 @@ export default {
     maskConfirmBtn() { // 弹窗确定按钮
       if (this.IsQQBtn) {
         this.copyBtn(this.$refs.copyBtn);
-        // this.IsQQBtn = false;
+        this.IsQQBtn = false;
         this.IsOPenMaskTemp = false;
       }
     },
     copyUrlBtn() { // 复制百度云链接密码
       this.IsOPenMaskTemp = true;
+      this.IsUrlBtn = true;
       this.copyBtn(this.$refs.likeUrlNode)
     },
     copyQQCode() {
@@ -134,11 +136,10 @@ export default {
           message: '复制成功',
           type: 'success'
         });
-        if (!this.IsQQBtn) {
+        if (this.IsUrlBtn) {
           window.location.href = this.currentData.access.link.url;
           this.IsOPenMaskTemp = false;
-        } else {
-          this.IsQQBtn = false
+          this.IsUrlBtn = false;
         }
         // 释放内存
         clipboard.destroy();
@@ -259,6 +260,8 @@ export default {
           .cancel
             margin-right .3rem
             background-color #999
+          button
+            font-size .3rem
         h2
           font-size .35rem
           font-weight bold
