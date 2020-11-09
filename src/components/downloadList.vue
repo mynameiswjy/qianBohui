@@ -17,9 +17,6 @@
             <div
               class="mask_bottom_btn"
               :class="{'margin_r': currentData.access.linkUrl}"
-              ref="copyBtn"
-              :data-clipboard-text="currentData.access.qqCode"
-              @mouseenter="copyQQCode"
               @click="copyQQCode"
               v-if="currentData.access.qqCode"
             >
@@ -40,9 +37,29 @@
           </div>
         </div>
       </div>
-      <div class="download_mask" v-if="false">
+      <div class="download_mask" v-if="IsOPenMaskTemp">
         <div class="copy_mask">
-
+          <h2>提示</h2>
+          <p>{{IsQQBtn?'QQ：'+currentData.access.qqCode:'链接密码'+currentData.access.link.keywords}}</p>
+          <div class="download_mask_btn" v-if="IsQQBtn">
+            <div class="cancel" @click="maskCancelBtn">取消</div>
+            <div
+              class="mask_confirm"
+              ref="copyBtn"
+              :data-clipboard-text="currentData.access.qqCode"
+              @mouseenter="maskConfirmBtn"
+              @click="maskConfirmBtn"
+            >复制</div>
+          </div>
+          <div v-else class="download_mask_btn">
+            <div
+              class="mask_confirm"
+              @click="copyUrlBtn"
+              ref="likeUrlNode"
+              :data-clipboard-text="currentData.access.link.keywords"
+              @mouseenter="copyUrlBtn"
+            >复制</div>
+          </div>
         </div>
       </div>
     </div>
@@ -60,7 +77,9 @@ export default {
       IsOpenDownloadMask: false,
       currentData: null,
       endTime: null,
-      currentQQ: ''
+      currentQQ: '',
+      IsOPenMaskTemp: false,
+      IsQQBtn: false
     }
   },
   created() {
@@ -69,39 +88,62 @@ export default {
     this.initList()
   },
   methods: {
+    maskCancelBtn() { // 弹窗取消按钮
+      this.IsOpenDownloadMask = false;
+      this.IsOPenMaskTemp = false;
+      this.IsQQBtn = false
+    },
+    maskConfirmBtn() { // 弹窗确定按钮
+      if (this.IsQQBtn) {
+        this.copyBtn(this.$refs.copyBtn);
+        // this.IsQQBtn = false;
+        this.IsOPenMaskTemp = false;
+      }
+    },
+    copyUrlBtn() { // 复制百度云链接密码
+      this.IsOPenMaskTemp = true;
+      this.copyBtn(this.$refs.likeUrlNode)
+    },
     copyQQCode() {
-      const that = this
-      MessageBox({
-        title: '提示',
-        message: `复制${this.currentQQ}?`,
-        showConfirmButton: true,
-        showCancelButton: true
-      }).then((res => {
-        if (res === 'confirm') {
-          debugger
-          that.copyBtn(that.$refs.copyBtn)
-        } else {
-        }
-      }))
+      this.IsOPenMaskTemp = true;
+      this.IsQQBtn = true
     },
     copyLinkBtn() {
-      this.copyBtn(this.$refs.copyLink)
+      MessageBox({
+        title: '提示',
+        message: '是否跳转百度云链接？',
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then((res) => {
+        if (res === 'confirm') {
+          if (this.currentData.access.link.keywords) {
+            this.IsOPenMaskTemp = true;
+          } else {
+            window.location.href = this.currentData.access.link.url
+          }
+        }
+        this.IsOpenDownloadMask = false;
+      })
     },
     copyBtn(ref) {
       const _this = this;
       let clipboard = new this.Clipboard(ref); //在main.js中引用
       clipboard.on("success", e => {
-        _this.IsOpenDownloadMask = false
-        debugger
+        _this.IsOpenDownloadMask = false;
         _this.$message({
           message: '复制成功',
           type: 'success'
         });
+        if (!this.IsQQBtn) {
+          window.location.href = this.currentData.access.link.url;
+          this.IsOPenMaskTemp = false;
+        } else {
+          this.IsQQBtn = false
+        }
         // 释放内存
         clipboard.destroy();
       });
       clipboard.on("error", e => {
-        debugger
         _this.IsOpenDownloadMask = false
         // 不支持复制
         _this.$message({
@@ -125,14 +167,19 @@ export default {
       this.endTime = downloadList.endTime;
       this.currentQQ = downloadList.access.qqCode;
       if (downloadList.access.linkPassword && downloadList.access.linkUrl) {
-        downloadList.access.link = `百度云地址：${downloadList.access.linkUrl}，密码：${downloadList.access.linkPassword}`
+        downloadList.access.link = {
+          url: downloadList.access.linkUrl,
+          keywords: downloadList.access.linkPassword
+        }
       } else if (downloadList.access.linkUrl) {
-        downloadList.access.link = `百度云地址：${downloadList.access.linkUrl}`
+        downloadList.access.link = {
+          url: downloadList.access.linkUrl
+        }
       }
       if (downloadList.access.qqCode) {
-        downloadList.access.qqCode = `管理员QQ号：${downloadList.access.qqCode}`
+        downloadList.access.qqCode = downloadList.access.qqCode
       }
-      this.currentData = downloadList
+      this.currentData = downloadList;
       this.IsOpenDownloadMask = true
     },
     closeMask() {
@@ -188,13 +235,38 @@ export default {
       background-color rgba(0,0,0, .4)
       .copy_mask
         width 6rem
-        height 5rem
         background-color #fff
         position absolute
         left 50%
         top 50%
         transform translate(-50%, -50%)
         border-radius .2rem
+        padding-top 0.4rem
+        padding-bottom .4rem
+        .download_mask_btn
+          display flex
+          font-size .3rem
+          justify-content center
+          margin-top .5rem
+          .cancel, .mask_confirm
+            width 1.5rem
+            height .8rem
+            background-color #BFA267
+            text-align center
+            border-radius .4rem
+            line-height .8rem
+            color #fff
+          .cancel
+            margin-right .3rem
+            background-color #999
+        h2
+          font-size .35rem
+          font-weight bold
+          text-align center
+          margin-bottom .3rem
+        p
+          text-align center
+          font-size .3rem
       .mask_content
         width 6.9rem
         padding 0 .3rem
