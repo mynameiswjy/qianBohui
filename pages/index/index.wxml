@@ -54,11 +54,12 @@
         <view class="is-end" wx:if="{{isLoading}}" bindtap="loadMore">加载更多</view>
     </block>
     <block wx:for="{{adList}}" wx:key="index">
-        <view class="ad1" wx:if="{{item.type=='WX_APP_FLOATING'}}" data-url="{{item.skipUrl}}" bindtap="Advertising">{{item.adverName}}</view>
-        <view class="ad2" wx:if="{{item.type=='WX_APP_BELOW'}}" data-url="{{item.skipUrl}}" bindtap="Advertising">{{item.adverName}}</view>
-        <view class="ad3" wx:if="{{item.type=='WX_APP_HOME'&&IsOpenAd}}" data-url="{{item.skipUrl}}" bindtap="Advertising">
-            <viex class="close_ad" bindtap="closeAd">X</viex>
-            <image src="{{item.imagesUrl}}" mode=""></image>
+        <view class="ad3" wx:if="{{item.type=='WX_APP_HOME'&&IsOpenAd}}" data-url="{{item.skipUrl}}" bindtap="newAdNacBtn">
+<!--            <viex class="close_ad" bindtap="closeAd">X</viex>-->
+            <view class="ad_content">
+                <image class="ad_img" src="{{item.imagesUrl}}" mode="widthFix"></image>
+                <image class="new_close_ad" src="https://www.chbice.com/imgFile/icon/close_ad.png"></image>
+            </view>
         </view>
     </block>
 </block>
