@@ -59,9 +59,41 @@ Page({
     })
   },
 
-  onPullDownRefresh: function () {
-  
+  playMusic: function() {
+    let audio = null;
+    let manager = wx.getBackgroundAudioManager();
+    manager.title = "音频标题";
+    manager.epname = "专辑名称";
+    manager.singer = "歌手名";
+    // manager.coverImgUrl = audio.poster;
+    // 设置了 src 之后会自动播放
+    manager.src = 'https://www.chbice.com/imgFile/202011031355331111.mp3';
+    manager.currentTime = 0;
+    let that = this;
+    manager.onPlay(function() {
+      console.log("======onPlay======");
+      that.setData({
+        playStatus: true
+      })
+      // that.countTimeDown(that, manager);
+    });
+    manager.onPause(function() {
+      that.setData({
+        playStatus: false
+      })
+      console.log("======onPause======");
+    });
+    manager.onEnded(function() {
+      console.log("======onEnded======");
+      that.setData({
+        playStatus: false
+      })
+      setTimeout(function() {
+        // that.nextMusic();
+      }, 1500);
+    });
   },
+
   // 加载更多
   loadMore() {
     this.data.pageIndex++
@@ -72,10 +104,5 @@ Page({
       return
     }
     this.initData()
-  },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
   },
 });

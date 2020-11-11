@@ -33,6 +33,7 @@
       }
     ]
   },
+  "requiredBackgroundModes": ["audio"],
   "debug": false,
   "sitemapLocation": "sitemap.json"
 }
