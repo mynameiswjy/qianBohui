@@ -1,4 +1,8 @@
 import {getMoneyList} from '../../api/index'
+let manager = wx.getBackgroundAudioManager();
+manager.title = "音频标题";
+manager.epname = "专辑名称";
+manager.singer = "歌手名";
 
 var app = getApp()
 
@@ -10,7 +14,8 @@ Page({
     isSend: true,
     isLoading: true,
     IsShowTxt: false,
-    isOpenClose: false
+    isOpenClose: false,
+    playStatus: false
   },
 
   onLoad: function (options) {
@@ -59,39 +64,22 @@ Page({
     })
   },
 
-  playMusic: function() {
-    let audio = null;
-    let manager = wx.getBackgroundAudioManager();
-    manager.title = "音频标题";
-    manager.epname = "专辑名称";
-    manager.singer = "歌手名";
-    // manager.coverImgUrl = audio.poster;
-    // 设置了 src 之后会自动播放
-    manager.src = 'https://www.chbice.com/imgFile/202011031355331111.mp3';
-    manager.currentTime = 0;
-    let that = this;
-    manager.onPlay(function() {
-      console.log("======onPlay======");
-      that.setData({
-        playStatus: true
-      })
-      // that.countTimeDown(that, manager);
-    });
-    manager.onPause(function() {
-      that.setData({
-        playStatus: false
-      })
-      console.log("======onPause======");
-    });
-    manager.onEnded(function() {
-      console.log("======onEnded======");
-      that.setData({
-        playStatus: false
-      })
-      setTimeout(function() {
-        // that.nextMusic();
-      }, 1500);
-    });
+  playOrpause: function() {
+    if (this.data.playStatus) {
+      manager.pause();
+      console.log('=====>manager.pause();');
+    } else {
+      manager.src = 'https://www.chbice.com/imgFile/202011031355331111.mp3';
+      manager.play();
+      console.log('=====>manager.play();');
+    }
+    this.data.playStatus = !this.data.playStatus
+  },
+
+  onUnload() {
+    if (this.data.playStatus) {
+      manager.pause()
+    }
   },
 
   // 加载更多

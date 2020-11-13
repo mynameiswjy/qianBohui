@@ -14,12 +14,12 @@
                 <view class="progress">
                     <view class="progress_content"></view>
                 </view>
-                <view bindtap="playMusic" class="iconfont icon-shengyin"></view>
+                <view bindtap="playOrpause" class="iconfont icon-shengyin"></view>
             </view>
 
             <view class="flex voice_time">
-                <view>04:00</view>
-                <view>06:00</view>
+<!--                <view>04:00</view>-->
+<!--                <view>06:00</view>-->
             </view>
             <view style="height: 50rpx;"></view>
         </view>

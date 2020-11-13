@@ -58,7 +58,7 @@
 }
 
 .progress_content {
-    width: 344rpx;
+    width: 587rpx;
     height: 4rpx;
     background: #BFA267;
     position: absolute;
