@@ -57,7 +57,7 @@
         <view class="ad3" wx:if="{{item.type=='WX_APP_HOME'&&IsOpenAd}}" data-url="{{item.skipUrl}}" bindtap="newAdNacBtn">
 <!--            <viex class="close_ad" bindtap="closeAd">X</viex>-->
             <view class="ad_content">
-                <image class="ad_img" src="{{item.imagesUrl}}" mode="widthFix"></image>
+                <image class="ad_img" bindtap="navBtn" src="{{item.imagesUrl}}" mode="widthFix"></image>
                 <image class="new_close_ad" bindtap="closeAd" src="https://www.chbice.com/imgFile/icon/close_ad.png"></image>
             </view>
         </view>

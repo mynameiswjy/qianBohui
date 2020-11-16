@@ -117,6 +117,16 @@ Page({
       valHotTo: ''
     })
   },
+
+  navBtn() {
+    const that = this;
+    const url = that.data.adList[0].jumpAddress;
+    if (!url) return
+    wx.navigateTo({
+      url: url
+    })
+  },
+
   hotSelectTo(e) {
     var index = e.detail.value
     let idx = this.data.indexHot

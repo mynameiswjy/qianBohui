@@ -1,26 +1,28 @@
 <view>
-    <view class="showroom_sub_wrap common_wrap">
+    <view class="showroom_sub_wrap common_wrap" wx:if="{{list[0].content}}">
         <view class="showroom_sub_content common_content">
-            <view class="showroom_sub_title {{IsShowTxt?'':'show_two_line'}}" bindtap="showTxt">
+            <view wx:if="{{list[0].content.content}}" class="showroom_sub_title {{IsShowTxt?'':'show_two_line'}}" bindtap="showTxt">
                 <text>{{list[0].content.content}}</text>
             </view>
             <view class="bottom_border"></view>
-            <view class="showroom_sub_video" bindtap="openVideo">
+            <view class="showroom_sub_video" bindtap="openVideo" wx:if="{{list[0].content.contentVideoUrl}}">
                 <view class="iconfont icon-icon_play"></view>
             </view>
-            <view style="margin: 0 20rpx;height: 2rpx;background-color: rgba(191, 162, 103, 0.5);"></view>
-            <view class="voice_name">聚焦金币指南—赵金南</view>
-            <view class="flex progress_wrap">
-                <view class="progress">
-                    <view class="progress_content"></view>
+            <block wx:if="{{list[0].content.contentAudioUrl}}">
+                <view style="margin: 0 20rpx;height: 2rpx;background-color: rgba(191, 162, 103, 0.5);"></view>
+                <view class="voice_name">聚焦金币指南—赵金南</view>
+                <view class="flex progress_wrap">
+                    <view class="progress">
+                        <view class="progress_content"></view>
+                    </view>
+                    <view bindtap="playOrpause" class="iconfont icon-shengyin"></view>
                 </view>
-                <view bindtap="playOrpause" class="iconfont icon-shengyin"></view>
-            </view>
+                <view class="flex voice_time">
+                    <!--                <view>04:00</view>-->
+                    <!--                <view>06:00</view>-->
+                </view>
+            </block>
 
-            <view class="flex voice_time">
-<!--                <view>04:00</view>-->
-<!--                <view>06:00</view>-->
-            </view>
             <view style="height: 50rpx;"></view>
         </view>
     </view>

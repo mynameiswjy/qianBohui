@@ -67,11 +67,9 @@ Page({
   playOrpause: function() {
     if (this.data.playStatus) {
       manager.pause();
-      console.log('=====>manager.pause();');
     } else {
       manager.src = 'https://www.chbice.com/imgFile/202011031355331111.mp3';
       manager.play();
-      console.log('=====>manager.play();');
     }
     this.data.playStatus = !this.data.playStatus
   },
