@@ -25,7 +25,7 @@
         </li>
       </ul>
     </div>
-    <img v-if="ad.bottom" :src="ad.bottom.imagesUrl" alt="" class="ad">
+    <img v-if="ad.bottom" :src="ad.bottom.imagesUrl" alt="" class="ad" @click="adNavBtn">
   </div>
 </template>
 
@@ -88,6 +88,12 @@ export default {
     }, 20)
   },
   methods: {
+    // 广告位跳转
+    adNavBtn() {
+      const url = this.ad.bottom.jumpAddress;
+      if (!url) return false
+      window.location.href = url
+    },
     // 详情页
     detailPath(code) {
       let path = '/newsLandingPage?code=' + code

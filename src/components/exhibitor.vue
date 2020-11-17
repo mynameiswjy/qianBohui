@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <div style="position: relative" v-show="ad.center">
+    <div style="position: relative" v-show="ad.center" @click="adNavBtn">
       <img :src="ad.center.imagesUrl" v-if="ad.center" alt="" class="ad">
     </div>
   </div>
@@ -60,6 +60,11 @@ export default {
           code: e
         }
       })*/
+    },
+    adNavBtn() {
+      const url = this.ad.center.jumpAddress;
+      if (!url) return false
+      window.location.href = url
     },
     moreNews() {
       this.$router.push({path: 'news'});
