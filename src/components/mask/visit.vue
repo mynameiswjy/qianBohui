@@ -67,8 +67,11 @@ export default {
       personNum: 1
     }
   },
-  created() {
+  created() {},
+  activated() {
     this.initUserSelect()
+  },
+  mounted() {
   },
   methods: {
     sendDataVisit() {
@@ -151,10 +154,6 @@ export default {
         }
       })
     }
-  },
-  mounted() {
-    // let wrapper = this.$refs.wrapper.clientHeight
-    // let content = this.$refs.content.clientHeight
   },
   computed: {
   },

@@ -65,8 +65,10 @@ export default {
       images: []
     }
   },
-  created() {
+  activated() {
     this.initInputList()
+  },
+  created() {
   },
   mounted: function () {
     /*let wrapper = this.$refs.wrapper.clientHeight
@@ -148,6 +150,7 @@ export default {
     initInputList() {
       getRegisterTypeInfo({registerType: 'BOOTH_RESERVE'}).then(res => {
         if (res.data.returnCode === '0000') {
+          console.log(this.userInputList, 'this.userInputList');
           this.userInputList = res.data.returnData
           document.title = res.data.returnData.name;
         }
