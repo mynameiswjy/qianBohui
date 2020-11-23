@@ -7,7 +7,8 @@
             <input type="text" placeholder="钱币博览会" @keyup.enter="submit" v-model="searVal">
           </form>
         </div>
-        <div class="search_cansel" @click="Search_con">取消</div>
+        <div class="search_cansel" @click="seachBtn" v-if="this.searVal">搜索</div>
+        <div class="search_cansel" @click="Search_con" v-if="!this.searVal">取消</div>
       </div>
       <div v-show="storageKeywords && !searchList.length">
         <p class="hot-sear hot-sear1">
@@ -81,6 +82,9 @@ export default {
     this.searchList = []
   },
   methods: {
+    seachBtn() {
+      this.submit()
+    },
     searchReloadBtn() {
       this.initgetAntistop()
     },

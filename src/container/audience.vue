@@ -24,7 +24,7 @@ export default {
       text: 'Notice of visit',
       IsShowVisit: this.$store.state.IsShowVisit,
       aboutzhObj: {
-        navList: this.$store.state.IsShowVisit ? [{name: "乘车路线"}, {name: "参观登记"}] : [{name: "乘车路线"}],
+        navList: this.$store.state.IsShowVisit ? [{name: "乘车路线"}, {name: "参观登记", type: 'IsSkip', path: 'visit'}] : [{name: "乘车路线"}],
         textList: [
           {
             showFullBtn: 0, // 控制每个list的按钮 是否显示全文

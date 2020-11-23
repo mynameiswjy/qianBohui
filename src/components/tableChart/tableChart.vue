@@ -18,8 +18,8 @@
           <p>会刊</p>
           <p>内页</p>
         </td>
-        <td colspan="2" class="">参见会刊广告信息</td>
-        <td class="">5000/page</td>
+        <td colspan="2" class="row column">参见会刊广告信息</td>
+        <td class="row">5000/page</td>
         <td style="font-size: 0.2rem;" class="" v-show="isShowRemark">
           <p>填报在协议</p>
           <p>中的“展览服</p>
@@ -28,90 +28,90 @@
       </tr>
       <tr>
         <td rowspan="12" class="bg_hui">展位</td>
-        <td rowspan="8" class="">
+        <td rowspan="8" class="column row">
           <div>特装位</div>
           <div>(空地)</div>
         </td>
-        <td class="table_height">10mx10m</td>
-        <td class="table_height">275000</td>
+        <td class="table_height row column">10mx10m</td>
+        <td class="table_height row">275000</td>
         <td class=" " v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td class="table_height">9mx9m</td>
-        <td class="table_height">225000
+        <td class="table_height row column">9mx9m</td>
+        <td class="table_height row">225000
         <td class="" v-show="isShowRemark">
         <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
       </td>
       </tr>
       <tr>
-        <td class="table_height">9mx6m</td>
-        <td class="table_height">150000</td>
+        <td class="table_height row column">9mx6m</td>
+        <td class="table_height row">150000</td>
         <td class=" " v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td class="table_height">8mx6m</td>
-        <td class="table_height">130000</td>
+        <td class="table_height row column">8mx6m</td>
+        <td class="table_height row">130000</td>
         <td class="" v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td class="table_height">3mx9m</td>
-        <td class="table_height">68000</td>
+        <td class="table_height row column">3mx9m</td>
+        <td class="table_height row">68000</td>
         <td class="" v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td class="table_height">6mx6m</td>
-        <td class="table_height">99000</td>
+        <td class="table_height row column">6mx6m</td>
+        <td class="table_height row">99000</td>
         <td class="" v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td class="table_height">6mx4m</td>
-        <td class="table_height">72000</td>
+        <td class="table_height row column">6mx4m</td>
+        <td class="table_height row">72000</td>
         <td class=" " v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td class="table_height">3mx6m</td>
-        <td class="table_height">45000</td>
+        <td class="table_height row column">3mx6m</td>
+        <td class="table_height row">45000</td>
         <td class=" " v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td rowspan="2" class="">A级</td>
-        <td class="table_height">3mx3m标</td>
-        <td class="table_height">20000</td>
+        <td rowspan="2" class="column row">A级</td>
+        <td class="table_height row column">3mx3m标</td>
+        <td class="table_height row">20000</td>
         <td class="" v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td class="table_height">3mx3m拐</td>
-        <td class="table_height">22000</td>
+        <td class="table_height row column">3mx3m拐</td>
+        <td class="table_height row">22000</td>
         <td class=" " v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td rowspan="2">B级</td>
-        <td class="table_height">3mx3m标</td>
-        <td class="table_height">18000</td>
+        <td rowspan="2" class="column">B级</td>
+        <td class="table_height row column">3mx3m标</td>
+        <td class="table_height row">18000</td>
         <td class="" v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
         </td>
       </tr>
       <tr>
-        <td>3mx3m拐</td>
+        <td class="column">3mx3m拐</td>
         <td class="table_height">20000</td>
         <td class="" v-show="isShowRemark">
           <img class="out_print" src="https://www.chqbh.com/imgFile/cut/sell_out.png" alt="">
@@ -192,4 +192,8 @@ export default {
       border-bottom 0.01rem solid #BFBFBF;
     .bor_rad_bott_left
       border-radius 0 0 0 0.3rem
+  .row
+    border-bottom 0.01rem solid #e6e6e6
+  .column
+    border-right 0.01rem solid #e6e6e6
 </style>

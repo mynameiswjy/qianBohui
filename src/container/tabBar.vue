@@ -20,7 +20,7 @@
         <div>展位预订</div>
       </li>
       <li class="tab_item" alt="" @click="cilckTabBarTwo" v-if="IsShowVisit">
-        <img class="tab-icon" src="https://www.chqbh.com/imgFile/cut/visit.png" alt="">
+        <img class="tab-icon" src="https://www.chbice.com/imgFile/cut/visit.png" alt="">
         <div>参观登记</div>
       </li>
       <li class="" :class="{'cous_active': IsClass}" alt="" @click="cilckTabBarThree">

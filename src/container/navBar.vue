@@ -179,7 +179,7 @@ export default {
     height 0.56rem
     margin 0.3rem 0.3rem 0.3rem
     border-radius: 0.28rem;
-    border: 0.01rem solid #BFA267;
+    border: 0.02rem solid #BFA267;
     display flex
     font-size 0.26rem
     background-color: #fff

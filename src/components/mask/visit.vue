@@ -177,7 +177,7 @@ export default {
   .reserve_bg
     width 7.5rem
     height 5.7rem
-    background-image url("../../assets/images/reserve_bg.png")
+    background-image url("https://www.chbice.com/imgFile/WechatIMG652.jpeg")
     background-size cover
     background-repeat no-repeat
     overflow hidden

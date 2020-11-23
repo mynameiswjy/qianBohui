@@ -1,7 +1,7 @@
  <template>
    <div>
      <div class="new_tempwrap">
-       <ul class="header_nav" :class="{'header_nav1': aboutzhObj.navList.length === 1}">
+       <ul class="header_nav" :class="{'header_nav1': aboutzhObj.navList.length === 2}">
          <li :class="{'text_active':idx == index && aboutzhObj.navList.length !== 1}"
              @click="changeTempBtns(index)"
              v-for="(item, index) in aboutzhObj.navList"
@@ -14,7 +14,7 @@
          <ul>
            <li v-show="index == idx" v-for="(text, index) in aboutzhObj.textList" :key="index" ref="t_ref">
              <div v-if="text.isTableType">
-               <table-temp style="width: 6.9rem;margin-left: -0.06rem;padding-top: 0.3rem;padding-bottom: 0.2rem;"></table-temp>
+               <table-temp style="width: 6.9rem;margin-left: -0.06rem;padding-top: 0.1rem;padding-bottom: 0.2rem;"></table-temp>
              </div>
              <div v-else>
                <div class="temp_content-li" :class="{show_temp: text.show_temp}" @click="showBts(index)">
@@ -30,7 +30,6 @@
          </ul>
        </div>
      </div>
-<!--     <reservation @closeTemp="tempCloseGoods" v-if="isReservation"></reservation>-->
      <visit @closeVisit="closeVisit" v-if="isVisitTemp"></visit>
    </div>
 </template>
@@ -112,10 +111,9 @@ export default {
       } else {
         this.userLastStatus = e
       }
-      if (e == 1 && this.isVisitP) {
-        // this.isVisitTemp = true
+      if (e == 1 && titleItem.type === 'IsSkip') {
         this.$router.push({path: titleItem.path});
-        this.idx = this.userLastStatus
+        this.idx = this.userLastStatusVisit
       } else {
         this.userLastStatusVisit = e
       }
@@ -215,7 +213,7 @@ export default {
       width 6.72rem
       margin 0 auto
       text-align: justify;
-      padding-top 0.2rem
+      padding-top 0.3rem
       padding-bottom 0.3rem
       color #000
       .show_temp
@@ -227,7 +225,7 @@ export default {
       .a_full
         color #eed582
   .header_nav1
-    width 1.6rem!important
+    width 3.2rem!important
   .border_s
     position relative
     font-size 0.36rem

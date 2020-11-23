@@ -1,6 +1,6 @@
 <template>
     <div class="landing_wrap">
-      <scroll class="news_landing_content" :data="detailObj">
+      <div class="news_landing_content" :data="detailObj">
         <div class="footer_position">
           <nav-bar style="padding-top: .3rem;"></nav-bar>
           <div class="landing_container">
@@ -24,7 +24,7 @@
           </div>
           <temp-footer class="temp_footer"></temp-footer>
         </div>
-      </scroll>
+      </div>
       <tab-bar class="menu-tab"></tab-bar>
       <reload @reloadBtn="reloadBtn" v-show="IsOpenReloadTemp"></reload>
     </div>
@@ -201,7 +201,7 @@ export default {
   background-color: #fff;
   .news_landing_content
     height 100%
-    overflow hidden
+    overflow auto
     .footer_position
       min-height 100%
       position relative
@@ -242,7 +242,7 @@ export default {
             max-width 6.9rem
             >>> img
               width 6.2rem!important
-              height 4rem!important
+              /*height 4rem!important*/
               margin-bottom 0.41rem
             >>> video
               width 6.9rem
