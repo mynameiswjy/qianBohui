@@ -204,6 +204,7 @@ export default {
       .text_active
         background-color: #fff
         color #BFA267
+        line-height 0.51rem
         position relative
       .li_add_style
         width 50%

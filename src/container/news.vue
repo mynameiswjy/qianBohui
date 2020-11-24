@@ -298,7 +298,7 @@ export default {
       width 6.9rem
       margin 0.15rem auto 0
       .news_boeder
-        border-bottom: solid 0.02rem #e6e6e6;
+        border-bottom: solid 0.01rem #e6e6e6;
       li
         display flex
         width: 6.9rem;
