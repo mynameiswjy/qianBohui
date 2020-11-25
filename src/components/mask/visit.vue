@@ -1,5 +1,6 @@
 <template>
     <div class="mask mask_visit" ref="wrapper">
+      <navTemp></navTemp>
       <div class="mask_reserve" ref="content">
         <!--          <div class="res-title">-->
         <!--            <h2>{{userVisitList.name}}</h2>-->
@@ -53,6 +54,7 @@
 <script type="text/ecmascript-6">
 import '@/assets/mask.css'
 import Scroll from '@/utils/scroll'
+import navTemp from '../navTemp.vue'
 import { getRegisterTypeInfo, putRegisterInfo } from '@/api/index'
 
 //var md5 = require('js-md5')
@@ -160,7 +162,8 @@ export default {
   watch: {
   },
   components: {
-    Scroll
+    Scroll,
+    navTemp
   }
 }
 </script>

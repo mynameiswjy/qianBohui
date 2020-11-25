@@ -1,5 +1,6 @@
 <template>
     <div class="mask mask_reser" :class="{show: isShow}" ref="wrapper" @touchmove.prevent>
+      <navTemp></navTemp>
       <scroll style="height: 100%" :data="userInputList.selectItem">
         <div class="wraps" ref="content">
           <ul style="position: relative;">
@@ -50,6 +51,7 @@ import Scroll from '@/utils/scroll'
 import Loading from '../loading/loading'
 import { getRegisterTypeInfo, deleteImage, putRegisterInfo } from '@/api/index'
 import imgUpload from '../imgUpload/imgUpload'
+import navTemp from '../navTemp.vue'
 
 //var md5 = require('js-md5')
 
@@ -205,7 +207,8 @@ export default {
   components: {
     Scroll,
     Loading,
-    imgUpload
+    imgUpload,
+    navTemp
   }
 }
 </script>

@@ -24,7 +24,7 @@
                 <img :src="tab.selectImg" :class="{'img_node': IsActive}" alt="nav" v-if="routerPath == tab.path">
                 <img :src="tab.img" :class="{'img_node': IsActive}" alt="nav" v-else>
               </div>
-              <!--<div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>-->
+              <div class="nav_name" :class="{'nav_name1': routerPath == tab.path}">{{tab.name}}</div>
             </router-link>
           </li>
         </ul>
@@ -205,19 +205,21 @@ export default {
     .nav_content
       display flex
       padding 0.3rem 0 0.3rem
-      margin-left 0.5rem
+      justify-content center
       .nav_item1
-        margin-right 0.62rem
+        margin-right 0.5rem
       .nav_item
-        width 0.8rem
+        text-align center
         margin-left
         .nav_name1
           font-weight 600
+          color #bfa267!important
         .nav_name
           font-size 0.24rem
           color: #000
           text-align center
           margin-top 0.14rem
+          white-space: nowrap;
         .nav_img
           width 0.8rem
           height 0.8rem
@@ -225,6 +227,7 @@ export default {
           display flex
           justify-content center
           align-items center
+          margin 0 auto
           img
             width 0.8rem
             height: auto
