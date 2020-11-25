@@ -97,6 +97,14 @@ Page({
       IsOpenAd: false
     })
   },
+  bannerNavBtn(e) {
+    const url = e.currentTarget.dataset.url
+    if (url) {
+      wx.navigateTo({
+        url: '/' + url
+      })
+    }
+  },
   hotSelect(e) {
     var index = e.detail.value
     let data = this.data.dataSet.selectItem
@@ -146,9 +154,10 @@ Page({
       url: "/pages/search/search"
     })
   },
-  goToDetail() {
+  goToDetail(e) {
+    const {id} = e.currentTarget.dataset;
     wx.navigateTo({
-      url: "/pages/mainTheme/mainTheme"
+      url: `/pages/mainTheme/mainTheme?id=${id}`
     })
   },
   // 广告跳转
@@ -160,8 +169,13 @@ Page({
       })
     }
   },
-  newAdNacBtn() {
-
+  newAdNacBtn(e) {
+    const url = e.currentTarget.dataset.url
+    if (url) {
+      wx.navigateTo({
+        url: '/' + url
+      })
+    }
   },
   onPullDownRefresh: function () {
 

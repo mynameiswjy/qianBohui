@@ -25,16 +25,16 @@
         </view>
     </view>
     <swiper class="banner" autoplay="true" circular="true">
-        <swiper-item wx:for="{{dataSet.banner}}" wx:key="index">
+        <swiper-item wx:for="{{dataSet.banner}}" wx:key="index" bindtap="bannerNavBtn" data-url="{{item.jumpAddress}}">
             <image class="banner-img" mode="" src="{{item.imgIndex}}"></image>
         </swiper-item>
     </swiper>
     <view class="subject_title">专题专场</view>
-    <image bindtap="goToDetail" wx:if="{{subject.length < 2}}" mode="widthFix" class="advertising" src="{{subject}}"></image>
+    <image bindtap="goToDetail" data-id="{{subject[0].id}}" wx:if="{{subject.length < 2}}" mode="widthFix" class="advertising" src="{{subject[0].url}}"></image>
     <scroll-view scroll-x class="scroll_view" wx:else>
         <view style="display: flex;">
-            <view wx:for="{{dataSet.subject}}" class="subject_list" wx:key="index" bindtap="goToDetail">
-                <image src="{{item}}" mode="widrhFix" class="subject_img"></image>
+            <view wx:for="{{dataSet.subject}}" class="subject_list" wx:key="index" bindtap="goToDetail" data-id="{{item.id}}">
+                <image src="{{item.url}}" mode="widrhFix" class="subject_img"></image>
             </view>
         </view>
     </scroll-view>
@@ -54,7 +54,7 @@
         <view class="is-end" wx:if="{{isLoading}}" bindtap="loadMore">加载更多</view>
     </block>
     <block wx:for="{{adList}}" wx:key="index">
-        <view class="ad3" wx:if="{{item.type=='WX_APP_HOME'&&IsOpenAd}}" data-url="{{item.skipUrl}}" bindtap="newAdNacBtn">
+        <view class="ad3" wx:if="{{item.type=='WX_APP_HOME'&&IsOpenAd}}" data-url="{{item.jumpAddress}}" bindtap="newAdNacBtn">
 <!--            <viex class="close_ad" bindtap="closeAd">X</viex>-->
             <view class="ad_content">
                 <image class="ad_img" bindtap="navBtn" src="{{item.imagesUrl}}" mode="widthFix"></image>

@@ -11,7 +11,7 @@ Page({
   },
 
   onLoad: function (options) {
-    getSubjects({type: "firstSubject", id: 0}).then(res => {
+    getSubjects({type: "firstSubject", id: options.id}).then(res => {
       if (res.data.returnCode === '0000') {
         this.setData({
           list: res.data.returnData

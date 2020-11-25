@@ -34,7 +34,7 @@
     </view>
     <view class="play_mask" wx:if="{{isOpenClose}}">
         <view class="video_wrap">
-            <video class="video" autoplay src="https://www.mengniuhealth.cn/imgFile/29318801.mp4"></video>
+            <video class="video" autoplay src="{{videoUrl}}"></video>
             <view class="iconfont icon-guanbi" bindtap="closeVideo"></view>
         </view>
     </view>
