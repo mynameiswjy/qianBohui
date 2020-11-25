@@ -11,7 +11,7 @@
       </div>
       <div v-if="imgIndex.length" v-show="isShowNavImg">
         <Swiper :len="imgIndex.length">
-          <div v-for="(item, index) in imgIndex" :key="index" class="swiper_item">
+          <div v-for="(item, index) in imgIndex" :key="index" class="swiper_item" @click="navAdBtn(item.jumpAddress)">
             <img :src="item.imgIndex" alt="banner">
           </div>
         </Swiper>
@@ -155,7 +155,12 @@ export default {
     },
     searchBtn() {
       this.$router.push({path: 'search'});
-    }
+    },
+    navAdBtn(e) {
+      if (e) {
+        window.location.href = e
+      }
+    },
   },
   computed: {
     imgIndex() {

@@ -63,7 +63,7 @@ export default {
       this.swiper = new BScroll(this.$refs.swiperWrap, {
         scrollX: true,
         scrollY: false,
-        cilck: true,
+        click: true,
         freeScroll: true,
         momentum: false,
         snap: {
