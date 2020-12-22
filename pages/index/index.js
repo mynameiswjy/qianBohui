@@ -131,9 +131,11 @@ Page({
     const url = that.data.adList[0].jumpAddress;
     if (!url) return
     wx.navigateTo({
-      url: url
+      url: '/' + url
     })
   },
+
+  stop() {return},
 
   hotSelectTo(e) {
     var index = e.detail.value
