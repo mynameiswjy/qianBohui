@@ -71,9 +71,9 @@ export default {
           name: '关于展会',
           id: '1',
           path: '/aboutzh',
-          img: 'https://www.chbice.com/imgFile/icon/exhibition.png',
+          img: 'https://www.chbice.com/imgFile/ico/exhibition_active.png',
           img_active: 'https://www.chbice.com/imgFile/nav_icon2.png',
-          selectImg: 'https://www.chbice.com/imgFile/icon/exhibition_active.png',
+          selectImg: 'https://www.chbice.com/imgFile/ico/exhibition.png',
           selectImg_active: 'https://www.chbice.com/imgFile/select_nav_icon2.png'
         },
         {

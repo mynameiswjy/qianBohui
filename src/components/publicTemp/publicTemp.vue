@@ -19,8 +19,8 @@
              <div v-else>
                <div class="temp_content-li" :class="{show_temp: text.show_temp}" @click="showBts(index)">
                  <span v-for="(txt, idx) in text.text" :key="idx">
-                   <span :class="{font_wei: isFontWei, 'border_s': txt.title}" v-show="txt.title">{{txt.title}}<br></span>
-                   <span v-show="txt.txt">{{txt.txt}}<br></span>
+                   <span :class="{font_wei: isFontWei, 'border_s': txt.title}" v-show="txt.title">{{txt.title}}</span>
+                   <span v-show="txt.txt" class="content-li-span"><br>{{txt.txt}}<br></span>
                  </span>
                  <span v-if="text.footerTxt" v-show="!text.show_temp" class="footer_txt">{{text.footerTxt}}</span>
                </div>
@@ -217,6 +217,9 @@ export default {
       padding-top 0.3rem
       padding-bottom 0.3rem
       color #000
+      .temp_content-li
+        .content-li-span
+          color #333
       .show_temp
         overflow:hidden;
         text-overflow:ellipsis;
@@ -228,19 +231,25 @@ export default {
   .header_nav1
     width 3.2rem!important
   .border_s
+    display auto
     position relative
-    font-size 0.36rem
-    color #000
-    margin-left 0.2rem
+    font-size 0.3rem
+    color #fff
+    padding-right .35rem
+    line-height .4rem
+    background-color #BFA267
+    margin .1rem 0 .2rem
+    flex-direction 1
   .border_s:before
     content ''
-    width 0.08rem
-    height 0.35rem
-    background-color: #eed582;/*#*/
+    width: 0;
+    height: 0;
+    border-top: .2rem solid transparent;
+    border-right: .25rem solid #fff;
+    border-bottom: .2rem solid transparent;
     position absolute
-    left -0.2rem
-    top 50%
-    transform translateY(-50%)
+    top 0
+    right 0
   .font_wei {
     font-weight 600
   }

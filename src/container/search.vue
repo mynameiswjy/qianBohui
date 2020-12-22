@@ -202,7 +202,7 @@ export default {
         width 5.96rem
         height .56rem
         border-radius: .28rem;
-        border: .01rem solid #BFA267;
+        border: .02rem solid #BFA267;
         input
           width 100%
           height 100%

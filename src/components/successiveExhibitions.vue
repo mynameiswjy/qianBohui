@@ -293,14 +293,16 @@ export default {
   }
   .sel_options {
     position absolute
-    width 1rem
-    left 0
+    width 1.3rem
+    left -.3rem
     top: 0.29rem
     text-align center
     border 0.01rem solid #999
     background-color: #fff
     padding: 0.15rem 0
     z-index 3
+    height 2.6rem
+    overflow auto
   }
   .mask_select {
     width 100%
@@ -312,6 +314,7 @@ export default {
   .sel_options li{
     height 0.35rem
     line-height 0.35rem
+    font-size .26rem
   }
   .exhibition_news1 {
     border-bottom: 0.01rem solid #e6e6e6;
