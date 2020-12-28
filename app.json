@@ -11,6 +11,7 @@
     "pages/detail/detail",
     "pages/mainTheme/topicUnit/topicUnit",
     "pages/mainTheme/mainTheme",
+    "pages/continue/continue",
     "pages/mainTheme/adAccepPage/adAccepPage"
   ],
   "tabBar": {

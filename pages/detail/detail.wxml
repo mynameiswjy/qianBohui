@@ -3,7 +3,7 @@
     <view class="detail_content_wrap common_wrap">
         <view class="detail_content" style='margin-bottom:{{btuBottom}}'>
             <view class="tab_td6">{{obj.tiele}}</view>
-            <view class="tab_name">500克圆形银 质纪念币</view>
+            <!-- <view class="tab_name">500克圆形银 质纪念币</view> -->
             <view class="content_images">
                 <image mode="aspectFit" src="{{obj.url1}}"></image>
             </view>
@@ -12,14 +12,14 @@
                     <view class="tab_td1">钱币名称</view>
                     <view class="tab_td6">{{obj.tiele}}</view>
                 </view>-->
-                <view class="tab_tr">
+                <!--<view class="tab_tr">
                     <view class="flex tab_tr_item">
                         <view class="tab_td1">年份</view>
                         <view class="tab_td2">{{obj.moneyYear}}</view>
                     </view>
                     <view class="flex tab_tr_item">
                         <view class="tab_td3">直径(毫米)</view>
-                        <view class="tab_td4">{{obj.moneyDiameter}}</view>
+                        <view class="tab_td_val">{{obj.moneyDiameter}}</view>
                     </view>
                 </view>
                 <view class="tab_tr">
@@ -41,16 +41,39 @@
                         <view class="tab_td3">重量</view>
                         <view class="tab_td4">{{obj.moneyWeight}}</view>
                     </view>
+                </view>-->
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">年份</view>
+                    <view class="tab_td5">{{obj.moneyYear}}</view>
                 </view>
-                <view class="tab_tr">
-                    <view class="flex tab_tr_item">
-                        <view class="tab_td1">质量</view>
-                        <view class="tab_td2">{{obj.moneyQuality}}</view>
-                    </view>
-                    <view class="flex tab_tr_item">
-                        <view class="tab_td3">发行量(枚)</view>
-                        <view class="tab_td4">{{obj.moneyCirculation}}</view>
-                    </view>
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">直径(毫米)</view>
+                    <view class="tab_td5">{{obj.moneyDiameter}}</view>
+                </view>
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">面额(元)</view>
+                    <view class="tab_td5">{{obj.moneySum}}</view>
+                </view>
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">成色</view>
+                    <view class="tab_td5">{{obj.moneyFineness}}</view>
+                </view>
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">材质</view>
+                    <view class="tab_td5">{{obj.moneyTexture}}</view>
+                </view>
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">重量</view>
+                    <view class="tab_td5">{{obj.moneyWeight}}</view>
+                </view>
+
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">质量</view>
+                    <view class="tab_td5">{{obj.moneyQuality}}</view>
+                </view>
+                <view class="tab_tr bottom">
+                    <view class="tab_td1">发行量(枚)</view>
+                    <view class="tab_td5">{{obj.moneyCirculation}}</view>
                 </view>
                 <view class="tab_tr bottom">
                     <view class="tab_td1">系列</view>

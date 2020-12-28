@@ -98,7 +98,7 @@ Page({
     })
   },
   bannerNavBtn(e) {
-    const url = e.currentTarget.dataset.url
+    const {url} = e.currentTarget.dataset
     if (url) {
       wx.navigateTo({
         url: '/' + url
@@ -129,6 +129,11 @@ Page({
   navBtn() {
     const that = this;
     const url = that.data.adList[0].jumpAddress;
+    if (that.data.adList[0].jumpType === "WX") {
+      wx.navigateTo({
+        url: `/pages/continue/continue?url=${url}`
+      })
+    }
     if (!url) return
     wx.navigateTo({
       url: '/' + url

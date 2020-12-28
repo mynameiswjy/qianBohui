@@ -5,7 +5,7 @@ page {
     width: 100%;
     position: relative;
     height: 100%;
-    padding-top: 179rpx;
+    padding-top: 100rpx;
     padding-bottom: 113rpx;
 }
 
@@ -58,6 +58,12 @@ page {
 
 .tab_td3 {
     color: #333;
+    white-space:nowrap;
+}
+
+.tab_td_val {
+    line-height: 1;
+    text-align: justify
 }
 
 .tab_td6 {
