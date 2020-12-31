@@ -39,7 +39,7 @@ page {
 }
 .tab_tr {
     display: flex;
-    line-height: 64rpx;
+    line-height: 50rpx;
     text-align: center;
     justify-content: space-between;
     margin-bottom: 8rpx;
@@ -84,7 +84,7 @@ page {
 }
 
 .bottom {
-    padding: 0 20rpx;
+    padding: 0 50rpx;
     box-sizing: border-box;
 }
 .footer {
