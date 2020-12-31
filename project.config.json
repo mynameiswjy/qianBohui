@@ -83,10 +83,9 @@
           "scene": null
         },
         {
-          "id": 3,
           "name": "详情页",
           "pathName": "pages/detail/detail",
-          "query": "moneyCode=600304",
+          "query": "moneyCode=602233",
           "scene": 1001
         },
         {
