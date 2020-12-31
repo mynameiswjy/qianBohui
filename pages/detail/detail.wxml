@@ -1,9 +1,10 @@
 <view class="detail_wrap">
 
     <view class="detail_content_wrap common_wrap">
-        <view class="detail_content" style='margin-bottom:{{btuBottom}}'>
+        <view class="detail_content">
             <view class="tab_td6" wx:if="{{obj.tiele}}">{{obj.tiele}}</view>
             <view class="tab_name" wx:if="{{obj.subTiele}}">{{obj.subTiele}}</view>
+    
             <view class="content_images">
                 <image mode="aspectFit" src="{{obj.url1}}"></image>
             </view>
