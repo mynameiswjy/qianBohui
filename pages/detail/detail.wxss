@@ -26,7 +26,7 @@ page {
     width: 562rpx;
     height: 297rpx;
     border-radius:20rpx;
-    margin: 0 auto 0;
+    margin: 0 auto 20rpx;
 }
 .content_images image {
     width: 100%;
@@ -72,14 +72,14 @@ page {
     line-height: 38rpx;
     padding-top: 24rpx;
     text-align: center;
-    margin-bottom: 16rpx;
+    margin: 0 40rpx 16rpx;
 }
 
 .tab_name {
     font-size: 28rpx;
     color: #BFA267;
     line-height: 34rpx;
-    margin-bottom: 24rpx;
+    margin: 0 40rpx 24rpx;
     text-align: center;
 }
 
