@@ -229,17 +229,16 @@ page {
 }
 
 .ad_content {
-    width: 596rpx;
-    height: 779rpx;
+    width: 530rpx;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
 }
 
-.ad3 ad_img {
+.ad3 .ad_img {
     display: block;
-    width: 596rpx;
+    width: 530rpx;
     background-color: #ccc;
     border-radius: 50rpx;
 }
