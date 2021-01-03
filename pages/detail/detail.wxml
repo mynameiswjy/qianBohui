@@ -62,7 +62,7 @@
                 </view>
                 <view class="tab_tr bottom">
                     <view class="tab_td1">直径(毫米)</view>
-                    <view class="tab_td5" style="font-size: 24rpx;">{{obj.moneyDiameter}}</view>
+                    <view class="tab_td5" style="font-size: {{obj.moneyDiameter.length>16?'24rpx':''}};">{{obj.moneyDiameter}}</view>
                 </view>
                 <view class="tab_tr bottom">
                     <view class="tab_td1">成色</view>
