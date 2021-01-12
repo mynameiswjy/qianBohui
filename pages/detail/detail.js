@@ -130,7 +130,7 @@ Page({
     const imgUrl = baseUrl + "/imgFile/icon/short_bg"
     let arr
     if (!this.data.IsBigImg) {
-      arr = [imgUrl + "1.png",imgUrl + "2.png",imgUrl + "3.png", imgUrl + "4.png", imgUrl + "5.png"];
+      arr = [imgUrl + "11.png",imgUrl + "22.png",imgUrl + "33.png", imgUrl + "44.png", imgUrl + "55.png"];
     } else {
       arr = [imgUrl + "6.png",imgUrl + "7.png",imgUrl + "8.png", imgUrl + "9.png", imgUrl + "10.png"];
     }
@@ -654,8 +654,7 @@ Page({
     // 剪切
     ctx.clip()
   },
-  test() {
-  },
+
   goHome() {
     wx.switchTab({
       url: "/pages/index/index"

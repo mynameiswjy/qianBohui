@@ -14,7 +14,7 @@
     <swiper class="swiper" previous-margin="62rpx" next-margin="62rpx" circular bindchange="swiperChange">
         <swiper-item wx:for="{{list}}" wx:key="index">
             <view class="banner_item">
-                <image class="banner_img" src="{{item.imagesUrl}}" mode="widthFIx"></image>
+                <image class="banner_img" src="{{item.imagesUrl}}" mode="widthFix"></image>
                 <view class="flex banner_bottom {{item.videoUrl?'':'banner_bottom1'}}">
                     <view class="bottom_btn" bindtap="playBtn" data-idx="{{index}}" wx:if="{{item.videoUrl}}">播放视频</view>
                     <view class="bottom_btn"

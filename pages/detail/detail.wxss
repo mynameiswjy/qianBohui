@@ -234,7 +234,7 @@ page {
     text-align: center;
     font-size: 30rpx;
     color: #fff;
-    margin: 40rpx auto 0;
+    margin: 0rpx auto 0;
     background-color: #C6A056;
     border-radius: 10rpx;
 }
